@@ -1,0 +1,7 @@
+/*
+ * Application stylesheets
+ */
+
+/* ResumeView */
+@import url('./resume/ResumePanel.css');
+@import url('./resume/ResumeView.css');
