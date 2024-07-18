@@ -1,0 +1,127 @@
+/*
+ * Application stylesheets
+ */
+
+/* ResumeView */
+@import url('./resume/ResumePanel.css');
+@import url('./resume/ResumeView.css');
+
+/* HomeView */
+@import url('./home/HomePanel.css');
+@import url('./home/HomeView.css');
+
+/* Components */
+@import url('./components/SlideControl.css');
+
+#top-div {
+    position: relative;
+    height: 400px;
+}
+
+/* Style topClientDiv */
+#top-client-div {
+    position: relative;
+    display: flex;
+}
+#top-client-div > div:nth-child(1) > div:nth-child(1) {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+}
+#top-client-div > div:nth-child(1) > div:nth-child(1) > img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+    box-sizing: border-box;
+}
+#top-client-div > div:nth-child(2) {
+    background-color: #27AE60;
+    height: 25px;
+    width: 25px;
+    margin: auto;
+    cursor: pointer;
+}
+#top-client-div > div:nth-child(3) {
+    background-color: #206D96;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
+
+/* Style clientDiv */
+#client-div {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+#client-div:before {
+    content: ' ';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: var(--background-color1);
+    background-image: url('../img/Dodongo.jpg');
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/*
+ * Hidden
+ */
+
+ .hidden {
+    position: absolute;
+    left: -1000px;
+}
+
+/*
+ * Create variables that can be used throughout the projects stylesheets
+ */
+body {
+
+    /* Buttons */
+    --button-color1:        #27AE60;
+    --button-color1-rgb:      39, 174, 96;
+    --button-color2:        #206D96;
+    --button-color2-rgb:      32, 109, 150;
+    --button-color3:        #D97E59;
+    --button-color3-rgb:      217, 126, 89;
+
+    /* Paragraphs */
+    --paragraph-1:    14px;
+    --paragraph-2:    12px;
+    --paragraph-3:    10px;
+}
+
+::-webkit-scrollbar {
+    display: block;
+    background-color: rgb(255, 255, 255, 0);
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background-color: rgb(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 8px;
+    transition: background-color 350ms ease;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(255, 255, 255, 0.60);
+}
+::-webkit-scrollbar-button {
+    display: none;
+}
