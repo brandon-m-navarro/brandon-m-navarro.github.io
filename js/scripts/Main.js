@@ -7,6 +7,9 @@ const viewManager = new ViewManager();
 import Utilities from './utils/Utilities.js';
 const utilities = new Utilities();
 
+import Images from './Images.js';
+const images = new Images();
+
 let doc = window.document;
 
 export class Main {
@@ -33,6 +36,10 @@ export class Main {
         this.topClientLeftDiv = doc.createElement('div');
         this.topClientMidDiv = doc.createElement('div');
         this.topClientRightDiv = doc.createElement('div');
+
+        this.imgDiv = doc.createElement('div');
+        this.img = doc.createElement('img');
+        this.img.src = images.getImages()['dadongo'].src;
     }
 
     // Load the website

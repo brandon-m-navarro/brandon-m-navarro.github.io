@@ -23,14 +23,15 @@
 // Import & instantiate dependent modules
 import Utilities from '../utils/Utilities.js';
 const utilities = new Utilities();
+import BaseComponent from '../BaseComponent.js';
 
 // Constructor
-export default class SlideControl {
+export default class SlideControl extends BaseComponent {
 
     // Constructor
     constructor (slideOptions) {
 
-        // Initialize Control Options
+        // Initialize SlideControl Options
         this.options = slideOptions || {};
 
         // Default Options
@@ -71,8 +72,7 @@ export default class SlideControl {
         this.closedClass = 'open-' + this.options.direction;
 
         // Create container and component html elements
-        this.container = window.document.createElement('div');
-        this.container.appendChild(this.options.component);
+        this.div.appendChild(this.options.component);
 
         // Set styles
         this.setComponentStyle();
@@ -82,12 +82,12 @@ export default class SlideControl {
         this.transitionEvent = utilities.getTransitionEvent();
 
         // Add transition and single listener
-        this.container.addEventListener(this.transitionEvent, (event) => {
+        this.div.addEventListener(this.transitionEvent, (event) => {
 
             // Done with transition so callback
             event = event || window.event;
 
-            if (event.target == this.container && this.sliderCallback) {
+            if (event.target == this.div && this.sliderCallback) {
 
                 event.stopPropagation();
                 this.sliderCallback();
@@ -106,7 +106,7 @@ export default class SlideControl {
             });
 
         // Dispatch
-        this.container.dispatchEvent(slideControlEvent);
+        this.div.dispatchEvent(slideControlEvent);
     }
 
     // Slide element open, optional callback when complete
@@ -121,7 +121,7 @@ export default class SlideControl {
 
             // Open the slider
             this.sliderCallback = callback;
-            this.container.classList.remove(this.closedClass);
+            this.div.classList.remove(this.closedClass);
             this.isSliderOpen = true;
         }
 
@@ -135,7 +135,7 @@ export default class SlideControl {
 
             // Close the slider
             this.sliderCallback = callback;
-            this.container.classList.add(this.closedClass);
+            this.div.classList.add(this.closedClass);
             this.isSliderOpen = false;
         } else {
             // Already closed
@@ -257,33 +257,33 @@ export default class SlideControl {
 
         // Set inline style overrides if not default
         if (this.options.duration != this.defaultOptions.duration) {
-            this.container.style.transitionDuration =
+            this.div.style.transitionDuration =
                 this.options.duration;
         }
         if (this.options.timing != this.defaultOptions.timing) {
-            this.container.style.transitionTimingFunction =
+            this.div.style.transitionTimingFunction =
                 this.options.timing;
         }
 
         // Set default styles
-        this.container.classList.add(this.slideControlClass);
-        this.container.classList.add(this.slideControlTransitionClass);
-        this.container.classList.add(this.closedClass);
+        this.div.classList.add(this.slideControlClass);
+        this.div.classList.add(this.slideControlTransitionClass);
+        this.div.classList.add(this.closedClass);
     };
 
     // Hide the slider
     hide () {
-        this.container.style.display = 'none';
+        this.div.style.display = 'none';
     };
 
     // Show the slider
     show () {
-        this.container.style.display = 'block';
+        this.div.style.display = 'block';
     };
 
     // Get the container div
     getDiv () {
-        return this.container;
+        return this.div;
     };
 
     // Static constants
