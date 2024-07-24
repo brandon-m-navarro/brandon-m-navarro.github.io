@@ -45,11 +45,13 @@
     height: 25px;
     width: 25px;
     margin: auto;
+    cursor: pointer;
 }
 #top-client-div > div:nth-child(3) {
     background-color: #206D96;
     height: 25px;
     width: 25px;
+    cursor: pointer;
 }
 
 /* Style clientDiv */

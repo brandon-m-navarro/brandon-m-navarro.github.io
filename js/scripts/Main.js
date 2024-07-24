@@ -15,6 +15,15 @@ let doc = window.document;
 export class Main {
     constructor (debug=false) {
         this.load();
+
+        // Listeners
+        utilities.addEventListeners(this.topClientRightDiv, () => {
+            viewManager.showViewByName('ResumeView');
+        });
+        utilities.addEventListeners(this.topClientMidDiv, () => {
+            viewManager.showViewByName('HomeView');
+        });
+
         this.start(debug);
     }
 
