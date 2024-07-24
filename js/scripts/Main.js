@@ -33,10 +33,6 @@ export class Main {
         this.topClientLeftDiv = doc.createElement('div');
         this.topClientMidDiv = doc.createElement('div');
         this.topClientRightDiv = doc.createElement('div');
-
-        this.navMenuButtonDiv = doc.createElement('div');
-        this.rightButtonDiv = doc.createElement('div');
-        this.leftButtonDiv = doc.createElement('div');
     }
 
     // Load the website
@@ -51,11 +47,17 @@ export class Main {
         // with CSS media queries
 
         // Assemble
+        this.topClientDiv.appendChild(this.topClientLeftDiv);
+        this.topClientDiv.appendChild(this.topClientMidDiv);
+        this.topClientDiv.appendChild(this.topClientRightDiv);
+
+        this.div.appendChild(this.topClientDiv);
         this.div.appendChild(this.clientDiv);
         doc.body.appendChild(this.div);
 
         // Assign DOM IDs
         this.div.setAttribute('id', 'top-div');
+        this.clientDiv.setAttribute('id', 'top-client-div');
         this.clientDiv.setAttribute('id', 'client-div');
 
         // Initialize ViewManager
