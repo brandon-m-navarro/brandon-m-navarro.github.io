@@ -57,7 +57,7 @@ export class Main {
 
         // Assign DOM IDs
         this.div.setAttribute('id', 'top-div');
-        this.clientDiv.setAttribute('id', 'top-client-div');
+        this.topClientDiv.setAttribute('id', 'top-client-div');
         this.clientDiv.setAttribute('id', 'client-div');
 
         // Initialize ViewManager
