@@ -10,13 +10,13 @@
 //
 
 // Import & instantiate dependent modules
-import ResumeView from './scripts/resume/ResumeView.js';
+import ResumeView from './resume/ResumeView.js';
 const resumeView = new ResumeView();
 
-import Utilities from './scripts/utils/Utilities.js';
+import Utilities from './utils/Utilities.js';
 const utilities = new Utilities();
 
-import SlideControl from './scripts/components/SlideControl.js';
+import SlideControl from './components/SlideControl.js';
 
 let // Create local vars
 
