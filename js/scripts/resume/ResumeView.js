@@ -42,6 +42,7 @@ export default class ResumeView extends BaseView {
 
         // Initialize panels
         this.resumePanel = new ResumePanel();
+        this.resumePanel.initialize();
 
         // Title
         this.titleDiv = doc.createElement('div');
@@ -56,6 +57,7 @@ export default class ResumeView extends BaseView {
         // Assemble
         this.frameDiv = doc.createElement('div');
         this.frameDiv.appendChild(this.titleDiv);
+        this.frameDiv.appendChild(this.resumePanel.getDiv());
         this.div.appendChild(this.frameDiv);
 
         // Set DOM IDs

@@ -9,12 +9,14 @@
 
 #top-div {
     position: relative;
+    height: 400px;
 }
 
 /* Style clientDiv */
 #client-div {
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 
 #client-div:before {
