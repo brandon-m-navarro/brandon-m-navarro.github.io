@@ -83,7 +83,7 @@ export default class ResumeView extends BaseView {
     setInitialView () {
         // Setup navigation button
         this.setNavigationButtons({
-            leftButton: ResumeView.getNavigationText().BACK
+            leftButton: BaseView.getNavigationText().BACK
         });
     };
 
@@ -100,8 +100,8 @@ export default class ResumeView extends BaseView {
     // Handle navigation event from view manager for logoDiv events
     handleNavigation (direction, text) {
         // Navigate back to HomeView
-        if (direction === ResumeView.getNavigationDirection().LEFT &&
-            text === ResumeView.getNavigationText().BACK) {
+        if (direction === BaseView.getNavigationDirection().LEFT &&
+            text === BaseView.getNavigationText().BACK) {
             this.fireEvent('showDefaultView');
         }
     };

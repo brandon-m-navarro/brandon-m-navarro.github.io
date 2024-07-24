@@ -55,4 +55,24 @@ export default class BaseView {
     getDiv () {
         return this.div;
     };
+
+    // Constants
+
+    // Navigation Direction
+    static getNavigationDirection () {
+        return Object.freeze({
+            LEFT: 0,
+            RIGHT: 1,
+            UP: 2,
+            DOWN: 3
+        });
+    };
+
+    // Navigation Text
+    static getNavigationText () {
+        return Object.freeze({
+            CANCEL: cancelText,
+            BACK: backText
+        });
+    };
 }
