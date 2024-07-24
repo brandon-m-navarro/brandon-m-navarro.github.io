@@ -23,7 +23,7 @@ let
 
 
 // Class
-export class ResumeView extends BaseView {
+export default class ResumeView extends BaseView {
 
     // Constructor
     constructor(options) {

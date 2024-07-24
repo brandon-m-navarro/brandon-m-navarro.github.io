@@ -48,9 +48,7 @@ let // Create local vars
 
 
 // Class
-export class ViewManager {
-// class ViewManager {
-
+export default class ViewManager {
 
     // Constructor
     constructor() {

@@ -20,6 +20,7 @@ export class Main {
         } else {
             console.log('Starting app');
         }
+        doc.body.appendChild(this.div);
     }
 
     // Create

@@ -25,7 +25,7 @@ let
 
 
 // Class
-export class ResumePanel extends BasePanel {
+export default class ResumePanel extends BasePanel {
 
     // Constructor
     constructor () {

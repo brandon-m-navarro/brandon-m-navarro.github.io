@@ -25,7 +25,7 @@ import Utilities from '../utils/Utilities.js';
 const utilities = new Utilities();
 
 // Constructor
-export class SlideControl {
+export default class SlideControl {
 
     // Constructor
     constructor (slideOptions) {
