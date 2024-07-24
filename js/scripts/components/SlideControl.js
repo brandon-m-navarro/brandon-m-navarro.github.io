@@ -21,7 +21,7 @@
 
 
 // Import & instantiate dependent modules
-import Utilities from './utils/Utilities.js';
+import Utilities from '../utils/Utilities.js';
 const utilities = new Utilities();
 
 // Constructor
