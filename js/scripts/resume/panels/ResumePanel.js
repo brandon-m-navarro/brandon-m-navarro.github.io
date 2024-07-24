@@ -6,8 +6,7 @@
 //   current resume
 //
 
-import BasePanel from '../../BasePanel';
-// const BasePanel = require('../../BasePanel');
+import BasePanel from '../../BasePanel.js';
 
 let
     // DOM
@@ -27,7 +26,6 @@ let
 
 // Class
 export class ResumePanel extends BasePanel {
-// class ResumePanel extends BasePanel {
 
     // Constructor
     constructor () {
@@ -78,5 +76,3 @@ export class ResumePanel extends BasePanel {
         this.initialized = true;
     };
 }
-
-// module.exports = ResumePanel;

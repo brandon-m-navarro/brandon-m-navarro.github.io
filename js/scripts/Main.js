@@ -1,12 +1,10 @@
 // Load in MainViews (Just ResumeView for now)
 
 // Import & instantiate dependent modules
-import ViewManager from './ViewManager';
-// const ViewManager = require('./ViewManager');
+import ViewManager from './ViewManager.js';
 const viewManager = new ViewManager();
 
-import Utilities from './utils/Utilities';
-// const Utilities = require('./utils/Utilities');
+import Utilities from './utils/Utilities.js';
 const utilities = new Utilities();
 
 export class Main {

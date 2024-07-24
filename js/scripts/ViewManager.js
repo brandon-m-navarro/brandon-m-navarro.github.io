@@ -10,16 +10,13 @@
 //
 
 // Import & instantiate dependent modules
-import ResumeView from './scripts/resume/ResumeView';
-// const ResumeView = require('./resume/ResumeView');
+import ResumeView from './scripts/resume/ResumeView.js';
 const resumeView = new ResumeView();
 
-import Utilities from './scripts/utils/Utilities';
-// const Utilities = require('./utils/Utilities');
+import Utilities from './scripts/utils/Utilities.js';
 const utilities = new Utilities();
 
-import SlideControl from './scripts/components/SlideControl';
-// const SlideControl = require('./components/SlideControl');
+import SlideControl from './scripts/components/SlideControl.js';
 
 let // Create local vars
 
@@ -409,5 +406,3 @@ export class ViewManager {
         // Nothing for now
     };
 };
-
-module.exports = ViewManager;

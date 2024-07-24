@@ -21,8 +21,7 @@
 
 
 // Import & instantiate dependent modules
-import Utilities from './utils/Utilities';
-// const Utilities = require('./utils/Utilities');
+import Utilities from './utils/Utilities.js';
 const utilities = new Utilities();
 
 // Constructor
@@ -299,5 +298,3 @@ class SlideControl {
         });
     }
 }
-
-module.exports = SlideControl;

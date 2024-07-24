@@ -5,7 +5,6 @@
 
 // Class
 export class BasePanel {
-// class BasePanel {
 
     // Constructor
     constructor () {
@@ -61,5 +60,3 @@ export class BasePanel {
         return this.div;
     };
 }
-
-// module.exports = BasePanel;

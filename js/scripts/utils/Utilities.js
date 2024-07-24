@@ -7,7 +7,7 @@
 let self;
 
 export class Utilities {
-// class Utilities {
+
     constructor () {
         // Preserve instance reference and enforce singleton
         if (typeof self === 'object') { return self; } else { self = this; }
@@ -220,5 +220,3 @@ export class Utilities {
         }
     };
 }
-
-// module.exports = Utilities;

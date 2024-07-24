@@ -5,11 +5,9 @@
 // ResumeView displays my resume via ResumePanel.
 //
 
-import ResumePanel from "./panels/ResumePanel";
-// const ResumePanel = require('./panels/ResumePanel');
+import ResumePanel from "./panels/ResumePanel.js";
 
-import BaseView from '../BaseView';
-// const BaseView = require('../BaseView');
+import BaseView from '../BaseView.js';
 
 
 let
@@ -26,7 +24,6 @@ let
 
 // Class
 export class ResumeView extends BaseView {
-// class ResumeView extends BaseView {
 
     // Constructor
     constructor(options) {
@@ -129,5 +126,3 @@ export class ResumeView extends BaseView {
         });
     };
 };
-
-// module.exports = ResumeView;

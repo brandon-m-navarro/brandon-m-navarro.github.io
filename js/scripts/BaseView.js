@@ -6,7 +6,6 @@
 
 // Class
 export class BaseView {
-// class BaseView {
 
     // Constructor
     constructor () {
@@ -57,5 +56,3 @@ export class BaseView {
         return this.div;
     };
 }
-
-// module.exports = BaseView;
