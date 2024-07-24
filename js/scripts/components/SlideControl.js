@@ -31,6 +31,8 @@ export default class SlideControl extends BaseComponent {
     // Constructor
     constructor (slideOptions) {
 
+        super();
+
         // Initialize SlideControl Options
         this.options = slideOptions || {};
 

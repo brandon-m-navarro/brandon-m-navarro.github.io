@@ -54,6 +54,9 @@ export class Main {
         // with CSS media queries
 
         // Assemble
+        this.imgDiv.appendChild(this.img);
+        this.topClientLeftDiv.appendChild(this.imgDiv)
+
         this.topClientDiv.appendChild(this.topClientLeftDiv);
         this.topClientDiv.appendChild(this.topClientMidDiv);
         this.topClientDiv.appendChild(this.topClientRightDiv);

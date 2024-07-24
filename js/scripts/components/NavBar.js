@@ -9,6 +9,9 @@ import BaseComponent from '../BaseComponent';
 
 export default class NavBar extends BaseComponent {
     constructor (options) {
+
+        super();
+
         this.options = options || {};
 
         // Default Options
