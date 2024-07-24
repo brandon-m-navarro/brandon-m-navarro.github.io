@@ -14,7 +14,7 @@ import ResumeView from './resume/ResumeView.js';
 const resumeView = new ResumeView();
 
 import HomeView from './home/HomeView.js';
-const homeView = new ResumeView();
+const homeView = new HomeView();
 
 import Utilities from './utils/Utilities.js';
 const utilities = new Utilities();
