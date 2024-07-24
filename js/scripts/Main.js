@@ -7,6 +7,8 @@ const viewManager = new ViewManager();
 import Utilities from './utils/Utilities.js';
 const utilities = new Utilities();
 
+let doc = window.document;
+
 export class Main {
     constructor (debug=false) {
         this.load();
