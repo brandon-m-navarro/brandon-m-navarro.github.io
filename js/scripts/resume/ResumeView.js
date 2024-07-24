@@ -11,7 +11,6 @@ import BaseView from '../BaseView.js';
 
 
 let
-
     // DOM elements
     doc = window.document,
 

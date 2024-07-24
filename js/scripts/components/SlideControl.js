@@ -71,7 +71,7 @@ export default class SlideControl {
         this.closedClass = 'open-' + this.options.direction;
 
         // Create container and component html elements
-        this.container = document.createElement('div');
+        this.container = window.document.createElement('div');
         this.container.appendChild(this.options.component);
 
         // Set styles

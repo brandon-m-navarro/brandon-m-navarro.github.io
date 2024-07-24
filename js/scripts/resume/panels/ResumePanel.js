@@ -9,7 +9,7 @@
 import BasePanel from '../../BasePanel.js';
 
 let
-    // DOM
+    // DOM elements
     doc = window.document,
 
     // DOM IDs (must be unique)
