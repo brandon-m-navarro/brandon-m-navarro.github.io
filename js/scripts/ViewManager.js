@@ -205,8 +205,8 @@ export default class ViewManager {
             // Show LeftButton if specified
             if (options.leftButton != null && options.leftButton !== false) {
                 this.leftButtonDiv.classList.add(showElementClass);
-                this.leftButtonDiv.children[1].innerHTML =
-                    options.leftButton || '';
+                // this.leftButtonDiv.children[1].innerHTML =
+                //     options.leftButton || '';
             } else {
                 this.leftButtonDiv.classList.remove(showElementClass);
             }
