@@ -9,7 +9,7 @@ import Utilities from './utils/Utilities';
 // const Utilities = require('./utils/Utilities');
 const utilities = new Utilities();
 
-class Main {
+export class Main {
     constructor (debug=false) {
         this.load();
         this.start(debug);
