@@ -56,7 +56,7 @@ export default class ResumePanel extends BasePanel {
         this.frameDiv.appendChild(this.tempDiv);
 
         // Assemble
-        this.div.appendChild(frameDiv);
+        this.div.appendChild(this.frameDiv);
     };
 
     // Create and assemble panel elements
