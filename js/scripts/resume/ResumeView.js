@@ -5,7 +5,7 @@
 // ResumeView displays my resume via ResumePanel.
 //
 
-import ResumePanel from "../ResumePanel";
+import ResumePanel from "./panels/ResumePanel";
 // const ResumePanel = require('./panels/ResumePanel');
 
 import BaseView from '../BaseView';
