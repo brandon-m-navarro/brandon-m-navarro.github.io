@@ -13,6 +13,9 @@
 import ResumeView from './resume/ResumeView.js';
 const resumeView = new ResumeView();
 
+import HomeView from './home/HomeView.js';
+const homeView = new ResumeView();
+
 import Utilities from './utils/Utilities.js';
 const utilities = new Utilities();
 
@@ -32,7 +35,8 @@ let // Create local vars
 
     // Views arrays
     generalViewList = [
-        { view: resumeView,           eagerInitialize: true  }
+        {   view: homeView,             eagerInitialize: true,
+            view: resumeView,           eagerInitialize: true  }
     ],
     viewList = [].concat(generalViewList),
 
@@ -173,6 +177,14 @@ export default class ViewManager {
                 }
             }
         });
+
+        // HomeView events
+        homeView.getDiv().addEventListener('homeEvent', event => {
+            console.log('HomeEvent! - ', event);
+            if (event && event.detail) {
+                switch (event.detail.action) {}
+            }
+        });
     };
 
     // Get the initialization status
@@ -273,7 +285,8 @@ export default class ViewManager {
 
                 // Add to DOM
                 switch(newView) {
-                    case resumeView:
+                    // case homeView:
+                    // case resumeView:
                     default:
                         // Create slider for view
                         newViewSlider = new SlideControl({
@@ -314,7 +327,8 @@ export default class ViewManager {
 
                 // Show the view and open its slider
                 switch(newView) {
-                    case resumeView:
+                    // case homeView:
+                    // case resumeView:
 
                     default:
 

@@ -5,6 +5,12 @@
 /* ResumeView */
 @import url('./resume/ResumePanel.css');
 @import url('./resume/ResumeView.css');
+
+/* HomeView */
+@import url('./resume/HomePanel.css');
+@import url('./resume/HomeView.css');
+
+/* Components */
 @import url('./components/SlideControl.css');
 
 #top-div {

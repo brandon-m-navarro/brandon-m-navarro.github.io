@@ -31,6 +31,8 @@ export default class Utilities {
                 window.screenWidth && window.screenAvailableWidth &&
                 window.screenWidth === window.screenAvailableWidth)) {
                 isMobilePlatform = true;
+            } else {
+                isMobilePlatform = false;
             }
         }
         return isMobilePlatform;
@@ -44,6 +46,8 @@ export default class Utilities {
                (navigator.platform === 'MacIntel' &&
                 navigator.maxTouchPoints > 1)) {
                 isIOSPlatform = true;
+            } else {
+                isIOSPlatform = false;
             }
         }
         return isIOSPlatform;
@@ -54,6 +58,8 @@ export default class Utilities {
         if (typeof isAndroidPlatform === 'undefined') {
             if (navigator.userAgent.match(/Android/i)) {
                 isAndroidPlatform = true;
+            } else {
+                isAndroidPlatform = false;
             }
         }
         return isAndroidPlatform;
