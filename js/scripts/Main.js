@@ -81,4 +81,3 @@ export class Main {
 
 // Initialize
 const main = new Main();
-main.start();
