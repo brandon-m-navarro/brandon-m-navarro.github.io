@@ -5,7 +5,7 @@
 
 
 // Class
-export class BaseView {
+export default class BaseView {
 
     // Constructor
     constructor () {
