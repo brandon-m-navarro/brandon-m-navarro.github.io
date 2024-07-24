@@ -23,7 +23,7 @@
     position: relative;
     display: flex;
 }
-#top-client-div > div:nth-child(1) {
+#top-client-div > div:nth-child(1) > div:nth-child(1) {
     position: relative;
     display: flex;
     flex-flow: column nowrap;
@@ -32,7 +32,7 @@
     width: 75px;
     height: 75px;
 }
-#top-client-div > div:nth-child(1) > img {
+#top-client-div > div:nth-child(1) > div:nth-child(1) > img {
     position: absolute;
     width: 100%;
     height: 100%;
