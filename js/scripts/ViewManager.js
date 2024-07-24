@@ -35,8 +35,8 @@ let // Create local vars
 
     // Views arrays
     generalViewList = [
-        {   view: homeView,             eagerInitialize: true,
-            view: resumeView,           eagerInitialize: true  }
+        {view: homeView,             eagerInitialize: true  },
+        {view: resumeView,           eagerInitialize: true  }
     ],
     viewList = [].concat(generalViewList),
 
