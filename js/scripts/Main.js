@@ -28,6 +28,12 @@ export class Main {
     createElements () {
         this.div = doc.createElement('div');
         this.clientDiv = doc.createElement('div');
+
+        this.topClientDiv = doc.createElement('div');
+        this.topClientLeftDiv = doc.createElement('div');
+        this.topClientMidDiv = doc.createElement('div');
+        this.topClientRightDiv = doc.createElement('div');
+
         this.navMenuButtonDiv = doc.createElement('div');
         this.rightButtonDiv = doc.createElement('div');
         this.leftButtonDiv = doc.createElement('div');
@@ -35,16 +41,14 @@ export class Main {
 
     // Load the website
     load () {
-
         this.createElements();
 
-        // Determine whether we are on Mobile or desktop
-        // (can construct different UIs for each)
         // Determine mobile/desktop
         let isMobile = utilities.isMobile();
         console.info('Are we running on mobile? - ' + isMobile);
 
-        // Using isMobile, build different UIs?
+        // Using isMobile, build different UIs? Could handle
+        // with CSS media queries
 
         // Assemble
         this.div.appendChild(this.clientDiv);
@@ -56,10 +60,7 @@ export class Main {
 
         // Initialize ViewManager
         viewManager.initialize({
-            clientDiv: this.clientDiv,
-            navMenuButtonDiv: this.navMenuButtonDiv,
-            leftButtonDiv: this.leftButtonDiv,
-            rightButtonDiv: this.rightButtonDiv
+            clientDiv: this.clientDiv
         });
 
         // Show default view
@@ -69,13 +70,13 @@ export class Main {
         doc.documentElement.style.overflowX = 'hidden';
 
         // CustomEvent listeners
-        doc.body.addEventListener('viewManagerEvent', function (event) {
+        doc.body.addEventListener('viewManagerEvent', (event) => {
             let customEvent = event || {},
                 detail = customEvent.detail || {},
                 action = detail.action;
 
             switch (action) {}
-        }.bind(this));
+        });
     }
 }
 

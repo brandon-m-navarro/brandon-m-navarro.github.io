@@ -40,11 +40,6 @@ let // Create local vars
     ],
     viewList = [].concat(generalViewList),
 
-    // View names arrays
-    generalViewNamesList =
-        generalViewList.map(v => v.view.getName()),
-    viewNamesList = [].concat(generalViewNamesList),
-
     // Other module vars
     parentDiv,
     showElementClass = 'show-element',
@@ -71,20 +66,8 @@ export default class ViewManager {
             viewMap[view.getName()] = view;
         }
 
-        // Elements of interest
-        this.navMenuButtonDiv = undefined;
-        this.leftButtonDiv = undefined;
-        this.rightButtonDiv = undefined;
-
 
         // Element listeners
-
-        // Listener for NavigationButtonEvent to show proper nav controls
-        document.body.addEventListener('navigationButtonEvent', event => {
-            if (event != null && event.detail != null) {
-                this.showNavigationButtons(event.detail);
-            }
-        });
     };
 
 
@@ -99,7 +82,7 @@ export default class ViewManager {
     };
 
     // Fire event
-    fireEvent (action, loginType) {
+    fireEvent (action) {
         // Setup detail object
         let detail = {
             action: action
@@ -116,7 +99,7 @@ export default class ViewManager {
 
     // Create and assemble view elements
     initialize (options) {
-        options = options || {};  // Avoid null/undefined
+        options = options || {};
 
         // Capture parent div for all views
         parentDiv = options.clientDiv;
@@ -137,44 +120,16 @@ export default class ViewManager {
             }
         }
 
-        // Capture navigation buttons
-        this.navMenuButtonDiv = options.navMenuButtonDiv;
-        this.leftButtonDiv = options.leftButtonDiv;
-        this.rightButtonDiv = options.rightButtonDiv;
-
         // Declare victory
         initialized = true;
 
         // Listeners
 
-        // Left Navigation button
-        utilities.addEventListeners(this.leftButtonDiv, () => {
-
-            // Check our current View to determine what to show
-            switch (this.getVisibleView().getName()) {
-
-                // case 'ResumeView':
-                //     resumeView.handleNavigation(
-                //         ResumeView.getNavigationDirection().LEFT,
-                //         ResumeView.getNavigationText().BACK
-                //     );
-                //     break;
-
-                default:
-                    this.showDefaultView();
-                    break;
-            }
-        });
-
         // ResumeView events
         resumeView.getDiv().addEventListener('resumeEvent', event => {
             console.log('ResumeEvent! - ', event);
             if (event && event.detail) {
-                switch (event.detail.action) {
-                    case 'showDefaultView':
-                        this.showDefaultView();
-                        break;
-                }
+                switch (event.detail.action) {}
             }
         });
 
@@ -192,39 +147,6 @@ export default class ViewManager {
         return initialized;
     };
 
-    // Show navigation options in main.logoDiv...
-    //
-    //   options {
-    //       navMenuButton: true | false,
-    //       leftButton: text | false,
-    //       rightButton: text | false
-    //   }
-    //
-    //   Default is false for any unspecified properties.
-    //
-    showNavigationButtons (options) {
-        options = options || {};  // Avoid null/undefined
-
-        // Show navMenuButton if true
-        if (options.navMenuButton === true) {
-            this.navMenuButtonDiv.classList.add(showElementClass);
-            this.leftButtonDiv.classList.remove(showElementClass);
-            this.rightButtonDiv.classList.remove(showElementClass);
-        } else {
-            // Hide navMenuButton
-            this.navMenuButtonDiv.classList.remove(showElementClass);
-
-            // Show LeftButton if specified
-            if (options.leftButton != null && options.leftButton !== false) {
-                this.leftButtonDiv.classList.add(showElementClass);
-                // this.leftButtonDiv.children[1].innerHTML =
-                //     options.leftButton || '';
-            } else {
-                this.leftButtonDiv.classList.remove(showElementClass);
-            }
-        }
-    };
-
     // Scroll to top of current view
     scrollToTop () {
         for (let v in viewMap) {
@@ -240,9 +162,9 @@ export default class ViewManager {
         }
     };
 
-    // Show default view, e.g. HomeView or AssociateView based on loginType
+    // Show default view, e.g. HomeView
     showDefaultView () {
-        this.showViewByName('ResumeView');
+        this.showViewByName('HomeView');
     };
 
     // Show view by name
@@ -411,10 +333,5 @@ export default class ViewManager {
     // Get the list of possible views
     getViews () {
         return viewMap;
-    };
-
-    // Reset
-    reset () {
-        // Nothing for now
     };
 };

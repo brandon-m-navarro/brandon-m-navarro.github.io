@@ -99,15 +99,6 @@ export default class HomeView extends BaseView {
         }));
     };
 
-    // Handle navigation event from view manager for logoDiv events
-    handleNavigation (direction, text) {
-        // Navigate back to HomeView
-        if (direction === BaseView.getNavigationDirection().LEFT &&
-            text === BaseView.getNavigationText().BACK) {
-            this.fireEvent('showDefaultView');
-        }
-    };
-
     // Dynamically add remaining artifacts
     initialize() {
 
