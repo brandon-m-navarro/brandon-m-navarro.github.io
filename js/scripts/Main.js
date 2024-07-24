@@ -63,7 +63,7 @@ export class Main {
         });
 
         // Show default view
-        viewManager.showViewByName('ResumeView');
+        viewManager.showViewByName('HomeView');
 
         // Stop showing horizontal scrollbars
         doc.documentElement.style.overflowX = 'hidden';
