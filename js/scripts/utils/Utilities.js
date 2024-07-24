@@ -6,7 +6,7 @@
 // Create module vars
 let self;
 
-export class Utilities {
+export default class Utilities {
 
     constructor () {
         // Preserve instance reference and enforce singleton

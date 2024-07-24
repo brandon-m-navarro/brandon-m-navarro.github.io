@@ -4,7 +4,7 @@
 // methods and managed properties.
 
 // Class
-export class BasePanel {
+export default class BasePanel {
 
     // Constructor
     constructor () {
