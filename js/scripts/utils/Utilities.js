@@ -4,7 +4,9 @@
 // throughout models, views, & panels
 
 // Create module vars
-let self;
+let self, supportedEventTypes, isMobilePlatform, isIOSPlatform,
+    isAndroidPlatform, androidVersion, iosVersion, transitionEvent,
+    isTouchable;
 
 export default class Utilities {
 
@@ -22,7 +24,6 @@ export default class Utilities {
     //
     isMobile = function () {
         if (typeof isMobilePlatform === 'undefined') {
-            isMobilePlatform = false;
             if (navigator.userAgent.match(
                 /Android|BlackBerry|BB10; Touch|iPhone|iPad|iPod|Opera Mini|IEMobile/i) ||
                 ('ontouchstart' in document.documentElement &&
@@ -38,7 +39,6 @@ export default class Utilities {
     // Check for IOS Platform
     isIOS = function () {
         if (typeof isIOSPlatform === 'undefined') {
-            isIOSPlatform = false;
             if (navigator.userAgent.match(/iPhone|iPad|iPod/i) ||
                /* iPad OS 13 */
                (navigator.platform === 'MacIntel' &&
@@ -52,7 +52,6 @@ export default class Utilities {
     // Check for Android Platform
     isAndroid = function () {
         if (typeof isAndroidPlatform === 'undefined') {
-            isAndroidPlatform = false;
             if (navigator.userAgent.match(/Android/i)) {
                 isAndroidPlatform = true;
             }
@@ -104,6 +103,7 @@ export default class Utilities {
 
     // Determine if device is touch enabled
     isTouchable = function () {
+
         // Only do the check once per session
         if (typeof isTouchable === 'undefined') {
             // Check for touch enabled device
