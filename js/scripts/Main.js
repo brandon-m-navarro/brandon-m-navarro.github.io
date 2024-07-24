@@ -20,7 +20,6 @@ export class Main {
         } else {
             console.log('Starting app');
         }
-        doc.body.appendChild(this.div);
     }
 
     // Create
@@ -35,7 +34,7 @@ export class Main {
     // Load the website
     load () {
 
-        createElements();
+        this.createElements();
 
         // Determine whether we are on Mobile or desktop
         // (can construct different UIs for each)
