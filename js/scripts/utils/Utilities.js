@@ -1,6 +1,13 @@
+// Utilities Module
+
+// Utilities contains useful, shared methods that appear
+// throughout models, views, & panels
+
+// Create module vars
 let self;
 
-class Utilities {
+export class Utilities {
+// class Utilities {
     constructor () {
         // Preserve instance reference and enforce singleton
         if (typeof self === 'object') { return self; } else { self = this; }
@@ -213,3 +220,5 @@ class Utilities {
         }
     };
 }
+
+// module.exports = Utilities;

@@ -5,3 +5,79 @@
 /* ResumeView */
 @import url('./resume/ResumePanel.css');
 @import url('./resume/ResumeView.css');
+@import url('./components/SlideControl.css');
+
+#top-div {
+    position: relative;
+}
+
+/* Style clientDiv */
+#client-div {
+    position: relative;
+    overflow: hidden;
+}
+
+#client-div:before {
+    content: ' ';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: var(--background-color1);
+    background-image: url('../img/apps/mychapter/logo.png');
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/*
+ * Hidden
+ */
+
+ .hidden {
+    position: absolute;
+    left: -1000px;
+}
+
+/*
+ * Create variables that can be used throughout the projects stylesheets
+ */
+body {
+
+    /* Buttons */
+    --button-color1:        #27AE60;
+    --button-color1-rgb:      39, 174, 96;
+    --button-color2:        #206D96;
+    --button-color2-rgb:      32, 109, 150;
+    --button-color3:        #D97E59;
+    --button-color3-rgb:      217, 126, 89;
+
+    /* Paragraphs */
+    --paragraph-1:    14px;
+    --paragraph-2:    12px;
+    --paragraph-3:    10px;
+}
+
+::-webkit-scrollbar {
+    display: block;
+    background-color: rgb(255, 255, 255, 0);
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background-color: rgb(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 8px;
+    transition: background-color 350ms ease;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(255, 255, 255, 0.60);
+}
+::-webkit-scrollbar-button {
+    display: none;
+}

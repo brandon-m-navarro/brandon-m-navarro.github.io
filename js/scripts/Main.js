@@ -1,26 +1,42 @@
 // Load in MainViews (Just ResumeView for now)
 
-const ResumeView = require('./scripts/resume/ResumeView'),
-      resumeView = new ResumeView();
+// Import & instantiate dependent modules
+import ViewManager from './ViewManager';
+// const ViewManager = require('./ViewManager');
+const viewManager = new ViewManager();
 
+import Utilities from './utils/Utilities';
+// const Utilities = require('./utils/Utilities');
+const utilities = new Utilities();
 
 class Main {
     constructor (debug=false) {
-
+        this.load();
+        this.start(debug);
     }
 
-    // 
-    initialize () {
+    // Start the application
+    start (debug) {
+        if (debug) {
+            console.log('Starting app in debug mode');
+        } else {
+            console.log('Starting app');
+        }
+    }
 
-        // Eventually, we will load some MainView that
-        // will offer navigation to ResumeView, however,
-        // just focus on showing ResumeView for now
-        resumeView.initialize();
-        resumeView.show();
+    // Create
+    createElements () {
+        this.div = doc.createElement('div');
+        this.clientDiv = doc.createElement('div');
+        this.navMenuButtonDiv = doc.createElement('div');
+        this.rightButtonDiv = doc.createElement('div');
+        this.leftButtonDiv = doc.createElement('div');
     }
 
     // Load the website
     load () {
+
+        createElements();
 
         // Determine whether we are on Mobile or desktop
         // (can construct different UIs for each)
@@ -28,39 +44,29 @@ class Main {
         let isMobile = utilities.isMobile();
         console.info('Are we running on mobile? - ' + isMobile);
 
-        // Create nav menu (either slide or research something new)
-
         // Using isMobile, build different UIs?
 
-
-        // Set up the client div for the current view
-        clientDiv = doc.createElement('div');
-        clientDiv.setAttribute('id', 'client-div');
-
         // Assemble
-        div.appendChild(clientDiv);
-        doc.body.appendChild(div);
+        this.div.appendChild(this.clientDiv);
+        doc.body.appendChild(this.div);
 
         // Assign DOM IDs
-        div.setAttribute('id', 'top-div');
+        this.div.setAttribute('id', 'top-div');
+        this.clientDiv.setAttribute('id', 'client-div');
 
-        // Initialize ViewManager with options
+        // Initialize ViewManager
         viewManager.initialize({
-            clientDiv: clientDiv,
-            navMenuButtonDiv: navMenuButtonDiv,
-            leftButtonDiv: leftButtonDiv,
-            rightButtonDiv: rightButtonDiv
+            clientDiv: this.clientDiv,
+            navMenuButtonDiv: this.navMenuButtonDiv,
+            leftButtonDiv: this.leftButtonDiv,
+            rightButtonDiv: this.rightButtonDiv
         });
-
-
 
         // Show default view
         viewManager.showViewByName('ResumeView');
 
-
         // Stop showing horizontal scrollbars
         doc.documentElement.style.overflowX = 'hidden';
-
 
         // CustomEvent listeners
         doc.body.addEventListener('viewManagerEvent', function (event) {
@@ -69,11 +75,10 @@ class Main {
                 action = detail.action;
 
             switch (action) {}
-
-            // Recalculate bounds
-            // this.getBounds();
-            // this.updateBounds();
         }.bind(this));
-
     }
 }
+
+// Initialize
+const main = new Main();
+main.start();

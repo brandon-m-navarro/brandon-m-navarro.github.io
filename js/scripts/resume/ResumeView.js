@@ -2,140 +2,132 @@
 //
 // DESCRIPTION:
 //
-// ResumeView displays my Resume via ResumePanel.
+// ResumeView displays my resume via ResumePanel.
 //
 
-const ResumePanel = require('./panels/ResumePanel');
+import ResumePanel from "../ResumePanel";
+// const ResumePanel = require('./panels/ResumePanel');
 
-define(function (require) {
-    'use strict';
-
-    let // Require.js module dependencies
-        // Utilities = require('Utilities'),
-        // Dependent Resources
-        // utilities = new Utilities(),
-
-        // DOM elements
-        doc = window.document,
-
-        // Base CSS selector
-        defaultBaseSelector = 'resume-view',
-
-        // Singleton reference
-        self;
+import BaseView from '../BaseView';
+// const BaseView = require('../BaseView');
 
 
-    // Class
-    return class ResumeView extends BaseView {
+let
 
-        // Constructor
-        constructor(options) {
+    // DOM elements
+    doc = window.document,
 
-            // BOILER PLATE: Preserve instance reference and enforce singleton
-            if (typeof self === 'object') {
-                return self;
-            } else {
-                super();
-                self = this;
-            }
+    // Base CSS selector
+    defaultBaseSelector = 'resume-view',
 
-            // Override options
-            this.options = options || {};
-            this.baseSelector = 'baseSelector' in this.options ?
-                this.options.baseSelector : defaultBaseSelector;
-
-            // Initialize panels
-            this.resumePanel = nre ResumePanel();
-
-            // Title
-            this.titleDiv = doc.createElement('div');
-            this.titleTextDiv = doc.createElement('div');
-            this.titleTextDiv.innerHTML = titleText;
-            this.titleLineDiv = doc.createElement('div');
-            this.titleDiv.appendChild(this.titleTextDiv);
-            this.titleDiv.appendChild(this.titleLineDiv);
-
-            // Container for panels
-
-            // Assemble
-            this.aboutDiv = doc.createElement('div');
-            this.frameDiv = doc.createElement('div');
-            this.aboutDiv.appendChild(this.artifactPanelDiv);
-            this.frameDiv.appendChild(this.titleDiv);
-            this.frameDiv.appendChild(this.aboutDiv);
-            this.div.appendChild(this.frameDiv);
-
-            // Set DOM IDs
-            this.div.setAttribute('id',      this.baseSelector + '-div');
-            this.frameDiv.setAttribute('id', this.baseSelector + '-frame-div');
-            this.titleDiv.setAttribute('id', this.baseSelector + '-title-div');
-            this.aboutDiv.setAttribute('id', this.baseSelector + '-about-div');
-
-            // Initalize collection
-            this.artifacts = [];
-        };
+    // Singleton reference
+    self;
 
 
-        // Instance Methods
+// Class
+export class ResumeView extends BaseView {
+// class ResumeView extends BaseView {
 
-        // Fire event
-        fireEvent (action, target) {
-            this.div.dispatchEvent(new CustomEvent('resumeEvent', {
-                detail: {
-                    action: action,
-                    target: target
-                },
-                bubbles: false,
-                cancelable: false
-            }));
-        };
+    // Constructor
+    constructor(options) {
 
-        // Set initial contents when this view is displayed
-        setInitialView () {
-            // Setup navigation button
-            this.setNavigationButtons({
-                leftButton: ResumeView.getNavigationText().BACK
-            });
-        };
+        // BOILER PLATE: Preserve instance reference and enforce singleton
+        if (typeof self === 'object') {
+            return self;
+        } else {
+            super();
+            self = this;
+        }
 
-        // Set specified navigation buttons
-        setNavigationButtons (options) {
-            // Update navigation buttons
-            doc.body.dispatchEvent(new CustomEvent('navigationButtonEvent', {
-                detail: options,
-                bubbles: false,
-                cancelable: false
-            }));
-        };
+        // Override options
+        this.options = options || {};
+        this.baseSelector = 'baseSelector' in this.options ?
+            this.options.baseSelector : defaultBaseSelector;
 
-        // Handle navigation event from view manager for logoDiv events
-        handleNavigation (direction, text) {
-            // Navigate back to HomeView
-            if (direction === ResumeView.getNavigationDirection().LEFT &&
-                text === ResumeView.getNavigationText().BACK) {
-                this.fireEvent('showDefaultView');
-            }
-        };
+        // Initialize panels
+        this.resumePanel = new ResumePanel();
 
-        // Dynamically add remaining artifacts
-        initialize() {
+        // Title
+        this.titleDiv = doc.createElement('div');
+        this.titleTextDiv = doc.createElement('div');
+        this.titleTextDiv.innerHTML = titleText;
+        this.titleLineDiv = doc.createElement('div');
+        this.titleDiv.appendChild(this.titleTextDiv);
+        this.titleDiv.appendChild(this.titleLineDiv);
 
-            // Complete with initialization
-            this.initialized = true;
-        };
+        // Container for panels
 
-        // Constants
+        // Assemble
+        this.frameDiv = doc.createElement('div');
+        this.frameDiv.appendChild(this.titleDiv);
+        this.div.appendChild(this.frameDiv);
 
-        // Navigation Direction
-        static getNavigationDirection () {
-            return Object.freeze({
-                LEFT: 0,
-                RIGHT: 1,
-                UP: 2,
-                DOWN: 3
-            });
-        };
+        // Set DOM IDs
+        this.div.setAttribute('id',      this.baseSelector + '-div');
+        this.frameDiv.setAttribute('id', this.baseSelector + '-frame-div');
+        this.titleDiv.setAttribute('id', this.baseSelector + '-title-div');
     };
-});
 
-module.exports = ResumeView;
+
+    // Instance Methods
+
+    // Fire event
+    fireEvent (action, target) {
+        this.div.dispatchEvent(new CustomEvent('resumeEvent', {
+            detail: {
+                action: action,
+                target: target
+            },
+            bubbles: false,
+            cancelable: false
+        }));
+    };
+
+    // Set initial contents when this view is displayed
+    setInitialView () {
+        // Setup navigation button
+        this.setNavigationButtons({
+            leftButton: ResumeView.getNavigationText().BACK
+        });
+    };
+
+    // Set specified navigation buttons
+    setNavigationButtons (options) {
+        // Update navigation buttons
+        doc.body.dispatchEvent(new CustomEvent('navigationButtonEvent', {
+            detail: options,
+            bubbles: false,
+            cancelable: false
+        }));
+    };
+
+    // Handle navigation event from view manager for logoDiv events
+    handleNavigation (direction, text) {
+        // Navigate back to HomeView
+        if (direction === ResumeView.getNavigationDirection().LEFT &&
+            text === ResumeView.getNavigationText().BACK) {
+            this.fireEvent('showDefaultView');
+        }
+    };
+
+    // Dynamically add remaining artifacts
+    initialize() {
+
+        // Complete with initialization
+        this.initialized = true;
+    };
+
+    // Constants
+
+    // Navigation Direction
+    static getNavigationDirection () {
+        return Object.freeze({
+            LEFT: 0,
+            RIGHT: 1,
+            UP: 2,
+            DOWN: 3
+        });
+    };
+};
+
+// module.exports = ResumeView;

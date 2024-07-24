@@ -4,9 +4,9 @@
 // methods and managed properties.
 
 // Class
-return class BasePanel {
+export class BasePanel {
+// class BasePanel {
 
-    
     // Constructor
     constructor () {
 
@@ -32,9 +32,6 @@ return class BasePanel {
     isInitialized () {
         return this.initialized;
     };
-
-    // Update panel bounds within container
-    updateBounds () {};
 
     // Reset panel UI components
     reset () {};
@@ -64,3 +61,5 @@ return class BasePanel {
         return this.div;
     };
 }
+
+// module.exports = BasePanel;
