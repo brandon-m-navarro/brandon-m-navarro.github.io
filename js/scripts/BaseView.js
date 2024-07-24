@@ -71,8 +71,8 @@ export default class BaseView {
     // Navigation Text
     static getNavigationText () {
         return Object.freeze({
-            CANCEL: cancelText,
-            BACK: backText
+            CANCEL: 'CANCEL',
+            BACK: 'BACK'
         });
     };
 }
