@@ -5,7 +5,7 @@
 // fired containing the matching buttons text, which can be handled
 // on the implementing panel/view/component.
 
-import BaseComponent from '../BaseComponent';
+import BaseComponent from '../BaseComponent.js';
 
 export default class NavBar extends BaseComponent {
     constructor (options) {

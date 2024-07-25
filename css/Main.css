@@ -7,8 +7,8 @@
 @import url('./resume/ResumeView.css');
 
 /* HomeView */
-@import url('./resume/HomePanel.css');
-@import url('./resume/HomeView.css');
+@import url('./home/HomePanel.css');
+@import url('./home/HomeView.css');
 
 /* Components */
 @import url('./components/SlideControl.css');
