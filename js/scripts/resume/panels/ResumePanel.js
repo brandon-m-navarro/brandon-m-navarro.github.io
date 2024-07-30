@@ -220,7 +220,7 @@ export default class ResumePanel extends BasePanel {
         this.educationDiv.appendChild(this.bulletListUl);
 
         
-        this.professionalTitleDiv.appendChild(this.professionalTitleIcon);
+        this.professionalTitleDiv.appendChild(this.professionalTitleIco.getDiv());
         this.professionalDiv.appendChild(this.professionalTitleDiv);
 
         this.professionalDateLocationDiv.appendChild(this.professionalDateIcon.getDiv());
