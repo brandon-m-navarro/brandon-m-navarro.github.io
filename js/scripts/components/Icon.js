@@ -50,6 +50,9 @@ export default class Icon extends BaseComponent {
         this.img = window.document.createElement('img');
         this.textDiv = window.document.createElement('div');
 
+        // Assign image
+        this.img.src = this.options.img;
+
         // Assemble
         this.imgDiv.appendChild(this.img);
         this.div.appendChild(this.imgDiv);
