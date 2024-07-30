@@ -67,7 +67,7 @@ export default class Icon extends BaseComponent {
     }
 
     // Create an ENUM for possible text alignments
-    getAlignments () {
+    static getAlignments () {
         return Object.freeze({
             RIGHT: 0,
             LEFT:  1
