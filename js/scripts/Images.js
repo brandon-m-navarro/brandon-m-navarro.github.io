@@ -7,35 +7,35 @@ export default class Images {
                 alt: 'Dodongo [oot]'
             },
             'email': {
-                src: '../../img/envelope-regular.svg',
+                src: '../../img/envelope-regular.png',
                 alt: 'Email'
             },
             'location': {
-                src: '../../img/location-dot-solid.svg',
+                src: '../../img/location-dot-solid.png',
                 alt: 'Location'
             },
             'location-2': {
-                src: '../../img/location-dot-solid.svg',
+                src: '../../img/location-dot-solid.png',
                 alt: 'Location_2'
             },
             'website': {
-                src: '../../img/computer-solid.svg',
+                src: '../../img/computer-solid.png',
                 alt: 'Website'
             },
             'linkedIn': {
-                src: '../../img/linkedin-brands-solid.svg',
+                src: '../../img/linkedin-brands-solid.png',
                 alt: 'LinkedIn'
             },
             'education': {
-                src: '../../img/school-solid.svg',
+                src: '../../img/school-solid.png',
                 alt: 'Education'
             },
             'calendar': {
-                src: '../../img/calendar-solid.svg',
+                src: '../../img/calendar-solid.png',
                 alt: 'Calendar'
             },
             'work': {
-                src: '../../img/briefcase-solid.svg',
+                src: '../../img/briefcase-solid.png',
                 alt: 'Work'
             }
         }
