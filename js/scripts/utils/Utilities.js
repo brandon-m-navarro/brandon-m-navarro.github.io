@@ -6,7 +6,7 @@
 // Create module vars
 let self, supportedEventTypes, isMobilePlatform, isIOSPlatform,
     isAndroidPlatform, androidVersion, iosVersion, transitionEvent,
-    isTouchable;
+    isTouchable, supportsTouchAndClick;
 
 export default class Utilities {
 

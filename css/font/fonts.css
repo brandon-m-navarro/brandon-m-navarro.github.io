@@ -1,0 +1,88 @@
+/*
+ * Link Josefin & Lato fonts
+ */
+
+@font-face {
+    font-family: Josefin;
+    font-weight: 400;
+    src: url('./JosefinSans-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: Josefin;
+    font-weight: 500;
+    src: url('./JosefinSans-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: Josefin;
+    font-weight: 600;
+    src: url('./JosefinSans-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: Josefin-i;
+    font-weight: 500;
+    src: url('./JosefinSans-Italic.woff2') format('woff2');
+}
+@font-face {
+    font-family: Josefin-i;
+    font-weight: 400;
+    src: url('./JosefinSans-LightItalic.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 500;
+    src: url('./lato-regular-webfont.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 700;
+    src: url('./lato-bold-webfont.woff2') format('woff2');
+}
+
+/* @font-face {
+    font-family: Lato;
+    src: url('./lato-lightitalic-webfont.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+} */
+/* @font-face {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    src: url('./lato-light-webfont.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    src: url('./lato-italic-webfont.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    src: url('./lato-regular-webfont.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    src: url('./lato-bolditalic-webfont.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    src: url('./lato-bold-webfont.woff2') format('woff2');
+} */
+
+
+/* @supports (font-variation-settings: normal) {
+    @font-face {
+        font-family: Josefin;
+        src: url('./josefinsans-variablefont_wght-webfont.woff2') format('woff2 supports variations'),
+             url('./josefinsans-variablefont_wght-webfont.woff2') format('woff2-variations');
+        font-weight: 100 700;
+        font-display: swap;
+        font-style: normal;
+    }
+} */

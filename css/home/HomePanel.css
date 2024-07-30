@@ -6,13 +6,12 @@
  * Top-Level
  */
 
-#home-panel-div {
+ #home-panel-div {
     position: absolute;
-    display: none;
+    /* display: none; */
     width: 100%;
     /* height: 100%; */
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -20,8 +19,238 @@
             user-select: none;
     color: var(--color1);
     box-sizing: border-box;
-    padding: 12px;
+    /* padding: 12px; */
+
+    transition: background-color ease 250ms;
 }
 #home-panel-div.show-element {
     display: block;
+}
+
+#home-panel-div.dark {
+    background-color: rgba(53, 54, 74, 1);
+}
+
+#home-panel-frame-div {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 2em;
+}
+
+/* TopDiv */
+#home-panel-frame-div > div:nth-child(1) {
+    position: relative;
+    overflow: hidden;
+    /* height: 65vh; */
+}
+
+/* mtnSunSvgDiv */
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(1) {
+    /* position: absolute; */
+    /* height: 100%; */
+}
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(1) > svg {
+    height: 100%;
+    width: 100%;
+}
+
+/* meDiv */
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(2) {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 100px;
+    left: 50%;
+    width: 75%;
+
+    -webkit-transform: translateX(-50%);
+       -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+    max-width: 250px;
+    height: 100%;
+    margin-right: 2em;
+}
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > img {
+    width: 100%;
+}
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) {
+    /* font-size: calc(12px + 1vw); */
+    font-size: var(--paragraph-1);
+    color: #FFFFFF;
+
+    background-color: rgb(0, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 12px;
+}
+
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(3) {
+    position: absolute;
+    bottom: 24px;
+    color: white;
+    left: 50%;
+    /* font-size: 2.5vw; */
+    /* font-size: calc(1.25vw + 1.25vh); */
+
+    font-size: var(--header-2);
+
+    background-color: rgba(81, 11, 14, 0.75);
+    padding: 6px;
+    -webkit-transform: translateX(-50%);
+       -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+    transition: background-color ease 250ms;
+}
+
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(3).dark {
+    background-color: rgba(83, 94, 122, 0.5);
+}
+
+/* middleDiv */
+#home-panel-frame-div > div:nth-child(2) {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 650px;
+    margin: auto;
+    margin-top: 36px;
+}
+
+#home-panel-frame-div > div:nth-child(2) > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    flex-basis: 45%;
+    margin: 16px;
+}
+
+#home-panel-frame-div > div:nth-child(2) > div > div:nth-child(1) {
+    color: #FF3205;
+    font-size: 28px;
+    /* margin-bottom: auto; */
+    height: 32px;
+    transition: color ease 250ms;
+}
+#home-panel-frame-div.dark > div:nth-child(2) > div > div:nth-child(1) {
+    color: rgba(255, 239, 203, 1);
+}
+
+#home-panel-frame-div > div:nth-child(2) > div > div:nth-child(2) {
+    color: black;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 12px;
+    height: 32px;
+    transition: color ease 250ms;
+}
+#home-panel-frame-div.dark > div:nth-child(2) > div > div:nth-child(2) {
+    color: #FFFFFF;
+}
+
+#home-panel-frame-div > div:nth-child(2) > div > div:nth-child(3) {
+    color: black;
+    font-size: 16px;
+    transition: color ease 250ms;
+}
+#home-panel-frame-div.dark > div:nth-child(2) > div > div:nth-child(3) {
+    color: #FFFFFF;
+}
+
+/* moreAboutDiv */
+#home-panel-frame-div > div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    margin: auto;
+    margin-top: 48px;
+    margin-bottom: 48px;
+    transition: color ease 250ms;
+}
+#home-panel-frame-div.dark > div:nth-child(3) {
+    color: #FFFFFF;
+}
+#home-panel-frame-div > div:nth-child(3) > div:nth-child(1) {
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: 500;
+}
+#home-panel-frame-div > div:nth-child(3) > div:nth-child(2) {
+    font-size: 15px;
+    width: 90%;
+    margin: auto;
+    line-height: 125%;
+}
+
+/* bottomDiv */
+#home-panel-frame-div > div:nth-child(4) {
+    display: flex;
+    height: 350px;
+    width: 75%;
+    justify-content: space-between;
+    margin: auto;
+}
+
+#home-panel-frame-div > div:nth-child(4) > div:nth-child(1) {
+    flex-basis: 45%;
+}
+
+#home-panel-frame-div > div:nth-child(4) > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 45%;
+}
+
+#home-panel-frame-div > div:nth-child(4) > div:nth-child(2) > div:nth-child(2) {
+    margin-top: 12px;
+}
+
+/* Media Queries */
+@media (min-width: 1000px) {
+    #home-panel-frame-div > div:nth-child(1) > div:nth-child(1) > svg > * {
+        -webkit-transform: translateY(-200px);
+           -moz-transform: translateY(-200px);
+            -ms-transform: translateY(-200px);
+             -o-transform: translateY(-200px);
+                transform: translateY(-200px);
+    }
+
+    #home-panel-frame-div > div:nth-child(1) > div:nth-child(3) {
+        bottom: calc(24px + 200px);
+    }
+
+    #home-panel-frame-div > div:nth-child(2) {
+        -webkit-transform: translateY(-118px);
+           -moz-transform: translateY(-118px);
+            -ms-transform: translateY(-118px);
+             -o-transform: translateY(-118px);
+                transform: translateY(-118px);
+    }
+
+    #home-panel-frame-div > div:nth-child(3) {
+        -webkit-transform: translateY(-118px);
+           -moz-transform: translateY(-118px);
+            -ms-transform: translateY(-118px);
+             -o-transform: translateY(-118px);
+                transform: translateY(-118px);
+    }
+
+    #home-panel-frame-div > div:nth-child(4) {
+        -webkit-transform: translateY(-118px);
+           -moz-transform: translateY(-118px);
+            -ms-transform: translateY(-118px);
+             -o-transform: translateY(-118px);
+                transform: translateY(-118px);
+    }
+
+    #home-panel-frame-div {
+        padding: 0;
+    }
 }

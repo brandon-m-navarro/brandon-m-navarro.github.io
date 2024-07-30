@@ -13,7 +13,9 @@
     <script src="./js/scripts/utils/Utilities.js" type="module" defer></script>
     <script src="./js/scripts/BaseComponent.js" type="module" defer></script>
     <script src="./js/scripts/components/Icon.js" type="module" defer></script>
+    <script src="./js/scripts/components/Picture.js" type="module" defer></script>
     <script src="./js/scripts/components/NavBar.js" type="module" defer></script>
+    <script src="./js/scripts/components/SkillRating.js" type="module" defer></script>
     <script src="./js/scripts/components/SlideControl.js" type="module" defer></script>
     <script src="./js/scripts/ViewManager.js" type="module" defer></script>
     <script src="./js/scripts/BasePanel.js" type="module" defer></script>
@@ -22,6 +24,51 @@
     <script src="./js/scripts/home/panels/HomePanel.js" type="module" defer></script>
     <script src="./js/scripts/resume/ResumeView.js" type="module" defer></script>
     <script src="./js/scripts/home/HomeView.js" type="module" defer></script>
-
     <script src="./js/scripts/Main.js" type="module" defer></script>
+
+    <svg 
+      style="display:none;"
+      id="computer-svg"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 640 512">
+      <path 
+        fill="currentColor" 
+        d="M384 96l0 224L64 320 64 96l320 0zM64 32C28.7 32 0 60.7 0 96L0 320c0 35.3 28.7 64 64 64l117.3 0-10.7 32L96 416c-17.7 0-32 14.3-32 32s14.3 32 32 32l256 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-74.7 0-10.7-32L384 384c35.3 0 64-28.7 64-64l0-224c0-35.3-28.7-64-64-64L64 32zm464 0c-26.5 0-48 21.5-48 48l0 352c0 26.5 21.5 48 48 48l64 0c26.5 0 48-21.5 48-48l0-352c0-26.5-21.5-48-48-48l-64 0zm16 64l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm-16 80c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16zm32 160a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
+      />
+    </svg>
+
+    <svg style="display: none;" id="sun-mtn" width="1728" height="1088" viewBox="0 0 1728 1088" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="mtn-background" d="M1728 0H0V1088H1728V0Z" fill="#FB532C"/>
+      <g filter="url(#filter0_di_0_1)">
+        <circle id="mtn-moon-sun" cx="1452" cy="712" r="50" fill="#FFD102"/>
+      </g>
+      <path id="mtn-layer1" d="M0 756.16L157.44 741.653L314.88 750.72L470.4 663.68L627.84 703.573L785.28 757.973L942.72 741.653L1100.16 672.747L1257.6 757.973L1413.12 732.587L1570.56 661.867L1728 709.013V1089.81H1570.56H1413.12H1257.6H1100.16H942.72H785.28H627.84H470.4H314.88H157.44H0V756.16Z" fill="#E72C27"/>
+      <path id="mtn-layer2" d="M0 745.28L157.44 719.893L314.88 721.707L470.4 799.68L627.84 806.933L785.28 730.773H942.72L1100.16 785.173L1257.6 756.16L1413.12 801.493L1570.56 752.533L1728 757.973V1089.81H1570.56H1413.12H1257.6H1100.16H942.72H785.28H627.84H470.4H314.88H157.44H0V745.28Z" fill="#C72423"/>
+      <path id="mtn-layer3" d="M0 843.2L157.44 801.493L314.88 837.76L470.4 843.2L627.84 781.547L785.28 790.613L942.72 839.573L1100.16 834.133L1257.6 850.453L1413.12 816L1570.56 781.547L1728 845.013V1089.81H1570.56H1413.12H1257.6H1100.16H942.72H785.28H627.84H470.4H314.88H157.44H0V843.2Z" fill="#A81C1F"/>
+      <path id="mtn-layer4" d="M0 877.653L157.44 870.4L314.88 883.093L470.4 881.28L627.84 845.013L785.28 866.773L942.72 879.467L1100.16 886.72L1257.6 877.653L1413.12 864.96L1570.56 870.4L1728 901.227V1089.81H1570.56H1413.12H1257.6H1100.16H942.72H785.28H627.84H470.4H314.88H157.44H0V877.653Z" fill="#8A161A"/>
+      <path id="mtn-layer5" d="M0 942.933L157.44 915.733L314.88 888.533H470.4L627.84 906.667L785.28 904.853L942.72 912.107L1100.16 944.747L1257.6 892.16L1413.12 908.48L1570.56 919.36L1728 893.973V1089.81H1570.56H1413.12H1257.6H1100.16H942.72H785.28H627.84H470.4H314.88H157.44H0V942.933Z" fill="#6D1015"/>
+      <path id="mtn-layer6" d="M0 946.56L157.44 942.933L314.88 990.08L470.4 988.267H627.84L785.28 942.933L942.72 970.133L1100.16 964.693L1257.6 988.267L1413.12 950.187L1570.56 953.813L1728 966.507V1089.81H1570.56H1413.12H1257.6H1100.16H942.72H785.28H627.84H470.4H314.88H157.44H0V946.56Z" fill="#510B0E"/>
+      <path id="mtn-layer7" d="M0 1022.72L157.44 1000.96L314.88 1015.47L470.4 1026.35L627.84 1010.03L785.28 1008.21L942.72 1006.4L1100.16 1013.65L1257.6 999.146L1413.12 1015.47L1570.56 1006.4L1728 999.146V1089.81H1570.56H1413.12H1257.6H1100.16H942.72H785.28H627.84H470.4H314.88H157.44H0V1022.72Z" fill="#370601"/>
+      <defs>
+        <filter id="filter0_di_0_1" x="1378" y="638" width="140" height="140" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+        <feOffset dx="-4" dy="-4"/>
+        <feGaussianBlur stdDeviation="10"/>
+        <feComposite in2="hardAlpha" operator="out"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.623529 0 0 0 0 0.0196078 0 0 0 1 0"/>
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+        <feMorphology radius="7" operator="erode" in="SourceAlpha" result="effect2_innerShadow_0_1"/>
+        <feOffset/>
+        <feGaussianBlur stdDeviation="3"/>
+        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.623529 0 0 0 0 0.0196078 0 0 0 0.25 0"/>
+        <feBlend mode="normal" in2="shape" result="effect2_innerShadow_0_1"/>
+        </filter>
+      </defs>
+    </svg>
+      
+    
 </html>

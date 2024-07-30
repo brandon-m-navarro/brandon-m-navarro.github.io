@@ -21,7 +21,8 @@ export default class Icon extends BaseComponent {
             text: null,
             textAlignment: Icon.getAlignments().RIGHT,
             imgSize: '28px',
-            fontSize: '16px'
+            fontSize: '16px',
+            fontWeight: '400'
         };
 
         // Ususally I'd use setters which can validate
@@ -44,11 +45,35 @@ export default class Icon extends BaseComponent {
         this.options.fontSize = 'fontSize' in options
             ? options.fontSize
             : this.defaultOptions.fontSize;
+        this.options.fontWeight = 'fontWeight' in options
+            ? options.fontWeight
+            : this.defaultOptions.fontWeight;
 
         // Create DOM elements
         this.imgDiv = window.document.createElement('div');
         this.img = window.document.createElement('img');
         this.textDiv = window.document.createElement('div');
+
+        // Assign image
+        this.img.src = this.options.img;
+
+        // Show/hide text if specified
+        if (this.options.text) {
+            this.textDiv.innerHTML = this.options.text;
+            this.textDiv.classList.add(this.showElementClass);
+        } else {
+            this.textDiv.classList.remove(this.showElementClass);
+        }
+
+        // Set proper text alignment
+        switch (this.options.textAlignment) {
+            case Icon.getAlignments().LEFT:
+                this.div.style.flexDirection = 'row-reverse';
+                break;
+            case Icon.getAlignments().RIGHT:
+                this.div.style.flexDirection = 'reverse';
+                break;
+        }
 
         // Assemble
         this.imgDiv.appendChild(this.img);
@@ -61,13 +86,14 @@ export default class Icon extends BaseComponent {
         this.img.style.height = this.options.imgSize;
         this.img.style.width = this.options.imgSize;
         this.textDiv.style.fontSize = this.options.fontSize;
+        this.textDiv.style.fontWeight = this.options.fontWeight;
 
         // Style
         this.div.classList.add('icon-div');
     }
 
     // Create an ENUM for possible text alignments
-    getAlignments () {
+    static getAlignments () {
         return Object.freeze({
             RIGHT: 0,
             LEFT:  1
