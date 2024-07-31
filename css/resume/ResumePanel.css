@@ -25,3 +25,28 @@
 #resume-panel-div.show-element {
     display: block;
 }
+
+
+#resume-panel-frame-div {
+
+}
+
+#resume-panel-frame-div > div:nth-child(1) {}
+#resume-panel-frame-div > div:nth-child(1) > div:nth-child(1) {}
+#resume-panel-frame-div > div:nth-child(1) > div:nth-child(2) {}
+
+/*#resume-panel-frame-div > div:nth-child(1) > div:nth-child(1) {}*/
+#resume-panel-contact-div {}
+
+#resume-panel-skills-div {}
+#resume-panel-programming-div {}
+#resume-panel-os-div {}
+#resume-panel-tools-div {}
+
+#resume-panel-education-div {
+
+}
+
+#resume-panel-professional-div {
+
+}

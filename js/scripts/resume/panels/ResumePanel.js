@@ -281,6 +281,10 @@ export default class ResumePanel extends BasePanel {
 
 
         // Assign IDs to DOM elements, if needed
+        this.programmingDivDiv.setAttribute('id', baseId + '-programming-div');
+        this.osDiv.setAttribute('id', baseId + '-os-div');
+        this.toolsDiv.setAttribute('id', baseId + '-tools-div');
+
         this.contactDiv.setAttribute('id', baseId + '-contact-div');
         this.educationDiv.setAttribute('id', baseId + '-education-div');
         this.professionalDiv.setAttribute('id', baseId + '-professional-div');

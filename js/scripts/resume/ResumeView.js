@@ -47,7 +47,7 @@ export default class ResumeView extends BaseView {
         // Title
         this.titleDiv = doc.createElement('div');
         this.titleTextDiv = doc.createElement('div');
-        this.titleTextDiv.innerHTML = 'ResumeView!';
+        // this.titleTextDiv.innerHTML = 'ResumeView!';
         this.titleLineDiv = doc.createElement('div');
         this.titleDiv.appendChild(this.titleTextDiv);
         this.titleDiv.appendChild(this.titleLineDiv);
