@@ -13,7 +13,7 @@ const images = new Images();
 let doc = window.document;
 
 export class Main {
-    constructor (debug=false) {
+    constructor(debug = false) {
         this.load();
 
         // Listeners
@@ -28,7 +28,7 @@ export class Main {
     }
 
     // Start the application
-    start (debug) {
+    start(debug) {
         if (debug) {
             console.log('Starting app in debug mode');
         } else {
@@ -37,7 +37,7 @@ export class Main {
     }
 
     // Create
-    createElements () {
+    createElements() {
         this.div = doc.createElement('div');
         this.clientDiv = doc.createElement('div');
 
@@ -52,7 +52,7 @@ export class Main {
     }
 
     // Load the website
-    load () {
+    load() {
         this.createElements();
 
         // Determine mobile/desktop
@@ -96,7 +96,7 @@ export class Main {
                 detail = customEvent.detail || {},
                 action = detail.action;
 
-            switch (action) {}
+            switch (action) { }
         });
     }
 }
