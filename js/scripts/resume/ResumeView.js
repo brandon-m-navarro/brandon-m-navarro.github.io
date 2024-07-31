@@ -43,6 +43,7 @@ export default class ResumeView extends BaseView {
         // Initialize panels
         this.resumePanel = new ResumePanel();
         this.resumePanel.initialize();
+        this.resumePanel.show();
 
         // Title
         this.titleDiv = doc.createElement('div');

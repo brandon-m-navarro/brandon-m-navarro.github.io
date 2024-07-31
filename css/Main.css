@@ -15,12 +15,14 @@
 @import url('./components/NavMenu.css');
 @import url('./components/Icon.css');
 
+/* Fonts */
+@import url('./font/fonts.css');
+
+/* Style */
 #top-div {
     position: relative;
     height: 400px;
 }
-
-/* Style topClientDiv */
 #top-client-div {
     position: relative;
     display: flex;
@@ -94,7 +96,15 @@
 body {
 
     /* Buttons */
-    --button-color1:        #27AE60;
+    --background-color1:        #27AE60;
+    --background-color1-rgb:      39, 174, 96;
+    --background-color2:        #206D96;
+    --background-color2-rgb:      32, 109, 150;
+    --background-color3:        #D97E59;
+    --background-color3-rgb:      217, 126, 89;
+
+    /* Buttons */
+    --button-color1:        #0b3948;
     --button-color1-rgb:      39, 174, 96;
     --button-color2:        #206D96;
     --button-color2-rgb:      32, 109, 150;
