@@ -42,7 +42,7 @@ export default class HomeView extends BaseView {
 
         // Initialize panels
         this.homePanel = new HomePanel();
-        this.homePanel.initialize();
+        // this.homePanel.initialize();
 
         // Title
         this.titleDiv = doc.createElement('div');
@@ -56,7 +56,7 @@ export default class HomeView extends BaseView {
 
         // Assemble
         this.frameDiv = doc.createElement('div');
-        this.frameDiv.appendChild(this.titleDiv);
+        // this.frameDiv.appendChild(this.titleDiv);
         this.frameDiv.appendChild(this.homePanel.getDiv());
         this.div.appendChild(this.frameDiv);
 

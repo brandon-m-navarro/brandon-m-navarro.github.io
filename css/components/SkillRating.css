@@ -1,0 +1,21 @@
+.skill-rating-div {
+    position: relative;
+}
+
+.skill-rating-div > div:nth-child(1) {
+    display: flex;
+}
+
+.skill-rating-div > div:nth-child(1) > div {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin: 0 1px;
+}
+
+.skill-rating-div > div:nth-child(1) > div:first-child {
+    margin: 0;
+}
+.skill-rating-div > div:nth-child(1) > div:last-child {
+    margin: 0;
+}

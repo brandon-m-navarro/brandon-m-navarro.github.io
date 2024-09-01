@@ -50,8 +50,26 @@ export default class Icon extends BaseComponent {
         this.img = window.document.createElement('img');
         this.textDiv = window.document.createElement('div');
 
-        // Assign imge
+        // Assign image
         this.img.src = this.options.img;
+
+        // Show/hide text if specified
+        if (this.options.text) {
+            this.textDiv.innerHTML = this.options.text;
+            this.textDiv.classList.add(this.showElementClass);
+        } else {
+            this.textDiv.classList.remove(this.showElementClass);
+        }
+
+        // Set proper text alignment
+        switch (this.options.textAlignment) {
+            case Icon.getAlignments().LEFT:
+                this.div.style.flexDirection = 'row-reverse';
+                break;
+            case Icon.getAlignments().RIGHT:
+                this.div.style.flexDirection = 'reverse';
+                break;
+        }
 
         // Assemble
         this.imgDiv.appendChild(this.img);

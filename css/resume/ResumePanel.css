@@ -6,29 +6,29 @@
  * Top-Level
  */
 
- #resume-panel-div {
+#resume-panel-div {
     position: absolute;
     display: none;
     width: 100%;
-    /* height: 100%; */
     text-align: center;
-    font-family: 'Josefin', sans-serif;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
     color: var(--color1);
     box-sizing: border-box;
-    padding: 12px;
+    padding: 2px;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 #resume-panel-div.show-element {
     display: block;
 }
 
-
 #resume-panel-frame-div {
-
+    display: flex;
+    flex-flow: wrap;
 }
 
 #resume-panel-frame-div > div:nth-child(1) {
@@ -36,22 +36,195 @@
     flex-direction: column;
     background-color: var(--background-color2);
     color: #FFFFFF;
+    width: 100%;
+    text-align: left;
+    padding: .67em 0 .67em 1em;
 }
-#resume-panel-frame-div > div:nth-child(1) > div:nth-child(1) {}
-#resume-panel-frame-div > div:nth-child(1) > div:nth-child(2) {}
+#resume-panel-frame-div > div:nth-child(1) > div:nth-child(1) {
+    font-family: 'Lato';
+    font-size: 32px;
+}
+#resume-panel-frame-div > div:nth-child(1) > div:nth-child(2) {
+    font-family: 'Josefin';
+}
+
+#resume-panel-frame-div > div:nth-child(2) {
+    flex: .25;
+    padding: 0 8px;
+}
+#resume-panel-frame-div > div:nth-child(3) {
+    flex: .75;
+    padding: 4px;
+}
 
 /*#resume-panel-frame-div > div:nth-child(1) > div:nth-child(1) {}*/
-#resume-panel-contact-div {}
-
-#resume-panel-skills-div {}
-#resume-panel-programming-div {}
-#resume-panel-os-div {}
-#resume-panel-tools-div {}
-
-#resume-panel-education-div {
-
+#resume-panel-contact-div {
+    margin-bottom: 1em;
+}
+#resume-panel-contact-div > div:nth-child(1) {
+    text-align: left;
+    line-height: 32px;
+    border-bottom: solid black 1px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+#resume-panel-contact-div > div:nth-child(1) > div:nth-child(1) {}
+#resume-panel-contact-div > :not(:first-child) {
+    margin-bottom: 6px;
 }
 
-#resume-panel-professional-div {
 
+#resume-panel-skills-div {}
+#resume-panel-skills-div > div:nth-child(1) {
+    text-align: left;
+    line-height: 32px;
+    border-bottom: solid black 1px;
+    /* margin-bottom: 12px; */
+    font-size: 14px;
+}
+#resume-panel-skills-div > div:nth-child(1) > div:nth-child(1) {}
+
+
+#resume-panel-programming-div {
+    /* margin-bottom: 6px; */
+    /* margin-bottom: 1em; */
+    margin-bottom: .75em;
+}
+#resume-panel-programming-div > div:nth-child(1) {
+    font-size: 12px;
+    text-align: left;
+    line-height: 24px;
+}
+#resume-panel-programming-div > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+#resume-panel-programming-div > div:nth-child(2) > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#resume-panel-programming-div > div:nth-child(2) > div > div:nth-child(1) {
+    font-size: 12px;
+}
+
+
+#resume-panel-os-div {
+    margin-bottom: 6px;
+    margin-bottom: .75em;
+}
+#resume-panel-os-div > div:nth-child(1) {
+    font-size: 12px;
+    text-align: left;
+    line-height: 24px;
+}
+#resume-panel-os-div > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+#resume-panel-os-div > div:nth-child(2) > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#resume-panel-os-div > div:nth-child(2) > div > div:nth-child(1) {
+    font-size: 12px;
+}
+
+#resume-panel-tools-div {
+    margin-bottom: 6px;
+}
+#resume-panel-tools-div > div:nth-child(1) {
+    font-size: 12px;
+    text-align: left;
+    line-height: 24px;
+}
+#resume-panel-tools-div > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+#resume-panel-tools-div > div:nth-child(2) > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#resume-panel-tools-div > div:nth-child(2) > div > div:nth-child(1) {
+    font-size: 12px;
+}
+
+
+#resume-panel-education-div {
+    margin-bottom: 1em;
+}
+#resume-panel-education-div > div:nth-child(1) {
+    line-height: 32px;
+    border-bottom: solid black 1px;
+    margin-bottom: 12px;
+}
+#resume-panel-education-div > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+#resume-panel-education-div > div:nth-child(2) > div:nth-child(1) {
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+}
+#resume-panel-education-div > div:nth-child(2) > div:nth-child(1) > div {
+    height: 24px;
+}
+#resume-panel-education-div > div:nth-child(2) > div:nth-child(2) {
+    /* height: auto; */
+    flex: .5;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+#resume-panel-education-div > ul:nth-child(3) {
+    margin-top: .2em;
+    text-align: left;
+    font-size: 12px;
+    /* background-color: rgb(0,0,0,.25); */
+    margin-block-end: 0;
+}
+
+
+#resume-panel-professional-div {margin-bottom: 1em;}
+
+#resume-panel-professional-div > div:nth-child(1) {
+    line-height: 32px;
+    border-bottom: solid black 1px;
+    margin-bottom: 12px;
+}
+#resume-panel-professional-div > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+#resume-panel-professional-div > div:nth-child(2) > div:nth-child(1) {
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+}
+#resume-panel-professional-div > div:nth-child(2) > div:nth-child(1) > div {
+    height: 24px;
+}
+#resume-panel-professional-div > div:nth-child(2) > div:nth-child(2) {
+    flex: .5;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+#resume-panel-professional-div > div:nth-child(3) {
+    font-size: 10px;
+    text-align: left;
+}
+
+
+#resume-panel-project-div {}
+#resume-panel-project-div > div:nth-child(1) {
+    line-height: 32px;
+    border-bottom: solid black 1px;
+    margin-bottom: 12px;
 }
