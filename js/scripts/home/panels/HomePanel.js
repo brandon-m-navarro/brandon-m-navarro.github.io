@@ -66,8 +66,6 @@ export default class HomePanel extends BasePanel {
         
         //
         this.mtnSunSvgDiv.appendChild(this.sunMtnSvg);
-
-        this.mtnSunSvgDiv.appendChild(this.quoteTextDiv);
     };
 
     makeDay () {
@@ -92,6 +90,9 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer7.setAttribute('fill', '#370601');
 
         this.quoteTextDiv.classList.remove('dark');
+
+        this.frameDiv.classList.remove('dark');
+        this.div.classList.remove('dark');
     };
 
     makeNight () {
@@ -116,6 +117,9 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer7.setAttribute('fill', '#25293C');
 
         this.quoteTextDiv.classList.add('dark');
+
+        this.frameDiv.classList.add('dark');
+        this.div.classList.add('dark');
     };
 
     // Public Methods
@@ -190,6 +194,7 @@ export default class HomePanel extends BasePanel {
 
         this.topDiv.appendChild(this.mtnSunSvgDiv);
         this.topDiv.appendChild(this.meDiv);
+        this.topDiv.appendChild(this.quoteTextDiv);
 
         this.stepOneDiv.appendChild(this.stepOneTextDiv);
         this.stepOneDiv.appendChild(this.stepOneHeaderTextDiv);
