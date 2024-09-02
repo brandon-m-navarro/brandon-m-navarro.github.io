@@ -331,10 +331,15 @@ body {
     --button-color3:        #D97E59;
     --button-color3-rgb:      217, 126, 89;
 
+    --header-1:    clamp(1.875rem, 1.301rem + 2.449vw, 3.95rem);
+    --header-2:    clamp(1rem, .9235rem + .3265vw, 1.25rem);
+
     /* Paragraphs */
-    --paragraph-1:    14px;
+    --paragraph-1:    clamp(1rem, .8852rem + .4898vw, 1.375rem);
     --paragraph-2:    12px;
-    --paragraph-3:    10px;
+
+    /* Button/Links */
+    --button-3:    clamp(.875rem, .7985rem + .3265vw, 1.125rem);
 }
 
 /* body > div:nth-child(1) { */

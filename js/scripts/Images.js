@@ -56,6 +56,14 @@ export default class Images {
                 src: '../../img/brush-solid.png',
                 alt: 'Project'
             },
+            'sigma-pi': {
+                src: '../../img/sigmapi.jpg',
+                alt: 'Sigma Pi'
+            },
+            'sparc': {
+                src: '../../img/sparc.jpeg',
+                alt: 'Sparc'
+            },
             'sun': {
                 src: '../../img/sun.svg',
                 alt: 'Sun'

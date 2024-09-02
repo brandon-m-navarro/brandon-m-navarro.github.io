@@ -22,12 +22,15 @@
 
 @font-face {
     font-family: Josefin-i;
-    src: url('./josefinsans-italic-variablefont_wght-webfont.woff2') format('woff2 supports variations'),
-         url('./josefinsans-italic-variablefont_wght-webfont.woff2') format('woff2-variations');
-    font-weight: 100 700;
-    font-display: swap;
-    font-style: normal;
+    font-weight: 500;
+    src: url('./JosefinSans-Italic.woff2') format('woff2');
 }
+@font-face {
+    font-family: Josefin-i;
+    font-weight: 400;
+    src: url('./JosefinSans-LightItalic.woff2') format('woff2');
+}
+
 @font-face {
     font-family: 'Lato';
     font-weight: 500;

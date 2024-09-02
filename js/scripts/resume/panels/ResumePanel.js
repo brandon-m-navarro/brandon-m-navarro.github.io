@@ -10,7 +10,9 @@ import BasePanel from '../../BasePanel.js';
 import Icon from '../../components/Icon.js';
 import SkillRating from '../../components/SkillRating.js';
 import Images from '../../Images.js';
+import Utilities from '../../utils/Utilities.js';
 const images = new Images();
+const utilities = new Utilities();
 
 let
     // DOM elements
@@ -246,7 +248,8 @@ export default class ResumePanel extends BasePanel {
             img: images.getImages()['education'].src,
             text: 'EDUCATION',
             imgSize: '24px',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontWeight: '600'
         });
 
         this.educationTopDiv = doc.createElement('div');
@@ -263,12 +266,39 @@ export default class ResumePanel extends BasePanel {
             imgSize: '18px',
             fontSize: '12px'
         });
+        this.topRightEducationDiv = doc.createElement('div');
         this.bachelorsTextDiv = doc.createElement('div');
-        this.bulletListUl = doc.createElement('ul');
-        this.bulletLi1 = doc.createElement('li');
-        this.bulletLi2 = doc.createElement('li');
-        this.bulletLi3 = doc.createElement('li');
-        this.bulletLi4 = doc.createElement('li');
+        this.gpaTextDiv = doc.createElement('div');
+
+        this.campusInvolvementDiv = doc.createElement('div');
+        this.campusInvolvementHeaderTextDiv = doc.createElement('div');
+
+        this.campusInvolvementListDiv = doc.createElement('div');
+
+        this.sigmaPiHeaderDiv = doc.createElement('div');
+        this.sigmaPiDiv = doc.createElement('div');
+        this.sigmaPiImgDiv = doc.createElement('div');
+        this.sigmaPiImg = doc.createElement('img');
+
+        this.sigmaPiTextDiv = doc.createElement('div');
+        this.sigmaPiDateTextDiv = doc.createElement('div');
+        this.sigmaPiUl = doc.createElement('ul');
+        this.sigmaPiLi1 = doc.createElement('li');
+        this.sigmaPiLi2 = doc.createElement('li');
+        this.sigmaPiLi3 = doc.createElement('li');
+
+        this.sparcHeaderDiv = doc.createElement('div');
+        this.sparcDiv = doc.createElement('div');
+        this.sparcImgDiv = doc.createElement('div');
+        this.sparcImg = doc.createElement('img');
+
+        this.sparcTextDiv = doc.createElement('div');
+        this.sparcDateTextDiv = doc.createElement('div');
+
+        this.sparcUl = doc.createElement('ul');
+        this.sparcLi1 = doc.createElement('li');
+        this.sparcLi2 = doc.createElement('li');
+        this.sparcLi3 = doc.createElement('li');
 
         this.professionalTopDiv = doc.createElement('div');
         this.professionalDateLocationDiv = doc.createElement('div');
@@ -296,7 +326,8 @@ export default class ResumePanel extends BasePanel {
             img: images.getImages()['work'].src,
             text: 'Professional Experience',
             imgSize: '24px',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontWeight: '600'
         });
 
         this.projectDiv = doc.createElement('div');
@@ -305,7 +336,22 @@ export default class ResumePanel extends BasePanel {
             img: images.getImages()['project'].src,
             text: 'PROJECTS',
             imgSize: '24px',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontWeight: '600'
+        });
+
+        // Listeners
+        utilities.addEventListeners(this.websiteIcon.getDiv(), () => {
+            window.open(
+                'https://github.com/brandon-m-navarro/brandon-m-navarro.github.io',
+                '_blank'
+            ).focus();
+        });
+        utilities.addEventListeners(this.linkedInIcon.getDiv(), () => {
+            window.open(
+                'https://www.linkedin.com/in/brandon-navarro-b36b97149',
+                '_blank'
+            ).focus();
         });
     };
 
@@ -431,23 +477,51 @@ export default class ResumePanel extends BasePanel {
         this.educationDateLocationDiv.appendChild(this.educationDateIcon.getDiv());
         this.educationDateLocationDiv.appendChild(this.educationLocationIcon.getDiv());
 
+        this.topRightEducationDiv.appendChild(this.bachelorsTextDiv);
+        this.topRightEducationDiv.appendChild(this.gpaTextDiv);
+
         this.educationTopDiv.appendChild(this.educationDateLocationDiv);
-        this.educationTopDiv.appendChild(this.bachelorsTextDiv);
+        this.educationTopDiv.appendChild(this.topRightEducationDiv);
 
-        this.bulletListUl.appendChild(this.bulletLi1);
-        this.bulletListUl.appendChild(this.bulletLi2);
-        this.bulletListUl.appendChild(this.bulletLi3);
-        this.bulletListUl.appendChild(this.bulletLi4);
+        // this.educationTopDiv.appendChild(this.bachelorsTextDiv);
+
+        this.sigmaPiImgDiv.appendChild(this.sigmaPiImg);
+
+        this.sigmaPiHeaderDiv.appendChild(this.sigmaPiImgDiv);
+        this.sigmaPiHeaderDiv.appendChild(this.sigmaPiTextDiv);
+        this.sigmaPiHeaderDiv.appendChild(this.sigmaPiDateTextDiv);;
+
+        this.sigmaPiUl.appendChild(this.sigmaPiLi1);
+        this.sigmaPiUl.appendChild(this.sigmaPiLi2);
+        this.sigmaPiUl.appendChild(this.sigmaPiLi3);
+
+        this.sigmaPiDiv.appendChild(this.sigmaPiHeaderDiv);
+        this.sigmaPiDiv.appendChild(this.sigmaPiUl);
+
+        //
+        this.sparcImgDiv.appendChild(this.sparcImg);
+
+        this.sparcHeaderDiv.appendChild(this.sparcImgDiv);
+        this.sparcHeaderDiv.appendChild(this.sparcTextDiv);
+        this.sparcHeaderDiv.appendChild(this.sparcDateTextDiv);;
+
+        this.sparcUl.appendChild(this.sparcLi1);
+        this.sparcUl.appendChild(this.sparcLi2);
+        this.sparcUl.appendChild(this.sparcLi3);
+
+        this.sparcDiv.appendChild(this.sparcHeaderDiv);
+        this.sparcDiv.appendChild(this.sparcUl);
+
+        this.campusInvolvementListDiv.appendChild(this.sigmaPiDiv);
+        this.campusInvolvementListDiv.appendChild(this.sparcDiv);
+
+        //
+        this.campusInvolvementDiv.appendChild(this.campusInvolvementHeaderTextDiv);
+        this.campusInvolvementDiv.appendChild(this.campusInvolvementListDiv);
 
         this.educationDiv.appendChild(this.educationTitleDiv);
         this.educationDiv.appendChild(this.educationTopDiv);
-        this.educationDiv.appendChild(this.bulletListUl);
 
-        this.educationDiv.appendChild(this.educationTitleDiv);
-        this.educationDiv.appendChild(this.educationTopDiv);
-        this.educationDiv.appendChild(this.bulletListUl);
-
-        
         this.professionalTitleDiv.appendChild(this.professionalTitleIcon.getDiv());
         this.professionalDiv.appendChild(this.professionalTitleDiv);
 
@@ -488,6 +562,10 @@ export default class ResumePanel extends BasePanel {
         // Assemble elements
         this.assembleElements();
 
+        // Non icon Images
+        this.sigmaPiImg.src = images.getImages()['sigma-pi'].src;
+        this.sparcImg.src = images.getImages()['sparc'].src;
+
         // innerHTMLs
         this.nameTextDiv.innerHTML = 'Brandon Manuel Navarro';
         this.subnameTextDiv.innerHTML =
@@ -497,15 +575,28 @@ export default class ResumePanel extends BasePanel {
         this.osTitleTextDiv.innerHTML = 'Operating Systems';
         this.toolsTitleTextDiv.innerHTML = 'Tools';
         this.bachelorsTextDiv.innerHTML = 'Bachelor of Science in Computer Science';
-        this.bulletLi1.innerHTML = '3.25 GPA';
-        this.bulletLi2.innerHTML = 'List classes?';
-        this.bulletLi3.innerHTML =
-            'Sigma Pi Fraternity International, Gamma Iota, ' +
-            'Active Member & Former PR Chair';
-        this.bulletLi4.innerHTML =
-            'Link to MQP? Talk about learning ROS and using GStreamer ' +
-            'to read in a stream of data from different VR headsets ' +
-            'through python scripts and Unity.';
+
+        this.gpaTextDiv.innerHTML = '3.25 GPA';
+        this.sigmaPiTextDiv.innerHTML =
+            'Sigma Pi Fraternity International, Gamma Iota Chapter';
+        this.sigmaPiDateTextDiv.innerHTML =
+            '2016 - 2020';
+        this.sigmaPiLi1.innerHTML = 'Active member and former PR chair';
+        this.sigmaPiLi2.innerHTML =
+            'Helped organize a multi-day campus event, Amazing Day, to ' +
+            'raise awareness for mental health and suicide in the WPI community';
+        this.sigmaPiLi3.innerHTML =
+            'Volunteered weekly at a local food pantry, Mustard Seed to help ' +
+            'setup, cook, & clean';
+        this.sparcTextDiv.innerHTML = 'SPARC Member';
+        this.sparcDateTextDiv.innerHTML = '2018 - 2020';
+        this.sparcLi1.innerHTML =
+            'Was an active member of a SPARC, a student run committee that ' +
+            'interfaced with college admins and hosted campus events to ' +
+            'raise awareness and provide resources for sexual assualt ' +
+            'victims in the WPI community';
+        this.sparcLi2.innerHTML = '.';
+        this.sparcLi3.innerHTML = '.';
         this.contactTitleTextDiv.innerHTML = 'CONTACT';
         this.professionalJobTextDiv.innerHTML = 'TrampleZone LLC.';
         this.professionalJobTitleTextDiv.innerHTML = 'Software Developer';

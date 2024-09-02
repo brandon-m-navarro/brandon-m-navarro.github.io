@@ -10,7 +10,7 @@
     position: absolute;
     display: none;
     width: 100%;
-    max-width: 800px;
+    /* max-width: 800px; */
     text-align: center;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
