@@ -522,6 +522,8 @@ export default class ResumePanel extends BasePanel {
         this.educationDiv.appendChild(this.educationTitleDiv);
         this.educationDiv.appendChild(this.educationTopDiv);
 
+        this.educationDiv.appendChild(this.campusInvolvementDiv);
+
         this.professionalTitleDiv.appendChild(this.professionalTitleIcon.getDiv());
         this.professionalDiv.appendChild(this.professionalTitleDiv);
 
@@ -595,8 +597,12 @@ export default class ResumePanel extends BasePanel {
             'interfaced with college admins and hosted campus events to ' +
             'raise awareness and provide resources for sexual assualt ' +
             'victims in the WPI community';
-        this.sparcLi2.innerHTML = '.';
-        this.sparcLi3.innerHTML = '.';
+        this.sparcLi2.innerHTML =
+            'Helped run the annual, campus-wide event, ' +
+            '<a target="_blank" href="https://www.wpi.edu/news/take-back-night">Take Back the Night</a>';
+        this.sparcLi3.innerHTML =
+            'Created and distributed electronic surveys to gauge students ' +
+            'sentiments about safety on campus';
         this.contactTitleTextDiv.innerHTML = 'CONTACT';
         this.professionalJobTextDiv.innerHTML = 'TrampleZone LLC.';
         this.professionalJobTitleTextDiv.innerHTML = 'Software Developer';
@@ -627,7 +633,8 @@ export default class ResumePanel extends BasePanel {
         this.iOsTextDiv.innerHTML = 'iOs';
         this.androidStudioToolsTextDiv.innerHTML = 'Android Studio';
         this.dockerToolsTextDiv.innerHTML = 'Docker';
-
+        this.campusInvolvementHeaderTextDiv.innerHTML =
+            'Campus Involvement';
 
         // Assign IDs to DOM elements, if needed
         this.skillsDiv.setAttribute('id', baseId + '-skills-div');
@@ -639,6 +646,7 @@ export default class ResumePanel extends BasePanel {
         this.educationDiv.setAttribute('id', baseId + '-education-div');
         this.professionalDiv.setAttribute('id', baseId + '-professional-div');
         this.projectDiv.setAttribute('id', baseId + '-project-div');
+        this.campusInvolvementDiv.setAttribute('id', baseId + '-campus-involvement-div');
 
         this.frameDiv.setAttribute('id', frameDivId);
         this.div.setAttribute('id', divId);

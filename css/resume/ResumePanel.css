@@ -279,3 +279,83 @@
     border-bottom: solid black 1px;
     margin-bottom: 12px;
 }
+
+#resume-panel-campus-involvement-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+}
+
+#resume-panel-campus-involvement-div > div:nth-child(1) {
+    text-align: left;
+    /* z-index: 2; */
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#resume-panel-campus-involvement-div > div:nth-child(2) {}
+/* SigmaPi */
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) {}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > img {
+    width: 100%;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
+    font-size: 14px;
+    margin-left: 6px;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) {
+    margin-left: auto;
+    font-size: 12px;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > ul:nth-child(2) {
+    margin: 0;
+    line-height: 125%;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > ul:nth-child(2) > li {
+    text-align: left;
+    font-size: 12px;
+}
+
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) {}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > img {
+    width: 100%;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
+    font-size: 14px;
+    margin-left: 6px;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) {
+    margin-left: auto;
+    font-size: 12px;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) > ul:nth-child(2) {
+    margin: 0;
+    line-height: 125%;
+}
+#resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(2) > ul:nth-child(2) > li {
+    text-align: left;
+    font-size: 12px;
+}
