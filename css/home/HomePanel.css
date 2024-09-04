@@ -89,6 +89,8 @@
 }
 
 #home-panel-frame-div > div:nth-child(1) > div:nth-child(3) {
+    display: none;
+
     position: absolute;
     bottom: 24px;
     color: white;

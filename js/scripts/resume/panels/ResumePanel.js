@@ -286,6 +286,7 @@ export default class ResumePanel extends BasePanel {
         this.sigmaPiLi1 = doc.createElement('li');
         this.sigmaPiLi2 = doc.createElement('li');
         this.sigmaPiLi3 = doc.createElement('li');
+        this.sigmaPiLi4 = doc.createElement('li');
 
         this.sparcHeaderDiv = doc.createElement('div');
         this.sparcDiv = doc.createElement('div');
@@ -340,6 +341,63 @@ export default class ResumePanel extends BasePanel {
             fontWeight: '600'
         });
 
+        this.escapeDiv = doc.createElement('div');
+        this.escapeHeaderDiv = doc.createElement('div');
+        this.escapeHeaderTextDiv = doc.createElement('div');
+        this.escapeLinkImgDiv = doc.createElement('div');
+        this.escapeLinkImg = doc.createElement('img');
+        this.escapeYearTextDiv = doc.createElement('div');
+        this.escapeContentDiv = doc.createElement('div');
+        this.escapeImgDiv = doc.createElement('div');
+        this.escapeImg = doc.createElement('img');
+        this.escapeTextDiv = doc.createElement('div');
+
+        this.ttbDiv = doc.createElement('div');
+        this.ttbHeaderDiv = doc.createElement('div');
+        this.ttbHeaderTextDiv = doc.createElement('div');
+        this.ttbLinkImgDiv = doc.createElement('div');
+        this.ttbLinkImg = doc.createElement('img');
+        this.ttbYearTextDiv = doc.createElement('div');
+        this.ttbContentDiv = doc.createElement('div');
+        this.ttbTextDiv = doc.createElement('div');
+        this.ttbSubtitleTextDiv = doc.createElement('div');
+        
+        this.ttbDocAnalystDiv = doc.createElement('div');
+        this.ttbDocAnalystTitleTextDiv = doc.createElement('div');
+        this.ttbDocAnalystUl = doc.createElement('ul');
+        this.ttbDocAnalystLi = doc.createElement('li');
+
+        this.ttbSoftEngDiv = doc.createElement('div');
+        this.ttbSoftEngTitleTextDiv = doc.createElement('div');
+        this.ttbSoftEngUl = doc.createElement('ul');
+        this.ttbSoftEngLi1 = doc.createElement('li');
+        this.ttbSoftEngLi2 = doc.createElement('li');
+
+        this.mqpDiv = doc.createElement('div');
+        this.mqpHeaderDiv = doc.createElement('div');
+        this.mqpHeaderTextDiv = doc.createElement('div');
+        this.mqpLinkImgDiv = doc.createElement('div');
+        this.mqpLinkImg = doc.createElement('img');
+        this.mqpYearTextDiv = doc.createElement('div');
+        this.mqpContentDiv = doc.createElement('div');
+        this.mqpTextDiv = doc.createElement('div');
+        this.mqpImgListDiv = doc.createElement('div');
+        this.mqpPosterImgDiv = doc.createElement('div');
+        this.mqpPosterImg = doc.createElement('img');
+        this.mqpTrinaImgDiv = doc.createElement('div');
+        this.mqpTrinaImg = doc.createElement('img');
+
+        this.iqpDiv = doc.createElement('div');
+        this.iqpHeaderDiv = doc.createElement('div');
+        this.iqpHeaderTextDiv = doc.createElement('div');
+        this.iqpLinkImgDiv = doc.createElement('div');
+        this.iqpLinkImg = doc.createElement('img');
+        this.iqpYearTextDiv = doc.createElement('div');
+        this.iqpContentDiv = doc.createElement('div');
+        this.iqpTextDiv = doc.createElement('div');
+        this.iqpGroupImgDiv = doc.createElement('div');
+        this.iqpGroupImg = doc.createElement('img');
+
         // Listeners
         utilities.addEventListeners(this.websiteIcon.getDiv(), () => {
             window.open(
@@ -350,6 +408,30 @@ export default class ResumePanel extends BasePanel {
         utilities.addEventListeners(this.linkedInIcon.getDiv(), () => {
             window.open(
                 'https://www.linkedin.com/in/brandon-navarro-b36b97149',
+                '_blank'
+            ).focus();
+        });
+        utilities.addEventListeners(this.escapeLinkImgDiv, () => {
+            window.open(
+                'https://github.com/brandon-m-navarro/escape/tree/master',
+                '_blank'
+            ).focus();
+        });
+        utilities.addEventListeners(this.ttbLinkImgDiv, () => {
+            window.open(
+                'https://github.com/Benmw99/TeamE3733TTB2',
+                '_blank'
+            ).focus();
+        });
+        utilities.addEventListeners(this.mqpLinkImgDiv, () => {
+            window.open(
+                '',
+                '_blank'
+            ).focus();
+        });
+        utilities.addEventListeners(this.iqpLinkImgDiv, () => {
+            window.open(
+                'https://digital.wpi.edu/concern/student_works/x633f145v?locale=en',
                 '_blank'
             ).focus();
         });
@@ -492,6 +574,7 @@ export default class ResumePanel extends BasePanel {
         this.sigmaPiHeaderDiv.appendChild(this.sigmaPiDateTextDiv);;
 
         this.sigmaPiUl.appendChild(this.sigmaPiLi1);
+        this.sigmaPiUl.appendChild(this.sigmaPiLi4);
         this.sigmaPiUl.appendChild(this.sigmaPiLi2);
         this.sigmaPiUl.appendChild(this.sigmaPiLi3);
 
@@ -543,15 +626,87 @@ export default class ResumePanel extends BasePanel {
         this.projectTitleDiv.appendChild(this.projectTitleIcon.getDiv());
         this.projectDiv.appendChild(this.projectTitleDiv);
 
+
         this.rightDiv.appendChild(this.educationDiv);
         this.rightDiv.appendChild(this.professionalDiv);
-        this.rightDiv.appendChild(this.projectDiv);
+        // this.rightDiv.appendChild(this.projectDiv);
 
+        //
+        this.escapeHeaderDiv.appendChild(this.escapeHeaderTextDiv);
+        this.escapeLinkImgDiv.appendChild(this.escapeLinkImg);
+        this.escapeHeaderDiv.appendChild(this.escapeLinkImgDiv);
+        this.escapeHeaderDiv.appendChild(this.escapeYearTextDiv);
+
+        this.escapeImgDiv.appendChild(this.escapeImg);
+        this.escapeContentDiv.appendChild(this.escapeImgDiv);
+        this.escapeContentDiv.appendChild(this.escapeTextDiv);
+
+        this.escapeDiv.appendChild(this.escapeHeaderDiv);
+        this.escapeDiv.appendChild(this.escapeContentDiv);
+
+        //
+        this.ttbHeaderDiv.appendChild(this.ttbHeaderTextDiv);
+        this.ttbLinkImgDiv.appendChild(this.ttbLinkImg);
+        this.ttbHeaderDiv.appendChild(this.ttbLinkImgDiv);
+        this.ttbHeaderDiv.appendChild(this.ttbYearTextDiv);
+
+        this.ttbDocAnalystDiv.appendChild(this.ttbDocAnalystTitleTextDiv);
+        this.ttbDocAnalystUl.appendChild(this.ttbDocAnalystLi);
+        this.ttbDocAnalystDiv.appendChild(this.ttbDocAnalystUl);
+
+        this.ttbSoftEngDiv.appendChild(this.ttbSoftEngTitleTextDiv);
+        this.ttbSoftEngUl.appendChild(this.ttbSoftEngLi1);
+        this.ttbSoftEngUl.appendChild(this.ttbSoftEngLi2);
+        this.ttbSoftEngDiv.appendChild(this.ttbSoftEngUl);
+
+        this.ttbContentDiv.appendChild(this.ttbTextDiv);
+        this.ttbContentDiv.appendChild(this.ttbSubtitleTextDiv);
+        this.ttbContentDiv.appendChild(this.ttbDocAnalystDiv);
+        this.ttbContentDiv.appendChild(this.ttbSoftEngDiv);
+
+        this.ttbDiv.appendChild(this.ttbHeaderDiv);
+        this.ttbDiv.appendChild(this.ttbContentDiv);
+
+        //
+        this.mqpHeaderDiv.appendChild(this.mqpHeaderTextDiv);
+        this.mqpLinkImgDiv.appendChild(this.mqpLinkImg);
+        this.mqpHeaderDiv.appendChild(this.mqpLinkImgDiv);
+        this.mqpHeaderDiv.appendChild(this.mqpYearTextDiv);
+
+        this.mqpContentDiv.appendChild(this.mqpTextDiv);
+        this.mqpPosterImgDiv.appendChild(this.mqpPosterImg);
+        this.mqpImgListDiv.appendChild(this.mqpPosterImgDiv);
+        this.mqpTrinaImgDiv.appendChild(this.mqpTrinaImg);
+        this.mqpImgListDiv.appendChild(this.mqpTrinaImgDiv);
+        this.mqpContentDiv.appendChild(this.mqpImgListDiv);
+
+        this.mqpDiv.appendChild(this.mqpHeaderDiv);
+        this.mqpDiv.appendChild(this.mqpContentDiv);
+
+        //
+        this.iqpHeaderDiv.appendChild(this.iqpHeaderTextDiv);
+        this.iqpLinkImgDiv.appendChild(this.iqpLinkImg);
+        this.iqpHeaderDiv.appendChild(this.iqpLinkImgDiv);
+        this.iqpHeaderDiv.appendChild(this.iqpYearTextDiv);
+
+        this.iqpContentDiv.appendChild(this.iqpTextDiv);
+        this.iqpGroupImgDiv.appendChild(this.iqpGroupImg);
+        this.iqpContentDiv.appendChild(this.iqpGroupImgDiv);
+
+        this.iqpDiv.appendChild(this.iqpHeaderDiv);
+        this.iqpDiv.appendChild(this.iqpContentDiv);
+
+        //
+        this.projectDiv.appendChild(this.escapeDiv);
+        this.projectDiv.appendChild(this.ttbDiv);
+        this.projectDiv.appendChild(this.mqpDiv);
+        this.projectDiv.appendChild(this.iqpDiv);
 
         // Assemble
         this.frameDiv.appendChild(this.topDiv);
         this.frameDiv.appendChild(this.leftDiv);
         this.frameDiv.appendChild(this.rightDiv);
+        this.frameDiv.appendChild(this.projectDiv);
         this.div.appendChild(this.frameDiv);
     };
 
@@ -567,6 +722,14 @@ export default class ResumePanel extends BasePanel {
         // Non icon Images
         this.sigmaPiImg.src = images.getImages()['sigma-pi'].src;
         this.sparcImg.src = images.getImages()['sparc'].src;
+        this.escapeImg.src = images.getImages()['escape'].src;
+        this.escapeLinkImg.src = images.getImages()['link'].src;
+        this.ttbLinkImg.src = images.getImages()['link'].src;
+        this.mqpLinkImg.src = images.getImages()['link'].src;
+        this.iqpLinkImg.src = images.getImages()['link'].src;
+        this.mqpPosterImg.src = images.getImages()['mqp-poster'].src;
+        this.mqpTrinaImg.src = images.getImages()['trina'].src;
+        // this.iqpGroupImg
 
         // innerHTMLs
         this.nameTextDiv.innerHTML = 'Brandon Manuel Navarro';
@@ -584,6 +747,10 @@ export default class ResumePanel extends BasePanel {
         this.sigmaPiDateTextDiv.innerHTML =
             '2016 - 2020';
         this.sigmaPiLi1.innerHTML = 'Active member and former PR chair';
+        this.sigmaPiLi4.innerHTML =
+            'Was on the WebTech committee for 2 years, which made drastic ' +
+            'improvements to our ' +
+            '<a target="_blank" href="https://sigmapigammaiota.org/"> chapter site</a>';
         this.sigmaPiLi2.innerHTML =
             'Helped organize a multi-day campus event, Amazing Day, to ' +
             'raise awareness for mental health and suicide in the WPI community';
@@ -602,17 +769,11 @@ export default class ResumePanel extends BasePanel {
             '<a target="_blank" href="https://www.wpi.edu/news/take-back-night">Take Back the Night</a>';
         this.sparcLi3.innerHTML =
             'Created and distributed electronic surveys to gauge students ' +
-            'sentiments about safety on campus';
+            'sentiments about safety on campus which were then presented to WPI admins';
         this.contactTitleTextDiv.innerHTML = 'CONTACT';
         this.professionalJobTextDiv.innerHTML = 'TrampleZone LLC.';
         this.professionalJobTitleTextDiv.innerHTML = 'Software Developer';
-        this.professionalTextDiv.innerHTML =
-            'Worked closely with the founder of the company in planning and ' +
-            'developing a SPA that is available across mobile & desktop. I created ' +
-            'most of the model classes, UI components, and panels on the frontend. ' +
-            'I also created promotional content and app store materials using various ' +
-            'Adobe tools along with Figma.';
-
+        this.professionalTextDiv.innerHTML = 'Worked closely with the founder of the company in planning and developing a single page application that is available across mobile & desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.';
         this.javascriptSkillTextDiv.innerHTML = 'Javascript';
         this.htmlSkillTextDiv.innerHTML = 'HTML';
         this.cssSkillTextDiv.innerHTML = 'CSS';
@@ -636,6 +797,25 @@ export default class ResumePanel extends BasePanel {
         this.campusInvolvementHeaderTextDiv.innerHTML =
             'Campus Involvement';
 
+        this.escapeHeaderTextDiv.innerHTML = 'Escape (Board Game)';
+        this.escapeYearTextDiv.innerHTML = '2020';
+        this.escapeTextDiv.innerHTML = 'Escape is a family of board games, designed for the term project of  CS4233: Object-Oriented Analysis & Design. The game is initialized using a collection of XML files to control different aspects like board dimension and shape, game pieces, victory conditions, and different battle rules. The course focused on using a TDD approach and evolutionary code design to continually add to and improve the game throughout the 7 weeks of development.';
+        this.ttbHeaderTextDiv.innerHTML = 'TTB Application';
+        this.ttbYearTextDiv.innerHTML = '2018';
+        this.ttbTextDiv.innerHTML = 'Worked within a team of 8 to develop an application to aid the Alcohol and Tobacco Tax and Trade Bureau (TTB) in the submission and review process of new product applications. The class was an 7 week, intensive simulation of what it was like working in an Agile Software development team. Our team held daily standup meetings to keep an open line of communication and to delegate work. Gave a presentation at the end of the class to a panel of our professor and government officials.';
+        this.ttbSubtitleTextDiv.innerHTML = 'Roles and responsibilities';
+        this.ttbDocAnalystTitleTextDiv.innerHTML = 'Documentation Analyst';
+        this.ttbDocAnalystLi.innerHTML = 'Created and maintained all technical documentation including UML diagrams, sequence diagrams, training materials, and software code documentation.';
+        this.ttbSoftEngTitleTextDiv.innerHTML = 'Software Engineer';
+        this.ttbSoftEngLi1.innerHTML = 'Helped design and implement both the UI for the application using a mockup tool Figma';
+        this.ttbSoftEngLi2.innerHTML = 'Implemented the algorithm that was used to search through a database which contained a collection of alcohols. More specifically, I implemented a fuzzy matching search by learning and adapting a Damerau-Levenshtein approach.';
+        this.mqpYearTextDiv.innerHTML = '2019-2020';
+        this.mqpHeaderTextDiv.innerHTML = 'Active Telepresence Assistance for Supervisory Control:  A User Study with a Multi-Camera Tele-Nursing Robot';
+        this.mqpTextDiv.innerHTML = 'Worked within a team of 7 with an advisor to conduct a study which explores autonomous camera control and selection to reduce operator workload and improve task performance by designing a novel method for autonomous camera selection and control. Was involved in creating the software used in the trials, which involved streaming a live feed from a webcam to VR headset, and then reading in data from that VR headset so that a user could control a Tele-Robotic Intelligent Nursing Assistant (TRINA) robot. Also helped in the process of running ~10 participants through the study.';
+        this.iqpYearTextDiv.innerHTML = '2018-2019';
+        this.iqpHeaderTextDiv.innerHTML = 'Mathematics Tutoring Center at NUST';
+        this.iqpTextDiv.innerHTML = 'Worked within a team of 4 to create an implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to implement these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project came with creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor software called ASSISTments, which I also worked on before the project.';
+
         // Assign IDs to DOM elements, if needed
         this.skillsDiv.setAttribute('id', baseId + '-skills-div');
         this.programmingDiv.setAttribute('id', baseId + '-programming-div');
@@ -647,6 +827,11 @@ export default class ResumePanel extends BasePanel {
         this.professionalDiv.setAttribute('id', baseId + '-professional-div');
         this.projectDiv.setAttribute('id', baseId + '-project-div');
         this.campusInvolvementDiv.setAttribute('id', baseId + '-campus-involvement-div');
+
+        this.escapeDiv.setAttribute('id', baseId + '-escape-div');
+        this.ttbDiv.setAttribute('id', baseId + '-ttb-div');
+        this.mqpDiv.setAttribute('id', baseId + '-mqp-div');
+        this.iqpDiv.setAttribute('id', baseId + '-iqp-div');
 
         this.frameDiv.setAttribute('id', frameDivId);
         this.div.setAttribute('id', divId);

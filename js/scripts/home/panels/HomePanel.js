@@ -281,16 +281,16 @@ export default class HomePanel extends BasePanel {
             'feedback.';
         this.stepThreeSubTextDiv.innerHTML =
             'Using feedback from my team, it’s time to update and further ' +
-            'build out my wireframes to more complete prototypes. I like to ' +
-            'keep an open line of communication so I keep ';
+            'build out my wireframes to more complete prototypes.';
         this.stepFourSubTextDiv.innerHTML =
             'Not everything will work, but it’s worth trying if it means ' +
             'learning and gaining insights from what doesn’t.';
-
         this.moreAboutHeaderTextDiv.innerHTML =
             'I am once again asking for your financial support';
         this.moreAboutTextDiv.innerHTML =
-            'Can talk about a bit more about specific work i did at TrampleZone. This need more text. This need more text. This need more text. This need more text. This need more text. This section I can just talk a bit about my interests (hiking, making music, walking, basketball, gaming, etc.). This need more text. This need more text. Could may get real about lack of experience outside of the one place I worked. Again reinforce that I am a literal piece of clay. This need more text. This need more text. This need more text.';
+            '';
+            // 'Can talk about a bit more about specific work i did at TrampleZone. This need more text. This need more text. This need more text. This need more text. This need more text. This section I can just talk a bit about my interests (hiking, making music, walking, basketball, gaming, etc.). This need more text. This need more text. Could may get real about lack of experience outside of the one place I worked. Again reinforce that I am a literal piece of clay. This need more text. This need more text. This need more text.';
+
 
         // imgs
         this.meImg.src = images.getImages()['dadongo'].src;
