@@ -22,15 +22,20 @@
 
 @font-face {
     font-family: Josefin-i;
-    font-weight: 500;
-    src: url('./JosefinSans-Italic.woff2') format('woff2');
-}
-@font-face {
-    font-family: Josefin-i;
     font-weight: 400;
     src: url('./JosefinSans-LightItalic.woff2') format('woff2');
 }
+@font-face {
+    font-family: Josefin-i;
+    font-weight: 500;
+    src: url('./JosefinSans-Italic.woff2') format('woff2');
+}
 
+@font-face {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    src: url('./lato-light-webfont.woff2') format('woff2');
+}
 @font-face {
     font-family: 'Lato';
     font-weight: 500;
@@ -38,10 +43,16 @@
 }
 
 @font-face {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    src: url('./lato-bolditalic-webfont.woff2') format('woff2');
+}
+@font-face {
     font-family: 'Lato';
     font-weight: 700;
     src: url('./lato-bold-webfont.woff2') format('woff2');
 }
+
 
 /* @font-face {
     font-family: Lato;

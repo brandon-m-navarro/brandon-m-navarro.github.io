@@ -49,6 +49,100 @@ export default class ResumePanel extends BasePanel {
 
     // Public Methods
 
+    makeNight () {
+        this.div.classList.add('dark');
+        this.frameDiv.classList.add('dark');
+
+        // Change Icons
+        this.contactEmailIcon.setImage(images.getImages()['email'].altSrc);
+        this.locationIcon .setImage(images.getImages()['location'].altSrc);
+        this.websiteIcon.setImage(images.getImages()['github'].altSrc);
+        this.linkedInIcon.setImage(images.getImages()['linkedIn'].altSrc);
+        this.educationTitleIcon.setImage(images.getImages()['education'].altSrc);
+        this.educationDateIcon.setImage(images.getImages()['calendar'].altSrc);
+        this.educationLocationIcon.setImage(images.getImages()['location-2'].altSrc);
+        this.professionalDateIcon.setImage(images.getImages()['calendar'].altSrc);
+        this.professionalLocationIcon.setImage(images.getImages()['location-2'].altSrc);
+        this.professionalTitleIcon.setImage(images.getImages()['work'].altSrc);
+        this.projectTitleIcon.setImage(images.getImages()['project'].altSrc);
+        this.escapeLinkImg.src = images.getImages()['link'].altSrc;
+        this.ttbLinkImg.src = images.getImages()['link'].altSrc;
+        this.mqpLinkImg.src = images.getImages()['link'].altSrc;
+        this.iqpLinkImg.src = images.getImages()['link'].altSrc;
+
+        let aTags = Array.from(doc.getElementsByClassName('anchor'));
+        aTags.forEach(aTag => {
+            aTag.classList.add('dark');
+        });
+
+        this.cSkillRating.setFillColor('#86467C');
+        this.cssSkillRating.setFillColor('#86467C');
+        this.iOsSkillRating.setFillColor('#86467C');
+        this.phpSkillRating.setFillColor('#86467C');
+        this.sqlSkillRating.setFillColor('#86467C');
+        this.htmlSkillRating.setFillColor('#86467C');
+        this.javaSkillRating.setFillColor('#86467C');
+        this.nodeSkillRating.setFillColor('#86467C');
+        this.cplusSkillRating.setFillColor('#86467C');
+        this.macOsSkillRating.setFillColor('#86467C');
+        this.pythonSkillRating.setFillColor('#86467C');
+        this.gitToolsSkillRating.setFillColor('#86467C');
+        this.androidOsSkillRating.setFillColor('#86467C');
+        this.windowsOsSkillRating.setFillColor('#86467C');
+        this.figmaToolsSkillRating.setFillColor('#86467C');
+        this.javascriptSkillRating.setFillColor('#86467C');
+        this.dockerToolsSkillRating.setFillColor('#86467C');
+        this.androidStudioToolsSkillRating.setFillColor('#86467C');
+        this.adobePremiereToolsSkillRating.setFillColor('#86467C');
+    };
+
+    makeDay() {
+        this.div.classList.remove('dark');
+        this.frameDiv.classList.remove('dark');
+
+        // Change Icons
+        this.contactEmailIcon.setImage(images.getImages()['email'].src);
+        this.locationIcon .setImage(images.getImages()['location'].src);
+        this.websiteIcon.setImage(images.getImages()['github'].src);
+        this.linkedInIcon.setImage(images.getImages()['linkedIn'].src);
+        this.educationTitleIcon.setImage(images.getImages()['education'].src);
+        this.educationDateIcon.setImage(images.getImages()['calendar'].src);
+        this.educationLocationIcon.setImage(images.getImages()['location-2'].src);
+        this.professionalDateIcon.setImage(images.getImages()['calendar'].src);
+        this.professionalLocationIcon.setImage(images.getImages()['location-2'].src);
+        this.professionalTitleIcon.setImage(images.getImages()['work'].src);
+        this.projectTitleIcon.setImage(images.getImages()['project'].src);
+        this.escapeLinkImg.src = images.getImages()['link'].src;
+        this.ttbLinkImg.src = images.getImages()['link'].src;
+        this.mqpLinkImg.src = images.getImages()['link'].src;
+        this.iqpLinkImg.src = images.getImages()['link'].src;
+
+        let aTags = Array.from(doc.getElementsByClassName('anchor'));
+        aTags.forEach(aTag => {
+            aTag.classList.remove('dark');
+        });
+
+        this.cSkillRating.setFillColor('#0b3948');
+        this.cssSkillRating.setFillColor('#0b3948');
+        this.iOsSkillRating.setFillColor('#0b3948');
+        this.phpSkillRating.setFillColor('#0b3948');
+        this.sqlSkillRating.setFillColor('#0b3948');
+        this.htmlSkillRating.setFillColor('#0b3948');
+        this.javaSkillRating.setFillColor('#0b3948');
+        this.nodeSkillRating.setFillColor('#0b3948');
+        this.cplusSkillRating.setFillColor('#0b3948');
+        this.macOsSkillRating.setFillColor('#0b3948');
+        this.pythonSkillRating.setFillColor('#0b3948');
+        this.gitToolsSkillRating.setFillColor('#0b3948');
+        this.androidOsSkillRating.setFillColor('#0b3948');
+        this.windowsOsSkillRating.setFillColor('#0b3948');
+        this.figmaToolsSkillRating.setFillColor('#0b3948');
+        this.javascriptSkillRating.setFillColor('#0b3948');
+        this.dockerToolsSkillRating.setFillColor('#0b3948');
+        this.androidStudioToolsSkillRating.setFillColor('#0b3948');
+        this.adobePremiereToolsSkillRating.setFillColor('#0b3948');
+    };
+
     // Create elements used on the panel
     createElements () {
         this.frameDiv = doc.createElement('div');
@@ -65,25 +159,25 @@ export default class ResumePanel extends BasePanel {
         this.contactEmailIcon = new Icon({
             img: images.getImages()['email'].src,
             text: 'brandon.m.navarro@gmail.com',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
         this.locationIcon = new Icon({
             img: images.getImages()['location'].src,
             text: 'Somerville, MA',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
         this.websiteIcon = new Icon({
             img: images.getImages()['github'].src,
             text: 'https://brandon-m-navarro.github.io/',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
         this.linkedInIcon = new Icon({
             img: images.getImages()['linkedIn'].src,
             text: 'brandon-m-navarro', // need to make link
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
 
@@ -247,7 +341,7 @@ export default class ResumePanel extends BasePanel {
         this.educationTitleIcon = new Icon({
             img: images.getImages()['education'].src,
             text: 'EDUCATION',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '14px',
             fontWeight: '600'
         });
@@ -326,7 +420,7 @@ export default class ResumePanel extends BasePanel {
         this.professionalTitleIcon = new Icon({
             img: images.getImages()['work'].src,
             text: 'Professional Experience',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '14px',
             fontWeight: '600'
         });
@@ -336,7 +430,7 @@ export default class ResumePanel extends BasePanel {
         this.projectTitleIcon = new Icon({
             img: images.getImages()['project'].src,
             text: 'PROJECTS',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '14px',
             fontWeight: '600'
         });
@@ -720,8 +814,8 @@ export default class ResumePanel extends BasePanel {
         this.assembleElements();
 
         // Non icon Images
-        this.sigmaPiImg.src = images.getImages()['sigma-pi'].src;
-        this.sparcImg.src = images.getImages()['sparc'].src;
+        this.sigmaPiImg.src = images.getImages()['sigma-pi_t'].src;
+        this.sparcImg.src = images.getImages()['sparc_t'].src;
         this.escapeImg.src = images.getImages()['escape'].src;
         this.escapeLinkImg.src = images.getImages()['link'].src;
         this.ttbLinkImg.src = images.getImages()['link'].src;
@@ -750,7 +844,7 @@ export default class ResumePanel extends BasePanel {
         this.sigmaPiLi4.innerHTML =
             'Was on the WebTech committee for 2 years, which made drastic ' +
             'improvements to our ' +
-            '<a target="_blank" href="https://sigmapigammaiota.org/"> chapter site</a>';
+            '<a class="anchor" target="_blank" href="https://sigmapigammaiota.org/"> chapter site</a>';
         this.sigmaPiLi2.innerHTML =
             'Helped organize a multi-day campus event, Amazing Day, to ' +
             'raise awareness for mental health and suicide in the WPI community';
@@ -766,7 +860,7 @@ export default class ResumePanel extends BasePanel {
             'victims in the WPI community';
         this.sparcLi2.innerHTML =
             'Helped run the annual, campus-wide event, ' +
-            '<a target="_blank" href="https://www.wpi.edu/news/take-back-night">Take Back the Night</a>';
+            '<a class="anchor" target="_blank" href="https://www.wpi.edu/news/take-back-night">Take Back the Night</a>';
         this.sparcLi3.innerHTML =
             'Created and distributed electronic surveys to gauge students ' +
             'sentiments about safety on campus which were then presented to WPI admins';

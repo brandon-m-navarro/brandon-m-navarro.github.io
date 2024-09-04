@@ -10,7 +10,6 @@
     position: absolute;
     /* display: none; */
     width: 100%;
-    /* height: 100%; */
     text-align: center;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -19,7 +18,6 @@
             user-select: none;
     color: var(--color1);
     box-sizing: border-box;
-    /* padding: 12px; */
 
     transition: background-color ease 250ms;
 }
@@ -42,14 +40,10 @@
 #home-panel-frame-div > div:nth-child(1) {
     position: relative;
     overflow: hidden;
-    /* height: 65vh; */
 }
 
 /* mtnSunSvgDiv */
-#home-panel-frame-div > div:nth-child(1) > div:nth-child(1) {
-    /* position: absolute; */
-    /* height: 100%; */
-}
+#home-panel-frame-div > div:nth-child(1) > div:nth-child(1) {}
 #home-panel-frame-div > div:nth-child(1) > div:nth-child(1) > svg {
     height: 100%;
     width: 100%;
@@ -79,7 +73,6 @@
     width: 100%;
 }
 #home-panel-frame-div > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) {
-    /* font-size: calc(12px + 1vw); */
     font-size: var(--paragraph-1);
     color: #FFFFFF;
 
@@ -95,8 +88,6 @@
     bottom: 24px;
     color: white;
     left: 50%;
-    /* font-size: 2.5vw; */
-    /* font-size: calc(1.25vw + 1.25vh); */
 
     font-size: var(--header-2);
 
@@ -129,7 +120,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
     flex-basis: 45%;
     margin: 16px;
 }
@@ -137,7 +127,6 @@
 #home-panel-frame-div > div:nth-child(2) > div > div:nth-child(1) {
     color: #FF3205;
     font-size: 28px;
-    /* margin-bottom: auto; */
     height: 32px;
     transition: color ease 250ms;
 }
@@ -174,6 +163,7 @@
     margin: auto;
     margin-top: 48px;
     margin-bottom: 48px;
+    padding: 0 20px;
     transition: color ease 250ms;
 }
 #home-panel-frame-div.dark > div:nth-child(3) {
@@ -254,5 +244,31 @@
 
     #home-panel-frame-div {
         padding: 0;
+    }
+}
+
+@media (max-width: 550px) {
+    #home-panel-frame-div > div:nth-child(1) {
+        height: 45vh;
+        background-color: rgb(55, 6, 1);
+    }
+    #home-panel-frame-div.dark > div:nth-child(1) {
+        background-color: rgb(37, 41, 60);
+    }
+    #home-panel-frame-div > div:nth-child(1) > div:nth-child(2) {
+        flex-direction: column;
+        margin-top: 12px;
+
+        -webkit-transform: translate(-50%, -100px);
+           -moz-transform: translate(-50%, -100px);
+            -ms-transform: translate(-50%, -100px);
+             -o-transform: translate(-50%, -100px);
+                transform: translate(-50%, -100px);
+    }
+    #home-panel-frame-div > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) {
+        font-size: 14px;
+    }
+    #home-panel-frame-div > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+        margin-right: 0px;
     }
 }

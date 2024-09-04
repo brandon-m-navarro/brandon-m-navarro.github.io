@@ -92,6 +92,11 @@ export default class Icon extends BaseComponent {
         this.div.classList.add('icon-div');
     }
 
+    setImage (src) {
+        this.options.img = src;
+        this.img.src = this.options.img;
+    }
+
     // Create an ENUM for possible text alignments
     static getAlignments () {
         return Object.freeze({

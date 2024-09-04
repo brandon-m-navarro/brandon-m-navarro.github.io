@@ -131,7 +131,9 @@
     background-color: #020916;
 }
 #top-client-div > div:nth-child(1) {
+    /* display: none; */
     display: flex;
+    opacity: 0;
     width: 150px;
     justify-content: center;
     align-items: center;
@@ -391,3 +393,10 @@ body {
 ::-webkit-scrollbar-button {
     display: none;
 } */
+
+/* Media Queries */
+@media (max-width: 550px) {
+    #top-client-div > div:nth-child(1) {
+        display: none;
+    }
+}

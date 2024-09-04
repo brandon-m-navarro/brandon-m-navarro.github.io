@@ -55,4 +55,27 @@ export default class SkillRating extends BaseComponent {
         // Finish assembly
         this.div.appendChild(this.ratingDiv);
     }
+
+    setFillColor (color) {
+        this.options.fillColor = color;
+
+        // Remove all children from ratingDiv
+        while (this.ratingDiv.firstChild) {
+            this.ratingDiv.removeChild(this.ratingDiv.lastChild);
+        }
+
+        // Reinitialize
+        for (let i=0; i<this.options.total; i++) {
+            let circleDiv = window.document.createElement('div');
+
+            this.ratingDiv.appendChild(circleDiv);
+
+            // Apply fill class if appropriate
+            if (i<this.options.fill) {
+                circleDiv.style.backgroundColor = this.options.fillColor;
+            } else {
+                circleDiv.style.backgroundColor = this.options.color;
+            }
+        }
+    }
 }
