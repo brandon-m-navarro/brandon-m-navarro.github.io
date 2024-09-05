@@ -4,11 +4,13 @@ export default class Images {
         this.siteImages = {
             'calendar': {
                 src: '../../img/calendar-regular.png',
-                alt: 'Calendar'
+                alt: 'Calendar',
+                altSrc: '../../img/calendar-regular_w.png'
             },
             'computer': {
                 src: '../../img/computer-solid.png',
-                alt: 'Computer'
+                alt: 'Computer',
+                altSrc: '../../img/computer-solid_w.png'
             },
             'computer-svg': {
                 src: '../../img/computer-solid.svg',
@@ -22,11 +24,13 @@ export default class Images {
             },
             'education': {
                 src: '../../img/school-solid.png',
-                alt: 'Education'
+                alt: 'Education',
+                altSrc: '../../img/school-solid_w.png',
             },
             'email': {
                 src: '../../img/envelope-regular.png',
-                alt: 'Email'
+                alt: 'Email',
+                altSrc: '../../img/envelope-regular_w.png'
             },
             'escape': {
                 src: '../../img/escape.png',
@@ -34,23 +38,28 @@ export default class Images {
             },
             'github': {
                 src: '../../img/square-github-solid.svg',
-                alt: 'Github'
+                alt: 'Github',
+                altSrc: '../../img/square-github-brands-solid_w.png'
             },
             'linkedIn': {
                 src: '../../img/linkedin-brands-solid.png',
-                alt: 'LinkedIn'
+                alt: 'LinkedIn',
+                altSrc: '../../img/linkedin-brands-solid_w.png',
             },
             'link': {
                 src: '../../img/link-solid.png',
-                alt: 'Link'
+                alt: 'Link',
+                altSrc: '../../img/link-solid_w.png'
             },
             'location': {
                 src: '../../img/location-dot-solid.png',
-                alt: 'Location'
+                alt: 'Location',
+                altSrc: '../../img/location-dot-solid_w.png',
             },
             'location-2': {
                 src: '../../img/location-dot-solid.png',
-                alt: 'Location_2'
+                alt: 'Location_2',
+                altSrc: '../../img/location-dot-solid_w.png'
             },
             'moon': {
                 src: '../../img/moon.svg',
@@ -62,14 +71,23 @@ export default class Images {
             },
             'project': {
                 src: '../../img/brush-solid.png',
-                alt: 'Project'
+                alt: 'Project',
+                altSrc: '../../img/brush-solid_w.png',
             },
             'sigma-pi': {
                 src: '../../img/sigmapi.jpg',
                 alt: 'Sigma Pi'
             },
+            'sigma-pi_t': {
+                src: '../../img/sigmapi_t.png',
+                alt: 'Sigma Pi'
+            },
             'sparc': {
                 src: '../../img/sparc.jpeg',
+                alt: 'Sparc'
+            },
+            'sparc_t': {
+                src: '../../img/sparc_t.png',
                 alt: 'Sparc'
             },
             'sun': {
@@ -82,11 +100,13 @@ export default class Images {
             },
             'website': {
                 src: '../../img/computer-solid.png',
-                alt: 'Website'
+                alt: 'Website',
+                altSrc: '../../img/computer-solid_w.png',
             },
             'work': {
                 src: '../../img/briefcase-solid.png',
-                alt: 'Work'
+                alt: 'Work',
+                altSrc: '../../img/briefcase-solid_w.png',
             }
         }
     }

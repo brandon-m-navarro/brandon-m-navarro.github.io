@@ -102,6 +102,7 @@ export class Main {
                 this.moonDiv.classList.remove('selected');
 
                 viewManager.getViews()['HomeView'].homePanel.makeDay();
+                viewManager.getViews()['ResumeView'].resumePanel.makeDay();
 
                 break;
             case Main.getThemes().DARK:
@@ -111,6 +112,7 @@ export class Main {
                 this.moonDiv.classList.add('selected');
 
                 viewManager.getViews()['HomeView'].homePanel.makeNight();
+                viewManager.getViews()['ResumeView'].resumePanel.makeNight();
 
                 break;
         }
