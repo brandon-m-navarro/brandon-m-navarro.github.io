@@ -75,7 +75,7 @@
 }
 #resume-panel-frame-div > div:nth-child(3) {
     flex: .75;
-    padding: 4px;
+    padding: 0 4px;
 }
 
 #resume-panel-contact-div {
@@ -148,6 +148,7 @@
     border-bottom: solid black 1px;
     font-size: 14px;
     font-weight: 600;
+    flex-basis: 100%;
 }
 #resume-panel-skills-div > div:nth-child(1) > div:nth-child(1) {}
 
@@ -159,6 +160,8 @@
     font-size: 12px;
     text-align: left;
     line-height: 24px;
+
+    font-weight: bold;
 }
 #resume-panel-programming-div > div:nth-child(2) {
     display: flex;
@@ -183,6 +186,7 @@
     font-size: 12px;
     text-align: left;
     line-height: 24px;
+    font-weight: bold;
 }
 #resume-panel-os-div > div:nth-child(2) {
     display: flex;
@@ -206,6 +210,7 @@
     font-size: 12px;
     text-align: left;
     line-height: 24px;
+    font-weight: bold;
 }
 #resume-panel-tools-div > div:nth-child(2) {
     display: flex;
@@ -370,6 +375,7 @@
 #resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
     font-size: 14px;
     margin-left: 6px;
+    text-align: left;
 }
 #resume-panel-campus-involvement-div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) {
     margin-left: auto;
@@ -654,4 +660,43 @@
 }
 #resume-panel-iqp-div > div:nth-child(2) > div:nth-child(2) > img {
     width: 100%;
+}
+
+@media (max-width: 750px) {
+    #resume-panel-div {
+        padding: 0 12px;
+    }
+    #resume-panel-frame-div {
+        display: initial;
+        margin: 0;
+
+        background-color: rgb(0, 0, 0, 0);
+    }
+    #resume-panel-frame-div > div:nth-child(2) {
+        flex: 1;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+
+    #resume-panel-frame-div > div:nth-child(3) {
+        flex: 1;
+    }
+
+    /* #resume-panel-skills-div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    } */
+    #resume-panel-professional-div > div:nth-child(3) {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    #resume-panel-escape-div > div:nth-child(2) > div:nth-child(1) {
+        display: none;
+    }
+    #resume-panel-escape-div > div:nth-child(2) > div:nth-child(2) {
+        margin: 0;
+    }
 }
