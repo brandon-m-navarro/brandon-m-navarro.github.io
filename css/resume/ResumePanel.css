@@ -689,4 +689,9 @@
     #resume-panel-escape-div > div:nth-child(2) > div:nth-child(2) {
         margin: 0;
     }
+
+    #resume-panel-education-div > div:nth-child(2) > div:nth-child(2) {
+        flex-direction: column;
+        align-items: flex-end;
+    }
 }
