@@ -159,25 +159,25 @@ export default class ResumePanel extends BasePanel {
         this.contactEmailIcon = new Icon({
             img: images.getImages()['email'].src,
             text: 'brandon.m.navarro@gmail.com',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
         this.locationIcon = new Icon({
             img: images.getImages()['location'].src,
             text: 'Somerville, MA',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
         this.websiteIcon = new Icon({
             img: images.getImages()['github'].src,
             text: 'https://brandon-m-navarro.github.io/',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
         this.linkedInIcon = new Icon({
             img: images.getImages()['linkedIn'].src,
             text: 'brandon-m-navarro', // need to make link
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '12px'
         });
 
@@ -341,7 +341,7 @@ export default class ResumePanel extends BasePanel {
         this.educationTitleIcon = new Icon({
             img: images.getImages()['education'].src,
             text: 'EDUCATION',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '14px',
             fontWeight: '600'
         });
@@ -420,7 +420,7 @@ export default class ResumePanel extends BasePanel {
         this.professionalTitleIcon = new Icon({
             img: images.getImages()['work'].src,
             text: 'Professional Experience',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '14px',
             fontWeight: '600'
         });
@@ -430,7 +430,7 @@ export default class ResumePanel extends BasePanel {
         this.projectTitleIcon = new Icon({
             img: images.getImages()['project'].src,
             text: 'PROJECTS',
-            imgSize: '24px',
+            imgSize: '18px',
             fontSize: '14px',
             fontWeight: '600'
         });
