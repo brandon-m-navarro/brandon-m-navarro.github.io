@@ -35,10 +35,10 @@ export class Main {
         // Append inline SVGs to appropriate divs
         window.onload = event => {
             // Get SVGs by ID and append to appropriate div
-            this.computerSvg = doc.getElementById('computer-svg');
-            this.computerSvg.style.display = 'block';
+            // this.computerSvg = doc.getElementById('computer-svg');
+            // this.computerSvg.style.display = 'block';
 
-            this.topClientLeftDiv.appendChild(this.computerSvg);
+            // this.topClientLeftDiv.appendChild(this.computerSvg);
 
             viewManager.getViews()['HomeView'].homePanel.setSvgs();
 
