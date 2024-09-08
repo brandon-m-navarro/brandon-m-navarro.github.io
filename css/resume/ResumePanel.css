@@ -638,6 +638,7 @@
 #resume-panel-iqp-div > div:nth-child(1) > div:nth-child(3) {
     margin-left: auto;
     font-size: 12px;
+    white-space: nowrap;
 }
 
 #resume-panel-iqp-div > div:nth-child(2) {}

@@ -277,7 +277,8 @@
 
 @media (max-width: 550px) {
     #home-panel-frame-div > div:nth-child(1) {
-        height: 45vh;
+        /* height: 45vh; */
+        height: 300px;
         background-color: rgb(55, 6, 1);
     }
     #home-panel-frame-div.dark > div:nth-child(1) {
