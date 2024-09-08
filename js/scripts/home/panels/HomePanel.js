@@ -165,23 +165,25 @@ export default class HomePanel extends BasePanel {
 
         this.moreAboutDiv = doc.createElement('div');
         this.moreAboutHeaderTextDiv = doc.createElement('div');
-        this.moreAboutTextDiv = doc.createElement('div');
+        this.moreAboutTextDiv1 = doc.createElement('div');
+        this.moreAboutTextDiv2 = doc.createElement('div');
+        this.moreAboutTextDiv3 = doc.createElement('div');
 
         this.bottomDiv = doc.createElement('div');
         this.bottomLeftDiv = doc.createElement('div');
         this.bottomRightDiv = doc.createElement('div');
 
         this.picture1 = new Picture({
-            img: images.getImages()['dadongo'].src,
-            text: 'Me skydiving, look how wacky I am! Wow!'
+            img: images.getImages()['skydive'].src,
+            text: 'Me skydiving in Swakopmund, Namibia (IQP) '
         });
         this.picture2 = new Picture({
-            img: images.getImages()['dadongo'].src,
-            text: 'Me skydiving, look how wacky I am! Wow!'
+            img: images.getImages()['hershey'].src,
+            text: 'Hershey being photogenic'
         });
         this.picture3 = new Picture({
-            img: images.getImages()['dadongo'].src,
-            text: 'Me skydiving, look how wacky I am! Wow!'
+            img: images.getImages()['hout_bay'].src,
+            text: 'The Hout Bay in Cape Town'
         });
     };
 
@@ -218,7 +220,9 @@ export default class HomePanel extends BasePanel {
         this.middleDiv.appendChild(this.stepFourDiv);
 
         this.moreAboutDiv.appendChild(this.moreAboutHeaderTextDiv);
-        this.moreAboutDiv.appendChild(this.moreAboutTextDiv);
+        this.moreAboutDiv.appendChild(this.moreAboutTextDiv1);
+        this.moreAboutDiv.appendChild(this.moreAboutTextDiv2);
+        this.moreAboutDiv.appendChild(this.moreAboutTextDiv3);
 
         this.bottomLeftDiv.appendChild(this.picture1.getDiv());
         this.bottomRightDiv.appendChild(this.picture2.getDiv());
@@ -249,11 +253,11 @@ export default class HomePanel extends BasePanel {
         // innerHTMLs
         this.quoteTextDiv.innerHTML = 'Please, I need a job!!!';
         this.meAboutTextDiv.innerHTML =
-            'My name is Brandon. I’m software engineer looking to expand ' +
-            'my knowledge in a close-knit, team environment. I’ve previously ' +
-            'worked at a small startup developing the mobile/web application ' +
+            'My name is Brandon. I\'m a software engineer looking to expand ' +
+            'my knowledge in a close-knit, team environment. I\'ve previously ' +
+            'worked at a small startup developing a mobile/web application ' +
             'called MyChapter. My work was primarily focused on frontend ' +
-            'development, but I’m always looking to learn about new ' +
+            'development, but I\'m always looking to learn about new ' +
             'frameworks, languages, and any other technology under the sun.';
 
         this.stepOneTextDiv.innerHTML = '1.';
@@ -268,7 +272,7 @@ export default class HomePanel extends BasePanel {
 
         this.stepOneSubTextDiv.innerHTML =
             'After writing down a list of requirements to better understand ' +
-            'the problem, I like to begin by looking for other UI’s that ' +
+            'the problem, I like to begin by looking for other UI\'s that ' +
             'have tackled the same or a similar problem. Then I begin ' +
             'drafting wireframes and mockups. These allow me to discover ' +
             'requirements I may have missed and gives me a resource that ' +
@@ -280,20 +284,20 @@ export default class HomePanel extends BasePanel {
             'cohesion by promoting a more open environment which encourages ' +
             'feedback.';
         this.stepThreeSubTextDiv.innerHTML =
-            'Using feedback from my team, it’s time to update and further ' +
+            'Using feedback from my team, it\'s time to update and further ' +
             'build out my wireframes to more complete prototypes.';
         this.stepFourSubTextDiv.innerHTML =
-            'Not everything will work, but it’s worth trying if it means ' +
-            'learning and gaining insights from what doesn’t.';
-        this.moreAboutHeaderTextDiv.innerHTML =
-            'I am once again asking for your financial support';
-        this.moreAboutTextDiv.innerHTML =
-            '';
-            // 'Can talk about a bit more about specific work i did at TrampleZone. This need more text. This need more text. This need more text. This need more text. This need more text. This section I can just talk a bit about my interests (hiking, making music, walking, basketball, gaming, etc.). This need more text. This need more text. Could may get real about lack of experience outside of the one place I worked. Again reinforce that I am a literal piece of clay. This need more text. This need more text. This need more text.';
+            'Not everything will work, but it\'s worth trying if it means ' +
+            'learning and gaining insights from what doesn\'t.';
+        this.moreAboutHeaderTextDiv.innerHTML = 'About';
+        this.moreAboutTextDiv1.innerHTML =
+            'Around the end of my Sophomore year in college, I began working at a small startup called TrampleZone. I was mainly working alongside other college kids helping improve the company\'s existing application HotSpots, a desktop & mobile app that leveraged OpenStreetMaps to let users rate local venues.';
+        this.moreAboutTextDiv2.innerHTML = 'A couple of months into my time there, we began developing a new app with a focus on greek life organizations called MyChapter. With the guidance of the company\'s founder Jim, I helped map out the expected class structure using UML diagrams and began designing and implementing the frontend. After graduating in the year of COVID, I was fortunate to get a software engineering role at TrampleZone, where I got to continue my work on MyChapter and even began testing out the service with multiple fraternities at my alma mater.';
+        this.moreAboutTextDiv3.innerHTML = 'Outside of work, I like to go out on walks and runs around Somerville, play in local basketball rec leagues, and go out for backpacking hikes when I\'m visiting family in New Hampshire. ';
 
 
         // imgs
-        this.meImg.src = images.getImages()['dadongo'].src;
+        this.meImg.src = images.getImages()['me_sitting'].src;
 
         // Assign IDs to DOM elements, if needed
         this.frameDiv.setAttribute('id', frameDivId);

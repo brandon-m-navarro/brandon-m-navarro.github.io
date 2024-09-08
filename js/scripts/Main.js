@@ -35,10 +35,10 @@ export class Main {
         // Append inline SVGs to appropriate divs
         window.onload = event => {
             // Get SVGs by ID and append to appropriate div
-            this.computerSvg = doc.getElementById('computer-svg');
-            this.computerSvg.style.display = 'block';
+            // this.computerSvg = doc.getElementById('computer-svg');
+            // this.computerSvg.style.display = 'block';
 
-            this.topClientLeftDiv.appendChild(this.computerSvg);
+            // this.topClientLeftDiv.appendChild(this.computerSvg);
 
             viewManager.getViews()['HomeView'].homePanel.setSvgs();
 
@@ -53,41 +53,37 @@ export class Main {
 
     // Create and append needed elements for splashscreen
     createSplash () {
-        // if (typeof this.splashDiv !== 'undefined') {
-            this.splashDiv = doc.createElement('div');
-            this.loadingDiv = doc.createElement('div');
-            this.loadingTextDiv = doc.createElement('div');
-            this.loadingSpan1 = doc.createElement('span');
-            this.loadingSpan2 = doc.createElement('span');
-            this.loadingSpan3 = doc.createElement('span');
-            this.loadingSpan4 = doc.createElement('span');
-            this.loadingSpan5 = doc.createElement('span');
+        this.splashDiv = doc.createElement('div');
+        this.loadingDiv = doc.createElement('div');
+        this.loadingTextDiv = doc.createElement('div');
+        this.loadingSpan1 = doc.createElement('span');
+        this.loadingSpan2 = doc.createElement('span');
+        this.loadingSpan3 = doc.createElement('span');
+        this.loadingSpan4 = doc.createElement('span');
+        this.loadingSpan5 = doc.createElement('span');
 
-            this.splashDiv.setAttribute('id', 'splash-div');
-    
-            this.loadingTextDiv.innerHTML = 'Loading . . .';
+        this.splashDiv.setAttribute('id', 'splash-div');
 
-            this.splashDiv.appendChild(this.loadingDiv);
-            this.splashDiv.appendChild(this.loadingTextDiv);
+        this.loadingTextDiv.innerHTML = 'Loading . . .';
 
-            this.loadingDiv.appendChild(this.loadingSpan1);
-            this.loadingDiv.appendChild(this.loadingSpan2);
-            this.loadingDiv.appendChild(this.loadingSpan3);
-            this.loadingDiv.appendChild(this.loadingSpan4);
-            this.loadingDiv.appendChild(this.loadingSpan5);
+        this.splashDiv.appendChild(this.loadingDiv);
+        this.splashDiv.appendChild(this.loadingTextDiv);
 
-            doc.body.appendChild(this.splashDiv);
-        // }
+        this.loadingDiv.appendChild(this.loadingSpan1);
+        this.loadingDiv.appendChild(this.loadingSpan2);
+        this.loadingDiv.appendChild(this.loadingSpan3);
+        this.loadingDiv.appendChild(this.loadingSpan4);
+        this.loadingDiv.appendChild(this.loadingSpan5);
+
+        doc.body.appendChild(this.splashDiv);
     }
 
     // Hide/Show methods for SplashScreen ()
     showSplash () {
-        // doc.body.classList.add('show-splash');
         this.splashDiv.classList.add('show-splash');
         this.div.classList.add('show-splash');
     }
     hideSplash () {
-        // doc.body.classList.remove('show-splash');
         this.splashDiv.classList.remove('show-splash');
         this.div.classList.remove('show-splash');
     }
@@ -143,7 +139,6 @@ export class Main {
 
     // Create
     createElements() {
-        // this.div = doc.createElement('div');
         this.clientDiv = doc.createElement('div');
 
         this.topClientDiv = doc.createElement('div');
@@ -175,8 +170,6 @@ export class Main {
         let isMobile = utilities.isMobile();
         console.info('Are we running on mobile? - ' + isMobile);
 
-        // Using isMobile, build different UIs? Could handle
-        // with CSS media queries
         // this.computerSvg.setAttribute('data', images.getImages()['computer-svg'].src);
         // this.computerSvg.setAttribute('type', 'image/svg+xml');
 
@@ -186,14 +179,11 @@ export class Main {
 
         // Assemble
 
-        // left-side
         // this.topClientLeftDiv.appendChild(this.computerSvg);
 
-        // middle
         this.topClientMidDiv.appendChild(this.aboutNavTextDiv);
         this.topClientMidDiv.appendChild(this.resumeNavTextDiv);
 
-        // right
         this.moonDiv.appendChild(this.moonSvg);
         this.sunDiv.appendChild(this.sunSvg);
 

@@ -19,6 +19,7 @@
 @import url('./components/Icon.css');
 @import url('./components/Picture.css');
 @import url('./components/SkillRating.css');
+@import url('./components/Modal.css');
 
 #splash-div {
     display: flex;
