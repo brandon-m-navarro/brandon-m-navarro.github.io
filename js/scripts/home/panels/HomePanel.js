@@ -174,16 +174,16 @@ export default class HomePanel extends BasePanel {
         this.bottomRightDiv = doc.createElement('div');
 
         this.picture1 = new Picture({
-            img: images.getImages()['dadongo'].src,
-            text: 'Me skydiving, look how wacky I am! Wow!'
+            img: images.getImages()['skydive'].src,
+            text: 'Me skydiving in Swakopmund, Namibia (IQP) '
         });
         this.picture2 = new Picture({
-            img: images.getImages()['dadongo'].src,
-            text: 'Me skydiving, look how wacky I am! Wow!'
+            img: images.getImages()['hershey'].src,
+            text: 'Hershey being photogenic'
         });
         this.picture3 = new Picture({
-            img: images.getImages()['dadongo'].src,
-            text: 'Me skydiving, look how wacky I am! Wow!'
+            img: images.getImages()['hout_bay'].src,
+            text: 'The Hout Bay in Cape Town'
         });
     };
 
@@ -289,8 +289,7 @@ export default class HomePanel extends BasePanel {
         this.stepFourSubTextDiv.innerHTML =
             'Not everything will work, but it’s worth trying if it means ' +
             'learning and gaining insights from what doesn’t.';
-        this.moreAboutHeaderTextDiv.innerHTML =
-            'I am once again asking for your financial support';
+        this.moreAboutHeaderTextDiv.innerHTML = 'About';
         this.moreAboutTextDiv1.innerHTML =
             'Around the end of my Sophomore year in college, I began working at a small startup called TrampleZone. I was mainly working alongside other college kids helping improve the company\'s existing application HotSpots, a desktop & mobile app that leveraged OpenStreetMaps to let users rate local venues.';
         this.moreAboutTextDiv2.innerHTML = 'A couple of months into my time there, we began developing a new app with a focus on greek life organizations called MyChapter. With the guidance of the company\'s founder Jim, I helped map out the expected class structure using UML diagrams and began designing and implementing the frontend. After graduating in the year of COVID, I was fortunate to get a software engineering role at TrampleZone, where I got to continue my work on MyChapter and even began testing out the service with multiple fraternities at my alma mater.';
@@ -298,7 +297,7 @@ export default class HomePanel extends BasePanel {
 
 
         // imgs
-        this.meImg.src = images.getImages()['dadongo'].src;
+        this.meImg.src = images.getImages()['me_sitting'].src;
 
         // Assign IDs to DOM elements, if needed
         this.frameDiv.setAttribute('id', frameDivId);

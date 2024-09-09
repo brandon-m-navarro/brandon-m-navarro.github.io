@@ -41,6 +41,18 @@ export default class Images {
                 alt: 'Github',
                 altSrc: '../../img/square-github-brands-solid_w.png'
             },
+            'hershey': {
+                src: '../../img/hershey.JPG',
+                alt: 'Hershey'
+            },
+            'hout_bay': {
+                src: '../../img/Hout_Bay.JPG',
+                alt: 'Hout Bay'
+            },
+            'iqp_team': {
+                src: '../../img/iqp_team.png',
+                alt: 'GitIQP Team'
+            },
             'linkedIn': {
                 src: '../../img/linkedin-brands-solid.png',
                 alt: 'LinkedIn',
@@ -60,6 +72,22 @@ export default class Images {
                 src: '../../img/location-dot-solid.png',
                 alt: 'Location_2',
                 altSrc: '../../img/location-dot-solid_w.png'
+            },
+            'me': {
+                src: '../../img/myface.jpg',
+                alt: 'Brandon'
+            },
+            'me_onclif': {
+                src: '../../img/me_onclif.JPG',
+                alt: 'Brandon On Cliff'
+            },
+            'me_sitting': {
+                src: '../../img/me_sitting.JPG',
+                alt: 'Brandon Sitting'
+            },
+            'me_ajay_dune': {
+                src: '../../img/me_ajay_dune.JPG',
+                alt: 'Brandon'
             },
             'moon': {
                 src: '../../img/moon.svg',
@@ -81,6 +109,10 @@ export default class Images {
             'sigma-pi_t': {
                 src: '../../img/sigmapi_t.png',
                 alt: 'Sigma Pi'
+            },
+            'skydive': {
+                src: '../../img/skydive.png',
+                alt: 'Skydive'
             },
             'sparc': {
                 src: '../../img/sparc.jpeg',

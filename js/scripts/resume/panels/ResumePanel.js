@@ -904,7 +904,7 @@ export default class ResumePanel extends BasePanel {
         this.ttbSoftEngLi1.innerHTML = 'Helped design and implement both the UI for the application using a mockup tool Figma';
         this.ttbSoftEngLi2.innerHTML = 'Implemented the algorithm that was used to search through a database which contained a collection of alcohols. More specifically, I implemented a fuzzy matching search by learning and adapting a Damerau-Levenshtein approach.';
         this.mqpYearTextDiv.innerHTML = '2019-2020';
-        this.mqpHeaderTextDiv.innerHTML = 'Active Telepresence Assistance for Supervisory Control:  A User Study with a Multi-Camera Tele-Nursing Robot';
+        this.mqpHeaderTextDiv.innerHTML = 'Active Telepresence Assistance for Supervisory Control: A User Study with a Multi-Camera Tele-Nursing Robot';
         this.mqpTextDiv.innerHTML = 'Worked within a team of 7 with an advisor to conduct a study which explores autonomous camera control and selection to reduce operator workload and improve task performance by designing a novel method for autonomous camera selection and control. Was involved in creating the software used in the trials, which involved streaming a live feed from a webcam to VR headset, and then reading in data from that VR headset so that a user could control a Tele-Robotic Intelligent Nursing Assistant (TRINA) robot. Also helped in the process of running ~10 participants through the study.';
         this.iqpYearTextDiv.innerHTML = '2018-2019';
         this.iqpHeaderTextDiv.innerHTML = 'Mathematics Tutoring Center at NUST';
