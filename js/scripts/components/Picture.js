@@ -17,7 +17,8 @@ export default class Picture extends BaseComponent {
         // Specify default values if options aren't specified
         this.defaultOptions = {
             img:  images.getImages()['dadongo'].src,
-            text: null
+            text: null,
+            listener: undefined
         };
 
         // Initialize parameters
@@ -27,6 +28,9 @@ export default class Picture extends BaseComponent {
         this.options.text = 'text' in options
             ? options.text
             : this.defaultOptions.text;
+        this.listener = 'listener' in options
+            ? options.listener
+            : this.defaultOptions.listener
 
         // Create DOM elements
         this.imgDiv = window.document.createElement('div');
@@ -54,12 +58,14 @@ export default class Picture extends BaseComponent {
 
         // If this.div is hovered over, the text will be shown,
         // if on mobile however, we need to explicity add touch listeners
-        this.div.addEventListener('touchstart', () => {
-            this.div.classList.add('show-text');
-        });
+        if (this.options.text !== null) {
+            this.div.addEventListener('touchstart', () => {
+                this.div.classList.add('show-text');
+            });
 
-        this.div.addEventListener('touchend', () => {
-            this.div.classList.remove('show-text');
-        });
+            this.div.addEventListener('touchend', () => {
+                this.div.classList.remove('show-text');
+            });
+        }
     }
 }

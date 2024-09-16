@@ -7,6 +7,11 @@ export default class Images {
                 alt: 'Calendar',
                 altSrc: '../../img/calendar-regular_w.png'
             },
+            'close': {
+                src: '../../img/xmark-solid.svg',
+                alt: 'Close',
+                altSrc: '../../img/xmark-solid_w.svg'
+            },
             'computer': {
                 src: '../../img/computer-solid.png',
                 alt: 'Computer',
@@ -75,6 +80,10 @@ export default class Images {
             },
             'me': {
                 src: '../../img/myface.jpg',
+                alt: 'Brandon'
+            },
+            'me_hd': {
+                src: '../../img/myface_hd.jpg',
                 alt: 'Brandon'
             },
             'me_onclif': {

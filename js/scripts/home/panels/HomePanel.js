@@ -253,11 +253,11 @@ export default class HomePanel extends BasePanel {
         // innerHTMLs
         this.quoteTextDiv.innerHTML = 'Please, I need a job!!!';
         this.meAboutTextDiv.innerHTML =
-            'My name is Brandon. I’m software engineer looking to expand ' +
-            'my knowledge in a close-knit, team environment. I’ve previously ' +
+            'My name is Brandon. I\'m a software engineer looking to expand ' +
+            'my knowledge in a close-knit, team environment. I\'ve previously ' +
             'worked at a small startup developing the mobile/web application ' +
             'called MyChapter. My work was primarily focused on frontend ' +
-            'development, but I’m always looking to learn about new ' +
+            'development, but I\'m always looking to learn about new ' +
             'frameworks, languages, and any other technology under the sun.';
 
         this.stepOneTextDiv.innerHTML = '1.';
@@ -272,7 +272,7 @@ export default class HomePanel extends BasePanel {
 
         this.stepOneSubTextDiv.innerHTML =
             'After writing down a list of requirements to better understand ' +
-            'the problem, I like to begin by looking for other UI’s that ' +
+            'the problem, I like to begin by looking for other UI\'s that ' +
             'have tackled the same or a similar problem. Then I begin ' +
             'drafting wireframes and mockups. These allow me to discover ' +
             'requirements I may have missed and gives me a resource that ' +
@@ -284,11 +284,11 @@ export default class HomePanel extends BasePanel {
             'cohesion by promoting a more open environment which encourages ' +
             'feedback.';
         this.stepThreeSubTextDiv.innerHTML =
-            'Using feedback from my team, it’s time to update and further ' +
+            'Using feedback from my team, it\'s time to update and further ' +
             'build out my wireframes to more complete prototypes.';
         this.stepFourSubTextDiv.innerHTML =
-            'Not everything will work, but it’s worth trying if it means ' +
-            'learning and gaining insights from what doesn’t.';
+            'Not everything will work, but it\'s worth trying if it means ' +
+            'learning and gaining insights from what doesn\'t.';
         this.moreAboutHeaderTextDiv.innerHTML = 'About';
         this.moreAboutTextDiv1.innerHTML =
             'Around the end of my Sophomore year in college, I began working at a small startup called TrampleZone. I was mainly working alongside other college kids helping improve the company\'s existing application HotSpots, a desktop & mobile app that leveraged OpenStreetMaps to let users rate local venues.';

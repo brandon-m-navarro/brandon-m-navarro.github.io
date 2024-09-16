@@ -8,8 +8,9 @@
 
 import BasePanel from '../../BasePanel.js';
 import Icon from '../../components/Icon.js';
-import SkillRating from '../../components/SkillRating.js';
 import Images from '../../Images.js';
+import Modal from '../../components/Modal.js';
+import SkillRating from '../../components/SkillRating.js';
 import Utilities from '../../utils/Utilities.js';
 const images = new Images();
 const utilities = new Utilities();
@@ -43,8 +44,6 @@ export default class ResumePanel extends BasePanel {
             super();
             self = this;
         }
-
-        // Private Functions
     }
 
     // Public Methods
@@ -148,6 +147,12 @@ export default class ResumePanel extends BasePanel {
         this.frameDiv = doc.createElement('div');
 
         this.topDiv = doc.createElement('div');
+
+        this.nameSubnameDiv = doc.createElement('div');
+
+        this.meImgDiv = doc.createElement('div');
+        this.meImg = doc.createElement('img');
+
         this.nameTextDiv = doc.createElement('div');
         this.subnameTextDiv = doc.createElement('div');
 
@@ -492,7 +497,14 @@ export default class ResumePanel extends BasePanel {
         this.iqpGroupImgDiv = doc.createElement('div');
         this.iqpGroupImg = doc.createElement('img');
 
+        this.mqpModalContainerDiv = doc.createElement('div');
+        this.mqpModalImgDiv = doc.createElement('div');
+        this.mqpModalImg = doc.createElement('img');
+        this.mqpModal; // Delay initialization until assembly
+
         // Listeners
+
+        // Open a new tab when user selects project links or contact infos
         utilities.addEventListeners(this.websiteIcon.getDiv(), () => {
             window.open(
                 'https://github.com/brandon-m-navarro/brandon-m-navarro.github.io',
@@ -529,6 +541,12 @@ export default class ResumePanel extends BasePanel {
                 '_blank'
             ).focus();
         });
+
+        // Expand modal when user selects images
+        utilities.addEventListeners(this.mqpPosterImgDiv, () => {
+            this.mqpModal.open();
+        });
+
     };
 
     // Append elements to the DOM
@@ -537,8 +555,13 @@ export default class ResumePanel extends BasePanel {
         // Add elements to container
 
         //
-        this.topDiv.appendChild(this.nameTextDiv);
-        this.topDiv.appendChild(this.subnameTextDiv);
+        this.meImgDiv.appendChild(this.meImg);
+
+        this.nameSubnameDiv.appendChild(this.nameTextDiv);
+        this.nameSubnameDiv.appendChild(this.subnameTextDiv);
+
+        this.topDiv.appendChild(this.meImgDiv);
+        this.topDiv.appendChild(this.nameSubnameDiv);
 
         //
         this.contactTitleDiv.appendChild(this.contactTitleTextDiv);
@@ -777,6 +800,12 @@ export default class ResumePanel extends BasePanel {
         this.mqpDiv.appendChild(this.mqpHeaderDiv);
         this.mqpDiv.appendChild(this.mqpContentDiv);
 
+        this.mqpModalImgDiv.appendChild(this.mqpModalImg);
+        this.mqpModalContainerDiv.appendChild(this.mqpModalImgDiv)
+        this.mqpModal = new Modal({
+            component: this.mqpModalContainerDiv
+        });
+
         //
         this.iqpHeaderDiv.appendChild(this.iqpHeaderTextDiv);
         this.iqpLinkImgDiv.appendChild(this.iqpLinkImg);
@@ -823,7 +852,9 @@ export default class ResumePanel extends BasePanel {
         this.iqpLinkImg.src = images.getImages()['link'].src;
         this.mqpPosterImg.src = images.getImages()['mqp-poster'].src;
         this.mqpTrinaImg.src = images.getImages()['trina'].src;
+        this.meImg.src = images.getImages()['me_hd'].src;
         // this.iqpGroupImg
+        this.mqpModalImg.src = images.getImages()['mqp-poster'].src;
 
         // innerHTMLs
         this.nameTextDiv.innerHTML = 'Brandon Manuel Navarro';
@@ -911,6 +942,8 @@ export default class ResumePanel extends BasePanel {
         this.iqpTextDiv.innerHTML = 'Worked within a team of 4 to create an implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to implement these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project came with creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor software called ASSISTments, which I also worked on before the project.';
 
         // Assign IDs to DOM elements, if needed
+        this.mqpModalContainerDiv.classList.add('mqp-modal');
+
         this.skillsDiv.setAttribute('id', baseId + '-skills-div');
         this.programmingDiv.setAttribute('id', baseId + '-programming-div');
         this.osDiv.setAttribute('id', baseId + '-os-div');
