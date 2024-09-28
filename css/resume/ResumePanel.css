@@ -279,12 +279,14 @@
 #resume-panel-education-div > div:nth-child(2) > div:nth-child(2) {
     flex: .5;
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     line-height: 24px;
 }
 #resume-panel-education-div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) {
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
-    margin-right: 6px;
+    /* margin-right: 6px; */
     white-space: nowrap;
 }
 #resume-panel-education-div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) {
