@@ -93,6 +93,10 @@ export default class ResumePanel extends BasePanel {
         this.dockerToolsSkillRating.setFillColor('#86467C');
         this.androidStudioToolsSkillRating.setFillColor('#86467C');
         this.adobePremiereToolsSkillRating.setFillColor('#86467C');
+        this.reactFrameworkSkillRating.setFillColor('#86467C');
+        this.nextJsFrameworkSkillRating.setFillColor('#86467C');
+        this.requireFrameworkSkillRating.setFillColor('#86467C');
+        this.tailwindFrameworkSkillRating.setFillColor('#86467C');
     };
 
     makeDay() {
@@ -140,6 +144,10 @@ export default class ResumePanel extends BasePanel {
         this.dockerToolsSkillRating.setFillColor('#0b3948');
         this.androidStudioToolsSkillRating.setFillColor('#0b3948');
         this.adobePremiereToolsSkillRating.setFillColor('#0b3948');
+        this.reactFrameworkSkillRating.setFillColor('#0b3948');
+        this.nextJsFrameworkSkillRating.setFillColor('#0b3948');
+        this.requireFrameworkSkillRating.setFillColor('#0b3948');
+        this.tailwindFrameworkSkillRating.setFillColor('#0b3948');
     };
 
     // Create elements used on the panel
@@ -338,6 +346,39 @@ export default class ResumePanel extends BasePanel {
 
         this.toolsListDiv = doc.createElement('div');
 
+        this.frameworksDiv = doc.createElement('div');
+        this.frameworksTitleTextDiv = doc.createElement('div');
+
+        this.requireFrameworkDiv = doc.createElement('div');
+        this.requireFrameworkTextDiv = doc.createElement('div');
+        this.requireFrameworkSkillRating = new SkillRating({
+            total: 5,
+            fill: 4
+        });
+
+        this.tailwindFrameworkDiv = doc.createElement('div');
+        this.tailwindFrameworkTextDiv = doc.createElement('div');
+        this.tailwindFrameworkSkillRating = new SkillRating({
+            total: 5,
+            fill: 4
+        });
+
+        this.reactFrameworkDiv = doc.createElement('div');
+        this.reactFrameworkTextDiv = doc.createElement('div');
+        this.reactFrameworkSkillRating = new SkillRating({
+            total: 5,
+            fill: 3
+        });
+
+        this.nextJsFrameworkDiv = doc.createElement('div');
+        this.nextJsFrameworkTextDiv = doc.createElement('div');
+        this.nextJsFrameworkSkillRating = new SkillRating({
+            total: 5,
+            fill: 3
+        });
+
+        this.frameworksListDiv = doc.createElement('div');
+
         this.rightDiv = doc.createElement('div');
 
         this.educationDiv = doc.createElement('div');
@@ -420,6 +461,26 @@ export default class ResumePanel extends BasePanel {
 
         this.professionalTextDiv = doc.createElement('div');
 
+        this.professionalExtraDiv = doc.createElement('div');
+        this.professionalImgDiv = doc.createElement('div');
+        this.professionalImg = doc.createElement('img');
+
+        this.professionalButtonsDiv = doc.createElement('div');
+
+        this.appStoreButtonDiv = doc.createElement('div');
+        this.appStoreImgDiv = doc.createElement('div');
+        this.appStoreImg = doc.createElement('img');
+        this.appStoreTextDiv = doc.createElement('div');
+        this.appStoreSubtext = doc.createElement('div');
+        this.appStoreText = doc.createElement('div');
+
+        this.playStoreButtonDiv = doc.createElement('div');
+        this.playStoreImgDiv = doc.createElement('div');
+        this.playStoreImg = doc.createElement('img');
+        this.playStoreTextDiv = doc.createElement('div');
+        this.playStoreSubtext = doc.createElement('div');
+        this.playStoreText = doc.createElement('div');
+
         this.professionalDiv = doc.createElement('div');
         this.professionalTitleDiv = doc.createElement('div');
         this.professionalTitleIcon = new Icon({
@@ -471,6 +532,7 @@ export default class ResumePanel extends BasePanel {
         this.ttbSoftEngUl = doc.createElement('ul');
         this.ttbSoftEngLi1 = doc.createElement('li');
         this.ttbSoftEngLi2 = doc.createElement('li');
+        this.ttbSoftEngLi3 = doc.createElement('li');
 
         this.mqpDiv = doc.createElement('div');
         this.mqpHeaderDiv = doc.createElement('div');
@@ -531,7 +593,7 @@ export default class ResumePanel extends BasePanel {
         });
         utilities.addEventListeners(this.mqpLinkImgDiv, () => {
             window.open(
-                '',
+                'https://digital.wpi.edu/concern/student_works/rf55zb37d?locale=en',
                 '_blank'
             ).focus();
         });
@@ -639,6 +701,28 @@ export default class ResumePanel extends BasePanel {
         this.osDiv.appendChild(this.osListDiv);
 
         //
+        this.requireFrameworkDiv.appendChild(this.requireFrameworkTextDiv);
+        this.requireFrameworkDiv.appendChild(this.requireFrameworkSkillRating.getDiv())
+        
+        this.tailwindFrameworkDiv.appendChild(this.tailwindFrameworkTextDiv);
+        this.tailwindFrameworkDiv.appendChild(this.tailwindFrameworkSkillRating.getDiv());
+
+        this.reactFrameworkDiv.appendChild(this.reactFrameworkTextDiv);
+        this.reactFrameworkDiv.appendChild(this.reactFrameworkSkillRating.getDiv());
+
+        this.nextJsFrameworkDiv.appendChild(this.nextJsFrameworkTextDiv);
+        this.nextJsFrameworkDiv.appendChild(this.nextJsFrameworkSkillRating.getDiv());
+
+        this.frameworksListDiv.appendChild(this.requireFrameworkDiv);
+        this.frameworksListDiv.appendChild(this.tailwindFrameworkDiv);
+        this.frameworksListDiv.appendChild(this.reactFrameworkDiv);
+        this.frameworksListDiv.appendChild(this.nextJsFrameworkDiv);
+
+        //
+        this.frameworksDiv.appendChild(this.frameworksTitleTextDiv);
+        this.frameworksDiv.appendChild(this.frameworksListDiv);
+
+        //
         this.gitToolsDiv.appendChild(this.gitToolsTextDiv);
         this.gitToolsDiv.appendChild(this.gitToolsSkillRating.getDiv());
         this.figmaToolsDiv.appendChild(this.figmaToolsTextDiv);
@@ -664,6 +748,7 @@ export default class ResumePanel extends BasePanel {
         //
         this.skillsDiv.appendChild(this.skillsTextDiv);
         this.skillsDiv.appendChild(this.programmingDiv);
+        this.skillsDiv.appendChild(this.frameworksDiv);
         this.skillsDiv.appendChild(this.osDiv);
         this.skillsDiv.appendChild(this.toolsDiv);
 
@@ -736,9 +821,35 @@ export default class ResumePanel extends BasePanel {
         this.professionalTopDiv.appendChild(this.professionalDateLocationDiv);
         this.professionalTopDiv.appendChild(this.professionalJobDiv);
 
+        this.professionalImgDiv.appendChild(this.professionalImg);
+        
+
+        this.appStoreImgDiv.appendChild(this.appStoreImg);
+        this.appStoreTextDiv.appendChild(this.appStoreSubtext);
+        this.appStoreTextDiv.appendChild(this.appStoreText);
+
+        this.appStoreButtonDiv.appendChild(this.appStoreImgDiv);
+        this.appStoreButtonDiv.appendChild(this.appStoreTextDiv);
+
+        this.playStoreImgDiv.appendChild(this.playStoreImg);
+        this.playStoreTextDiv.appendChild(this.playStoreSubtext);
+        this.playStoreTextDiv.appendChild(this.playStoreText);
+
+        this.playStoreButtonDiv.appendChild(this.playStoreImgDiv);
+        this.playStoreButtonDiv.appendChild(this.playStoreTextDiv);
+
+        this.professionalButtonsDiv.appendChild(this.appStoreButtonDiv);
+        this.professionalButtonsDiv.appendChild(this.playStoreButtonDiv);
+
+        this.professionalExtraDiv.appendChild(this.professionalImgDiv);
+        this.professionalExtraDiv.appendChild(this.professionalButtonsDiv);
+
         this.professionalDiv.appendChild(this.professionalTitleDiv);
         this.professionalDiv.appendChild(this.professionalTopDiv);
         this.professionalDiv.appendChild(this.professionalTextDiv);
+
+        this.professionalDiv.appendChild(this.professionalExtraDiv);
+
 
         this.projectTitleDiv.appendChild(this.projectTitleIcon.getDiv());
         this.projectDiv.appendChild(this.projectTitleDiv);
@@ -774,6 +885,7 @@ export default class ResumePanel extends BasePanel {
         this.ttbSoftEngDiv.appendChild(this.ttbSoftEngTitleTextDiv);
         this.ttbSoftEngUl.appendChild(this.ttbSoftEngLi1);
         this.ttbSoftEngUl.appendChild(this.ttbSoftEngLi2);
+        this.ttbSoftEngUl.appendChild(this.ttbSoftEngLi3);
         this.ttbSoftEngDiv.appendChild(this.ttbSoftEngUl);
 
         this.ttbContentDiv.appendChild(this.ttbTextDiv);
@@ -863,6 +975,7 @@ export default class ResumePanel extends BasePanel {
         this.skillsTextDiv.innerHTML = 'SKILLS';
         this.programmingTitleTextDiv.innerHTML = 'Programming';
         this.osTitleTextDiv.innerHTML = 'Operating Systems';
+        this.frameworksTitleTextDiv.innerHTML = 'Frameworks';
         this.toolsTitleTextDiv.innerHTML = 'Tools';
         this.bachelorsTextDiv.innerHTML = 'Bachelor of Science in Computer Science';
 
@@ -897,8 +1010,8 @@ export default class ResumePanel extends BasePanel {
             'sentiments about safety on campus which were then presented to WPI admins';
         this.contactTitleTextDiv.innerHTML = 'CONTACT';
         this.professionalJobTextDiv.innerHTML = 'TrampleZone LLC.';
-        this.professionalJobTitleTextDiv.innerHTML = 'Software Developer';
-        this.professionalTextDiv.innerHTML = 'Worked closely with the founder of the company in planning and developing a single page application that is available across mobile & desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.';
+        this.professionalJobTitleTextDiv.innerHTML = 'Software Engineer II';
+        this.professionalTextDiv.innerHTML = 'Worked closely with the founder of the company in planning and developing a single page application that is currently available across mobile and desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.';
         this.javascriptSkillTextDiv.innerHTML = 'Javascript';
         this.htmlSkillTextDiv.innerHTML = 'HTML';
         this.cssSkillTextDiv.innerHTML = 'CSS';
@@ -922,24 +1035,30 @@ export default class ResumePanel extends BasePanel {
         this.campusInvolvementHeaderTextDiv.innerHTML =
             'Campus Involvement';
 
+        this.requireFrameworkTextDiv.innerHTML = 'Require.js';
+        this.tailwindFrameworkTextDiv.innerHTML = 'Tailwind';
+        this.reactFrameworkTextDiv.innerHTML = 'React';
+        this.nextJsFrameworkTextDiv.innerHTML = 'Next.js';
+
         this.escapeHeaderTextDiv.innerHTML = 'Escape (Board Game)';
         this.escapeYearTextDiv.innerHTML = '2020';
         this.escapeTextDiv.innerHTML = 'Escape is a family of board games, designed for the term project of  CS4233: Object-Oriented Analysis & Design. The game is initialized using a collection of XML files to control different aspects like board dimension and shape, game pieces, victory conditions, and different battle rules. The course focused on using a TDD approach and evolutionary code design to continually add to and improve the game throughout the 7 weeks of development.';
         this.ttbHeaderTextDiv.innerHTML = 'TTB Application';
         this.ttbYearTextDiv.innerHTML = '2018';
-        this.ttbTextDiv.innerHTML = 'Worked within a team of 8 to develop an application to aid the Alcohol and Tobacco Tax and Trade Bureau (TTB) in the submission and review process of new product applications. The class was an 7 week, intensive simulation of what it was like working in an Agile Software development team. Our team held daily standup meetings to keep an open line of communication and to delegate work. Gave a presentation at the end of the class to a panel of our professor and government officials.';
+        this.ttbTextDiv.innerHTML = 'Worked within a team of 8 to develop an application to aid the Alcohol and Tobacco Tax and Trade Bureau (TTB) in the submission and review process of new product applications. The class was a 7 week, intensive simulation of what it was like working in an Agile Software development team. Our team held daily standup meetings to keep an open line of communication and to delegate work. Gave a presentation at the end of the class to a panel of our professor and government officials.';
         this.ttbSubtitleTextDiv.innerHTML = 'Roles and responsibilities';
         this.ttbDocAnalystTitleTextDiv.innerHTML = 'Documentation Analyst';
         this.ttbDocAnalystLi.innerHTML = 'Created and maintained all technical documentation including UML diagrams, sequence diagrams, training materials, and software code documentation.';
         this.ttbSoftEngTitleTextDiv.innerHTML = 'Software Engineer';
-        this.ttbSoftEngLi1.innerHTML = 'Helped design and implement both the UI for the application using a mockup tool Figma';
-        this.ttbSoftEngLi2.innerHTML = 'Implemented the algorithm that was used to search through a database which contained a collection of alcohols. More specifically, I implemented a fuzzy matching search by learning and adapting a Damerau-Levenshtein approach.';
+        this.ttbSoftEngLi1.innerHTML = 'Helped design the UI for the application using a mockup tool Figma.';
+        this.ttbSoftEngLi2.innerHTML = 'Helped implement the designed UI using JavaFX and FXML (an XML-based markup language for constructing Java object graphs).';
+        this.ttbSoftEngLi3.innerHTML = 'Implemented the algorithm that was used to search through a database seeded with a collection of alcohols. The fuzzy search I implemented adapted the Damerau-Levenshtein approach and ran in O(n*m) time.';
         this.mqpYearTextDiv.innerHTML = '2019-2020';
         this.mqpHeaderTextDiv.innerHTML = 'Active Telepresence Assistance for Supervisory Control: A User Study with a Multi-Camera Tele-Nursing Robot';
-        this.mqpTextDiv.innerHTML = 'Worked within a team of 7 with an advisor to conduct a study which explores autonomous camera control and selection to reduce operator workload and improve task performance by designing a novel method for autonomous camera selection and control. Was involved in creating the software used in the trials, which involved streaming a live feed from a webcam to VR headset, and then reading in data from that VR headset so that a user could control a Tele-Robotic Intelligent Nursing Assistant (TRINA) robot. Also helped in the process of running ~10 participants through the study.';
+        this.mqpTextDiv.innerHTML = 'Worked within a team of 7 with an advisor to conduct a study which explored autonomous camera control and selection on a TRINA robot using a VR headset. Was involved in creating the software used to control the cameras by reading the inertial measurement unit (IMU) data from the VR headset using Unity and GStreamer library. Using C++ and Python scripts to interface with <a className="underline" href="https://wiki.ros.org/ROS/Introduction">ROS</a>, our team was able to control TRINAs arms and main camera using the VR headset and controllers. Also helped in running ~10 participants through the study.';
         this.iqpYearTextDiv.innerHTML = '2018-2019';
         this.iqpHeaderTextDiv.innerHTML = 'Mathematics Tutoring Center at NUST';
-        this.iqpTextDiv.innerHTML = 'Worked within a team of 4 to create an implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to implement these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project came with creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor software called ASSISTments, which I also worked on before the project.';
+        this.iqpTextDiv.innerHTML = 'Worked within a team of 4 to create and implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to test these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project were creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor (ASSISTments), which I also worked with before the project.';
 
         // Assign IDs to DOM elements, if needed
         this.mqpModalContainerDiv.classList.add('mqp-modal');
@@ -947,7 +1066,10 @@ export default class ResumePanel extends BasePanel {
         this.skillsDiv.setAttribute('id', baseId + '-skills-div');
         this.programmingDiv.setAttribute('id', baseId + '-programming-div');
         this.osDiv.setAttribute('id', baseId + '-os-div');
+        this.frameworksDiv.setAttribute('id', baseId + '-tools-div');
         this.toolsDiv.setAttribute('id', baseId + '-tools-div');
+
+        
 
         this.contactDiv.setAttribute('id', baseId + '-contact-div');
         this.educationDiv.setAttribute('id', baseId + '-education-div');

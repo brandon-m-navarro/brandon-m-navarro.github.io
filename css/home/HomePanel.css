@@ -26,7 +26,8 @@
 }
 
 #home-panel-div.dark {
-    background-color: rgba(53, 54, 74, 1);
+    /* background-color: rgba(53, 54, 74, 1); */
+    background-color: #020916;
 }
 
 #home-panel-frame-div {
