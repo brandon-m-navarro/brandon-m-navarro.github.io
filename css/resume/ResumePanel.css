@@ -259,6 +259,13 @@
     border-bottom: solid black 1px;
     margin-bottom: 12px;
 }
+#resume-panel-education-div > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+    display: none;
+}
+#resume-panel-education-div > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
+    margin-left: 0;
+}
+
 #resume-panel-education-div > div:nth-child(2) {
     display: flex;
     align-items: center;
@@ -318,6 +325,12 @@
     border-bottom: solid black 1px;
     margin-bottom: 12px;
 }
+#resume-panel-professional-div > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+    display: none;
+}
+#resume-panel-professional-div > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
+    margin-left: 0;
+}
 #resume-panel-professional-div > div:nth-child(2) {
     display: flex;
     align-items: center;
@@ -359,6 +372,13 @@
     line-height: 32px;
     border-bottom: solid black 1px;
     margin-bottom: 12px;
+}
+
+#resume-panel-project-div > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
+    display: none;
+}
+#resume-panel-project-div > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) {
+    margin-left: 0;
 }
 
 #resume-panel-campus-involvement-div {
