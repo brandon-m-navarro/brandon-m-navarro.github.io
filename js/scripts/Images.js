@@ -2,6 +2,11 @@ export default class Images {
     constructor () {
         // Site image ids and corresponding image files
         this.siteImages = {
+            'apple': {
+                src: '../../img/apple-brands-solid.svg',
+                alt: 'Apple',
+                altSrc: '../../img/apple-brands-solid_w.svg'
+            },
             'calendar': {
                 src: '../../img/calendar-regular.png',
                 alt: 'Calendar',
@@ -45,6 +50,11 @@ export default class Images {
                 src: '../../img/square-github-solid.svg',
                 alt: 'Github',
                 altSrc: '../../img/square-github-brands-solid_w.png'
+            },
+            'google-play': {
+                src: '../../img/google-play-brands-solid.svg',
+                alt: 'Google Play',
+                altSrc: '../../img/google-play-brands-solid_w.svg'
             },
             'hershey': {
                 src: '../../img/hershey.JPG',
@@ -104,12 +114,26 @@ export default class Images {
             },
             'mqp-poster': {
                 src: '../../img/mqp-poster.svg',
-                alt: 'MoMQP Poster'
+                alt: 'MQP Poster'
+            },
+            'my-chapter': {
+                src: '../../img/mychapter.png',
+                alt: 'MyChapter'
             },
             'project': {
                 src: '../../img/brush-solid.png',
                 alt: 'Project',
                 altSrc: '../../img/brush-solid_w.png',
+            },
+            'react': {
+                src: '../../img/react-brands-solid.svg',
+                alt: 'React',
+                altSrc: '../../img/react-brands-solid_w.svg',
+            },
+            'react-b': {
+                src: '../../img/react-brands-solid_b.svg',
+                alt: 'React',
+                altSrc: '../../img/react-brands-solid_b.svg',
             },
             'sigma-pi': {
                 src: '../../img/sigmapi.jpg',

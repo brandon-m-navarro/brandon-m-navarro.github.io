@@ -34,12 +34,6 @@ export class Main {
 
         // Append inline SVGs to appropriate divs
         window.onload = event => {
-            // Get SVGs by ID and append to appropriate div
-            // this.computerSvg = doc.getElementById('computer-svg');
-            // this.computerSvg.style.display = 'block';
-
-            // this.topClientLeftDiv.appendChild(this.computerSvg);
-
             viewManager.getViews()['HomeView'].homePanel.setSvgs();
 
             // Finally, we can hide the splashscreen and show the client
@@ -97,6 +91,8 @@ export class Main {
                 this.sunDiv.classList.add('selected');
                 this.moonDiv.classList.remove('selected');
 
+                this.reactImg.src = images.getImages()['react-b'].altSrc;
+
                 viewManager.getViews()['HomeView'].homePanel.makeDay();
                 viewManager.getViews()['ResumeView'].resumePanel.makeDay();
 
@@ -106,6 +102,8 @@ export class Main {
                 this.clientDiv.classList.add('dark');
                 this.sunDiv.classList.remove('selected');
                 this.moonDiv.classList.add('selected');
+
+                this.reactImg.src = images.getImages()['react-b'].altSrc;
 
                 viewManager.getViews()['HomeView'].homePanel.makeNight();
                 viewManager.getViews()['ResumeView'].resumePanel.makeNight();
@@ -153,6 +151,8 @@ export class Main {
 
         // this.computerSvg = doc.getElementById('computer-svg');
         // this.computerSvg = doc.createElement('img');
+        this.reactImg = doc.createElement('img');
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
 
         this.aboutNavTextDiv = doc.createElement('div');
         this.resumeNavTextDiv = doc.createElement('div');
@@ -178,8 +178,7 @@ export class Main {
         this.sunSvg.src = images.getImages()['sun'].src;
 
         // Assemble
-
-        // this.topClientLeftDiv.appendChild(this.computerSvg);
+        this.topClientLeftDiv.appendChild(this.reactImg);
 
         this.topClientMidDiv.appendChild(this.aboutNavTextDiv);
         this.topClientMidDiv.appendChild(this.resumeNavTextDiv);
@@ -222,6 +221,13 @@ export class Main {
                 action = detail.action;
 
             switch (action) { }
+        });
+
+        utilities.addEventListeners(this.reactImg, () => {
+            window.open(
+                'https://nextjs-site-sand.vercel.app',
+                '_blank'
+            ).focus();
         });
     }
 

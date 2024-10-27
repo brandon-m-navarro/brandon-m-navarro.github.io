@@ -51,6 +51,9 @@ export default class ResumePanel extends BasePanel {
     makeNight () {
         this.div.classList.add('dark');
         this.frameDiv.classList.add('dark');
+        this.professionalDiv.classList.add('dark');
+        this.professionalDiv2.classList.add('dark');
+        this.projectDiv.classList.add('dark');
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].altSrc);
@@ -68,6 +71,12 @@ export default class ResumePanel extends BasePanel {
         this.ttbLinkImg.src = images.getImages()['link'].altSrc;
         this.mqpLinkImg.src = images.getImages()['link'].altSrc;
         this.iqpLinkImg.src = images.getImages()['link'].altSrc;
+        this.appStoreImg.src = images.getImages()['apple'].altSrc;
+        this.playStoreImg.src = images.getImages()['google-play'].altSrc;
+        this.appStoreImg2.src = images.getImages()['apple'].altSrc;
+        this.playStoreImg2.src = images.getImages()['google-play'].altSrc;
+        this.professionalDateIcon2.setImage(images.getImages()['calendar'].altSrc);
+        this.professionalLocationIcon2.setImage(images.getImages()['location-2'].altSrc);
 
         let aTags = Array.from(doc.getElementsByClassName('anchor'));
         aTags.forEach(aTag => {
@@ -102,6 +111,9 @@ export default class ResumePanel extends BasePanel {
     makeDay() {
         this.div.classList.remove('dark');
         this.frameDiv.classList.remove('dark');
+        this.professionalDiv.classList.remove('dark');
+        this.professionalDiv2.classList.remove('dark');
+        this.projectDiv.classList.remove('dark');
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].src);
@@ -119,6 +131,12 @@ export default class ResumePanel extends BasePanel {
         this.ttbLinkImg.src = images.getImages()['link'].src;
         this.mqpLinkImg.src = images.getImages()['link'].src;
         this.iqpLinkImg.src = images.getImages()['link'].src;
+        this.appStoreImg.src = images.getImages()['apple'].src;
+        this.playStoreImg.src = images.getImages()['google-play'].src;
+        this.appStoreImg2.src = images.getImages()['apple'].src;
+        this.playStoreImg2.src = images.getImages()['google-play'].src;
+        this.professionalDateIcon2.setImage(images.getImages()['calendar'].src);
+        this.professionalLocationIcon2.setImage(images.getImages()['location-2'].src);
 
         let aTags = Array.from(doc.getElementsByClassName('anchor'));
         aTags.forEach(aTag => {
@@ -491,6 +509,56 @@ export default class ResumePanel extends BasePanel {
             fontWeight: '600'
         });
 
+        this.professionalTopDiv2 = doc.createElement('div');
+        this.professionalDateLocationDiv2 = doc.createElement('div');
+        this.professionalDateIcon2 = new Icon({
+            img: images.getImages()['calendar'].src,
+            text: '2018 - 2024',
+            imgSize: '18px',
+            fontSize: '12px'
+        });
+        this.professionalLocationIcon2 = new Icon({
+            img: images.getImages()['location-2'].src,
+            text: 'Remote',
+            imgSize: '18px',
+            fontSize: '12px'
+        });
+        this.professionalJobDiv2 = doc.createElement('div');
+        this.professionalJobTextDiv2 = doc.createElement('div');
+        this.professionalJobTitleTextDiv2 = doc.createElement('div');
+
+        this.professionalTextDiv2 = doc.createElement('div');
+
+        this.professionalExtraDiv2 = doc.createElement('div');
+        this.professionalImgDiv2 = doc.createElement('div');
+        this.professionalImg2 = doc.createElement('img');
+
+        this.professionalButtonsDiv2 = doc.createElement('div');
+
+        this.appStoreButtonDiv2 = doc.createElement('div');
+        this.appStoreImgDiv2 = doc.createElement('div');
+        this.appStoreImg2 = doc.createElement('img');
+        this.appStoreTextDiv2 = doc.createElement('div');
+        this.appStoreSubtext2 = doc.createElement('div');
+        this.appStoreText2 = doc.createElement('div');
+
+        this.playStoreButtonDiv2 = doc.createElement('div');
+        this.playStoreImgDiv2 = doc.createElement('div');
+        this.playStoreImg2 = doc.createElement('img');
+        this.playStoreTextDiv2 = doc.createElement('div');
+        this.playStoreSubtext2 = doc.createElement('div');
+        this.playStoreText2 = doc.createElement('div');
+
+        this.professionalDiv2 = doc.createElement('div');
+        this.professionalTitleDiv2 = doc.createElement('div');
+        this.professionalTitleIcon2 = new Icon({
+            img: images.getImages()['work'].src,
+            text: 'Professional Experience',
+            imgSize: '18px',
+            fontSize: '14px',
+            fontWeight: '600'
+        });
+
         this.projectDiv = doc.createElement('div');
         this.projectTitleDiv = doc.createElement('div');
         this.projectTitleIcon = new Icon({
@@ -600,6 +668,33 @@ export default class ResumePanel extends BasePanel {
         utilities.addEventListeners(this.iqpLinkImgDiv, () => {
             window.open(
                 'https://digital.wpi.edu/concern/student_works/x633f145v?locale=en',
+                '_blank'
+            ).focus();
+        });
+
+        // MyChapter buttons
+        utilities.addEventListeners(this.appStoreButtonDiv, () => {
+            window.open(
+                'https://apps.apple.com/us/app/mychapter-app-for-my-chapter/id6444417593',
+                '_blank'
+            ).focus();
+        });
+        utilities.addEventListeners(this.playStoreButtonDiv, () => {
+            window.open(
+                'https://play.google.com/store/apps/details?id=com.tramplezone.mychapter&hl=en_US&pli=1',
+                '_blank'
+            ).focus();
+        });
+
+        utilities.addEventListeners(this.appStoreButtonDiv2, () => {
+            window.open(
+                'https://apps.apple.com/us/app/mychapter-app-for-my-chapter/id6444417593',
+                '_blank'
+            ).focus();
+        });
+        utilities.addEventListeners(this.playStoreButtonDiv2, () => {
+            window.open(
+                'https://play.google.com/store/apps/details?id=com.tramplezone.mychapter&hl=en_US&pli=1',
                 '_blank'
             ).focus();
         });
@@ -851,13 +946,54 @@ export default class ResumePanel extends BasePanel {
         this.professionalDiv.appendChild(this.professionalExtraDiv);
 
 
+        this.professionalTitleDiv2.appendChild(this.professionalTitleIcon2.getDiv());
+        this.professionalDiv2.appendChild(this.professionalTitleDiv2);
+
+        this.professionalDateLocationDiv2.appendChild(this.professionalDateIcon2.getDiv());
+        this.professionalDateLocationDiv2.appendChild(this.professionalLocationIcon2.getDiv());
+
+        this.professionalJobDiv2.appendChild(this.professionalJobTitleTextDiv2);
+        this.professionalJobDiv2.appendChild(this.professionalJobTextDiv2);
+
+        this.professionalTopDiv2.appendChild(this.professionalDateLocationDiv2);
+        this.professionalTopDiv2.appendChild(this.professionalJobDiv2);
+
+        this.professionalImgDiv2.appendChild(this.professionalImg2);
+        
+
+        this.appStoreImgDiv2.appendChild(this.appStoreImg2);
+        this.appStoreTextDiv2.appendChild(this.appStoreSubtext2);
+        this.appStoreTextDiv2.appendChild(this.appStoreText2);
+
+        this.appStoreButtonDiv2.appendChild(this.appStoreImgDiv2);
+        this.appStoreButtonDiv2.appendChild(this.appStoreTextDiv2);
+
+        this.playStoreImgDiv2.appendChild(this.playStoreImg2);
+        this.playStoreTextDiv2.appendChild(this.playStoreSubtext2);
+        this.playStoreTextDiv2.appendChild(this.playStoreText2);
+
+        this.playStoreButtonDiv2.appendChild(this.playStoreImgDiv2);
+        this.playStoreButtonDiv2.appendChild(this.playStoreTextDiv2);
+
+        this.professionalButtonsDiv2.appendChild(this.appStoreButtonDiv2);
+        this.professionalButtonsDiv2.appendChild(this.playStoreButtonDiv2);
+
+        this.professionalExtraDiv2.appendChild(this.professionalImgDiv2);
+        this.professionalExtraDiv2.appendChild(this.professionalButtonsDiv2);
+
+        this.professionalDiv2.appendChild(this.professionalTitleDiv2);
+        this.professionalDiv2.appendChild(this.professionalTopDiv2);
+        this.professionalDiv2.appendChild(this.professionalTextDiv2);
+
+        this.professionalDiv2.appendChild(this.professionalExtraDiv2);
+
+
         this.projectTitleDiv.appendChild(this.projectTitleIcon.getDiv());
         this.projectDiv.appendChild(this.projectTitleDiv);
 
 
         this.rightDiv.appendChild(this.educationDiv);
         this.rightDiv.appendChild(this.professionalDiv);
-        // this.rightDiv.appendChild(this.projectDiv);
 
         //
         this.escapeHeaderDiv.appendChild(this.escapeHeaderTextDiv);
@@ -941,6 +1077,7 @@ export default class ResumePanel extends BasePanel {
         this.frameDiv.appendChild(this.topDiv);
         this.frameDiv.appendChild(this.leftDiv);
         this.frameDiv.appendChild(this.rightDiv);
+        this.frameDiv.appendChild(this.professionalDiv2);
         this.frameDiv.appendChild(this.projectDiv);
         this.div.appendChild(this.frameDiv);
     };
@@ -967,6 +1104,14 @@ export default class ResumePanel extends BasePanel {
         this.meImg.src = images.getImages()['me_hd'].src;
         // this.iqpGroupImg
         this.mqpModalImg.src = images.getImages()['mqp-poster'].src;
+
+        this.professionalImg.src = images.getImages()['my-chapter'].src;
+        this.appStoreImg.src = images.getImages()['apple'].src;
+        this.playStoreImg.src = images.getImages()['google-play'].src;
+
+        this.professionalImg2.src = images.getImages()['my-chapter'].src;
+        this.appStoreImg2.src = images.getImages()['apple'].src;
+        this.playStoreImg2.src = images.getImages()['google-play'].src;
 
         // innerHTMLs
         this.nameTextDiv.innerHTML = 'Brandon Manuel Navarro';
@@ -1010,8 +1155,11 @@ export default class ResumePanel extends BasePanel {
             'sentiments about safety on campus which were then presented to WPI admins';
         this.contactTitleTextDiv.innerHTML = 'CONTACT';
         this.professionalJobTextDiv.innerHTML = 'TrampleZone LLC.';
+        this.professionalJobTextDiv2.innerHTML = 'TrampleZone LLC.';
         this.professionalJobTitleTextDiv.innerHTML = 'Software Engineer II';
+        this.professionalJobTitleTextDiv2.innerHTML = 'Software Engineer II';
         this.professionalTextDiv.innerHTML = 'Worked closely with the founder of the company in planning and developing a single page application that is currently available across mobile and desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.';
+        this.professionalTextDiv2.innerHTML = 'Worked closely with the founder of the company in planning and developing a single page application that is currently available across mobile and desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.';
         this.javascriptSkillTextDiv.innerHTML = 'Javascript';
         this.htmlSkillTextDiv.innerHTML = 'HTML';
         this.cssSkillTextDiv.innerHTML = 'CSS';
@@ -1060,6 +1208,18 @@ export default class ResumePanel extends BasePanel {
         this.iqpHeaderTextDiv.innerHTML = 'Mathematics Tutoring Center at NUST';
         this.iqpTextDiv.innerHTML = 'Worked within a team of 4 to create and implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to test these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project were creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor (ASSISTments), which I also worked with before the project.';
 
+        this.playStoreSubtext.innerHTML = 'View in the';
+        this.playStoreText.innerHTML = 'Google Play Store';
+
+        this.appStoreSubtext.innerHTML = 'View in the';
+        this.appStoreText.innerHTML = 'App Store';
+
+        this.playStoreSubtext2.innerHTML = 'View in the';
+        this.playStoreText2.innerHTML = 'Google Play Store';
+
+        this.appStoreSubtext2.innerHTML = 'View in the';
+        this.appStoreText2.innerHTML = 'App Store';
+
         // Assign IDs to DOM elements, if needed
         this.mqpModalContainerDiv.classList.add('mqp-modal');
 
@@ -1074,6 +1234,7 @@ export default class ResumePanel extends BasePanel {
         this.contactDiv.setAttribute('id', baseId + '-contact-div');
         this.educationDiv.setAttribute('id', baseId + '-education-div');
         this.professionalDiv.setAttribute('id', baseId + '-professional-div');
+        this.professionalDiv2.setAttribute('id', baseId + '-professional-div');
         this.projectDiv.setAttribute('id', baseId + '-project-div');
         this.campusInvolvementDiv.setAttribute('id', baseId + '-campus-involvement-div');
 
