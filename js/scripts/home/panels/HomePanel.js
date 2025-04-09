@@ -10,7 +10,9 @@ import BasePanel from '../../BasePanel.js';
 import Picture from '../../components/Picture.js';
 
 import Images from '../../Images.js';
+import Utilities from '../../utils/Utilities.js';
 const images = new Images();
+const utilities = new Utilities();
 
 let
     // DOM elements
@@ -56,6 +58,17 @@ export default class HomePanel extends BasePanel {
 
         //     //
         // }
+    }
+
+    // Create handler for resizing Mountain svg for window resizes 
+    handleResize () {
+
+        const pathGroup = window.document.getElementById('paths');
+        // console.log(pathGroup)
+        console.log(window.innerWidth / 9)
+        if (typeof pathGroup !== 'undefined' && pathGroup !== null) {
+            pathGroup.style.transform = 'scaleX(' + window.innerWidth / 9 + '%)';
+        }
     }
 
     // Set all SVGs
@@ -249,6 +262,15 @@ export default class HomePanel extends BasePanel {
 
         // Assemble elements
         this.assembleElements();
+
+        // Handle sizing Mountains svg to window size
+
+        // Put handleResize call into a variable so we can later remove the event listener
+        const eventHandler = utilities.debounce(this.handleResize);
+        window.addEventListener('resize', eventHandler);
+
+        // Ensure SVG is appropriatly sized on initial load
+        this.handleResize();
 
         // innerHTMLs
         this.quoteTextDiv.innerHTML = 'Please, I need a job!!!';

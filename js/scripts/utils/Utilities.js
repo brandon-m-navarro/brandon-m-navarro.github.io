@@ -152,6 +152,16 @@ export default class Utilities {
         return supportedEventTypes;
     };
 
+    // Ensure the specified function is only ran every 'ms' milliseconds
+    // (default is 150ms if not specified)
+    debounce = (fn, ms = 150) => {
+        let timeoutId;
+        return function () {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => fn.apply(this), ms);
+        };
+    };
+
     // Add click or touch listeners based on device
     addEventListeners (element, callback) {
         // Callback handling

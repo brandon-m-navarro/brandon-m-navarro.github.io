@@ -199,16 +199,22 @@
     border-radius: 5%;
 
     text-align: center;
-    background-color: rgb(255, 255, 255, 0);
+    background-color: rgb(53, 54, 74, .075);
     cursor: pointer;
     transition: background-color ease 250ms;
 }
-#top-client-div.dark > div:nth-child(2) > div:hover {
-    background-color: rgb(var(--background-color1-rgb), 0.50);
+#top-client-div > div:nth-child(2) > div.selected {
+    background-color: var(--background-color1);
+    color: #FFFFFF;
+    pointer-events: none;
 }
+#top-client-div > div:nth-child(2) > div:hover {
+    background-color: rgb(53, 54, 74, .20);
+}
+
 #top-client-div.dark > div:nth-child(2) > div {
     color: #FFFFFF;
-    background-color: rgb(255, 255, 255, 0);
+    background-color: rgb(255, 255, 255, 0.20);
     cursor: pointer;
 
     height: 42px;
@@ -216,26 +222,15 @@
     width: 100px;
     border-radius: 5%;
 
-    transition: background-color, color 250ms ease;
+    transition: background-color, opacity, color 250ms ease;
 }
 #top-client-div.dark > div:nth-child(2) > div:hover {
-    background-color: rgb(var(--background-color1-rgb), 0.50);
-}
-#top-client-div > div:nth-child(2) > div.selected {
-    background-color: var(--background-color1);
-    color: #FFFFFF;
+    /* background-color: rgb(var(--background-color2-rgb), 0.70); */
+    opacity: 0.75;
 }
 #top-client-div.dark > div:nth-child(2) > div.selected {
     background-color: var(--background-color2);
-}
-
-#top-client-div > div:nth-child(2) > div:not(.selected):hover {
-    background-color: rgb(var(--background-color1-rgb), 0.5);
-    color: rgb(0, 0, 0, 0.85);
-}
-#top-client-div.dark > div:nth-child(2) > div:not(.selected):hover {
-    background-color: rgb(var(--background-color2-rgb), 0.5);
-    color: rgb(0, 0, 0, 0.5);
+    pointer-events: none;
 }
 
 
