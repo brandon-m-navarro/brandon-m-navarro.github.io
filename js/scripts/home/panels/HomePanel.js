@@ -47,17 +47,51 @@ export default class HomePanel extends BasePanel {
         // Create and append elements
         this.initialize();
 
-        // Append inline SVGs to appropriate divs
-        // window.onload = event => {
-        //     // Get SVGs by ID and append to appropriate div
-        //     this.sunMtnSvg = doc.getElementById('sun-mtn');
-        //     this.sunMtnSvg.style.display = 'block';
-            
-        //     //
-        //     this.mtnSunSvgDiv.appendChild(this.sunMtnSvg);
+        // Set up listeners for Moon/Night button
+        utilities.addEventListeners(this.moonDiv, () => {
+            this.sunDiv.classList.remove('selected');
+            this.moonDiv.classList.add('selected');
 
-        //     //
-        // }
+            this.div.dispatchEvent(new CustomEvent('dark', {
+                detail: {},
+                bubbles: true,
+                cancelable: false
+            }));
+        });
+        utilities.addEventListeners(this.sunDiv, () => {
+            this.sunDiv.classList.add('selected');
+            this.moonDiv.classList.remove('selected');
+
+            this.div.dispatchEvent(new CustomEvent('light', {
+                detail: {},
+                bubbles: true,
+                cancelable: false
+            }));
+        });
+
+        // React Button
+        utilities.addEventListeners(this.midGithubIcon, () => {
+            window.open(
+                'https://github.com/brandon-m-navarro',
+                '_blank'
+            ).focus();
+        });
+
+        // LinkedIn Button
+        utilities.addEventListeners(this.midLinkedInIcon, () => {
+            window.open(
+                'https://www.linkedin.com/in/brandon-navarro-b36b97149/',
+                '_blank'
+            ).focus();
+        });
+
+        // Github Button
+        utilities.addEventListeners(this.footerLeftDiv, () => {
+            window.open(
+                'https://nextjs-site-sand.vercel.app',
+                '_blank'
+            ).focus();
+        });
     }
 
     // Create handler for resizing Mountain svg for window resizes 
@@ -104,6 +138,14 @@ export default class HomePanel extends BasePanel {
 
         this.quoteTextDiv.classList.remove('dark');
 
+        this.sunDiv.classList.add('selected');
+        this.moonDiv.classList.remove('selected');
+
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
+        this.midGithubIcon.src = images.getImages()['github'].src;
+
         this.frameDiv.classList.remove('dark');
         this.div.classList.remove('dark');
     };
@@ -130,6 +172,14 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer7.setAttribute('fill', '#25293C');
 
         this.quoteTextDiv.classList.add('dark');
+
+        this.sunDiv.classList.remove('selected');
+        this.moonDiv.classList.add('selected');
+
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].altSrc;
+        this.midGithubIcon.src = images.getImages()['github'].altSrc;
 
         this.frameDiv.classList.add('dark');
         this.div.classList.add('dark');
@@ -198,6 +248,48 @@ export default class HomePanel extends BasePanel {
             img: images.getImages()['hout_bay'].src,
             text: 'The Hout Bay in Cape Town'
         });
+
+        this.footerDiv = doc.createElement('div');
+        this.footerLeftDiv = doc.createElement('div');
+        this.footerMidDiv = doc.createElement('div');
+        this.footerRightDiv = doc.createElement('div');
+
+        this.moonDiv = doc.createElement('div');
+        this.moonSvg = doc.createElement('img');
+        this.sunDiv = doc.createElement('div');
+        this.sunSvg = doc.createElement('img');
+
+        this.reactTextDiv = doc.createElement('div');
+
+        this.midLinkedInIcon = doc.createElement('img');
+        this.midEmailTextDiv = doc.createElement('div');
+        this.midGithubIcon = doc.createElement('img');
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
+        this.midGithubIcon.src = images.getImages()['github'].src;
+
+        this.moonSvg.src = images.getImages()['moon'].src;
+        this.sunSvg.src = images.getImages()['sun'].src;
+
+        this.moonDiv.appendChild(this.moonSvg);
+        this.sunDiv.appendChild(this.sunSvg);
+
+        this.reactImg = doc.createElement('img');
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.reactTextDiv.innerHTML =
+            'View site built using React & Typescript';
+        this.midEmailTextDiv.innerHTML = 'brandon.m.navarro@gmail.com';
+
+        this.footerLeftDiv.appendChild(this.reactImg);
+        this.footerLeftDiv.appendChild(this.reactTextDiv);
+
+        this.footerMidDiv.appendChild(this.midLinkedInIcon);
+        this.footerMidDiv.appendChild(this.midEmailTextDiv);
+        this.footerMidDiv.appendChild(this.midGithubIcon);
+
+        this.footerRightDiv.appendChild(this.moonDiv);
+        this.footerRightDiv.appendChild(this.sunDiv);
     };
 
     // Append elements to the DOM
@@ -244,11 +336,16 @@ export default class HomePanel extends BasePanel {
         this.bottomDiv.appendChild(this.bottomLeftDiv);
         this.bottomDiv.appendChild(this.bottomRightDiv);
 
+        this.footerDiv.appendChild(this.footerLeftDiv);
+        this.footerDiv.appendChild(this.footerMidDiv);
+        this.footerDiv.appendChild(this.footerRightDiv);
+
         // Add elements to container
         this.frameDiv.appendChild(this.topDiv);
         this.frameDiv.appendChild(this.middleDiv);
         this.frameDiv.appendChild(this.moreAboutDiv);
         this.frameDiv.appendChild(this.bottomDiv);
+        this.frameDiv.appendChild(this.footerDiv);
 
         // Assemble
         this.div.appendChild(this.frameDiv);

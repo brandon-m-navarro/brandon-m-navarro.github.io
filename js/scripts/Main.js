@@ -25,12 +25,6 @@ export class Main {
         utilities.addEventListeners(this.resumeNavTextDiv, () => {
             this.showResume();
         });
-        utilities.addEventListeners(this.sunDiv, () => {
-            this.setTheme(Main.getThemes().LIGHT);
-        });
-        utilities.addEventListeners(this.moonDiv, () => {
-            this.setTheme(Main.getThemes().DARK);
-        });
 
         // Append inline SVGs to appropriate divs
         window.onload = event => {
@@ -41,6 +35,20 @@ export class Main {
                 this.hideSplash();
             }, 500);
         }
+
+        // Listen for light/dark event from either panel (since i couldnt et footer positioned corectly in Main.js)
+        viewManager.getViews()['HomeView'].homePanel.getDiv().addEventListener('dark', () => {
+            this.setTheme(Main.getThemes().DARK)
+        });
+        viewManager.getViews()['HomeView'].homePanel.getDiv().addEventListener('light', () => {
+            this.setTheme(Main.getThemes().LIGHT)
+        });
+        viewManager.getViews()['ResumeView'].resumePanel.getDiv().addEventListener('dark', () => {
+            this.setTheme(Main.getThemes().DARK)
+        });
+        viewManager.getViews()['ResumeView'].resumePanel.getDiv().addEventListener('light', () => {
+            this.setTheme(Main.getThemes().LIGHT)
+        });
 
         this.start(debug);
     }
@@ -88,10 +96,7 @@ export class Main {
             case Main.getThemes().LIGHT:
                 this.topClientDiv.classList.remove('dark');
                 this.clientDiv.classList.remove('dark');
-                this.sunDiv.classList.add('selected');
-                this.moonDiv.classList.remove('selected');
-
-                this.reactImg.src = images.getImages()['react-b'].altSrc;
+                this.footer.classList.remove('dark');
 
                 viewManager.getViews()['HomeView'].homePanel.makeDay();
                 viewManager.getViews()['ResumeView'].resumePanel.makeDay();
@@ -100,10 +105,7 @@ export class Main {
             case Main.getThemes().DARK:
                 this.topClientDiv.classList.add('dark');
                 this.clientDiv.classList.add('dark');
-                this.sunDiv.classList.remove('selected');
-                this.moonDiv.classList.add('selected');
-
-                this.reactImg.src = images.getImages()['react-b'].altSrc;
+                this.footer.classList.add('dark');
 
                 viewManager.getViews()['HomeView'].homePanel.makeNight();
                 viewManager.getViews()['ResumeView'].resumePanel.makeNight();
@@ -144,18 +146,11 @@ export class Main {
         this.topClientMidDiv = doc.createElement('div');
         this.topClientRightDiv = doc.createElement('div');
 
-        this.moonDiv = doc.createElement('div');
-        this.moonSvg = doc.createElement('img');
-        this.sunDiv = doc.createElement('div');
-        this.sunSvg = doc.createElement('img');
-
-        // this.computerSvg = doc.getElementById('computer-svg');
-        // this.computerSvg = doc.createElement('img');
-        this.reactImg = doc.createElement('img');
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
-
         this.aboutNavTextDiv = doc.createElement('div');
         this.resumeNavTextDiv = doc.createElement('div');
+
+        this.footer = doc.createElement('footer');
+        this.footerMidDiv = doc.createElement('div');
     }
 
     // Load the website
@@ -170,28 +165,11 @@ export class Main {
         let isMobile = utilities.isMobile();
         console.info('Are we running on mobile? - ' + isMobile);
 
-        // this.computerSvg.setAttribute('data', images.getImages()['computer-svg'].src);
-        // this.computerSvg.setAttribute('type', 'image/svg+xml');
-
-        // this.computerSvg.src = images.getImages()['computer-svg'].src;
-        this.moonSvg.src = images.getImages()['moon'].src;
-        this.sunSvg.src = images.getImages()['sun'].src;
-
         // Assemble
-        this.topClientLeftDiv.appendChild(this.reactImg);
+        this.topClientDiv.appendChild(this.resumeNavTextDiv);
+        this.topClientDiv.appendChild(this.aboutNavTextDiv);
 
-        this.topClientMidDiv.appendChild(this.aboutNavTextDiv);
-        this.topClientMidDiv.appendChild(this.resumeNavTextDiv);
-
-        this.moonDiv.appendChild(this.moonSvg);
-        this.sunDiv.appendChild(this.sunSvg);
-
-        this.topClientRightDiv.appendChild(this.moonDiv);
-        this.topClientRightDiv.appendChild(this.sunDiv);
-
-        this.topClientDiv.appendChild(this.topClientLeftDiv);
-        this.topClientDiv.appendChild(this.topClientMidDiv);
-        this.topClientDiv.appendChild(this.topClientRightDiv);
+        this.footer.appendChild(this.footerMidDiv);
 
         this.div.appendChild(this.topClientDiv);
         this.div.appendChild(this.clientDiv);
@@ -201,6 +179,7 @@ export class Main {
         this.div.setAttribute('id', 'top-div');
         this.topClientDiv.setAttribute('id', 'top-client-div');
         this.clientDiv.setAttribute('id', 'client-div');
+        this.footer.setAttribute('id', 'footer-div');
 
         // Initialize ViewManager
         viewManager.initialize({
@@ -221,13 +200,6 @@ export class Main {
                 action = detail.action;
 
             switch (action) { }
-        });
-
-        utilities.addEventListeners(this.reactImg, () => {
-            window.open(
-                'https://nextjs-site-sand.vercel.app',
-                '_blank'
-            ).focus();
         });
     }
 
