@@ -69,7 +69,7 @@ export default class HomePanel extends BasePanel {
             }));
         });
 
-        // React Button
+        // Github Button
         utilities.addEventListeners(this.midGithubIcon, () => {
             window.open(
                 'https://github.com/brandon-m-navarro',
@@ -85,7 +85,7 @@ export default class HomePanel extends BasePanel {
             ).focus();
         });
 
-        // Github Button
+        // React Button
         utilities.addEventListeners(this.footerLeftDiv, () => {
             window.open(
                 'https://nextjs-site-sand.vercel.app',
@@ -408,11 +408,13 @@ export default class HomePanel extends BasePanel {
         this.stepFourSubTextDiv.innerHTML =
             'Not everything will work, but it\'s worth trying if it means ' +
             'learning and gaining insights from what doesn\'t.';
-        this.moreAboutHeaderTextDiv.innerHTML = 'About';
+        this.moreAboutHeaderTextDiv.innerHTML = 'About Me';
         this.moreAboutTextDiv1.innerHTML =
             'Around the end of my Sophomore year in college, I began working at a small startup called TrampleZone. I was mainly working alongside other college kids helping improve the company\'s existing application HotSpots, a desktop & mobile app that leveraged OpenStreetMaps to let users rate local venues.';
-        this.moreAboutTextDiv2.innerHTML = 'A couple of months into my time there, we began developing a new app with a focus on greek life organizations called MyChapter. With the guidance of the company\'s founder Jim, I helped map out the expected class structure using UML diagrams and began designing and implementing the frontend. After graduating in the year of COVID, I was fortunate to get a software engineering role at TrampleZone, where I got to continue my work on MyChapter and even began testing out the service with multiple fraternities at my alma mater.';
-        this.moreAboutTextDiv3.innerHTML = 'Outside of work, I like to go out on walks and runs around Somerville, play in local basketball rec leagues, and go out for backpacking hikes when I\'m visiting family in New Hampshire. ';
+        this.moreAboutTextDiv2.innerHTML =
+            'A couple of months into my time there, we began developing a new app with a focus on greek life organizations called MyChapter. With the guidance of the company\'s founder Jim, I helped map out the expected class structure using UML diagrams and began designing and implementing the frontend. After graduating in the year of COVID, I was fortunate to get a software engineering role at TrampleZone, where I got to continue my work on MyChapter and even began testing out the service with multiple fraternities at my alma mater.';
+        this.moreAboutTextDiv3.innerHTML =
+            'Outside of work, I like to go out on walks and runs around Somerville, play in local basketball rec leagues, and go out for backpacking hikes when I\'m visiting family in New Hampshire. ';
 
 
         // imgs

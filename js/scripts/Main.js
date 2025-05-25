@@ -158,7 +158,7 @@ export class Main {
         this.createElements();
 
         // Set innerHTML
-        this.aboutNavTextDiv.innerHTML = 'About';
+        this.aboutNavTextDiv.innerHTML = 'Me';
         this.resumeNavTextDiv.innerHTML = 'Resume';
 
         // Determine mobile/desktop

@@ -54,6 +54,7 @@ export default class ResumePanel extends BasePanel {
         this.professionalDiv.classList.add('dark');
         this.professionalDiv2.classList.add('dark');
         this.projectDiv.classList.add('dark');
+        this.footerDiv.classList.add('dark');
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].altSrc);
@@ -82,6 +83,15 @@ export default class ResumePanel extends BasePanel {
         aTags.forEach(aTag => {
             aTag.classList.add('dark');
         });
+
+        // Footer
+        this.sunDiv.classList.remove('selected');
+        this.moonDiv.classList.add('selected');
+
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].altSrc;
+        this.midGithubIcon.src = images.getImages()['github'].altSrc;
 
         this.cSkillRating.setFillColor('#86467C');
         this.cssSkillRating.setFillColor('#86467C');
@@ -114,6 +124,7 @@ export default class ResumePanel extends BasePanel {
         this.professionalDiv.classList.remove('dark');
         this.professionalDiv2.classList.remove('dark');
         this.projectDiv.classList.remove('dark');
+        this.footerDiv.classList.remove('dark');
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].src);
@@ -142,6 +153,15 @@ export default class ResumePanel extends BasePanel {
         aTags.forEach(aTag => {
             aTag.classList.remove('dark');
         });
+
+        // Footer
+        this.sunDiv.classList.add('selected');
+        this.moonDiv.classList.remove('selected');
+
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
+        this.midGithubIcon.src = images.getImages()['github'].src;
 
         this.cSkillRating.setFillColor('#0b3948');
         this.cssSkillRating.setFillColor('#0b3948');
@@ -632,6 +652,23 @@ export default class ResumePanel extends BasePanel {
         this.mqpModalImg = doc.createElement('img');
         this.mqpModal; // Delay initialization until assembly
 
+        this.footerDivWrapper = doc.createElement('div');
+        this.footerDiv = doc.createElement('div');
+        this.footerLeftDiv = doc.createElement('div');
+        this.footerMidDiv = doc.createElement('div');
+        this.footerRightDiv = doc.createElement('div');
+
+        this.moonDiv = doc.createElement('div');
+        this.moonSvg = doc.createElement('img');
+        this.sunDiv = doc.createElement('div');
+        this.sunSvg = doc.createElement('img');
+
+        this.reactTextDiv = doc.createElement('div');
+
+        this.midLinkedInIcon = doc.createElement('img');
+        this.midEmailTextDiv = doc.createElement('div');
+        this.midGithubIcon = doc.createElement('img');
+
         // Listeners
 
         // Open a new tab when user selects project links or contact infos
@@ -702,6 +739,54 @@ export default class ResumePanel extends BasePanel {
         // Expand modal when user selects images
         utilities.addEventListeners(this.mqpPosterImgDiv, () => {
             this.mqpModal.open();
+        });
+
+        // Footer listeners
+
+        // Set up listeners for Moon/Night button
+        utilities.addEventListeners(this.moonDiv, () => {
+            this.sunDiv.classList.remove('selected');
+            this.moonDiv.classList.add('selected');
+
+            this.div.dispatchEvent(new CustomEvent('dark', {
+                detail: {},
+                bubbles: true,
+                cancelable: false
+            }));
+        });
+        utilities.addEventListeners(this.sunDiv, () => {
+            this.sunDiv.classList.add('selected');
+            this.moonDiv.classList.remove('selected');
+
+            this.div.dispatchEvent(new CustomEvent('light', {
+                detail: {},
+                bubbles: true,
+                cancelable: false
+            }));
+        });
+
+        // Github Button
+        utilities.addEventListeners(this.midGithubIcon, () => {
+            window.open(
+                'https://github.com/brandon-m-navarro',
+                '_blank'
+            ).focus();
+        });
+
+        // LinkedIn Button
+        utilities.addEventListeners(this.midLinkedInIcon, () => {
+            window.open(
+                'https://www.linkedin.com/in/brandon-navarro-b36b97149/',
+                '_blank'
+            ).focus();
+        });
+
+        // React Button
+        utilities.addEventListeners(this.footerLeftDiv, () => {
+            window.open(
+                'https://nextjs-site-sand.vercel.app',
+                '_blank'
+            ).focus();
         });
 
     };
@@ -1079,7 +1164,10 @@ export default class ResumePanel extends BasePanel {
         this.frameDiv.appendChild(this.rightDiv);
         this.frameDiv.appendChild(this.professionalDiv2);
         this.frameDiv.appendChild(this.projectDiv);
+        // this.frameDiv.appendChild(this.footerDiv);
         this.div.appendChild(this.frameDiv);
+        this.div.appendChild(this.footerDivWrapper);
+
     };
 
     // Create and assemble panel elements
@@ -1220,6 +1308,42 @@ export default class ResumePanel extends BasePanel {
         this.appStoreSubtext2.innerHTML = 'View in the';
         this.appStoreText2.innerHTML = 'App Store';
 
+        // ----------------------------------------
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
+        this.midGithubIcon.src = images.getImages()['github'].src;
+
+        this.moonSvg.src = images.getImages()['moon'].src;
+        this.sunSvg.src = images.getImages()['sun'].src;
+
+        this.moonDiv.appendChild(this.moonSvg);
+        this.sunDiv.appendChild(this.sunSvg);
+
+        this.reactImg = doc.createElement('img');
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.reactTextDiv.innerHTML =
+            'View site built using React & Typescript';
+        this.midEmailTextDiv.innerHTML = 'brandon.m.navarro@gmail.com';
+
+        this.footerLeftDiv.appendChild(this.reactImg);
+        this.footerLeftDiv.appendChild(this.reactTextDiv);
+
+        this.footerMidDiv.appendChild(this.midLinkedInIcon);
+        this.footerMidDiv.appendChild(this.midEmailTextDiv);
+        this.footerMidDiv.appendChild(this.midGithubIcon);
+
+        this.footerRightDiv.appendChild(this.moonDiv);
+        this.footerRightDiv.appendChild(this.sunDiv);
+
+        this.footerDiv.appendChild(this.footerLeftDiv);
+        this.footerDiv.appendChild(this.footerMidDiv);
+        this.footerDiv.appendChild(this.footerRightDiv);
+
+        this.footerDivWrapper.appendChild(this.footerDiv);
+
+        // -----------------
+
         // Assign IDs to DOM elements, if needed
         this.mqpModalContainerDiv.classList.add('mqp-modal');
 
@@ -1228,8 +1352,7 @@ export default class ResumePanel extends BasePanel {
         this.osDiv.setAttribute('id', baseId + '-os-div');
         this.frameworksDiv.setAttribute('id', baseId + '-tools-div');
         this.toolsDiv.setAttribute('id', baseId + '-tools-div');
-
-        
+        this.footerDiv.setAttribute('id', baseId + '-footer-div');
 
         this.contactDiv.setAttribute('id', baseId + '-contact-div');
         this.educationDiv.setAttribute('id', baseId + '-education-div');
