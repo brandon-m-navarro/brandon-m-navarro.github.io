@@ -33,8 +33,6 @@
 #home-panel-frame-div {
     display: flex;
     flex-direction: column;
-
-    padding-bottom: 2em;
 }
 
 /* TopDiv */
@@ -238,6 +236,7 @@
 }
 
 #home-panel-frame-div > div:nth-child(5) {
+    position: relative;
     width: 90%;
     display: flex;
     height: 64px;
@@ -281,7 +280,8 @@
 #home-panel-frame-div > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) {
     position: relative;
     white-space: nowrap;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: clamp(1vw, 14px, 14px);
     margin-left: 12px;
 }
 #home-panel-frame-div > div:nth-child(5) > div:nth-child(1) > div:nth-child(2)::after {
@@ -313,6 +313,11 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #home-panel-frame-div > div:nth-child(5) > div:nth-child(2) > img:nth-child(1) {
     width: 26px;
@@ -398,6 +403,45 @@
 
 
 /* Media Queries */
+
+/* Remove text for ReactButton in footer */
+@media (max-width: 1035px) {
+    #home-panel-frame-div > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) {
+        display: none;
+    }
+}
+
+/* Stack Footer to how react button on own line */
+@media (max-width: 650px) {
+    #home-panel-frame-div > div:nth-child(5) {
+        flex-wrap: wrap;
+        padding: 12px;
+        height: 86px;
+    }
+    #home-panel-frame-div > div:nth-child(5) > div:nth-child(1) {
+        /* flex-basis: 100%; */
+        width: fit-content;
+        order: 2;
+    }
+    #home-panel-frame-div > div:nth-child(5) > div:nth-child(2) {
+        position: initial;
+        transform: translate(0px, 0px);
+        order: 1;
+        flex-basis: 100%;
+    }
+    #home-panel-frame-div > div:nth-child(5) > div:nth-child(3) {
+        order: 3;
+    }
+    #home-panel-frame-div > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) {
+        display: block;
+    }
+}
+@media (max-width: 450px) {
+    #home-panel-frame-div > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) {
+        display: none;
+    }
+}
+
 @media (min-width: 1000px) {
     #home-panel-frame-div > div:nth-child(1) > div:nth-child(1) > svg > * {
         /* -webkit-transform: translateY(-200px);

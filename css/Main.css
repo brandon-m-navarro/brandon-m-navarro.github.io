@@ -311,8 +311,3 @@ body {
 } */
 
 /* Media Queries */
-@media (max-width: 550px) {
-    #top-client-div > div:nth-child(1) {
-        display: none;
-    }
-}

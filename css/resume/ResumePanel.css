@@ -770,6 +770,7 @@
 
 /* Footer */
 #resume-panel-div > div:nth-child(2) {
+    position: relative;
     /* padding: 12px 0 0 0; */
 }
 #resume-panel-div.dark > div:nth-child(2) {
@@ -848,8 +849,13 @@
 /* MidFoot */
 #resume-panel-footer-div > div:nth-child(2) {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /* justify-content: center; */
+    /* align-items: center; */
     margin: auto;
 }
 #resume-panel-footer-div > div:nth-child(2) > img:nth-child(1) {
@@ -867,6 +873,7 @@
     font-size: 14px;
     border-bottom: rgb(0,0,0, 0.5) 1px solid;
     margin: 0 12px;
+    align-self: center;
 }
 #resume-panel-footer-div.dark > div:nth-child(2) > div:nth-child(2) {
     color: #FFFFFF;
@@ -955,6 +962,44 @@
 }
 
 /* Media Queries */
+
+/* Remove text for ReactButton in footer */
+@media (max-width: 1035px) {
+    #resume-panel-footer-div > div:nth-child(1) > div:nth-child(2) {
+        display: none;
+    }
+}
+/* Stack Footer to how react button on own line */
+@media (max-width: 650px) {
+    #resume-panel-footer-div {
+        flex-wrap: wrap;
+        padding: 12px;
+        height: 86px;
+    }
+    #resume-panel-footer-div > div:nth-child(1) {
+        width: fit-content;
+        order: 2;
+    }
+    #resume-panel-footer-div > div:nth-child(2) {
+        position: initial;
+        transform: translate(0px, 0px);
+        order: 1;
+        flex-basis: 100%;
+    }
+    #resume-panel-footer-div > div:nth-child(3) {
+        order: 3;
+    }
+    #resume-panel-footer-div > div:nth-child(1) > div:nth-child(2) {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    #resume-panel-footer-div > div:nth-child(1) > div:nth-child(2) {
+        display: none;
+    }
+}
+
 @media (max-width: 750px) {
     #resume-panel-div {
         padding: 0 12px;
