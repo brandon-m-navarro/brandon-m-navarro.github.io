@@ -92,6 +92,41 @@ export default class HomePanel extends BasePanel {
                 '_blank'
             ).focus();
         });
+
+        // Email
+        utilities.addEventListeners(this.midEmailTextDiv, () => {
+            this.emailPopupDiv.classList.add('show-element');
+
+            // Create temp div that closes email popup and removes itself from the dom
+
+            // Don't create if already created
+            if (typeof this.emailContainerListenerDiv === 'undefined') {
+            }
+            this.emailContainerListenerDiv = doc.createElement('div');    
+            this.emailContainerListenerDiv.setAttribute('id', 'email-container');
+            this.footerDiv.appendChild(this.emailContainerListenerDiv);
+            this.emailContainerListenerDiv.classList.add('show-element');
+
+            this.emailContainerListenerDiv.addEventListener('click', () => {
+                this.emailPopupDiv.classList.remove('show-element');
+                this.emailContainerListenerDiv.remove('show-element');
+            });
+        });
+
+        // CopyEmail Button
+        utilities.addEventListeners(this.copyDiv, () => {
+            // Show 'Copied' text in div and fade div out
+            utilities.copyTextToClipboard('brandon.m.navarro@gmail.com');
+            this.emailPopupDiv.classList.add('show-copied');
+            setTimeout(() => {
+                this.emailPopupDiv.classList.remove('show-copied');
+            }, 1500)
+        });
+
+        // Open Email Button
+        utilities.addEventListeners(this.emailDiv, () => {
+            window.location.href = "mailto:brandon.m.navarro@gmail.com?";
+        });
     }
 
     // Create handler for resizing Mountain svg for window resizes 
@@ -146,6 +181,7 @@ export default class HomePanel extends BasePanel {
         this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
         this.midGithubIcon.src = images.getImages()['github'].src;
 
+        this.emailPopupDiv.classList.remove('dark');
         this.frameDiv.classList.remove('dark');
         this.div.classList.remove('dark');
     };
@@ -181,6 +217,7 @@ export default class HomePanel extends BasePanel {
         this.midLinkedInIcon.src = images.getImages()['linkedIn'].altSrc;
         this.midGithubIcon.src = images.getImages()['github'].altSrc;
 
+        this.emailPopupDiv.classList.add('dark');
         this.frameDiv.classList.add('dark');
         this.div.classList.add('dark');
     };
@@ -290,6 +327,29 @@ export default class HomePanel extends BasePanel {
 
         this.footerRightDiv.appendChild(this.moonDiv);
         this.footerRightDiv.appendChild(this.sunDiv);
+
+        // EmailFooter popup
+        this.emailPopupDiv = doc.createElement('div');
+        this.copyDiv = doc.createElement('div');
+        this.copyIcon = doc.createElement('img');
+        this.copyText = doc.createElement('div');
+        this.emailDiv = doc.createElement('div');
+        this.emailIcon = doc.createElement('img');
+        this.emailText = doc.createElement('div');
+
+        this.copyIcon.src = images.getImages()['copy'].altSrc;
+        this.emailIcon.src = images.getImages()['email'].altSrc;
+        this.copyText.innerHTML = 'Copy';
+        this.emailText.innerHTML = 'Email';
+
+        this.copyDiv.appendChild(this.copyIcon);
+        this.copyDiv.appendChild(this.copyText);
+
+        this.emailDiv.appendChild(this.emailIcon);
+        this.emailDiv.appendChild(this.emailText);
+
+        this.emailPopupDiv.appendChild(this.copyDiv);
+        this.emailPopupDiv.appendChild(this.emailDiv);
     };
 
     // Append elements to the DOM
@@ -339,6 +399,8 @@ export default class HomePanel extends BasePanel {
         this.footerDiv.appendChild(this.footerLeftDiv);
         this.footerDiv.appendChild(this.footerMidDiv);
         this.footerDiv.appendChild(this.footerRightDiv);
+
+        this.footerDiv.appendChild(this.emailPopupDiv);
 
         // Add elements to container
         this.frameDiv.appendChild(this.topDiv);
@@ -422,6 +484,7 @@ export default class HomePanel extends BasePanel {
 
         // Assign IDs to DOM elements, if needed
         this.frameDiv.setAttribute('id', frameDivId);
+        this.emailPopupDiv.setAttribute('id', 'email-popup-div');
         this.div.setAttribute('id', divId);
 
         // Initialization complete
