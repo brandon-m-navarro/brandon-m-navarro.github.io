@@ -15,11 +15,11 @@
 
 /* Components */
 @import url('./components/SlideControl.css');
-@import url('./components/NavMenu.css');
 @import url('./components/Icon.css');
 @import url('./components/Picture.css');
 @import url('./components/SkillRating.css');
 @import url('./components/Modal.css');
+@import url('./components/NightSky.css');
 
 #splash-div {
     display: flex;

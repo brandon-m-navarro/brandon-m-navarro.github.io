@@ -11,6 +11,7 @@ import Picture from '../../components/Picture.js';
 
 import Images from '../../Images.js';
 import Utilities from '../../utils/Utilities.js';
+import NightSky from '../../components/NightSky.js'
 const images = new Images();
 const utilities = new Utilities();
 
@@ -153,7 +154,9 @@ export default class HomePanel extends BasePanel {
     makeDay () {
         localStorage.setItem("mode", "light");
 
-        this.mtnBackground = doc.getElementById('mtn-background');
+        this.nightSky.hide();
+
+        // this.mtnBackground = doc.getElementById('mtn-background');
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
         this.mtnLayer1 = doc.getElementById('mtn-layer1');
         this.mtnLayer2 = doc.getElementById('mtn-layer2');
@@ -163,7 +166,7 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer6 = doc.getElementById('mtn-layer6');
         this.mtnLayer7 = doc.getElementById('mtn-layer7');
 
-        this.mtnBackground.setAttribute('fill', '#FB532C');
+        // this.mtnBackground.setAttribute('fill', '#FB532C');
         this.mtnMoonSun.setAttribute('fill', '#FFD102');
         this.mtnLayer1.setAttribute('fill', '#E72C27');
         this.mtnLayer2.setAttribute('fill', '#C72423');
@@ -191,7 +194,10 @@ export default class HomePanel extends BasePanel {
     makeNight () {
         localStorage.setItem("mode", "dark");
 
-        this.mtnBackground = doc.getElementById('mtn-background');
+        setTimeout(this.nightSky.start, 100);
+        // this.nightSky.start();
+
+        // this.mtnBackground = doc.getElementById('mtn-background');
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
         this.mtnLayer1 = doc.getElementById('mtn-layer1');
         this.mtnLayer2 = doc.getElementById('mtn-layer2');
@@ -201,7 +207,7 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer6 = doc.getElementById('mtn-layer6');
         this.mtnLayer7 = doc.getElementById('mtn-layer7');
 
-        this.mtnBackground.setAttribute('fill', '#35364A');
+        // this.mtnBackground.setAttribute('fill', '#35364A');
         this.mtnMoonSun.setAttribute('fill', '#F5E3B3');
         this.mtnLayer1.setAttribute('fill', '#020916');
         this.mtnLayer2.setAttribute('fill', '#0A111C');
@@ -359,6 +365,10 @@ export default class HomePanel extends BasePanel {
     // Append elements to the DOM
     assembleElements () {
 
+        this.nightSky = new NightSky();
+        // this.nightSky.start();
+        // setTimeout(this.nightSky.start, 100);
+
         this.meImgDiv.appendChild(this.meImg);
         this.meDiv.appendChild(this.meImgDiv);
         this.meDiv.appendChild(this.meAboutTextDiv);
@@ -366,6 +376,7 @@ export default class HomePanel extends BasePanel {
         this.topDiv.appendChild(this.mtnSunSvgDiv);
         this.topDiv.appendChild(this.meDiv);
         this.topDiv.appendChild(this.quoteTextDiv);
+        this.topDiv.appendChild(this.nightSky.getDiv());
 
         this.stepOneDiv.appendChild(this.stepOneTextDiv);
         this.stepOneDiv.appendChild(this.stepOneHeaderTextDiv);
