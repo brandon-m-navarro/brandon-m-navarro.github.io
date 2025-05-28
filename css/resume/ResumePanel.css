@@ -771,19 +771,24 @@
 /* Footer */
 #resume-panel-div > div:nth-child(2) {
     position: relative;
-    width: calc(90% + 24px);
-    margin: auto;
+    position: absolute;
+    width: calc(100%);
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
 }
 #resume-panel-div.dark > div:nth-child(2) {
-    /* background-color: #242532; */
+    background-color: #242532;
+    padding-top: 12px;
+    box-sizing: border-box;
 }
 #resume-panel-footer-div {
     font-family: 'Josefin';
-    width: 100%;
+    width: calc(90% + 24px);
     display: flex;
     height: 64px;
     border-top: rgb(0, 0, 0, 0.25) solid 2px;
-    margin: 0em auto 0;
+    margin: 0 auto 0 auto;
 }
 #resume-panel-footer-div.dark {
     border-top: rgb(255, 255, 255, 0.25) solid 2px;
@@ -854,8 +859,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-
+    transform: translate(-50%, calc(-50% + 12px));
     /* justify-content: center; */
     /* align-items: center; */
     margin: auto;
@@ -1168,7 +1172,7 @@
 
 @media (max-width: 750px) {
     #resume-panel-div {
-        padding: 0 12px;
+        padding: 0 12px 12px 12px;
     }
     #resume-panel-frame-div {
         /* display: initial; */
