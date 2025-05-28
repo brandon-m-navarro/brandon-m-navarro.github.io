@@ -669,6 +669,29 @@ export default class ResumePanel extends BasePanel {
         this.midEmailTextDiv = doc.createElement('div');
         this.midGithubIcon = doc.createElement('img');
 
+        // EmailFooter popup
+        this.emailPopupDiv = doc.createElement('div');
+        this.copyDiv = doc.createElement('div');
+        this.copyIcon = doc.createElement('img');
+        this.copyText = doc.createElement('div');
+        this.emailDiv = doc.createElement('div');
+        this.emailIcon = doc.createElement('img');
+        this.emailText = doc.createElement('div');
+
+        this.copyIcon.src = images.getImages()['copy'].altSrc;
+        this.emailIcon.src = images.getImages()['email'].altSrc;
+        this.copyText.innerHTML = 'Copy';
+        this.emailText.innerHTML = 'Email';
+
+        this.copyDiv.appendChild(this.copyIcon);
+        this.copyDiv.appendChild(this.copyText);
+
+        this.emailDiv.appendChild(this.emailIcon);
+        this.emailDiv.appendChild(this.emailText);
+
+        this.emailPopupDiv.appendChild(this.copyDiv);
+        this.emailPopupDiv.appendChild(this.emailDiv);
+
         // Listeners
 
         // Open a new tab when user selects project links or contact infos
@@ -787,6 +810,41 @@ export default class ResumePanel extends BasePanel {
                 'https://nextjs-site-sand.vercel.app',
                 '_blank'
             ).focus();
+        });
+
+        // Email
+        utilities.addEventListeners(this.midEmailTextDiv, () => {
+            this.emailPopupDiv.classList.add('show-element');
+
+            // Create temp div that closes email popup and removes itself from the dom
+
+            // Don't create if already created
+            if (typeof this.emailContainerListenerDiv === 'undefined') {
+            }
+            this.emailContainerListenerDiv = doc.createElement('div');    
+            this.emailContainerListenerDiv.setAttribute('id', 'email-container');
+            this.footerDiv.appendChild(this.emailContainerListenerDiv);
+            this.emailContainerListenerDiv.classList.add('show-element');
+
+            this.emailContainerListenerDiv.addEventListener('click', () => {
+                this.emailPopupDiv.classList.remove('show-element');
+                this.emailContainerListenerDiv.remove('show-element');
+            });
+        });
+
+        // CopyEmail Button
+        utilities.addEventListeners(this.copyDiv, () => {
+            // Show 'Copied' text in div and fade div out
+            utilities.copyTextToClipboard('brandon.m.navarro@gmail.com');
+            this.emailPopupDiv.classList.add('show-copied');
+            setTimeout(() => {
+                this.emailPopupDiv.classList.remove('show-copied');
+            }, 1500)
+        });
+
+        // Open Email Button
+        utilities.addEventListeners(this.emailDiv, () => {
+            window.location.href = "mailto:brandon.m.navarro@gmail.com?";
         });
 
     };
@@ -1165,8 +1223,10 @@ export default class ResumePanel extends BasePanel {
         this.frameDiv.appendChild(this.professionalDiv2);
         this.frameDiv.appendChild(this.projectDiv);
         // this.frameDiv.appendChild(this.footerDiv);
+        this.footerDivWrapper.appendChild(this.emailPopupDiv);
         this.div.appendChild(this.frameDiv);
         this.div.appendChild(this.footerDivWrapper);
+
 
     };
 
@@ -1367,6 +1427,7 @@ export default class ResumePanel extends BasePanel {
         this.iqpDiv.setAttribute('id', baseId + '-iqp-div');
 
         this.frameDiv.setAttribute('id', frameDivId);
+        this.emailPopupDiv.setAttribute('id', 'email-popup-div');
         this.div.setAttribute('id', divId);
 
         // Initialization complete
