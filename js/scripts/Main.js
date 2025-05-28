@@ -155,6 +155,9 @@ export class Main {
 
     // Load the website
     load() {
+
+        const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
         this.createElements();
 
         // Set innerHTML
@@ -188,7 +191,14 @@ export class Main {
 
         // Show default view
         this.showHome();
-        this.setTheme(Main.getThemes().LIGHT);
+
+        let mode = localStorage.getItem("mode") || null;
+
+        if (mode == 'dark') {
+            this.setTheme(Main.getThemes().DARK);
+        } else {
+            this.setTheme(Main.getThemes().LIGHT);
+        }
 
         // Stop showing horizontal scrollbars
         doc.documentElement.style.overflowX = 'hidden';
@@ -200,6 +210,17 @@ export class Main {
                 action = detail.action;
 
             switch (action) { }
+        });
+
+        // To listen for changes in system theme:
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+            if (event.matches) {
+                console.log("System switched to dark mode");
+                this.setTheme(Main.getThemes().DARK);
+            } else {
+                console.log("System switched to light mode");
+                this.setTheme(Main.getThemes().LIGHT);
+            }
         });
     }
 

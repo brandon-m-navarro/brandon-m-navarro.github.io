@@ -49,12 +49,16 @@ export default class ResumePanel extends BasePanel {
     // Public Methods
 
     makeNight () {
+        localStorage.setItem("mode", "dark");
+
         this.div.classList.add('dark');
         this.frameDiv.classList.add('dark');
         this.professionalDiv.classList.add('dark');
         this.professionalDiv2.classList.add('dark');
         this.projectDiv.classList.add('dark');
         this.footerDiv.classList.add('dark');
+
+        this.emailPopupDiv.classList.add('dark');
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].altSrc);
@@ -119,12 +123,17 @@ export default class ResumePanel extends BasePanel {
     };
 
     makeDay() {
+        localStorage.setItem("mode", "light");
+
+
         this.div.classList.remove('dark');
         this.frameDiv.classList.remove('dark');
         this.professionalDiv.classList.remove('dark');
         this.professionalDiv2.classList.remove('dark');
         this.projectDiv.classList.remove('dark');
         this.footerDiv.classList.remove('dark');
+
+        this.emailPopupDiv.classList.remove('dark');
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].src);

@@ -151,6 +151,8 @@ export default class HomePanel extends BasePanel {
     };
 
     makeDay () {
+        localStorage.setItem("mode", "light");
+
         this.mtnBackground = doc.getElementById('mtn-background');
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
         this.mtnLayer1 = doc.getElementById('mtn-layer1');
@@ -187,6 +189,8 @@ export default class HomePanel extends BasePanel {
     };
 
     makeNight () {
+        localStorage.setItem("mode", "dark");
+
         this.mtnBackground = doc.getElementById('mtn-background');
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
         this.mtnLayer1 = doc.getElementById('mtn-layer1');
