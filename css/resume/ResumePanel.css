@@ -1137,7 +1137,7 @@
     #resume-panel-footer-div {
         flex-wrap: wrap;
         padding: 12px;
-        height: 86px;
+        height: 114px;
     }
     #resume-panel-footer-div > div:nth-child(1) {
         width: fit-content;
@@ -1145,9 +1145,10 @@
     }
     #resume-panel-footer-div > div:nth-child(2) {
         position: initial;
-        transform: translate(0px, 0px);
         order: 1;
         flex-basis: 100%;
+        justify-content: space-between;
+        transform: translate(0px, 0px);
     }
     #resume-panel-footer-div > div:nth-child(3) {
         order: 3;
