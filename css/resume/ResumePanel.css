@@ -783,6 +783,7 @@
     box-sizing: border-box;
 }
 #resume-panel-footer-div {
+    position: relative;
     font-family: 'Josefin';
     width: calc(90% + 24px);
     display: flex;
