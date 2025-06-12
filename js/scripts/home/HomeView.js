@@ -42,7 +42,6 @@ export default class HomeView extends BaseView {
 
         // Initialize panels
         this.homePanel = new HomePanel();
-        // this.homePanel.initialize();
 
         // Title
         this.titleDiv = doc.createElement('div');
@@ -64,9 +63,6 @@ export default class HomeView extends BaseView {
         this.div.setAttribute('id',      this.baseSelector + '-div');
         this.frameDiv.setAttribute('id', this.baseSelector + '-frame-div');
         this.titleDiv.setAttribute('id', this.baseSelector + '-title-div');
-
-        // Listen for theme events
-        // this.homePanel.getDiv().addEventListener('homePanelEvent')
     };
 
 
@@ -104,8 +100,6 @@ export default class HomeView extends BaseView {
 
     // Dynamically add remaining artifacts
     initialize() {
-
-        // Complete with initialization
         this.initialized = true;
     };
 

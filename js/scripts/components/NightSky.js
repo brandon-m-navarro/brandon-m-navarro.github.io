@@ -236,9 +236,7 @@ export default class NightSky extends BaseComponent {
                 pos = lineToAngle(x, y, -currentTrailLength, p.getHeading());
 
             context.fillStyle = "rgba(255, 255, 255, " + p.opacity + ")";
-            // context.beginPath();
-            // context.arc(x, y, p.radius, 0, Math.PI * 2, false);
-            // context.fill();
+
             var starLength = 5;
             context.beginPath();
             context.moveTo(x - 1, y + 1);
@@ -281,11 +279,11 @@ export default class NightSky extends BaseComponent {
         }.bind(this), shootingStarEmittingInterval);
 
         window.onfocus = function () {
-            paused = false;
+            // paused = false;
         }.bind(this);
 
         window.onblur = function () {
-            paused = true;
+            // paused = true;
         }.bind(this);
     }
 }

@@ -101,8 +101,7 @@ export default class HomePanel extends BasePanel {
             // Create temp div that closes email popup and removes itself from the dom
 
             // Don't create if already created
-            if (typeof this.emailContainerListenerDiv === 'undefined') {
-            }
+            // if (typeof this.emailContainerListenerDiv === 'undefined') {}
             this.emailContainerListenerDiv = doc.createElement('div');    
             this.emailContainerListenerDiv.setAttribute('id', 'email-container');
             this.footerDiv.appendChild(this.emailContainerListenerDiv);
@@ -132,10 +131,7 @@ export default class HomePanel extends BasePanel {
 
     // Create handler for resizing Mountain svg for window resizes 
     handleResize () {
-
         const pathGroup = window.document.getElementById('paths');
-        // console.log(pathGroup)
-        console.log(window.innerWidth / 9)
         if (typeof pathGroup !== 'undefined' && pathGroup !== null) {
             pathGroup.style.transform = 'scaleX(' + window.innerWidth / 9 + '%)';
         }
@@ -154,7 +150,8 @@ export default class HomePanel extends BasePanel {
     makeDay () {
         localStorage.setItem("mode", "light");
 
-        this.nightSky.hide();
+        this.nightSky.getDiv().remove();
+        // this.nightSky.hide();
 
         // this.mtnBackground = doc.getElementById('mtn-background');
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
@@ -195,7 +192,7 @@ export default class HomePanel extends BasePanel {
         localStorage.setItem("mode", "dark");
 
         setTimeout(this.nightSky.start, 100);
-        // this.nightSky.start();
+        this.topDiv.appendChild(this.nightSky.getDiv());
 
         // this.mtnBackground = doc.getElementById('mtn-background');
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
@@ -366,8 +363,6 @@ export default class HomePanel extends BasePanel {
     assembleElements () {
 
         this.nightSky = new NightSky();
-        // this.nightSky.start();
-        // setTimeout(this.nightSky.start, 100);
 
         this.meImgDiv.appendChild(this.meImg);
         this.meDiv.appendChild(this.meImgDiv);
@@ -376,7 +371,7 @@ export default class HomePanel extends BasePanel {
         this.topDiv.appendChild(this.mtnSunSvgDiv);
         this.topDiv.appendChild(this.meDiv);
         this.topDiv.appendChild(this.quoteTextDiv);
-        this.topDiv.appendChild(this.nightSky.getDiv());
+        // this.topDiv.appendChild(this.nightSky.getDiv());
 
         this.stepOneDiv.appendChild(this.stepOneTextDiv);
         this.stepOneDiv.appendChild(this.stepOneHeaderTextDiv);

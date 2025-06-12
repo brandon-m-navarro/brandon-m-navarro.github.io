@@ -45,6 +45,10 @@
 #home-panel-frame-div > div:nth-child(1) > div:nth-child(1) {
     position: relative;
     z-index: 5;
+    background-color: #FB532C;
+}
+#home-panel-frame-div.dark > div:nth-child(1) > div:nth-child(1) {
+    background-color: transparent;
 }
 #home-panel-frame-div > div:nth-child(1) > div:nth-child(1) > svg {
     height: 100%;
@@ -542,7 +546,8 @@
     opacity: 1;
 }
 #email-popup-div > div:nth-child(2) > img:nth-child(1) {
-    height: 26px;
+    width: 26px;
+    margin: auto;
 }
 #email-popup-div > div:nth-child(2) > div:nth-child(2) {
     font-size: 14px;
