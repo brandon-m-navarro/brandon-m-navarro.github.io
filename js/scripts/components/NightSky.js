@@ -4,6 +4,13 @@
 //   as well as occasional shooting stars. It is intended to be used as a
 //   background for the main content of the page.
 //
+//   This file also defines the Particle and ShootingStar classes, which are used
+//   to represent the stars and shooting stars respectively.
+//
+//   The Particle class is a basic particle with position, velocity, and radius.
+//   The ShootingStar class extends Particle and adds properties for opacity,
+//   trail length, and state (spawning, dying, dead).
+//
 
 "use strict";
 
@@ -12,10 +19,7 @@ import BaseComponent from "../BaseComponent.js";
 import {lineToAngle, randomRange, degreesToRads} from "../utils/Utilities.js";
 
 // Global variables
-let
-
-    // paused: Boolean indicating whether the animation is paused
-    paused = true,
+const
 
     // starsAngle: Angle in degrees at which the shooting stars travel
     starsAngle = 145,
@@ -31,9 +35,9 @@ let
 
     // trailLengthDelta: Delta for trail length change per frame
     trailLengthDelta = 0.01,
-    
+
     // shootingStarEmittingInterval: Interval in milliseconds for spawning new shooting stars
-    shootingStarEmittingInterval = 2000,
+    shootingStarEmittingInterval = 5000,
 
     // shootingStarLifeTime: Lifetime in milliseconds for each shooting star
     shootingStarLifeTime = 500,
@@ -53,9 +57,9 @@ let
     //   scale: Scale factor for the size of the stars
     //   count: Number of stars in this layer
     layers = [
-        { speed: 0.015, scale: 0.2, count: 320 },
-        { speed: 0.03, scale: 0.5, count: 50 },
-        { speed: 0.05, scale: 0.75, count: 30 }
+        { speed: 0.015, scale: 0.2,  count: 320 },
+        { speed: 0.03,  scale: 0.5,  count: 50 },
+        { speed: 0.05,  scale: 0.75, count: 30 }
     ];
 
 /**
@@ -208,6 +212,9 @@ export default class NightSky extends BaseComponent {
             options = defaultOptions;
         }
 
+        // Create boolean indicating whether the animation is paused
+        this.paused = true;
+
         // Initialize parameters
         this.bg = 'bg' in options
             ? options.bg
@@ -223,6 +230,8 @@ export default class NightSky extends BaseComponent {
         this.canvas = window.document.createElement('canvas');
         this.context = this.canvas.getContext("2d");
 
+        // Set the width and height of the canvas to match the window size
+        // (these are re-calculated when the component starts)
         this.width = this.canvas.width = window.innerWidth;
         this.height = this.canvas.height = window.innerHeight;
 
@@ -234,9 +243,13 @@ export default class NightSky extends BaseComponent {
         this.canvas.setAttribute('id', 'canvas');    
     }
 
-    // Pause animation loop and clear canvas (transparent)
+    /**
+     * Pauses the animation loop and clears the canvas.
+     * This method sets the paused state to true and clears the canvas
+     * by filling it with a transparent rectangle.
+     */
     hide () {
-        paused = true;
+        this.paused = true;
         this.context.clearRect(0, 0, this.width, this.height);
     }
 
@@ -306,7 +319,7 @@ export default class NightSky extends BaseComponent {
      * side of the canvas. Dead shooting stars are removed from the array.
      */
     update () {
-        if (!paused) {
+        if (!this.paused) {
             this.context.clearRect(0, 0, this.width, this.height);
             this.context.fillStyle = this.bg;
             this.context.fillRect(0, 0, this.width, this.height);
@@ -390,9 +403,10 @@ export default class NightSky extends BaseComponent {
     }
 
     /**
-     * Kills a shooting star after a specified lifetime by setting its
-     * isDying property to true. The shooting star will gradually fade out
-     * by decreasing its opacity.
+     * @method killShootingStar
+     * @param {ShootingStar} shootingStar - The shooting star to kill.
+     * This method sets a timeout to change the shooting star's isDying
+     * property to true after a specified lifetime, causing it to fade out.
      */
     killShootingStar (shootingStar) {
         setTimeout(() => {
@@ -400,14 +414,19 @@ export default class NightSky extends BaseComponent {
         }, shootingStarLifeTime);
     }
 
-    // Resume animation loop and start drawing stars
+    /**
+     * Starts the animation by initializing the canvas size, creating stars,
+     * and starting the animation loop. It also sets up an interval to create
+     * shooting stars at regular intervals.
+     */
     start () {
 
+        // Set width and height of the canvas to match the window size
         this.width = this.canvas.width = window.innerWidth;
         this.height = this.canvas.height = window.innerHeight;
 
         // Ensure the animation is not paused
-        paused = false;
+        this.paused = false;
 
         // Create all non-shooting stars. Location is randomized within canvas
         // dimensions; speed, size, & count are determined above in 'layers'
@@ -432,7 +451,7 @@ export default class NightSky extends BaseComponent {
 
         // Create a ShootingStar every `shootingStarEmittingInterval` milliseconds
         setInterval(() => {
-            if (paused) return;
+            if (this.paused) return;
             this.createShootingStar();
         }, shootingStarEmittingInterval);
     }
