@@ -1,9 +1,9 @@
 // NightSky Component
 //
-//   This component creates an svg which periodically animates shooting stars
-//
-//   and twinkling stars in the background. It is intended to be used as a
+//   This component creates an svg which animates both stars slowly drifting,
+//   as well as occasional shooting stars. It is intended to be used as a
 //   background for the main content of the page.
+//
 
 "use strict";
 
@@ -166,10 +166,10 @@ class ShootingStar extends Particle {
         super(options);
 
         // Specify default values if options aren't specified
-        this.defaultOptions = {
+        let defaultOptions = {
             opacity: 0,
             trailLengthDelta: 0,
-            isSpawning: 0,
+            isSpawning: true,
             isDying: false,
             isDead: false
         };
@@ -178,19 +178,19 @@ class ShootingStar extends Particle {
         // Initialize parameters
         this.opacity = 'opacity' in options
             ? options.opacity
-            : this.defaultOptions.opacity;
+            : defaultOptions.opacity;
         this.trailLengthDelta = 'trailLengthDelta' in options
             ? options.trailLengthDelta
-            : this.defaultOptions.trailLengthDelta;
+            : defaultOptions.trailLengthDelta;
         this.isSpawning = 'isSpawning' in options
             ? options.isSpawning
-            : this.defaultOptions.isSpawning;
+            : defaultOptions.isSpawning;
         this.isDying = 'isDying' in options
             ? options.isDying
-            : this.defaultOptions.isDying;
+            : defaultOptions.isDying;
         this.isDead = 'isDead' in options
             ? options.isDead
-            : this.defaultOptions.isDead;
+            : defaultOptions.isDead;
     }
 }
 
@@ -199,19 +199,19 @@ export default class NightSky extends BaseComponent {
         super();
         
         // Specify default values if options aren't specified
-        this.defaultOptions = {
+        let defaultOptions = {
             bg: "#282A3A"
         };
         
         // If options are provided, use them; otherwise, use default options
         if (typeof options == 'undefined') {
-            options = this.defaultOptions;
+            options = defaultOptions;
         }
 
         // Initialize parameters
         this.bg = 'bg' in options
             ? options.bg
-            : this.defaultOptions.bg;
+            : defaultOptions.bg;
 
         // Array to hold stars
         this.stars = [];
@@ -223,6 +223,9 @@ export default class NightSky extends BaseComponent {
         this.canvas = window.document.createElement('canvas');
         this.context = this.canvas.getContext("2d");
 
+        this.width = this.canvas.width = window.innerWidth;
+        this.height = this.canvas.height = window.innerHeight;
+
         // Assemble
         this.div.appendChild(this.canvas);
 
@@ -233,10 +236,8 @@ export default class NightSky extends BaseComponent {
 
     // Pause animation loop and clear canvas (transparent)
     hide () {
-        let width = this.canvas.width = window.innerWidth,
-            height = this.canvas.height = window.innerHeight;
         paused = true;
-        this.context.clearRect(0, 0, width, height);
+        this.context.clearRect(0, 0, this.width, this.height);
     }
 
     /**
@@ -288,10 +289,6 @@ export default class NightSky extends BaseComponent {
 
         // Draw the trail
         this.context.fillStyle = "rgba(255, 221, 157, " + p.opacity + ")";
-        // context.lineWidth = 1;
-        // context.strokeStyle = "rgba(255, 221, 157, " + p.opacity + ")";
-        // context.lineCap = "round";
-        // context.lineJoin = "round";
         this.context.beginPath();
         this.context.moveTo(x - 1, y - 1);
         this.context.lineTo(pos.x, pos.y);
@@ -309,13 +306,10 @@ export default class NightSky extends BaseComponent {
      * side of the canvas. Dead shooting stars are removed from the array.
      */
     update () {
-        let width = this.canvas.width = window.innerWidth,
-            height = this.canvas.height = window.innerHeight;
-
         if (!paused) {
-            this.context.clearRect(0, 0, width, height);
+            this.context.clearRect(0, 0, this.width, this.height);
             this.context.fillStyle = this.bg;
-            this.context.fillRect(0, 0, width, height);
+            this.context.fillRect(0, 0, this.width, this.height);
             this.context.fill();
 
             // Update and draw stars
@@ -323,17 +317,17 @@ export default class NightSky extends BaseComponent {
                 let star = this.stars[i];
                 star.update();
                 this.drawStar(star);
-                if (star.x > width) {
+                if (star.x > this.width) {
                     star.x = 0;
                 }
                 if (star.x < 0) {
-                    star.x = width;
+                    star.x = this.width;
                 }
-                if (star.y > height) {
+                if (star.y > this.height) {
                     star.y = 0;
                 }
                 if (star.y < 0) {
-                    star.y = height;
+                    star.y = this.height;
                 }
             }
 
@@ -381,12 +375,12 @@ export default class NightSky extends BaseComponent {
      * radians.
      */
     createShootingStar () {
-        let width = this.canvas.width = window.innerWidth,
-            height = this.canvas.height = window.innerHeight,
-            shootingStar = new ShootingStar({
-                x: randomRange(width / 2, width),
-                y: randomRange(0, height / 2),
+        let shootingStar = new ShootingStar({
+                x: randomRange(this.width / 2, this.width),
+                y: randomRange(0, this.height / 2),
                 radius: shootingStarRadius,
+                opacity: 0,
+                isSpawning: true,
             });
         shootingStar.setSpeed(
             randomRange(shootingStarSpeed.min, shootingStarSpeed.max)
@@ -408,10 +402,9 @@ export default class NightSky extends BaseComponent {
 
     // Resume animation loop and start drawing stars
     start () {
-        let
-            // Set canvas dimensions to fill the window
-            width = this.canvas.width = window.innerWidth,
-            height = this.canvas.height = window.innerHeight;
+
+        this.width = this.canvas.width = window.innerWidth;
+        this.height = this.canvas.height = window.innerHeight;
 
         // Ensure the animation is not paused
         paused = false;
@@ -424,8 +417,8 @@ export default class NightSky extends BaseComponent {
             for (var i=0; i<layer.count; i++) {
                 let radius = starBaseRadius * layer.scale,
                     star = new Particle({
-                        x: randomRange(0, width),
-                        y: randomRange(0, height),
+                        x: randomRange(0, this.width),
+                        y: randomRange(0, this.height),
                         radius: radius
                     });
                 star.setSpeed(layer.speed);
@@ -438,9 +431,9 @@ export default class NightSky extends BaseComponent {
         this.update();
 
         // Create a ShootingStar every `shootingStarEmittingInterval` milliseconds
-        setInterval(function() {
+        setInterval(() => {
             if (paused) return;
             this.createShootingStar();
-        }.bind(this), shootingStarEmittingInterval);
+        }, shootingStarEmittingInterval);
     }
 }
