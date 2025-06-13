@@ -11,14 +11,53 @@
 import BaseComponent from "../BaseComponent.js";
 import {lineToAngle, randomRange, degreesToRads} from "../utils/Utilities.js";
 
-// Global variable to control animation loop
-//   (true = paused, false = running)
-//   This is used to pause the animation when the component is hidden.
-let paused = true;
+// Global variables
+let
 
-// Particle class
-//   This class represents a basic particle with position, velocity, and radius.
-//   It provides methods to get and set speed and heading, and to update position.
+    // paused: Boolean indicating whether the animation is paused
+    paused = true,
+
+    // starsAngle: Angle in degrees at which the shooting stars travel
+    starsAngle = 145,
+
+    // shootingStarSpeed: Object with min and max speed for shooting stars
+    shootingStarSpeed = {
+        min: 15,
+        max: 20
+    },
+
+    // shootingStarOpacityDelta: Delta for opacity change per frame
+    shootingStarOpacityDelta = 0.01,
+
+    // trailLengthDelta: Delta for trail length change per frame
+    trailLengthDelta = 0.01,
+    
+    // shootingStarEmittingInterval: Interval in milliseconds for spawning new shooting stars
+    shootingStarEmittingInterval = 2000,
+
+    // shootingStarLifeTime: Lifetime in milliseconds for each shooting star
+    shootingStarLifeTime = 500,
+
+    // maxTrailLength: Maximum length of the shooting star's trail
+    maxTrailLength = 300,
+
+    // starBaseRadius: Base radius for non-shooting stars
+    starBaseRadius = 2,
+
+    // shootingStarRadius: Radius for shooting stars
+    shootingStarRadius = 3,
+
+    // Layers of stars with different speeds, scales, and counts
+    // Each layer has a speed, scale, and count of stars
+    //   speed: Speed of the stars in pixels per frame
+    //   scale: Scale factor for the size of the stars
+    //   count: Number of stars in this layer
+    layers = [
+        { speed: 0.015, scale: 0.2, count: 320 },
+        { speed: 0.03, scale: 0.5, count: 50 },
+        { speed: 0.05, scale: 0.75, count: 30 }
+    ];
+
 /**
  * Particle class representing a basic particle with position, velocity, and radius.
  * Provides methods to get and set speed and heading, and to update position.
@@ -94,7 +133,8 @@ class Particle {
     }
 
     /**
-     * @method update - Updates the position of the particle based on its velocity.
+     * @method update - Updates the position of the particle based on its
+     *                  velocity.
      */
     update () {
         this.x += this.vx;
@@ -173,8 +213,15 @@ export default class NightSky extends BaseComponent {
             ? options.bg
             : this.defaultOptions.bg;
 
+        // Array to hold stars
+        this.stars = [];
+
+        // Array to hold shooting stars
+        this.shootingStars = [];
+
         // Create DOM elements
         this.canvas = window.document.createElement('canvas');
+        this.context = this.canvas.getContext("2d");
 
         // Assemble
         this.div.appendChild(this.canvas);
@@ -186,60 +233,187 @@ export default class NightSky extends BaseComponent {
 
     // Pause animation loop and clear canvas (transparent)
     hide () {
-        paused = true;
-        var context = this.canvas.getContext("2d"),
-            width = this.canvas.width = window.innerWidth,
+        let width = this.canvas.width = window.innerWidth,
             height = this.canvas.height = window.innerHeight;
-        context.clearRect(0, 0, width, height);
+        paused = true;
+        this.context.clearRect(0, 0, width, height);
+    }
+
+    /**
+     * Draws a star on the canvas.
+     * The star is drawn as a filled circle with a specified radius.
+     * The color of the star is set to a light orange color.
+     * @param {Particle} star - The star to draw.
+     */
+    drawStar (star) {
+        this.context.fillStyle = "rgb(255, 221, 157)";
+        this.context.beginPath();
+        this.context.arc(star.x, star.y, star.radius, 0, Math.PI * 2, false);
+        this.context.fill();
+    }
+
+    /**
+     * Draws a shooting star on the canvas.
+     * @param {ShootingStar} p - The shooting star to draw.
+     */
+    drawShootingStar (p) {
+        let x = p.x,
+            y = p.y,
+            currentTrailLength = (maxTrailLength * p.trailLengthDelta),
+            pos = lineToAngle(x, y, -currentTrailLength, p.getHeading());
+
+        this.context.fillStyle = "rgba(255, 255, 255, " + p.opacity + ")";
+
+        let starLength = 5;
+        this.context.beginPath();
+        this.context.moveTo(x - 1, y + 1);
+
+        this.context.lineTo(x, y + starLength);
+        this.context.lineTo(x + 1, y + 1);
+
+        this.context.lineTo(x + starLength, y);
+        this.context.lineTo(x + 1, y - 1);
+
+        this.context.lineTo(x, y + 1);
+        this.context.lineTo(x, y - starLength);
+
+        this.context.lineTo(x - 1, y - 1);
+        this.context.lineTo(x - starLength, y);
+
+        this.context.lineTo(x - 1, y + 1);
+        this.context.lineTo(x - starLength, y);
+
+        this.context.closePath();
+        this.context.fill();
+
+        // Draw the trail
+        this.context.fillStyle = "rgba(255, 221, 157, " + p.opacity + ")";
+        // context.lineWidth = 1;
+        // context.strokeStyle = "rgba(255, 221, 157, " + p.opacity + ")";
+        // context.lineCap = "round";
+        // context.lineJoin = "round";
+        this.context.beginPath();
+        this.context.moveTo(x - 1, y - 1);
+        this.context.lineTo(pos.x, pos.y);
+        this.context.lineTo(x + 1, y + 1);
+        this.context.closePath();
+        this.context.fill();
+    }
+
+    /**
+     * The update function is called repeatedly to animate the stars and
+     * shooting stars. It clears the canvas, fills the background, updates
+     * the positions of stars and shooting stars, and draws them on the
+     * canvas. It also handles the spawning and dying of shooting stars.
+     * If a shooting star goes out of bounds, it is reset to the opposite
+     * side of the canvas. Dead shooting stars are removed from the array.
+     */
+    update () {
+        let width = this.canvas.width = window.innerWidth,
+            height = this.canvas.height = window.innerHeight;
+
+        if (!paused) {
+            this.context.clearRect(0, 0, width, height);
+            this.context.fillStyle = this.bg;
+            this.context.fillRect(0, 0, width, height);
+            this.context.fill();
+
+            // Update and draw stars
+            for (let i=0; i<this.stars.length; i++) {
+                let star = this.stars[i];
+                star.update();
+                this.drawStar(star);
+                if (star.x > width) {
+                    star.x = 0;
+                }
+                if (star.x < 0) {
+                    star.x = width;
+                }
+                if (star.y > height) {
+                    star.y = 0;
+                }
+                if (star.y < 0) {
+                    star.y = height;
+                }
+            }
+
+            // Update and draw shooting stars
+            for (let i=0; i<this.shootingStars.length; i++) {
+                let shootingStar = this.shootingStars[i];
+                if (shootingStar.isSpawning) {
+                    shootingStar.opacity += shootingStarOpacityDelta;
+                    if (shootingStar.opacity >= 1.0) {
+                        shootingStar.isSpawning = false;
+                        this.killShootingStar(shootingStar);
+                    }
+                }
+                if (shootingStar.isDying) {
+                    shootingStar.opacity -= shootingStarOpacityDelta;
+                    if (shootingStar.opacity <= 0.0) {
+                        shootingStar.isDying = false;
+                        shootingStar.isDead = true;
+                    }
+                }
+                shootingStar.trailLengthDelta += trailLengthDelta;
+
+                shootingStar.update();
+                if (shootingStar.opacity > 0.0) {
+                    this.drawShootingStar(shootingStar);
+                }
+            }
+
+            // Delete dead shooting shootingStars
+            for (let i=this.shootingStars.length-1; i>=0; i--){
+                if (this.shootingStars[i].isDead){
+                    this.shootingStars.splice(i, 1);
+                }
+            }
+        }
+        requestAnimationFrame(this.update.bind(this));
+    };
+
+    /**
+     * Creates a new shooting star with a random position, speed, and heading.
+     * The shooting star is initialized with a random x-coordinate in the right
+     * half of the canvas, a random y-coordinate in the top half of the canvas,
+     * and a radius. The speed is set to a random value between the specified
+     * minimum and maximum speeds, and the heading is set to a fixed angle in
+     * radians.
+     */
+    createShootingStar () {
+        let width = this.canvas.width = window.innerWidth,
+            height = this.canvas.height = window.innerHeight,
+            shootingStar = new ShootingStar({
+                x: randomRange(width / 2, width),
+                y: randomRange(0, height / 2),
+                radius: shootingStarRadius,
+            });
+        shootingStar.setSpeed(
+            randomRange(shootingStarSpeed.min, shootingStarSpeed.max)
+        );
+        shootingStar.setHeading(degreesToRads(starsAngle));
+        this.shootingStars.push(shootingStar);
+    }
+
+    /**
+     * Kills a shooting star after a specified lifetime by setting its
+     * isDying property to true. The shooting star will gradually fade out
+     * by decreasing its opacity.
+     */
+    killShootingStar (shootingStar) {
+        setTimeout(() => {
+            shootingStar.isDying = true;
+        }, shootingStarLifeTime);
     }
 
     // Resume animation loop and start drawing stars
     start () {
-
-        // Canvas and settings
-        let context = this.canvas.getContext("2d"),
-
+        let
             // Set canvas dimensions to fill the window
             width = this.canvas.width = window.innerWidth,
-            height = this.canvas.height = window.innerHeight,
+            height = this.canvas.height = window.innerHeight;
 
-            // Array to hold stars
-            stars = [],
-            // Array to hold shooting stars
-            shootingStars = [],
-            // Layers of stars with different speeds, scales, and counts
-            // Each layer has a speed, scale, and count of stars
-            //   speed: Speed of the stars in pixels per frame
-            //   scale: Scale factor for the size of the stars
-            //   count: Number of stars in this layer
-            layers = [
-                { speed: 0.015, scale: 0.2, count: 320 },
-                { speed: 0.03, scale: 0.5, count: 50 },
-                { speed: 0.05, scale: 0.75, count: 30 }
-            ],
-
-            // Shooting star settings
-            //   starsAngle: Angle in degrees at which the shooting stars travel
-            //   shootingStarSpeed: Object with min and max speed for shooting stars
-            //   shootingStarOpacityDelta: Delta for opacity change per frame
-            //   trailLengthDelta: Delta for trail length change per frame
-            //   shootingStarEmittingInterval: Interval in milliseconds for spawning new shooting stars
-            //   shootingStarLifeTime: Lifetime in milliseconds for each shooting star
-            //   maxTrailLength: Maximum length of the shooting star's trail
-            //   starBaseRadius: Base radius for non-shooting stars
-            //   shootingStarRadius: Radius for shooting stars
-            starsAngle = 145,
-            shootingStarSpeed = {
-                min: 15,
-                max: 20
-            },
-            shootingStarOpacityDelta = 0.01,
-            trailLengthDelta = 0.01,
-            shootingStarEmittingInterval = 2000,
-            shootingStarLifeTime = 500,
-            maxTrailLength = 300,
-            starBaseRadius = 2,
-            shootingStarRadius = 3;
+        // Ensure the animation is not paused
         paused = false;
 
         // Create all non-shooting stars. Location is randomized within canvas
@@ -249,182 +423,24 @@ export default class NightSky extends BaseComponent {
             var layer = layers[j];
             for (var i=0; i<layer.count; i++) {
                 let radius = starBaseRadius * layer.scale,
-                    star = new Particle({x: randomRange(0, width), y: randomRange(0, height), radius: radius});
+                    star = new Particle({
+                        x: randomRange(0, width),
+                        y: randomRange(0, height),
+                        radius: radius
+                    });
                 star.setSpeed(layer.speed);
                 star.setHeading(degreesToRads(starsAngle));
-                stars.push(star);
+                this.stars.push(star);
             }
         }
-
-        /**
-         * Creates a new shooting star with a random position, speed, and heading.
-         * The shooting star is initialized with a random x-coordinate in the right half
-         * of the canvas, a random y-coordinate in the top half of the canvas, and a radius.
-         * The speed is set to a random value between the specified minimum and maximum speeds,
-         * and the heading is set to a fixed angle in radians.
-         */
-        function createShootingStar() {
-            var shootingStar = new ShootingStar({
-                x: randomRange(width / 2, width),
-                y: randomRange(0, height / 2),
-                radius: shootingStarRadius,
-            })
-            shootingStar.setSpeed(randomRange(shootingStarSpeed.min, shootingStarSpeed.max));
-            shootingStar.setHeading(degreesToRads(starsAngle));
-            shootingStars.push(shootingStar);
-        }
-
-        /**
-         * Kills a shooting star after a specified lifetime by setting its isDying property to true.
-         * The shooting star will gradually fade out by decreasing its opacity.
-         */
-        function killShootingStar(shootingStar) {
-            setTimeout(() => {
-                shootingStar.isDying = true;
-            }, shootingStarLifeTime);
-        }
-
-        /**
-         * The update function is called repeatedly to animate the stars and shooting stars.
-         * It clears the canvas, fills the background, updates the positions of stars and shooting stars,
-         * and draws them on the canvas. It also handles the spawning and dying of shooting stars.
-         * If a shooting star goes out of bounds, it is reset to the opposite side of the canvas.
-         * Dead shooting stars are removed from the array.
-         */
-        let update = function () {
-            if (!paused) {
-                context.clearRect(0, 0, width, height);
-                context.fillStyle = this.bg;
-                context.fillRect(0, 0, width, height);
-                context.fill();
-
-                for (let i=0; i<stars.length; i++) {
-                    let star = stars[i];
-                    star.update();
-                    drawStar(star);
-                    if (star.x > width) {
-                        star.x = 0;
-                    }
-                    if (star.x < 0) {
-                        star.x = width;
-                    }
-                    if (star.y > height) {
-                        star.y = 0;
-                    }
-                    if (star.y < 0) {
-                        star.y = height;
-                    }
-                }
-
-                for (let i=0; i<shootingStars.length; i++) {
-                    let shootingStar = shootingStars[i];
-                    if (shootingStar.isSpawning) {
-                        shootingStar.opacity += shootingStarOpacityDelta;
-                        if (shootingStar.opacity >= 1.0) {
-                            shootingStar.isSpawning = false;
-                            killShootingStar(shootingStar);
-                        }
-                    }
-                    if (shootingStar.isDying) {
-                        shootingStar.opacity -= shootingStarOpacityDelta;
-                        if (shootingStar.opacity <= 0.0) {
-                            shootingStar.isDying = false;
-                            shootingStar.isDead = true;
-                        }
-                    }
-                    shootingStar.trailLengthDelta += trailLengthDelta;
-
-                    shootingStar.update();
-                    if (shootingStar.opacity > 0.0) {
-                        drawShootingStar(shootingStar);
-                    }
-                }
-
-                // Delete dead shooting shootingStars
-                for (let i=shootingStars.length-1; i>=0; i--){
-                    if (shootingStars[i].isDead){
-                        shootingStars.splice(i, 1);
-                    }
-                }
-            }
-            requestAnimationFrame(update);
-        }.bind(this);
-
-        /**
-         * Draws a star on the canvas.
-         * The star is drawn as a filled circle with a specified radius.
-         * The color of the star is set to a light orange color.
-         * @param {Particle} star - The star to draw.
-         */
-        function drawStar(star) {
-            context.fillStyle = "rgb(255, 221, 157)";
-            context.beginPath();
-            context.arc(star.x, star.y, star.radius, 0, Math.PI * 2, false);
-            context.fill();
-        }
-
-        /**
-         * Draws a shooting star on the canvas.
-         * The shooting star is drawn as a star shape with a trail.
-         * The star is filled with a white color with opacity, and the trail is filled
-         * with a light orange color with opacity.
-         * The star is drawn at the current position of the shooting star, and the trail
-         * is drawn from the current position to a position determined by the shooting star's
-         * heading and the maximum trail length.
-         * @param {ShootingStar} p - The shooting star to draw.
-         */
-        function drawShootingStar(p) {
-            let x = p.x,
-                y = p.y,
-                currentTrailLength = (maxTrailLength * p.trailLengthDelta),
-                pos = lineToAngle(x, y, -currentTrailLength, p.getHeading());
-
-            context.fillStyle = "rgba(255, 255, 255, " + p.opacity + ")";
-
-            let starLength = 5;
-            context.beginPath();
-            context.moveTo(x - 1, y + 1);
-
-            context.lineTo(x, y + starLength);
-            context.lineTo(x + 1, y + 1);
-
-            context.lineTo(x + starLength, y);
-            context.lineTo(x + 1, y - 1);
-
-            context.lineTo(x, y + 1);
-            context.lineTo(x, y - starLength);
-
-            context.lineTo(x - 1, y - 1);
-            context.lineTo(x - starLength, y);
-
-            context.lineTo(x - 1, y + 1);
-            context.lineTo(x - starLength, y);
-
-            context.closePath();
-            context.fill();
-
-            // Draw the trail
-            context.fillStyle = "rgba(255, 221, 157, " + p.opacity + ")";
-            // context.lineWidth = 1;
-            // context.strokeStyle = "rgba(255, 221, 157, " + p.opacity + ")";
-            // context.lineCap = "round";
-            // context.lineJoin = "round";
-            context.beginPath();
-            context.moveTo(x - 1, y - 1);
-            context.lineTo(pos.x, pos.y);
-            context.lineTo(x + 1, y + 1);
-            context.closePath();
-            context.fill();
-        }
-
 
         // Start the animation loop
-        update();
+        this.update();
 
         // Create a ShootingStar every `shootingStarEmittingInterval` milliseconds
         setInterval(function() {
             if (paused) return;
-            createShootingStar();
+            this.createShootingStar();
         }.bind(this), shootingStarEmittingInterval);
     }
 }
