@@ -191,7 +191,8 @@ export default class HomePanel extends BasePanel {
     makeNight () {
         localStorage.setItem("mode", "dark");
 
-        setTimeout(this.nightSky.start, 100);
+        // setTimeout(this.nightSky.start, 100);
+        this.nightSky.start();
         this.topDiv.appendChild(this.nightSky.getDiv());
 
         // this.mtnBackground = doc.getElementById('mtn-background');
