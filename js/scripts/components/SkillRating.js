@@ -1,11 +1,23 @@
 // SkillRating Component
 //
-//   Component that shows a series of circles ('total') that are filled with
-//   a color ('color') depending on the 'filled' property.
+//   This component is used to display a skill rating in the form of circles.
+//   The number of circles is determined by the 'total' property, and the
+//   number of filled circles is determined by the 'fill' property. The color
+//   of the filled circles is determined by the 'fillColor' property, while
+//   the color of the unfilled circles is determined by the 'color' property.
 //
+// Public API
+//
+// @param {} options -
+// {
+//      fillColor:  color of the filled circles (default '#0b3948')
+//      color:      color of the unfilled circles (default '#8d9da7')
+//      total:      total number of circles (default 5)
+//      fill:       number of filled circles (default 0)
+// }
+//
+
 import BaseComponent from "../BaseComponent.js";
-// import Images from "../Images.js";
-// const images = new Images();
 
 export default class SkillRating extends BaseComponent {
     constructor (options) {

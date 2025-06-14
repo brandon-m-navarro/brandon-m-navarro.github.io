@@ -6,6 +6,12 @@
 // programmatically, and it is designed to be flexible and reusable across
 // different parts of the application.
 //
+// Public API
+//
+// @param {} options -
+// {
+//      component:  element (required, must be a component to display in the modal)
+// }
 
 import Images from "../Images.js";
 import BaseComponent from "../BaseComponent.js";

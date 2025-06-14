@@ -1,17 +1,18 @@
 // SlideControl Module
 //
-// A slide control will take advantage of css transitions to open/close a
-// container div by having it slide open/closed in the specified direction.
-// Several options are available to further specify the control.  Only the
-// component to slide is required.  All other options have logical defaults.
-//
-// Dependencies: Utilities.js
+// SlideControl is a component that allows sliding a div element in a specified
+// direction (left, right, up, or down) with a transition effect. It can be
+// used to create sliding menus, panels, or any other UI element that requires
+// sliding functionality. The component can be opened or closed with a smooth
+// animation, and it supports custom timing functions and durations for the
+// transitions. The component also provides methods to check if the slider is
+// open or closed, and to set the direction, timing, and duration of the slide
+// control. It emits events when the slider is opened or closed, allowing
+// other components to react to these changes.
 //
 // Public API
 //
-// # Constructor:
-// SlideControl(options)
-// @param options {
+// @param {} options -
 //      component:  element (required, must be a div element);
 //      direction:  SlideControl.RIGHT|LEFT|UP|DOWN; (default RIGHT)
 //      timing:     transform timing function name (default 'ease-out')

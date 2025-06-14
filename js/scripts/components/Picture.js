@@ -4,6 +4,16 @@
 //   specified image. Optionally, you can also provide some text
 //   that is shown when the component is touched or hovered over.
 //
+// Public API
+//
+// @param {} options -
+// {
+//      img:        image source (default 'img/dadongo.png')
+//      text:       text to display (default null, no text shown)
+//      listener:   function to call when the image is clicked (default undefined)
+// }
+//
+
 import BaseComponent from "../BaseComponent.js";
 import Images from "../Images.js";
 const images = new Images();

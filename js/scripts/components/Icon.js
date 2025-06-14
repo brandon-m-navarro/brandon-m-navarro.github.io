@@ -5,6 +5,20 @@
 //   that pro/preceeds the icon. This will create an additional div
 //   element to display said text.
 //
+// Public API
+//
+// @param {} options -
+// {
+//      img:           image source (default 'img/dadongo.png')
+//      text:          text to display (d: null, no text shown)
+//      textAlignment: Icon.getAlignments().RIGHT|LEFT (d: RIGHT)
+//      imgSize:       size of the image (d: '28px')
+//      fontSize:      size of the text (d: '16px')
+//      fontWeight:    weight of the text (d: '400')
+//      listener:      function to call when the image is clicked (d: undefined)
+// }
+//
+
 import BaseComponent from "../BaseComponent.js";
 import Images from "../Images.js";
 const images = new Images();
