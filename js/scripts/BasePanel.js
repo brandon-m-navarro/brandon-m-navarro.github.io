@@ -1,7 +1,23 @@
-// BasePanel Module
-
-// BasePanel is the superclass for all Panels and defines default interface
-// methods and managed properties.
+/**
+ * BasePanel.js
+ *
+ * The BasePanel class is designed to be extended by other
+ * panels, providing a consistent interface and common methods
+ * for managing the panel's lifecycle and visibility.
+ *
+ * Usage:
+ *   class MyPanel extends BasePanel {
+ *       constructor() {
+ *           super();
+ *           // Additional initialization for MyPanel
+ *       }
+ *
+ *       initialize() {
+ *           super.initialize();
+ *           // Additional initialization logic for MyPanel
+ *       }
+ *   }
+ */
 
 // Class
 export default class BasePanel {

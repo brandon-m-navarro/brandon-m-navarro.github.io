@@ -1,8 +1,23 @@
-// BaseView Module
-
-// BaseView is the superclass for all Views and defines default interface
-// methods and managed properties.
-
+/**
+ * BaseView.js
+ *
+ * The BaseView class is designed to be extended by other
+ * views, providing a consistent interface and common methods
+ * for managing the view's lifecycle and visibility.
+ *
+ * Usage:
+ *   class MyView extends BaseView {
+ *       constructor() {
+ *           super();
+ *           // Additional initialization for MyView
+ *       }
+ *
+ *       initialize() {
+ *           super.initialize();
+ *           // Additional initialization logic for MyView
+ *       }
+ *   }
+ */
 
 // Class
 export default class BaseView {

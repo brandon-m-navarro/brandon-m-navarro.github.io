@@ -1,3 +1,12 @@
+/**
+ * Images.js
+ * 
+ * This file defines the Images class, which contains a collection of site
+ * images and their corresponding properties such as source, alt text, and
+ * alternate source. The class provides a method to retrieve the images.
+ * 
+ */
+
 export default class Images {
     constructor () {
         // Site image ids and corresponding image files

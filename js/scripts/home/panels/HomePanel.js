@@ -1,14 +1,12 @@
-// HomePanel Module extends BasePanel
-//
-// This module creates the home panel for the application, which includes
-// a welcome message, a brief introduction, and links to the developer's
-// social media profiles. It also includes a toggle for light and dark modes,
-// a section for the developer's projects, and a footer with contact information.
-//
-// Copyright (c) 2023 Brandon Navarro
-// Licensed under the MIT License
-//
-
+/**
+ * HomePanel.js
+ *
+ * The HomePanel class is a singleton that extends BasePanel.
+ * It is responsible for creating and managing the home panel
+ * of the application, which includes various components such
+ * as pictures, information about the developer, and contact information.
+ * 
+ */
 'use strict';
 
 // Imports
@@ -21,9 +19,8 @@ import { debounce, addEventListeners, copyTextToClipboard } from '../../utils/Ut
 // Create images instance
 const images = new Images();
 
-let
-    // DOM elements
-    doc = window.document,
+// Create local variables
+let doc = window.document,
 
     // DOM IDs (must be unique)
     baseId = 'home-panel',
@@ -54,7 +51,7 @@ export default class HomePanel extends BasePanel {
         // Create and append elements
         this.initialize();
 
-        // Set up listeners for Moon/Night button
+        // Set up listeners for theme (Day/Night) button
         addEventListeners(this.moonDiv, () => {
             this.sunDiv.classList.remove('selected');
             this.moonDiv.classList.add('selected');
@@ -100,28 +97,27 @@ export default class HomePanel extends BasePanel {
             ).focus();
         });
 
-        // Email
+        // Show Email Popup
         addEventListeners(this.midEmailTextDiv, () => {
+
+            // Show email popup
             this.emailPopupDiv.classList.add('show-element');
 
-            // Create temp div that closes email popup and removes itself from the dom
-
-            // Don't create if already created
-            // if (typeof this.emailContainerListenerDiv === 'undefined') {}
+            // Create a div to listen for clicks outside of the email popup
             this.emailContainerListenerDiv = doc.createElement('div');    
             this.emailContainerListenerDiv.setAttribute('id', 'email-container');
             this.footerDiv.appendChild(this.emailContainerListenerDiv);
             this.emailContainerListenerDiv.classList.add('show-element');
 
+            // Add listener to close email popup when clicking outside of it
             this.emailContainerListenerDiv.addEventListener('click', () => {
                 this.emailPopupDiv.classList.remove('show-element');
                 this.emailContainerListenerDiv.remove('show-element');
             });
         });
 
-        // CopyEmail Button
+        // Copy Email Button. Show 'Copied' text in div and fade div out.
         addEventListeners(this.copyDiv, () => {
-            // Show 'Copied' text in div and fade div out
             copyTextToClipboard('brandon.m.navarro@gmail.com');
             this.emailPopupDiv.classList.add('show-copied');
             setTimeout(() => {
@@ -143,23 +139,24 @@ export default class HomePanel extends BasePanel {
         }
     }
 
-    // Set all SVGs
+    // Set the SVGs for the panel. This is called after the panel is
+    // initialized to ensure the SVGs are set and displayed correctly.
     setSvgs () {
-        // Get SVGs by ID and append to appropriate div
         this.sunMtnSvg = doc.getElementById('sun-mtn');
         this.sunMtnSvg.style.display = 'block';
-        
-        //
         this.mtnSunSvgDiv.appendChild(this.sunMtnSvg);
     };
 
+    // Make Day Mode (change colors, remove night sky, etc.)
     makeDay () {
+
+        // Set localStorage to light mode
         localStorage.setItem("mode", "light");
 
+        // Remove night sky from DOM (topDiv)
         this.nightSky.getDiv().remove();
-        // this.nightSky.hide();
 
-        // this.mtnBackground = doc.getElementById('mtn-background');
+        // Get SVG layers to update colors
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
         this.mtnLayer1 = doc.getElementById('mtn-layer1');
         this.mtnLayer2 = doc.getElementById('mtn-layer2');
@@ -169,7 +166,7 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer6 = doc.getElementById('mtn-layer6');
         this.mtnLayer7 = doc.getElementById('mtn-layer7');
 
-        // this.mtnBackground.setAttribute('fill', '#FB532C');
+        // Set colors for day mode
         this.mtnMoonSun.setAttribute('fill', '#FFD102');
         this.mtnLayer1.setAttribute('fill', '#E72C27');
         this.mtnLayer2.setAttribute('fill', '#C72423');
@@ -179,29 +176,35 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer6.setAttribute('fill', '#510B0E');
         this.mtnLayer7.setAttribute('fill', '#370601');
 
-        this.quoteTextDiv.classList.remove('dark');
-
+        // Set selected class for sun/moon button divs
         this.sunDiv.classList.add('selected');
         this.moonDiv.classList.remove('selected');
 
+        // Set icons to light mode
         this.reactImg.src = images.getImages()['react-b'].altSrc;
-
         this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
         this.midGithubIcon.src = images.getImages()['github'].src;
 
+        // Remove dark class from elements
+        this.quoteTextDiv.classList.remove('dark');
         this.emailPopupDiv.classList.remove('dark');
         this.frameDiv.classList.remove('dark');
         this.div.classList.remove('dark');
     };
 
+    // Make Night Mode (change colors, add night sky, etc.)
     makeNight () {
+
+        // Set localStorage to dark mode
         localStorage.setItem("mode", "dark");
 
-        // setTimeout(this.nightSky.start, 100);
+        // Start night sky
         this.nightSky.start();
+
+        // Add night sky to topDiv
         this.topDiv.appendChild(this.nightSky.getDiv());
 
-        // this.mtnBackground = doc.getElementById('mtn-background');
+        // Get SVG layers to update colors
         this.mtnMoonSun = doc.getElementById('mtn-moon-sun');
         this.mtnLayer1 = doc.getElementById('mtn-layer1');
         this.mtnLayer2 = doc.getElementById('mtn-layer2');
@@ -211,7 +214,7 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer6 = doc.getElementById('mtn-layer6');
         this.mtnLayer7 = doc.getElementById('mtn-layer7');
 
-        // this.mtnBackground.setAttribute('fill', '#35364A');
+        // Set colors for night mode
         this.mtnMoonSun.setAttribute('fill', '#F5E3B3');
         this.mtnLayer1.setAttribute('fill', '#020916');
         this.mtnLayer2.setAttribute('fill', '#0A111C');
@@ -221,22 +224,21 @@ export default class HomePanel extends BasePanel {
         this.mtnLayer6.setAttribute('fill', '#1F2435');
         this.mtnLayer7.setAttribute('fill', '#25293C');
 
-        this.quoteTextDiv.classList.add('dark');
-
+        // Set selected class for sun/moon button divs
         this.sunDiv.classList.remove('selected');
         this.moonDiv.classList.add('selected');
 
+        // Set icons to dark mode
         this.reactImg.src = images.getImages()['react-b'].altSrc;
-
         this.midLinkedInIcon.src = images.getImages()['linkedIn'].altSrc;
         this.midGithubIcon.src = images.getImages()['github'].altSrc;
 
+        // Add dark class to elements
+        this.quoteTextDiv.classList.add('dark');
         this.emailPopupDiv.classList.add('dark');
         this.frameDiv.classList.add('dark');
         this.div.classList.add('dark');
     };
-
-    // Public Methods
 
     // Create elements used on the panel
     createElements () {
@@ -315,32 +317,7 @@ export default class HomePanel extends BasePanel {
         this.midLinkedInIcon = doc.createElement('img');
         this.midEmailTextDiv = doc.createElement('div');
         this.midGithubIcon = doc.createElement('img');
-
-        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
-        this.midGithubIcon.src = images.getImages()['github'].src;
-
-        this.moonSvg.src = images.getImages()['moon'].src;
-        this.sunSvg.src = images.getImages()['sun'].src;
-
-        this.moonDiv.appendChild(this.moonSvg);
-        this.sunDiv.appendChild(this.sunSvg);
-
         this.reactImg = doc.createElement('img');
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
-
-        this.reactTextDiv.innerHTML =
-            'View site built using React & Typescript';
-        this.midEmailTextDiv.innerHTML = 'brandon.m.navarro@gmail.com';
-
-        this.footerLeftDiv.appendChild(this.reactImg);
-        this.footerLeftDiv.appendChild(this.reactTextDiv);
-
-        this.footerMidDiv.appendChild(this.midLinkedInIcon);
-        this.footerMidDiv.appendChild(this.midEmailTextDiv);
-        this.footerMidDiv.appendChild(this.midGithubIcon);
-
-        this.footerRightDiv.appendChild(this.moonDiv);
-        this.footerRightDiv.appendChild(this.sunDiv);
 
         // EmailFooter popup
         this.emailPopupDiv = doc.createElement('div');
@@ -350,20 +327,6 @@ export default class HomePanel extends BasePanel {
         this.emailDiv = doc.createElement('div');
         this.emailIcon = doc.createElement('img');
         this.emailText = doc.createElement('div');
-
-        this.copyIcon.src = images.getImages()['copy'].altSrc;
-        this.emailIcon.src = images.getImages()['email'].altSrc;
-        this.copyText.innerHTML = 'Copy';
-        this.emailText.innerHTML = 'Email';
-
-        this.copyDiv.appendChild(this.copyIcon);
-        this.copyDiv.appendChild(this.copyText);
-
-        this.emailDiv.appendChild(this.emailIcon);
-        this.emailDiv.appendChild(this.emailText);
-
-        this.emailPopupDiv.appendChild(this.copyDiv);
-        this.emailPopupDiv.appendChild(this.emailDiv);
     };
 
     // Append elements to the DOM
@@ -378,7 +341,6 @@ export default class HomePanel extends BasePanel {
         this.topDiv.appendChild(this.mtnSunSvgDiv);
         this.topDiv.appendChild(this.meDiv);
         this.topDiv.appendChild(this.quoteTextDiv);
-        // this.topDiv.appendChild(this.nightSky.getDiv());
 
         this.stepOneDiv.appendChild(this.stepOneTextDiv);
         this.stepOneDiv.appendChild(this.stepOneHeaderTextDiv);
@@ -413,20 +375,38 @@ export default class HomePanel extends BasePanel {
         this.bottomDiv.appendChild(this.bottomLeftDiv);
         this.bottomDiv.appendChild(this.bottomRightDiv);
 
+        this.footerLeftDiv.appendChild(this.reactImg);
+        this.footerLeftDiv.appendChild(this.reactTextDiv);
+
+        this.footerMidDiv.appendChild(this.midLinkedInIcon);
+        this.footerMidDiv.appendChild(this.midEmailTextDiv);
+        this.footerMidDiv.appendChild(this.midGithubIcon);
+
+        this.moonDiv.appendChild(this.moonSvg);
+        this.sunDiv.appendChild(this.sunSvg);
+        this.footerRightDiv.appendChild(this.moonDiv);
+        this.footerRightDiv.appendChild(this.sunDiv);
+
+        this.copyDiv.appendChild(this.copyIcon);
+        this.copyDiv.appendChild(this.copyText);
+
+        this.emailDiv.appendChild(this.emailIcon);
+        this.emailDiv.appendChild(this.emailText);
+
+        this.emailPopupDiv.appendChild(this.copyDiv);
+        this.emailPopupDiv.appendChild(this.emailDiv);
+
         this.footerDiv.appendChild(this.footerLeftDiv);
         this.footerDiv.appendChild(this.footerMidDiv);
         this.footerDiv.appendChild(this.footerRightDiv);
-
         this.footerDiv.appendChild(this.emailPopupDiv);
 
-        // Add elements to container
         this.frameDiv.appendChild(this.topDiv);
         this.frameDiv.appendChild(this.middleDiv);
         this.frameDiv.appendChild(this.moreAboutDiv);
         this.frameDiv.appendChild(this.bottomDiv);
         this.frameDiv.appendChild(this.footerDiv);
 
-        // Assemble
         this.div.appendChild(this.frameDiv);
     };
 
@@ -494,10 +474,21 @@ export default class HomePanel extends BasePanel {
             'A couple of months into my time there, we began developing a new app with a focus on greek life organizations called MyChapter. With the guidance of the company\'s founder Jim, I helped map out the expected class structure using UML diagrams and began designing and implementing the frontend. After graduating in the year of COVID, I was fortunate to get a software engineering role at TrampleZone, where I got to continue my work on MyChapter and even began testing out the service with multiple fraternities at my alma mater.';
         this.moreAboutTextDiv3.innerHTML =
             'Outside of work, I like to go out on walks and runs around Somerville, play in local basketball rec leagues, and go out for backpacking hikes when I\'m visiting family in New Hampshire. ';
-
+        this.reactTextDiv.innerHTML =
+            'View site built using React & Typescript';
+        this.midEmailTextDiv.innerHTML = 'brandon.m.navarro@gmail.com';
+        this.copyIcon.src = images.getImages()['copy'].altSrc;
+        this.emailIcon.src = images.getImages()['email'].altSrc;
+        this.copyText.innerHTML = 'Copy';
+        this.emailText.innerHTML = 'Email';
 
         // imgs
         this.meImg.src = images.getImages()['me_sitting'].src;
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
+        this.midGithubIcon.src = images.getImages()['github'].src;
+        this.moonSvg.src = images.getImages()['moon'].src;
+        this.sunSvg.src = images.getImages()['sun'].src;
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
 
         // Assign IDs to DOM elements, if needed
         this.frameDiv.setAttribute('id', frameDivId);

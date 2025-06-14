@@ -1,23 +1,22 @@
-// HomeView Module extends BaseView
-//
-// DESCRIPTION:
-//
-// HomeView displays my home via HomePanel.
-//
 
+/**
+ * HomeView.js
+ *
+ * HomeView displays the home panel, which contains various
+ * components and information about the application.
+ * It extends the BaseView class and provides methods
+ * for managing the home view's lifecycle and interactions.
+ *
+ */
+'use strict';
+
+// Import dependent modules
 import HomePanel from "./panels/HomePanel.js";
-
 import BaseView from '../BaseView.js';
 
-
-let
-    // DOM elements
-    doc = window.document,
-
-    // Base CSS selector
+// Create view variables
+let doc = window.document,
     defaultBaseSelector = 'home-view',
-
-    // Singleton reference
     self;
 
 
@@ -27,7 +26,7 @@ export default class HomeView extends BaseView {
     // Constructor
     constructor(options) {
 
-        // BOILER PLATE: Preserve instance reference and enforce singleton
+        // Preserve instance reference and enforce singleton
         if (typeof self === 'object') {
             return self;
         } else {
@@ -78,40 +77,5 @@ export default class HomeView extends BaseView {
             bubbles: false,
             cancelable: false
         }));
-    };
-
-    // Set initial contents when this view is displayed
-    setInitialView () {
-        // Setup navigation button
-        this.setNavigationButtons({
-            leftButton: BaseView.getNavigationText().BACK
-        });
-    };
-
-    // Set specified navigation buttons
-    setNavigationButtons (options) {
-        // Update navigation buttons
-        doc.body.dispatchEvent(new CustomEvent('navigationButtonEvent', {
-            detail: options,
-            bubbles: false,
-            cancelable: false
-        }));
-    };
-
-    // Dynamically add remaining artifacts
-    initialize() {
-        this.initialized = true;
-    };
-
-    // Constants
-
-    // Navigation Direction
-    static getNavigationDirection () {
-        return Object.freeze({
-            LEFT: 0,
-            RIGHT: 1,
-            UP: 2,
-            DOWN: 3
-        });
     };
 };

@@ -1,10 +1,12 @@
-// ResumePanel Module extends BasePanel
-//
-// DESCRIPTION:
-//
-//   ResumePanel will contain a variety of text artifacts that mirror my
-//   current resume
-//
+/**
+ * ResumePanel.js
+ * 
+ * The ResumePanel class is responsible for creating and managing the
+ * resume panel within the application. It extends the BasePanel class
+ * and provides methods for initializing the panel, creating its
+ * elements, and handling dark/light mode toggling.
+ * 
+ */
 
 import BasePanel from '../../BasePanel.js';
 import Icon from '../../components/Icon.js';
@@ -860,8 +862,6 @@ export default class ResumePanel extends BasePanel {
     // Append elements to the DOM
     assembleElements () {
 
-        // Add elements to container
-
         //
         this.meImgDiv.appendChild(this.meImg);
 
@@ -908,7 +908,6 @@ export default class ResumePanel extends BasePanel {
 
         this.cplusSkillDiv.appendChild(this.cplusSkillTextDiv);
         this.cplusSkillDiv.appendChild(this.cplusSkillRating.getDiv());
-
 
         //
         this.programmingListDiv.appendChild(this.javascriptSkillDiv);
@@ -1013,14 +1012,10 @@ export default class ResumePanel extends BasePanel {
         this.educationTopDiv.appendChild(this.educationDateLocationDiv);
         this.educationTopDiv.appendChild(this.topRightEducationDiv);
 
-        // this.educationTopDiv.appendChild(this.bachelorsTextDiv);
-
         this.sigmaPiImgDiv.appendChild(this.sigmaPiImg);
-
         this.sigmaPiHeaderDiv.appendChild(this.sigmaPiImgDiv);
         this.sigmaPiHeaderDiv.appendChild(this.sigmaPiTextDiv);
         this.sigmaPiHeaderDiv.appendChild(this.sigmaPiDateTextDiv);;
-
         this.sigmaPiUl.appendChild(this.sigmaPiLi1);
         this.sigmaPiUl.appendChild(this.sigmaPiLi4);
         this.sigmaPiUl.appendChild(this.sigmaPiLi2);
@@ -1031,11 +1026,9 @@ export default class ResumePanel extends BasePanel {
 
         //
         this.sparcImgDiv.appendChild(this.sparcImg);
-
         this.sparcHeaderDiv.appendChild(this.sparcImgDiv);
         this.sparcHeaderDiv.appendChild(this.sparcTextDiv);
         this.sparcHeaderDiv.appendChild(this.sparcDateTextDiv);;
-
         this.sparcUl.appendChild(this.sparcLi1);
         this.sparcUl.appendChild(this.sparcLi2);
         this.sparcUl.appendChild(this.sparcLi3);
@@ -1068,7 +1061,6 @@ export default class ResumePanel extends BasePanel {
         this.professionalTopDiv.appendChild(this.professionalJobDiv);
 
         this.professionalImgDiv.appendChild(this.professionalImg);
-        
 
         this.appStoreImgDiv.appendChild(this.appStoreImg);
         this.appStoreTextDiv.appendChild(this.appStoreSubtext);
@@ -1096,7 +1088,6 @@ export default class ResumePanel extends BasePanel {
 
         this.professionalDiv.appendChild(this.professionalExtraDiv);
 
-
         this.professionalTitleDiv2.appendChild(this.professionalTitleIcon2.getDiv());
         this.professionalDiv2.appendChild(this.professionalTitleDiv2);
 
@@ -1110,7 +1101,6 @@ export default class ResumePanel extends BasePanel {
         this.professionalTopDiv2.appendChild(this.professionalJobDiv2);
 
         this.professionalImgDiv2.appendChild(this.professionalImg2);
-        
 
         this.appStoreImgDiv2.appendChild(this.appStoreImg2);
         this.appStoreTextDiv2.appendChild(this.appStoreSubtext2);
@@ -1137,7 +1127,6 @@ export default class ResumePanel extends BasePanel {
         this.professionalDiv2.appendChild(this.professionalTextDiv2);
 
         this.professionalDiv2.appendChild(this.professionalExtraDiv2);
-
 
         this.projectTitleDiv.appendChild(this.projectTitleIcon.getDiv());
         this.projectDiv.appendChild(this.projectTitleDiv);
@@ -1230,12 +1219,9 @@ export default class ResumePanel extends BasePanel {
         this.frameDiv.appendChild(this.rightDiv);
         this.frameDiv.appendChild(this.professionalDiv2);
         this.frameDiv.appendChild(this.projectDiv);
-        // this.frameDiv.appendChild(this.footerDiv);
         this.footerDivWrapper.appendChild(this.emailPopupDiv);
         this.div.appendChild(this.frameDiv);
         this.div.appendChild(this.footerDivWrapper);
-
-
     };
 
     // Create and assemble panel elements
@@ -1258,7 +1244,6 @@ export default class ResumePanel extends BasePanel {
         this.mqpPosterImg.src = images.getImages()['mqp-poster'].src;
         this.mqpTrinaImg.src = images.getImages()['trina'].src;
         this.meImg.src = images.getImages()['me_hd'].src;
-        // this.iqpGroupImg
         this.mqpModalImg.src = images.getImages()['mqp-poster'].src;
 
         this.professionalImg.src = images.getImages()['my-chapter'].src;
@@ -1326,7 +1311,6 @@ export default class ResumePanel extends BasePanel {
         this.cplusSkillTextDiv.innerHTML = 'C++';
         this.phpSkillTextDiv.innerHTML = 'PHP';
         this.nodeSkillTextDiv.innerHTML = 'Node';
-
         this.gitToolsTextDiv.innerHTML = 'Git';
         this.figmaToolsTextDiv.innerHTML = 'Figma';
         this.adobePremiereToolsTextDiv.innerHTML = 'Adobe Premiere';
@@ -1338,12 +1322,10 @@ export default class ResumePanel extends BasePanel {
         this.dockerToolsTextDiv.innerHTML = 'Docker';
         this.campusInvolvementHeaderTextDiv.innerHTML =
             'Campus Involvement';
-
         this.requireFrameworkTextDiv.innerHTML = 'Require.js';
         this.tailwindFrameworkTextDiv.innerHTML = 'Tailwind';
         this.reactFrameworkTextDiv.innerHTML = 'React';
         this.nextJsFrameworkTextDiv.innerHTML = 'Next.js';
-
         this.escapeHeaderTextDiv.innerHTML = 'Escape (Board Game)';
         this.escapeYearTextDiv.innerHTML = '2020';
         this.escapeTextDiv.innerHTML = 'Escape is a family of board games, designed for the term project of  CS4233: Object-Oriented Analysis & Design. The game is initialized using a collection of XML files to control different aspects like board dimension and shape, game pieces, victory conditions, and different battle rules. The course focused on using a TDD approach and evolutionary code design to continually add to and improve the game throughout the 7 weeks of development.';
@@ -1363,16 +1345,12 @@ export default class ResumePanel extends BasePanel {
         this.iqpYearTextDiv.innerHTML = '2018-2019';
         this.iqpHeaderTextDiv.innerHTML = 'Mathematics Tutoring Center at NUST';
         this.iqpTextDiv.innerHTML = 'Worked within a team of 4 to create and implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to test these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project were creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor (ASSISTments), which I also worked with before the project.';
-
         this.playStoreSubtext.innerHTML = 'View in the';
         this.playStoreText.innerHTML = 'Google Play Store';
-
         this.appStoreSubtext.innerHTML = 'View in the';
         this.appStoreText.innerHTML = 'App Store';
-
         this.playStoreSubtext2.innerHTML = 'View in the';
         this.playStoreText2.innerHTML = 'Google Play Store';
-
         this.appStoreSubtext2.innerHTML = 'View in the';
         this.appStoreText2.innerHTML = 'App Store';
 
@@ -1410,7 +1388,7 @@ export default class ResumePanel extends BasePanel {
 
         this.footerDivWrapper.appendChild(this.footerDiv);
 
-        // -----------------
+        // ----------------------------------------
 
         // Assign IDs to DOM elements, if needed
         this.mqpModalContainerDiv.classList.add('mqp-modal');

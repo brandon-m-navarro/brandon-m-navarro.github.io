@@ -1,13 +1,31 @@
-// ViewManager Module
-//
-// DESCRIPTION:
-//
-// The ViewManager is responsible for managing all application views, including
-// showing, hiding, navigation, event management, and more. Each View must
-// implement a common interface defined by the ViewManager.  The following
-// methods are required to be implemented by the ViewManager and each supported
-// View.
-//
+
+/**
+ * ViewManager.js
+ *
+ * The ViewManager class is responsible for managing the different views
+ * in the application. It handles the initialization, display, and
+ * transitions between views, allowing for a modular and organized
+ * structure. The ViewManager maintains a collection of views, each of which
+ * can be shown or hidden as needed. It also provides methods for scrolling
+ * to the top of views, showing default views, and managing the visibility
+ * of views.
+ *
+ * Usage:
+ *   const viewManager = new ViewManager();
+ *   viewManager.initialize({ clientDiv: document.getElementById('app') }
+ *   viewManager.showDefaultView();
+ *   viewManager.showViewByName('ResumeView');
+ *   viewManager.hideView(viewManager.getVisibleView());
+ *   viewManager.scrollToTop();
+ *   viewManager.openSlider(viewManager.getVisibleView().getSlider());
+ *   viewManager.closeSlider(viewManager.getVisibleView().getSlider());
+ *   viewManager.getCurrentView();
+ *   viewManager.setCurrentView(viewManager.getVisibleView());
+ *   viewManager.getViews();
+ *   viewManager.getVisibleView();
+ *   viewManager.setVisibleView(viewManager.getViews()['HomeView']);
+ */
+'use strict';
 
 // Import & instantiate dependent modules
 import ResumeView from './resume/ResumeView.js';

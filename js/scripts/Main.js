@@ -1,12 +1,21 @@
-// Main.js
-// This file is part of the client-side application for managing views and themes.
-// It initializes the application, sets up the splash screen, and manages navigation between views.
-// It also handles theme changes and listens for system theme changes.
-// It is designed to be modular and maintainable, allowing for easy updates and changes in the future.
-//
-
+/**
+ * Main.js
+ * 
+ * The Main class serves as the entry point for the application,
+ * managing the overall structure and flow of the client-side
+ * application. It handles the creation of the main layout,
+ * including the splash screen, navigation, and theming.
+ * The Main class also initializes the ViewManager, which is
+ * responsible for managing different views in the application.
+ * It listens for user interactions, such as navigation clicks,
+ * and applies the appropriate theme based on user preferences
+ * or system settings.
+ *
+ * Usage:
+ *   const main = new Main();
+ *   main.start();
+ */
 'use strict';
-
 
 // Import & instantiate dependent modules
 import ViewManager from './ViewManager.js';

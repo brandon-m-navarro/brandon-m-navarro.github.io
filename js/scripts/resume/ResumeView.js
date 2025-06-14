@@ -1,23 +1,23 @@
-// ResumeView Module extends BaseView
-//
-// DESCRIPTION:
-//
-// ResumeView displays my resume via ResumePanel.
-//
 
+/**
+ * ResumeView.js
+ *
+ * The ResumeView class is responsible for displaying the resume panel
+ * within the application. It extends the BaseView class and initializes
+ * the resume panel, sets up the title, and manages the view's lifecycle.
+ * It provides methods for showing and hiding the view, as well as handling
+ * events related to the resume panel.
+ *
+ */
+'use strict';
+
+// Import dependent modules
 import ResumePanel from "./panels/ResumePanel.js";
-
 import BaseView from '../BaseView.js';
 
-
-let
-    // DOM elements
-    doc = window.document,
-
-    // Base CSS selector
+// Create view variables
+let doc = window.document,
     defaultBaseSelector = 'resume-view',
-
-    // Singleton reference
     self;
 
 
@@ -27,7 +27,7 @@ export default class ResumeView extends BaseView {
     // Constructor
     constructor(options) {
 
-        // BOILER PLATE: Preserve instance reference and enforce singleton
+        // Preserve instance reference and enforce singleton
         if (typeof self === 'object') {
             return self;
         } else {
@@ -48,7 +48,6 @@ export default class ResumeView extends BaseView {
         // Title
         this.titleDiv = doc.createElement('div');
         this.titleTextDiv = doc.createElement('div');
-        // this.titleTextDiv.innerHTML = 'ResumeView!';
         this.titleLineDiv = doc.createElement('div');
         this.titleDiv.appendChild(this.titleTextDiv);
         this.titleDiv.appendChild(this.titleLineDiv);
@@ -61,7 +60,7 @@ export default class ResumeView extends BaseView {
         this.frameDiv.appendChild(this.resumePanel.getDiv());
         this.div.appendChild(this.frameDiv);
 
-        // Set DOM IDs
+        // Set IDs
         this.div.setAttribute('id',      this.baseSelector + '-div');
         this.frameDiv.setAttribute('id', this.baseSelector + '-frame-div');
         this.titleDiv.setAttribute('id', this.baseSelector + '-title-div');
@@ -80,42 +79,5 @@ export default class ResumeView extends BaseView {
             bubbles: false,
             cancelable: false
         }));
-    };
-
-    // Set initial contents when this view is displayed
-    setInitialView () {
-        // Setup navigation button
-        this.setNavigationButtons({
-            leftButton: BaseView.getNavigationText().BACK
-        });
-    };
-
-    // Set specified navigation buttons
-    setNavigationButtons (options) {
-        // Update navigation buttons
-        doc.body.dispatchEvent(new CustomEvent('navigationButtonEvent', {
-            detail: options,
-            bubbles: false,
-            cancelable: false
-        }));
-    };
-
-    // Dynamically add remaining artifacts
-    initialize() {
-
-        // Complete with initialization
-        this.initialized = true;
-    };
-
-    // Constants
-
-    // Navigation Direction
-    static getNavigationDirection () {
-        return Object.freeze({
-            LEFT: 0,
-            RIGHT: 1,
-            UP: 2,
-            DOWN: 3
-        });
     };
 };

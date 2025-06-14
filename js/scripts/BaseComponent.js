@@ -1,7 +1,23 @@
-// BaseComponent Module
-
-// BaseComponent is the superclass for all Panels and defines default interface
-// methods and managed properties.
+/**
+ * BaseComponent.js
+ *
+ * The BaseComponent class is designed to be extended by other
+ * components, providing a consistent interface and common methods
+ * for managing the component's lifecycle and visibility.
+ *
+ * Usage:
+ *   class MyComponent extends BaseComponent {
+ *       constructor() {
+ *           super();
+ *           // Additional initialization for MyComponent
+ *       }
+ *
+ *       initialize() {
+ *           super.initialize();
+ *           // Additional initialization logic for MyComponent
+ *       }
+ *   }
+ */
 
 // Class
 export default class BaseComponent {
