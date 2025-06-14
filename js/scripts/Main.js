@@ -1,14 +1,20 @@
+// Main.js
+// This file is part of the client-side application for managing views and themes.
+// It initializes the application, sets up the splash screen, and manages navigation between views.
+// It also handles theme changes and listens for system theme changes.
+// It is designed to be modular and maintainable, allowing for easy updates and changes in the future.
+//
+
+'use strict';
+
+
 // Import & instantiate dependent modules
 import ViewManager from './ViewManager.js';
 const viewManager = new ViewManager();
 
-import Utilities from './utils/Utilities.js';
-const utilities = new Utilities();
+import { addEventListeners, isMobile } from './utils/Utilities.js';
 
-import Images from './Images.js';
-const images = new Images();
-
-let doc = window.document;
+const doc = window.document;
 
 export class Main {
     constructor(debug = false) {
@@ -19,10 +25,10 @@ export class Main {
         this.load();
 
         // Listeners
-        utilities.addEventListeners(this.aboutNavTextDiv, () => {
+        addEventListeners(this.aboutNavTextDiv, () => {
             this.showHome();
         });
-        utilities.addEventListeners(this.resumeNavTextDiv, () => {
+        addEventListeners(this.resumeNavTextDiv, () => {
             this.showResume();
         });
 
@@ -156,8 +162,6 @@ export class Main {
     // Load the website
     load() {
 
-        const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
         this.createElements();
 
         // Set innerHTML
@@ -165,8 +169,7 @@ export class Main {
         this.resumeNavTextDiv.innerHTML = 'Resume';
 
         // Determine mobile/desktop
-        let isMobile = utilities.isMobile();
-        console.info('Are we running on mobile? - ' + isMobile);
+        console.info('Are we running on mobile? - ' + isMobile());
 
         // Assemble
         this.topClientDiv.appendChild(this.resumeNavTextDiv);

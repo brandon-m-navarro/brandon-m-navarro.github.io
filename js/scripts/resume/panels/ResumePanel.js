@@ -11,9 +11,8 @@ import Icon from '../../components/Icon.js';
 import Images from '../../Images.js';
 import Modal from '../../components/Modal.js';
 import SkillRating from '../../components/SkillRating.js';
-import Utilities from '../../utils/Utilities.js';
 const images = new Images();
-const utilities = new Utilities();
+import { addEventListeners, copyTextToClipboard } from '../../utils/Utilities.js';
 
 let
     // DOM elements
@@ -704,37 +703,37 @@ export default class ResumePanel extends BasePanel {
         // Listeners
 
         // Open a new tab when user selects project links or contact infos
-        utilities.addEventListeners(this.websiteIcon.getDiv(), () => {
+        addEventListeners(this.websiteIcon.getDiv(), () => {
             window.open(
                 'https://github.com/brandon-m-navarro/brandon-m-navarro.github.io',
                 '_blank'
             ).focus();
         });
-        utilities.addEventListeners(this.linkedInIcon.getDiv(), () => {
+        addEventListeners(this.linkedInIcon.getDiv(), () => {
             window.open(
                 'https://www.linkedin.com/in/brandon-navarro-b36b97149',
                 '_blank'
             ).focus();
         });
-        utilities.addEventListeners(this.escapeLinkImgDiv, () => {
+        addEventListeners(this.escapeLinkImgDiv, () => {
             window.open(
                 'https://github.com/brandon-m-navarro/escape/tree/master',
                 '_blank'
             ).focus();
         });
-        utilities.addEventListeners(this.ttbLinkImgDiv, () => {
+        addEventListeners(this.ttbLinkImgDiv, () => {
             window.open(
                 'https://github.com/Benmw99/TeamE3733TTB2',
                 '_blank'
             ).focus();
         });
-        utilities.addEventListeners(this.mqpLinkImgDiv, () => {
+        addEventListeners(this.mqpLinkImgDiv, () => {
             window.open(
                 'https://digital.wpi.edu/concern/student_works/rf55zb37d?locale=en',
                 '_blank'
             ).focus();
         });
-        utilities.addEventListeners(this.iqpLinkImgDiv, () => {
+        addEventListeners(this.iqpLinkImgDiv, () => {
             window.open(
                 'https://digital.wpi.edu/concern/student_works/x633f145v?locale=en',
                 '_blank'
@@ -742,26 +741,26 @@ export default class ResumePanel extends BasePanel {
         });
 
         // MyChapter buttons
-        utilities.addEventListeners(this.appStoreButtonDiv, () => {
+        addEventListeners(this.appStoreButtonDiv, () => {
             window.open(
                 'https://apps.apple.com/us/app/mychapter-app-for-my-chapter/id6444417593',
                 '_blank'
             ).focus();
         });
-        utilities.addEventListeners(this.playStoreButtonDiv, () => {
+        addEventListeners(this.playStoreButtonDiv, () => {
             window.open(
                 'https://play.google.com/store/apps/details?id=com.tramplezone.mychapter&hl=en_US&pli=1',
                 '_blank'
             ).focus();
         });
 
-        utilities.addEventListeners(this.appStoreButtonDiv2, () => {
+        addEventListeners(this.appStoreButtonDiv2, () => {
             window.open(
                 'https://apps.apple.com/us/app/mychapter-app-for-my-chapter/id6444417593',
                 '_blank'
             ).focus();
         });
-        utilities.addEventListeners(this.playStoreButtonDiv2, () => {
+        addEventListeners(this.playStoreButtonDiv2, () => {
             window.open(
                 'https://play.google.com/store/apps/details?id=com.tramplezone.mychapter&hl=en_US&pli=1',
                 '_blank'
@@ -769,14 +768,14 @@ export default class ResumePanel extends BasePanel {
         });
 
         // Expand modal when user selects images
-        utilities.addEventListeners(this.mqpPosterImgDiv, () => {
+        addEventListeners(this.mqpPosterImgDiv, () => {
             this.mqpModal.open();
         });
 
         // Footer listeners
 
         // Set up listeners for Moon/Night button
-        utilities.addEventListeners(this.moonDiv, () => {
+        addEventListeners(this.moonDiv, () => {
             this.sunDiv.classList.remove('selected');
             this.moonDiv.classList.add('selected');
 
@@ -786,7 +785,7 @@ export default class ResumePanel extends BasePanel {
                 cancelable: false
             }));
         });
-        utilities.addEventListeners(this.sunDiv, () => {
+        addEventListeners(this.sunDiv, () => {
             this.sunDiv.classList.add('selected');
             this.moonDiv.classList.remove('selected');
 
@@ -798,7 +797,7 @@ export default class ResumePanel extends BasePanel {
         });
 
         // Github Button
-        utilities.addEventListeners(this.midGithubIcon, () => {
+        addEventListeners(this.midGithubIcon, () => {
             window.open(
                 'https://github.com/brandon-m-navarro',
                 '_blank'
@@ -806,7 +805,7 @@ export default class ResumePanel extends BasePanel {
         });
 
         // LinkedIn Button
-        utilities.addEventListeners(this.midLinkedInIcon, () => {
+        addEventListeners(this.midLinkedInIcon, () => {
             window.open(
                 'https://www.linkedin.com/in/brandon-navarro-b36b97149/',
                 '_blank'
@@ -814,7 +813,7 @@ export default class ResumePanel extends BasePanel {
         });
 
         // React Button
-        utilities.addEventListeners(this.footerLeftDiv, () => {
+        addEventListeners(this.footerLeftDiv, () => {
             window.open(
                 'https://nextjs-site-sand.vercel.app',
                 '_blank'
@@ -822,7 +821,7 @@ export default class ResumePanel extends BasePanel {
         });
 
         // Email
-        utilities.addEventListeners(this.midEmailTextDiv, () => {
+        addEventListeners(this.midEmailTextDiv, () => {
             this.emailPopupDiv.classList.add('show-element');
 
             // Create temp div that closes email popup and removes itself from the dom
@@ -842,9 +841,9 @@ export default class ResumePanel extends BasePanel {
         });
 
         // CopyEmail Button
-        utilities.addEventListeners(this.copyDiv, () => {
+        addEventListeners(this.copyDiv, () => {
             // Show 'Copied' text in div and fade div out
-            utilities.copyTextToClipboard('brandon.m.navarro@gmail.com');
+            copyTextToClipboard('brandon.m.navarro@gmail.com');
             this.emailPopupDiv.classList.add('show-copied');
             setTimeout(() => {
                 this.emailPopupDiv.classList.remove('show-copied');
@@ -852,7 +851,7 @@ export default class ResumePanel extends BasePanel {
         });
 
         // Open Email Button
-        utilities.addEventListeners(this.emailDiv, () => {
+        addEventListeners(this.emailDiv, () => {
             window.location.href = "mailto:brandon.m.navarro@gmail.com?";
         });
 

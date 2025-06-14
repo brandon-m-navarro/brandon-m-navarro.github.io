@@ -21,9 +21,8 @@
 
 
 // Import & instantiate dependent modules
-import Utilities from '../utils/Utilities.js';
-const utilities = new Utilities();
 import BaseComponent from '../BaseComponent.js';
+import { getTransitionEvent } from '../utils/Utilities.js';
 
 // Constructor
 export default class SlideControl extends BaseComponent {
@@ -81,7 +80,7 @@ export default class SlideControl extends BaseComponent {
         this.setContainerStyle();
 
         // Get the transition event for this platform
-        this.transitionEvent = utilities.getTransitionEvent();
+        this.transitionEvent = getTransitionEvent();
 
         // Add transition and single listener
         this.div.addEventListener(this.transitionEvent, (event) => {

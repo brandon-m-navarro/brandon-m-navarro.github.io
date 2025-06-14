@@ -16,9 +16,6 @@ const resumeView = new ResumeView();
 import HomeView from './home/HomeView.js';
 const homeView = new HomeView();
 
-import Utilities from './utils/Utilities.js';
-const utilities = new Utilities();
-
 import SlideControl from './components/SlideControl.js';
 
 let // Create local vars

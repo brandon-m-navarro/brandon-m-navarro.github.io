@@ -1,19 +1,25 @@
 // HomePanel Module extends BasePanel
 //
-// DESCRIPTION:
+// This module creates the home panel for the application, which includes
+// a welcome message, a brief introduction, and links to the developer's
+// social media profiles. It also includes a toggle for light and dark modes,
+// a section for the developer's projects, and a footer with contact information.
 //
-//   HomePanel will contain a variety of text artifacts that mirror my
-//   current home
+// Copyright (c) 2023 Brandon Navarro
+// Licensed under the MIT License
 //
 
+'use strict';
+
+// Imports
 import BasePanel from '../../BasePanel.js';
 import Picture from '../../components/Picture.js';
-
 import Images from '../../Images.js';
-import Utilities from '../../utils/Utilities.js';
 import NightSky from '../../components/NightSky.js'
+import { debounce, addEventListeners, copyTextToClipboard } from '../../utils/Utilities.js';
+
+// Create images instance
 const images = new Images();
-const utilities = new Utilities();
 
 let
     // DOM elements
@@ -49,7 +55,7 @@ export default class HomePanel extends BasePanel {
         this.initialize();
 
         // Set up listeners for Moon/Night button
-        utilities.addEventListeners(this.moonDiv, () => {
+        addEventListeners(this.moonDiv, () => {
             this.sunDiv.classList.remove('selected');
             this.moonDiv.classList.add('selected');
 
@@ -59,7 +65,7 @@ export default class HomePanel extends BasePanel {
                 cancelable: false
             }));
         });
-        utilities.addEventListeners(this.sunDiv, () => {
+        addEventListeners(this.sunDiv, () => {
             this.sunDiv.classList.add('selected');
             this.moonDiv.classList.remove('selected');
 
@@ -71,7 +77,7 @@ export default class HomePanel extends BasePanel {
         });
 
         // Github Button
-        utilities.addEventListeners(this.midGithubIcon, () => {
+        addEventListeners(this.midGithubIcon, () => {
             window.open(
                 'https://github.com/brandon-m-navarro',
                 '_blank'
@@ -79,7 +85,7 @@ export default class HomePanel extends BasePanel {
         });
 
         // LinkedIn Button
-        utilities.addEventListeners(this.midLinkedInIcon, () => {
+        addEventListeners(this.midLinkedInIcon, () => {
             window.open(
                 'https://www.linkedin.com/in/brandon-navarro-b36b97149/',
                 '_blank'
@@ -87,7 +93,7 @@ export default class HomePanel extends BasePanel {
         });
 
         // React Button
-        utilities.addEventListeners(this.footerLeftDiv, () => {
+        addEventListeners(this.footerLeftDiv, () => {
             window.open(
                 'https://nextjs-site-sand.vercel.app',
                 '_blank'
@@ -95,7 +101,7 @@ export default class HomePanel extends BasePanel {
         });
 
         // Email
-        utilities.addEventListeners(this.midEmailTextDiv, () => {
+        addEventListeners(this.midEmailTextDiv, () => {
             this.emailPopupDiv.classList.add('show-element');
 
             // Create temp div that closes email popup and removes itself from the dom
@@ -114,9 +120,9 @@ export default class HomePanel extends BasePanel {
         });
 
         // CopyEmail Button
-        utilities.addEventListeners(this.copyDiv, () => {
+        addEventListeners(this.copyDiv, () => {
             // Show 'Copied' text in div and fade div out
-            utilities.copyTextToClipboard('brandon.m.navarro@gmail.com');
+            copyTextToClipboard('brandon.m.navarro@gmail.com');
             this.emailPopupDiv.classList.add('show-copied');
             setTimeout(() => {
                 this.emailPopupDiv.classList.remove('show-copied');
@@ -124,7 +130,7 @@ export default class HomePanel extends BasePanel {
         });
 
         // Open Email Button
-        utilities.addEventListeners(this.emailDiv, () => {
+        addEventListeners(this.emailDiv, () => {
             window.location.href = "mailto:brandon.m.navarro@gmail.com?";
         });
     }
@@ -436,7 +442,7 @@ export default class HomePanel extends BasePanel {
         // Handle sizing Mountains svg to window size
 
         // Put handleResize call into a variable so we can later remove the event listener
-        const eventHandler = utilities.debounce(this.handleResize);
+        const eventHandler = debounce(this.handleResize);
         window.addEventListener('resize', eventHandler);
 
         // Ensure SVG is appropriatly sized on initial load

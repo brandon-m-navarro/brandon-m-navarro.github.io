@@ -1,13 +1,16 @@
 // Modal Component
 //
-//   This component creates a modal window which
+// This component is used to create a modal dialog that can display any
+// component passed to it. It includes a mask to darken the background and
+// a close button to dismiss the modal. The modal can be opened and closed
+// programmatically, and it is designed to be flexible and reusable across
+// different parts of the application.
 //
-import BaseComponent from "../BaseComponent.js";
-import Images from "../Images.js";
-import Utilities from "../utils/Utilities.js";
 
-let utilities = new Utilities(),
-    images = new Images();
+import Images from "../Images.js";
+import BaseComponent from "../BaseComponent.js";
+import { addEventListeners } from "../utils/Utilities.js";
+const images = new Images();
 
 export default class Modal extends BaseComponent {
     constructor (options) {
@@ -54,12 +57,12 @@ export default class Modal extends BaseComponent {
         // Listeners
 
         // If mask is selected, close the modal
-        utilities.addEventListeners(this.maskDiv, () => {
+        addEventListeners(this.maskDiv, () => {
             this.close();
         });
 
         // If 'X' is selected, close the modal
-        utilities.addEventListeners(this.closeImgDiv, () => {
+        addEventListeners(this.closeImgDiv, () => {
             this.close();
         });
     }
