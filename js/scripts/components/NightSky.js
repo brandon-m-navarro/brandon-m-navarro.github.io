@@ -57,9 +57,9 @@ const
     //   scale: Scale factor for the size of the stars
     //   count: Number of stars in this layer
     layers = [
-        { speed: 0.015, scale: 0.2,  count: 320 },
-        { speed: 0.03,  scale: 0.5,  count: 50 },
-        { speed: 0.05,  scale: 0.75, count: 30 }
+        { speed: 0.0175, scale: 0.25,  count: 350 },
+        { speed: 0.03,  scale: 0.55,  count: 50 },
+        { speed: 0.05,  scale: 0.75, count: 35 }
     ];
 
 /**
@@ -354,6 +354,9 @@ export default class NightSky extends BaseComponent {
                         this.killShootingStar(shootingStar);
                     }
                 }
+
+                // If shooting star is dying, decrease opacity. Once opacity
+                // reaches 0, mark it as dead
                 if (shootingStar.isDying) {
                     shootingStar.opacity -= shootingStarOpacityDelta;
                     if (shootingStar.opacity <= 0.0) {
@@ -361,9 +364,12 @@ export default class NightSky extends BaseComponent {
                         shootingStar.isDead = true;
                     }
                 }
-                shootingStar.trailLengthDelta += trailLengthDelta;
 
+                // Update position of shooting star
+                shootingStar.trailLengthDelta += trailLengthDelta;
                 shootingStar.update();
+
+                // Draw the shooting star
                 if (shootingStar.opacity > 0.0) {
                     this.drawShootingStar(shootingStar);
                 }
