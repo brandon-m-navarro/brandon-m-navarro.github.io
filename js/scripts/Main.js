@@ -134,7 +134,7 @@ export class Main {
 
                 viewManager.getViews()['HomeView'].homePanel.makeNight();
                 viewManager.getViews()['ResumeView'].resumePanel.makeNight();
-                viewManager.getViews()['ProjectsView'].resumePanel.makeNight();
+                viewManager.getViews()['ProjectsView'].projectsPanel.makeNight();
 
                 break;
         }
