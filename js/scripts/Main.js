@@ -40,6 +40,9 @@ export class Main {
         addEventListeners(this.resumeNavTextDiv, () => {
             this.showResume();
         });
+        addEventListeners(this.projectsNavTextDiv, () => {
+            this.showResume();
+        });
 
         // Append inline SVGs to appropriate divs
         window.onload = event => {
@@ -62,6 +65,12 @@ export class Main {
             this.setTheme(Main.getThemes().DARK)
         });
         viewManager.getViews()['ResumeView'].resumePanel.getDiv().addEventListener('light', () => {
+            this.setTheme(Main.getThemes().LIGHT)
+        });
+        viewManager.getViews()['ProjectsView'].projectsPanel.getDiv().addEventListener('dark', () => {
+            this.setTheme(Main.getThemes().DARK)
+        });
+        viewManager.getViews()['ProjectsView'].projectsPanel.getDiv().addEventListener('light', () => {
             this.setTheme(Main.getThemes().LIGHT)
         });
 
@@ -115,6 +124,7 @@ export class Main {
 
                 viewManager.getViews()['HomeView'].homePanel.makeDay();
                 viewManager.getViews()['ResumeView'].resumePanel.makeDay();
+                viewManager.getViews()['ProjectsView'].resumePanel.makeDay();
 
                 break;
             case Main.getThemes().DARK:
@@ -124,6 +134,7 @@ export class Main {
 
                 viewManager.getViews()['HomeView'].homePanel.makeNight();
                 viewManager.getViews()['ResumeView'].resumePanel.makeNight();
+                viewManager.getViews()['ProjectsView'].resumePanel.makeNight();
 
                 break;
         }
@@ -133,6 +144,7 @@ export class Main {
     showHome () {
         this.aboutNavTextDiv.classList.add('selected');
         this.resumeNavTextDiv.classList.remove('selected');
+        this.projectsNavTextDiv.classList.remove('selected');
         viewManager.showViewByName('HomeView');
     }
 
@@ -140,7 +152,16 @@ export class Main {
     showResume () {
         this.resumeNavTextDiv.classList.add('selected');
         this.aboutNavTextDiv.classList.remove('selected');
+        this.projectsNavTextDiv.classList.remove('selected');
         viewManager.showViewByName('ResumeView');
+    }
+
+    // Show ResumeView
+    showProjects () {
+        this.projectsNavTextDiv.classList.add('selected');
+        this.resumeNavTextDiv.classList.remove('selected');
+        this.aboutNavTextDiv.classList.remove('selected');
+        viewManager.showViewByName('ProjectsView');
     }
 
     // Start the application
@@ -163,6 +184,7 @@ export class Main {
 
         this.aboutNavTextDiv = doc.createElement('div');
         this.resumeNavTextDiv = doc.createElement('div');
+        this.projectsNavTextDiv = doc.createElement('div');
 
         this.footer = doc.createElement('footer');
         this.footerMidDiv = doc.createElement('div');
@@ -176,6 +198,7 @@ export class Main {
         // Set innerHTML
         this.aboutNavTextDiv.innerHTML = 'Me';
         this.resumeNavTextDiv.innerHTML = 'Resume';
+        this.projectsNavTextDiv.innerHTML = 'Projects';
 
         // Determine mobile/desktop
         console.info('Are we running on mobile? - ' + isMobile());
@@ -183,6 +206,7 @@ export class Main {
         // Assemble
         this.topClientDiv.appendChild(this.resumeNavTextDiv);
         this.topClientDiv.appendChild(this.aboutNavTextDiv);
+        this.topClientDiv.appendChild(this.projectsNavTextDiv);
 
         this.footer.appendChild(this.footerMidDiv);
 
