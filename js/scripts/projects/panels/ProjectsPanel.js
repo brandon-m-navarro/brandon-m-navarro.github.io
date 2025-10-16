@@ -243,6 +243,89 @@ export default class ProjectsPanel extends BasePanel {
         this.footerDiv.appendChild(this.footerRightDiv);
 
         this.footerDivWrapper.appendChild(this.footerDiv);
+
+// Footer listeners
+
+        // Set up listeners for Moon/Night button
+        addEventListeners(this.moonDiv, () => {
+            this.sunDiv.classList.remove('selected');
+            this.moonDiv.classList.add('selected');
+
+            this.div.dispatchEvent(new CustomEvent('dark', {
+                detail: {},
+                bubbles: true,
+                cancelable: false
+            }));
+        });
+        addEventListeners(this.sunDiv, () => {
+            this.sunDiv.classList.add('selected');
+            this.moonDiv.classList.remove('selected');
+
+            this.div.dispatchEvent(new CustomEvent('light', {
+                detail: {},
+                bubbles: true,
+                cancelable: false
+            }));
+        });
+
+        // Github Button
+        addEventListeners(this.midGithubIcon, () => {
+            window.open(
+                'https://github.com/brandon-m-navarro',
+                '_blank'
+            ).focus();
+        });
+
+        // LinkedIn Button
+        addEventListeners(this.midLinkedInIcon, () => {
+            window.open(
+                'https://www.linkedin.com/in/brandon-navarro-b36b97149/',
+                '_blank'
+            ).focus();
+        });
+
+        // React Button
+        addEventListeners(this.footerLeftDiv, () => {
+            window.open(
+                'https://nextjs-site-sand.vercel.app',
+                '_blank'
+            ).focus();
+        });
+
+        // Email
+        addEventListeners(this.midEmailTextDiv, () => {
+            this.emailPopupDiv.classList.add('show-element');
+
+            // Create temp div that closes email popup and removes itself from the dom
+
+            // Don't create if already created
+            if (typeof this.emailContainerListenerDiv === 'undefined') {
+            }
+            this.emailContainerListenerDiv = doc.createElement('div');    
+            this.emailContainerListenerDiv.setAttribute('id', 'email-container');
+            this.footerDiv.appendChild(this.emailContainerListenerDiv);
+            this.emailContainerListenerDiv.classList.add('show-element');
+
+            this.emailContainerListenerDiv.addEventListener('click', () => {
+                this.emailPopupDiv.classList.remove('show-element');
+                this.emailContainerListenerDiv.remove('show-element');
+            });
+        });
+
+        // CopyEmail Button
+        addEventListeners(this.copyDiv, () => {
+            // Show 'Copied' text in div and fade div out
+            copyTextToClipboard('brandon.m.navarro@gmail.com');
+            this.emailPopupDiv.classList.add('show-copied');
+            setTimeout(() => {
+                this.emailPopupDiv.classList.remove('show-copied');
+            }, 1500)
+        });
+
+        // Open Email Button
+        addEventListeners(this.emailDiv, () => {
+            window.location.href = "mailto:brandon.m.navarro@gmail.com?";
+        });
     }
 
     // Create individual project card
