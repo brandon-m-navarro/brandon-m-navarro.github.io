@@ -174,8 +174,8 @@ export default class ProjectsPanel extends BasePanel {
         this.emailIcon = doc.createElement('img');
         this.emailText = doc.createElement('div');
 
-        this.copyIcon.src = images.getImages()['copy'].altSrc;
-        this.emailIcon.src = images.getImages()['email'].altSrc;
+        this.copyIcon.src = images['copy'].altSrc;
+        this.emailIcon.src = images['email'].altSrc;
         this.copyText.innerHTML = 'Copy';
         this.emailText.innerHTML = 'Email';
 
@@ -188,17 +188,17 @@ export default class ProjectsPanel extends BasePanel {
         this.emailPopupDiv.appendChild(this.copyDiv);
         this.emailPopupDiv.appendChild(this.emailDiv);
 
-        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
-        this.midGithubIcon.src = images.getImages()['github'].src;
+        this.midLinkedInIcon.src = images['linkedIn'].src;
+        this.midGithubIcon.src = images['github'].src;
 
-        this.moonSvg.src = images.getImages()['moon'].src;
-        this.sunSvg.src = images.getImages()['sun'].src;
+        this.moonSvg.src = images['moon'].src;
+        this.sunSvg.src = images['sun'].src;
 
         this.moonDiv.appendChild(this.moonSvg);
         this.sunDiv.appendChild(this.sunSvg);
 
         this.reactImg = doc.createElement('img');
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
+        this.reactImg.src = images['react-b'].altSrc;
 
         this.reactTextDiv.innerHTML =
             'View site built using React & Typescript';
