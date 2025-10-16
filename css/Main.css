@@ -13,6 +13,10 @@
 @import url('./home/HomePanel.css');
 @import url('./home/HomeView.css');
 
+/* ProjectsView */
+@import url('./projects/ProjectsPanel.css');
+@import url('./projects/ProjectsView.css');
+
 /* Components */
 @import url('./components/SlideControl.css');
 @import url('./components/Icon.css');

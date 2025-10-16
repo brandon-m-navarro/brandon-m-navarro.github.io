@@ -34,6 +34,9 @@ const resumeView = new ResumeView();
 import HomeView from './home/HomeView.js';
 const homeView = new HomeView();
 
+import ProjectsView from './projects/ProjectsView.js';
+const projectsView = new ProjectsView();
+
 import SlideControl from './components/SlideControl.js';
 
 let // Create local vars
@@ -51,7 +54,8 @@ let // Create local vars
     // Views arrays
     generalViewList = [
         {view: homeView,             eagerInitialize: true  },
-        {view: resumeView,           eagerInitialize: true  }
+        {view: resumeView,           eagerInitialize: true  },
+        {view: projectsView,           eagerInitialize: true  }
     ],
     viewList = [].concat(generalViewList),
 
@@ -151,6 +155,14 @@ export default class ViewManager {
         // HomeView events
         homeView.getDiv().addEventListener('homeEvent', event => {
             console.log('HomeEvent! - ', event);
+            if (event && event.detail) {
+                switch (event.detail.action) {}
+            }
+        });
+
+        // ProjectsView events
+        projectsView.getDiv().addEventListener('projectsEvent', event => {
+            console.log('ProjectsEvent! - ', event);
             if (event && event.detail) {
                 switch (event.detail.action) {}
             }
