@@ -84,7 +84,19 @@ export default class ProjectsPanel extends BasePanel {
         this.frameDiv.classList.add('dark');
         this.headerDiv.classList.add('dark');
         this.projectsGridDiv.classList.add('dark');
-        
+        this.footerDiv.classList.add('dark');
+
+        this.emailPopupDiv.classList.add('dark');
+
+        // Footer
+        this.sunDiv.classList.remove('selected');
+        this.moonDiv.classList.add('selected');
+
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].altSrc;
+        this.midGithubIcon.src = images.getImages()['github'].altSrc;
+
         // Update all project cards for dark mode
         const projectCards = this.projectsGridDiv.querySelectorAll('.project-card');
         projectCards.forEach(card => {
@@ -105,7 +117,19 @@ export default class ProjectsPanel extends BasePanel {
         this.frameDiv.classList.remove('dark');
         this.headerDiv.classList.remove('dark');
         this.projectsGridDiv.classList.remove('dark');
-        
+        this.footerDiv.classList.remove('dark');
+
+        this.emailPopupDiv.classList.remove('dark');
+
+        // Footer
+        this.sunDiv.classList.add('selected');
+        this.moonDiv.classList.remove('selected');
+
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
+        this.midGithubIcon.src = images.getImages()['github'].src;
+
         // Update all project cards for light mode
         const projectCards = this.projectsGridDiv.querySelectorAll('.project-card');
         projectCards.forEach(card => {
