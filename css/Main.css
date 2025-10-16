@@ -136,7 +136,7 @@
     transition: background-color 250ms ease;
 }
 #top-client-div.dark {
-    background-color: #242532;
+    background-color: rgb(2 9 22);
 }
 
 #top-client-div > div {

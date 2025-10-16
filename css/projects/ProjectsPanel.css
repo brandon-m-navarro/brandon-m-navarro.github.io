@@ -222,7 +222,7 @@
     transform: translateX(-50%);
 }
 #projects-panel-div.dark > div:nth-child(2) {
-    background-color: #242532;
+    background-color: #020a16;
     padding-top: 12px;
     box-sizing: border-box;
 }
