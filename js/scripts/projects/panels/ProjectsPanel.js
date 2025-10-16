@@ -339,6 +339,8 @@ export default class ProjectsPanel extends BasePanel {
         // Assign IDs and classes
         this.div.setAttribute('id', divId);
         this.frameDiv.setAttribute('id', frameDivId);
+        this.emailPopupDiv.setAttribute('id', 'email-popup-div');
+        this.footerDiv.setAttribute('id', baseId + '-footer-div');
         this.headerDiv.className = 'projects-header';
         this.headerTitleDiv.className = 'projects-main-title';
         this.headerSubtitleDiv.className = 'projects-subtitle';

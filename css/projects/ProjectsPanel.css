@@ -210,3 +210,227 @@
 .project-card.dark .project-live-demo:hover {
     color: #93c5fd;
 }
+
+
+/* Footer */
+#projects-panel-div > div:nth-child(2) {
+    position: relative;
+    position: absolute;
+    width: calc(100%);
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#projects-panel-div.dark > div:nth-child(2) {
+    background-color: #242532;
+    padding-top: 12px;
+    box-sizing: border-box;
+}
+#projects-panel-footer-div {
+    position: relative;
+    font-family: 'Josefin';
+    width: calc(90% + 24px);
+    display: flex;
+    height: 64px;
+    border-top: rgb(0, 0, 0, 0.25) solid 2px;
+    margin: 0 auto 0 auto;
+}
+#projects-panel-footer-div.dark {
+    border-top: rgb(255, 255, 255, 0.25) solid 2px;
+}
+
+/* ReactButton */
+#projects-panel-footer-div > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+#projects-panel-footer-div > div:nth-child(1) > img {
+    width: 32px;
+    /* background: rgb(var(--background-color3-rgb), 0.75); */
+    background-color: rgb(35, 39, 47, 0.75);
+    border-radius: 100%;
+    padding: 6px;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+}
+#projects-panel-footer-div > div:nth-child(1) > img:hover {
+    /* background: rgb(var(--background-color3-rgb), 1); */
+    background-color: rgb(35, 39, 47, 1);
+}
+
+#projects-panel-footer-div > div:nth-child(1) > img {
+    /* background: rgb(var(--background-color2-rgb), 0.75); */
+    /* cursor: pointer; */
+}
+#projects-panel-footer-div > div:nth-child(1) > img:hover {
+    /* background: rgb(var(--background-color2-rgb), 1); */
+    /* background-color: rgb(35, 39, 47, 1); */
+}
+
+#projects-panel-footer-div > div:nth-child(1) > div:nth-child(2) {
+    position: relative;
+    white-space: nowrap;
+    font-size: clamp(1vw, 14px, 14px);
+    margin-left: 12px;
+}
+#projects-panel-footer-div > div:nth-child(1) > div:nth-child(2)::after {
+    content: "";
+    position: absolute;
+
+    width: 100%;
+    background-color: rgb(0,0,0,0.25);
+    height: 2px;
+    left: 50%;
+    top: calc(100% + -2px);
+    transition: all 150ms ease;
+    transform: translateX(200%);
+}
+#projects-panel-footer-div > div:nth-child(1):hover > div:nth-child(2)::after {
+    transform: translateX(-50%);
+}
+
+#projects-panel-footer-div.dark > div:nth-child(1) > div:nth-child(2)::after {
+    background-color: rgb(255,255,255,0.25);;
+}
+#projects-panel-footer-div.dark > div:nth-child(1) > div:nth-child(2) {
+    color: white;
+}
+
+/* MidFoot */
+#projects-panel-footer-div > div:nth-child(2) {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: auto;
+}
+#projects-panel-footer-div > div:nth-child(2) > img:nth-child(1) {
+    width: 26px;
+    padding: 6px;
+    cursor: pointer;
+    /* transition: background-color 150ms ease; */
+    transition: opacity 150ms ease;
+}
+#projects-panel-footer-div > div:nth-child(2) > img:nth-child(1):hover {
+    /* background-color: rgb(35, 39, 47, 1); */
+    opacity: 0.75;
+}
+#projects-panel-footer-div > div:nth-child(2) > div:nth-child(2) {
+    font-size: 14px;
+    border-bottom: rgb(0, 0, 0, 0.5) 1px solid;
+    border-top: rgb(0, 0, 0, 0.5) 1px solid;
+    margin: 0 12px;
+    line-height: 41px;
+    cursor: pointer;
+}
+#projects-panel-footer-div.dark > div:nth-child(2) > div:nth-child(2) {
+    color: #FFFFFF;
+    border-bottom: rgb(255,255,255, 0.5) 1px solid;
+    border-top: rgb(255,255,255, 0.5) 1px solid;
+}
+#projects-panel-footer-div > div:nth-child(2) > img:nth-child(3) {
+    width: 26px;
+    padding: 6px;
+    cursor: pointer;
+    /* transition: background-color 150ms ease; */
+    transition: opacity 150ms ease;
+}
+#projects-panel-footer-div > div:nth-child(2) > img:nth-child(3):hover {
+    /* background-color: rgb(35, 39, 47, 1); */
+    opacity: 0.75;
+}
+
+#projects-panel-footer-div > div:nth-child(3) {
+    display: flex;
+    justify-content: space-around;
+    /* width: 150px; */
+    margin-left: auto;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    background-color: #35364A;
+    opacity: 0.25;
+    border-radius: 100%;
+    transition: background-color, opacity ease 250ms;
+    margin-right: 24px;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(1):hover {
+    opacity: 0.75;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(1).selected {
+    opacity: 1;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(1) > img {
+    width: 18px;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 36px;
+    height: 36px;
+    background-color: #81A988;
+    cursor: pointer;
+    border-radius: 100%;
+    opacity: 0.50;
+    transition: background-color, opacity ease 250ms;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(2):hover {
+    opacity: 0.75;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(2).selected {
+    opacity: 1;
+}
+#projects-panel-footer-div > div:nth-child(3) > div:nth-child(2) > img {
+    width: 24px;
+}
+
+/* Media Queries */
+
+/* Remove text for ReactButton in footer */
+@media (max-width: 1035px) {
+    #projects-panel-footer-div > div:nth-child(1) > div:nth-child(2) {
+        display: none;
+    }
+}
+/* Stack Footer to how react button on own line */
+@media (max-width: 650px) {
+    #projects-panel-footer-div {
+        flex-wrap: wrap;
+        padding: 12px;
+        height: 114px;
+    }
+    #projects-panel-footer-div > div:nth-child(1) {
+        width: fit-content;
+        order: 2;
+    }
+    #projects-panel-footer-div > div:nth-child(2) {
+        position: initial;
+        order: 1;
+        flex-basis: 100%;
+        justify-content: space-between;
+        transform: translate(0px, 0px);
+    }
+    #projects-panel-footer-div > div:nth-child(3) {
+        order: 3;
+    }
+    #projects-panel-footer-div > div:nth-child(1) > div:nth-child(2) {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    #projects-panel-footer-div > div:nth-child(1) > div:nth-child(2) {
+        display: none;
+    }
+}
