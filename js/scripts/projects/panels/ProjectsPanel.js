@@ -146,6 +146,79 @@ export default class ProjectsPanel extends BasePanel {
         // Assemble main content
         this.frameDiv.appendChild(this.headerDiv);
         this.frameDiv.appendChild(this.projectsGridDiv);
+
+        //
+        this.footerDivWrapper = doc.createElement('div');
+        this.footerDiv = doc.createElement('div');
+        this.footerLeftDiv = doc.createElement('div');
+        this.footerMidDiv = doc.createElement('div');
+        this.footerRightDiv = doc.createElement('div');
+
+        this.moonDiv = doc.createElement('div');
+        this.moonSvg = doc.createElement('img');
+        this.sunDiv = doc.createElement('div');
+        this.sunSvg = doc.createElement('img');
+
+        this.reactTextDiv = doc.createElement('div');
+
+        this.midLinkedInIcon = doc.createElement('img');
+        this.midEmailTextDiv = doc.createElement('div');
+        this.midGithubIcon = doc.createElement('img');
+
+        // EmailFooter popup
+        this.emailPopupDiv = doc.createElement('div');
+        this.copyDiv = doc.createElement('div');
+        this.copyIcon = doc.createElement('img');
+        this.copyText = doc.createElement('div');
+        this.emailDiv = doc.createElement('div');
+        this.emailIcon = doc.createElement('img');
+        this.emailText = doc.createElement('div');
+
+        this.copyIcon.src = images.getImages()['copy'].altSrc;
+        this.emailIcon.src = images.getImages()['email'].altSrc;
+        this.copyText.innerHTML = 'Copy';
+        this.emailText.innerHTML = 'Email';
+
+        this.copyDiv.appendChild(this.copyIcon);
+        this.copyDiv.appendChild(this.copyText);
+
+        this.emailDiv.appendChild(this.emailIcon);
+        this.emailDiv.appendChild(this.emailText);
+
+        this.emailPopupDiv.appendChild(this.copyDiv);
+        this.emailPopupDiv.appendChild(this.emailDiv);
+
+        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
+        this.midGithubIcon.src = images.getImages()['github'].src;
+
+        this.moonSvg.src = images.getImages()['moon'].src;
+        this.sunSvg.src = images.getImages()['sun'].src;
+
+        this.moonDiv.appendChild(this.moonSvg);
+        this.sunDiv.appendChild(this.sunSvg);
+
+        this.reactImg = doc.createElement('img');
+        this.reactImg.src = images.getImages()['react-b'].altSrc;
+
+        this.reactTextDiv.innerHTML =
+            'View site built using React & Typescript';
+        this.midEmailTextDiv.innerHTML = 'brandon.m.navarro@gmail.com';
+
+        this.footerLeftDiv.appendChild(this.reactImg);
+        this.footerLeftDiv.appendChild(this.reactTextDiv);
+
+        this.footerMidDiv.appendChild(this.midLinkedInIcon);
+        this.footerMidDiv.appendChild(this.midEmailTextDiv);
+        this.footerMidDiv.appendChild(this.midGithubIcon);
+
+        this.footerRightDiv.appendChild(this.moonDiv);
+        this.footerRightDiv.appendChild(this.sunDiv);
+
+        this.footerDiv.appendChild(this.footerLeftDiv);
+        this.footerDiv.appendChild(this.footerMidDiv);
+        this.footerDiv.appendChild(this.footerRightDiv);
+
+        this.footerDivWrapper.appendChild(this.footerDiv);
     }
 
     // Create individual project card
@@ -154,7 +227,7 @@ export default class ProjectsPanel extends BasePanel {
         // Main card container
         const cardDiv = doc.createElement('div');
         cardDiv.className = 'project-card';
-        
+
         // Image container
         const imageDiv = doc.createElement('div');
         imageDiv.className = 'project-image-container';
@@ -162,25 +235,25 @@ export default class ProjectsPanel extends BasePanel {
         projectImg.src = project.image;
         projectImg.alt = project.title;
         imageDiv.appendChild(projectImg);
-        
+
         // Content container
         const contentDiv = doc.createElement('div');
         contentDiv.className = 'project-content';
-        
+
         // Title
         const titleDiv = doc.createElement('div');
         titleDiv.className = 'project-title';
         titleDiv.textContent = project.title;
-        
+
         // Description
         const descriptionDiv = doc.createElement('div');
         descriptionDiv.className = 'project-description';
         descriptionDiv.textContent = project.description;
-        
+
         // Tags container
         const tagsDiv = doc.createElement('div');
         tagsDiv.className = 'project-tags';
-        
+
         // Create tags
         project.tags.forEach(tag => {
             const tagSpan = doc.createElement('span');
@@ -188,11 +261,11 @@ export default class ProjectsPanel extends BasePanel {
             tagSpan.textContent = tag;
             tagsDiv.appendChild(tagSpan);
         });
-        
+
         // Action buttons container
         const actionsDiv = doc.createElement('div');
         actionsDiv.className = 'project-actions';
-        
+
         // View Details button
         const detailsButton = doc.createElement('button');
         detailsButton.className = 'project-details-btn';
@@ -201,7 +274,7 @@ export default class ProjectsPanel extends BasePanel {
             // Navigate to project details - you'll need to implement this based on your routing
             console.log('Navigate to:', project.link);
         });
-        
+
         // GitHub button
         const githubButton = doc.createElement('button');
         githubButton.className = 'project-github-btn';
@@ -213,11 +286,11 @@ export default class ProjectsPanel extends BasePanel {
         addEventListeners(githubButton, () => {
             window.open(project.github, '_blank').focus();
         });
-        
+
         // Add buttons to actions container
         actionsDiv.appendChild(detailsButton);
         actionsDiv.appendChild(githubButton);
-        
+
         // Live demo link
         const liveDemoLink = doc.createElement('a');
         liveDemoLink.className = 'project-live-demo';
@@ -229,18 +302,18 @@ export default class ProjectsPanel extends BasePanel {
             e.preventDefault();
             window.open(project.liveDemo, '_blank').focus();
         });
-        
+
         // Assemble content
         contentDiv.appendChild(titleDiv);
         contentDiv.appendChild(descriptionDiv);
         contentDiv.appendChild(tagsDiv);
         contentDiv.appendChild(actionsDiv);
         contentDiv.appendChild(liveDemoLink);
-        
+
         // Assemble card
         cardDiv.appendChild(imageDiv);
         cardDiv.appendChild(contentDiv);
-        
+
         return cardDiv;
     }
 
@@ -248,6 +321,7 @@ export default class ProjectsPanel extends BasePanel {
     assembleElements() {
         this.frameDiv.appendChild(this.projectsGridDiv);
         this.div.appendChild(this.frameDiv);
+        this.div.appendChild(this.footerDivWrapper);
     }
 
     // Create and assemble panel elements
