@@ -92,10 +92,10 @@ export default class ProjectsPanel extends BasePanel {
         this.sunDiv.classList.remove('selected');
         this.moonDiv.classList.add('selected');
 
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
+        this.reactImg.src = images['react-b'].altSrc;
 
-        this.midLinkedInIcon.src = images.getImages()['linkedIn'].altSrc;
-        this.midGithubIcon.src = images.getImages()['github'].altSrc;
+        this.midLinkedInIcon.src = images['linkedIn'].altSrc;
+        this.midGithubIcon.src = images['github'].altSrc;
 
         // Update all project cards for dark mode
         const projectCards = this.projectsGridDiv.querySelectorAll('.project-card');
@@ -125,10 +125,10 @@ export default class ProjectsPanel extends BasePanel {
         this.sunDiv.classList.add('selected');
         this.moonDiv.classList.remove('selected');
 
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
+        this.reactImg.src = images['react-b'].altSrc;
 
-        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
-        this.midGithubIcon.src = images.getImages()['github'].src;
+        this.midLinkedInIcon.src = images['linkedIn'].src;
+        this.midGithubIcon.src = images['github'].src;
 
         // Update all project cards for light mode
         const projectCards = this.projectsGridDiv.querySelectorAll('.project-card');
