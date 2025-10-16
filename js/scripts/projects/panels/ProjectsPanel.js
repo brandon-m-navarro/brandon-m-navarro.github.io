@@ -10,6 +10,7 @@
 import BasePanel from '../../BasePanel.js';
 import Images from '../../Images.js';
 import { addEventListeners } from '../../utils/Utilities.js';
+const images = new Images().getImages();
 
 let
     // DOM elements
@@ -32,7 +33,7 @@ const projects = [
         id: "1",
         title: "NextJS Dashboard",
         description: "A comprehensive dashboard application built as my introduction to Next.js, following the official Next.js tutorial. This project served as a hands-on learning experience for modern React frameworks and full-stack development patterns.",
-        image: "/dashboard.png",
+        image: images['dashboard'].src,
         link: "/",
         tags: ["Authentication", "Next.js", "Postgres"],
         github: "https://github.com/brandon-m-navarro/nextjs-dashboard",
@@ -42,7 +43,7 @@ const projects = [
         id: "2",
         title: "Task Management App",
         description: "A full-stack task management web application built with Next.js, featuring a responsive design and real-time optimistic updates. The app enables users to efficiently organize tasks within projects, with intuitive filtering, sorting, and seamless cross-device synchronization.",
-        image: "/todo.png",
+        image: images['todo'].src,
         link: "/",
         tags: ["Next.js", "TypeScript", "Tailwind", "Postgres"],
         github: "https://github.com/brandon-m-navarro/nextjs-todo",
@@ -52,7 +53,7 @@ const projects = [
         id: "3",
         title: "Portfolio Site",
         description: "A client-side application hosted on GitHub Pages, built with ES6 classes and inheritance patterns to promote code reusability and scalable architecture through object-oriented design principles.",
-        image: "/portfolio.png",
+        image: images['portfolio'].src,
         link: "/",
         tags: ["JS (ES6)", "CSS3", "SVG"],
         github: "https://github.com/brandon-m-navarro/brandon-m-navarro.github.io",
@@ -149,8 +150,7 @@ export default class ProjectsPanel extends BasePanel {
 
     // Create individual project card
     createProjectCard(project, index) {
-        const images = new Images();
-        
+
         // Main card container
         const cardDiv = doc.createElement('div');
         cardDiv.className = 'project-card';
