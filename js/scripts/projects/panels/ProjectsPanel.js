@@ -9,7 +9,7 @@
 
 import BasePanel from '../../BasePanel.js';
 import Images from '../../Images.js';
-import { addEventListeners } from '../../utils/Utilities.js';
+import { addEventListeners, copyTextToClipboard } from '../../utils/Utilities.js';
 const images = new Images().getImages();
 
 let
