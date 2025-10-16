@@ -243,6 +243,8 @@ export default class ProjectsPanel extends BasePanel {
         this.footerDiv.appendChild(this.footerRightDiv);
 
         this.footerDivWrapper.appendChild(this.footerDiv);
+        this.footerDivWrapper.appendChild(this.emailPopupDiv);
+
 
 // Footer listeners
 
