@@ -41,7 +41,7 @@ export class Main {
             this.showResume();
         });
         addEventListeners(this.projectsNavTextDiv, () => {
-            this.showResume();
+            this.showProjects();
         });
 
         // Append inline SVGs to appropriate divs
@@ -204,9 +204,9 @@ export class Main {
         console.info('Are we running on mobile? - ' + isMobile());
 
         // Assemble
+        this.topClientDiv.appendChild(this.projectsNavTextDiv);
         this.topClientDiv.appendChild(this.resumeNavTextDiv);
         this.topClientDiv.appendChild(this.aboutNavTextDiv);
-        this.topClientDiv.appendChild(this.projectsNavTextDiv);
 
         this.footer.appendChild(this.footerMidDiv);
 
