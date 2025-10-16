@@ -46,6 +46,10 @@ export default class Images {
                 src: '../../img/Dodongo.jpg',
                 alt: 'Dodongo [oot]'
             },
+            'dashboard': {
+                src: '../../img/dashboard.png',
+                alt: 'Dashboard App Preview'
+            },
             'education': {
                 src: '../../img/school-solid.png',
                 alt: 'Education',
@@ -134,6 +138,10 @@ export default class Images {
                 src: '../../img/mychapter.png',
                 alt: 'MyChapter'
             },
+            'portfolio': {
+                src: '../../img/portfolio.png',
+                alt: 'Portfolio App Preview'
+            },
             'project': {
                 src: '../../img/brush-solid.png',
                 alt: 'Project',
@@ -172,6 +180,10 @@ export default class Images {
             'sun': {
                 src: '../../img/sun.svg',
                 alt: 'Sun'
+            },
+            'todo': {
+                src: '../../img/todo.png',
+                alt: 'Todo App Preview'
             },
             'trina': {
                 src: '../../img/trina.png',

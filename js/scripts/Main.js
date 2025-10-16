@@ -124,7 +124,7 @@ export class Main {
 
                 viewManager.getViews()['HomeView'].homePanel.makeDay();
                 viewManager.getViews()['ResumeView'].resumePanel.makeDay();
-                viewManager.getViews()['ProjectsView'].resumePanel.makeDay();
+                viewManager.getViews()['ProjectsView'].projectsPanel.makeDay();
 
                 break;
             case Main.getThemes().DARK:
