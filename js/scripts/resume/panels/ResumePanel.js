@@ -1197,7 +1197,7 @@ export default class ResumePanel extends BasePanel {
         this.skillsDiv.className = 'skills-section';
         this.programmingDiv.className = 'programming-section';
         this.osDiv.className = 'os-section';
-        this.frameworksDiv.className = 'frameworks-section';
+        this.frameworksDiv.className = 'os-section';
         this.toolsDiv.className = 'tools-section';
         this.contactDiv.className = 'contact-section';
         this.educationDiv.className = 'education-section';
