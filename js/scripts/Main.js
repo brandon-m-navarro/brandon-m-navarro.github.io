@@ -196,7 +196,7 @@ export class Main {
         this.createElements();
 
         // Set innerHTML
-        this.aboutNavTextDiv.innerHTML = 'Me';
+        this.aboutNavTextDiv.innerHTML = 'About';
         this.resumeNavTextDiv.innerHTML = 'Resume';
         this.projectsNavTextDiv.innerHTML = 'Projects';
 
