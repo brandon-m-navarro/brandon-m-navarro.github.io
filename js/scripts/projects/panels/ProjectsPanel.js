@@ -79,7 +79,7 @@ export default class ProjectsPanel extends BasePanel {
 
     makeNight() {
         localStorage.setItem("mode", "dark");
-        
+
         this.div.classList.add('dark');
         this.frameDiv.classList.add('dark');
         this.headerDiv.classList.add('dark');
