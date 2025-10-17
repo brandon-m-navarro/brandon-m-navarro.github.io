@@ -13,24 +13,19 @@ import Icon from '../../components/Icon.js';
 import Images from '../../Images.js';
 import Modal from '../../components/Modal.js';
 import SkillRating from '../../components/SkillRating.js';
+import FooterComponent from '../../components/Footer.js';
 const images = new Images();
-import { addEventListeners, copyTextToClipboard } from '../../utils/Utilities.js';
+import { addEventListeners } from '../../utils/Utilities.js';
 
 let
     // DOM elements
     doc = window.document,
-
-    // DOM IDs (must be unique)
-    baseId = 'resume-panel',
-    divId = baseId + '-div',
-    frameDivId = baseId + '-frame-div',
 
     // Local variables
     showClassElement = 'show-element',
 
     // Singleton reference
     self;
-
 
 // Class
 export default class ResumePanel extends BasePanel {
@@ -45,6 +40,9 @@ export default class ResumePanel extends BasePanel {
             super();
             self = this;
         }
+        
+        // Initialize footer component
+        this.footerComponent = new FooterComponent();
     }
 
     // Public Methods
@@ -57,9 +55,9 @@ export default class ResumePanel extends BasePanel {
         this.professionalDiv.classList.add('dark');
         this.professionalDiv2.classList.add('dark');
         this.projectDiv.classList.add('dark');
-        this.footerDiv.classList.add('dark');
 
-        this.emailPopupDiv.classList.add('dark');
+        // Update footer
+        this.footerComponent.makeNight();
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].altSrc);
@@ -89,15 +87,6 @@ export default class ResumePanel extends BasePanel {
             aTag.classList.add('dark');
         });
 
-        // Footer
-        this.sunDiv.classList.remove('selected');
-        this.moonDiv.classList.add('selected');
-
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
-
-        this.midLinkedInIcon.src = images.getImages()['linkedIn'].altSrc;
-        this.midGithubIcon.src = images.getImages()['github'].altSrc;
-
         this.cSkillRating.setFillColor('#86467C');
         this.cssSkillRating.setFillColor('#86467C');
         this.iOsSkillRating.setFillColor('#86467C');
@@ -126,15 +115,14 @@ export default class ResumePanel extends BasePanel {
     makeDay() {
         localStorage.setItem("mode", "light");
 
-
         this.div.classList.remove('dark');
         this.frameDiv.classList.remove('dark');
         this.professionalDiv.classList.remove('dark');
         this.professionalDiv2.classList.remove('dark');
         this.projectDiv.classList.remove('dark');
-        this.footerDiv.classList.remove('dark');
 
-        this.emailPopupDiv.classList.remove('dark');
+        // Update footer
+        this.footerComponent.makeDay();
 
         // Change Icons
         this.contactEmailIcon.setImage(images.getImages()['email'].src);
@@ -163,15 +151,6 @@ export default class ResumePanel extends BasePanel {
         aTags.forEach(aTag => {
             aTag.classList.remove('dark');
         });
-
-        // Footer
-        this.sunDiv.classList.add('selected');
-        this.moonDiv.classList.remove('selected');
-
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
-
-        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
-        this.midGithubIcon.src = images.getImages()['github'].src;
 
         this.cSkillRating.setFillColor('#0b3948');
         this.cssSkillRating.setFillColor('#0b3948');
@@ -237,7 +216,7 @@ export default class ResumePanel extends BasePanel {
         });
         this.linkedInIcon = new Icon({
             img: images.getImages()['linkedIn'].src,
-            text: 'brandon-m-navarro', // need to make link
+            text: 'brandon-m-navarro',
             imgSize: '18px',
             fontSize: '12px'
         });
@@ -662,47 +641,14 @@ export default class ResumePanel extends BasePanel {
         this.mqpModalImg = doc.createElement('img');
         this.mqpModal; // Delay initialization until assembly
 
-        this.footerDivWrapper = doc.createElement('div');
-        this.footerDiv = doc.createElement('div');
-        this.footerLeftDiv = doc.createElement('div');
-        this.footerMidDiv = doc.createElement('div');
-        this.footerRightDiv = doc.createElement('div');
-
-        this.moonDiv = doc.createElement('div');
-        this.moonSvg = doc.createElement('img');
-        this.sunDiv = doc.createElement('div');
-        this.sunSvg = doc.createElement('img');
-
-        this.reactTextDiv = doc.createElement('div');
-
-        this.midLinkedInIcon = doc.createElement('img');
-        this.midEmailTextDiv = doc.createElement('div');
-        this.midGithubIcon = doc.createElement('img');
-
-        // EmailFooter popup
-        this.emailPopupDiv = doc.createElement('div');
-        this.copyDiv = doc.createElement('div');
-        this.copyIcon = doc.createElement('img');
-        this.copyText = doc.createElement('div');
-        this.emailDiv = doc.createElement('div');
-        this.emailIcon = doc.createElement('img');
-        this.emailText = doc.createElement('div');
-
-        this.copyIcon.src = images.getImages()['copy'].altSrc;
-        this.emailIcon.src = images.getImages()['email'].altSrc;
-        this.copyText.innerHTML = 'Copy';
-        this.emailText.innerHTML = 'Email';
-
-        this.copyDiv.appendChild(this.copyIcon);
-        this.copyDiv.appendChild(this.copyText);
-
-        this.emailDiv.appendChild(this.emailIcon);
-        this.emailDiv.appendChild(this.emailText);
-
-        this.emailPopupDiv.appendChild(this.copyDiv);
-        this.emailPopupDiv.appendChild(this.emailDiv);
-
-        // Listeners
+        // Listen for mode changes from footer
+        this.footerComponent.getDiv().addEventListener('dark', () => {
+            this.makeNight();
+        });
+        
+        this.footerComponent.getDiv().addEventListener('light', () => {
+            this.makeDay();
+        });
 
         // Open a new tab when user selects project links or contact infos
         addEventListeners(this.websiteIcon.getDiv(), () => {
@@ -773,96 +719,10 @@ export default class ResumePanel extends BasePanel {
         addEventListeners(this.mqpPosterImgDiv, () => {
             this.mqpModal.open();
         });
-
-        // Footer listeners
-
-        // Set up listeners for Moon/Night button
-        addEventListeners(this.moonDiv, () => {
-            this.sunDiv.classList.remove('selected');
-            this.moonDiv.classList.add('selected');
-
-            this.div.dispatchEvent(new CustomEvent('dark', {
-                detail: {},
-                bubbles: true,
-                cancelable: false
-            }));
-        });
-        addEventListeners(this.sunDiv, () => {
-            this.sunDiv.classList.add('selected');
-            this.moonDiv.classList.remove('selected');
-
-            this.div.dispatchEvent(new CustomEvent('light', {
-                detail: {},
-                bubbles: true,
-                cancelable: false
-            }));
-        });
-
-        // Github Button
-        addEventListeners(this.midGithubIcon, () => {
-            window.open(
-                'https://github.com/brandon-m-navarro',
-                '_blank'
-            ).focus();
-        });
-
-        // LinkedIn Button
-        addEventListeners(this.midLinkedInIcon, () => {
-            window.open(
-                'https://www.linkedin.com/in/brandon-navarro-b36b97149/',
-                '_blank'
-            ).focus();
-        });
-
-        // React Button
-        addEventListeners(this.footerLeftDiv, () => {
-            window.open(
-                'https://nextjs-site-sand.vercel.app',
-                '_blank'
-            ).focus();
-        });
-
-        // Email
-        addEventListeners(this.midEmailTextDiv, () => {
-            this.emailPopupDiv.classList.add('show-element');
-
-            // Create temp div that closes email popup and removes itself from the dom
-
-            // Don't create if already created
-            if (typeof this.emailContainerListenerDiv === 'undefined') {
-            }
-            this.emailContainerListenerDiv = doc.createElement('div');    
-            this.emailContainerListenerDiv.setAttribute('id', 'email-container');
-            this.footerDiv.appendChild(this.emailContainerListenerDiv);
-            this.emailContainerListenerDiv.classList.add('show-element');
-
-            this.emailContainerListenerDiv.addEventListener('click', () => {
-                this.emailPopupDiv.classList.remove('show-element');
-                this.emailContainerListenerDiv.remove('show-element');
-            });
-        });
-
-        // CopyEmail Button
-        addEventListeners(this.copyDiv, () => {
-            // Show 'Copied' text in div and fade div out
-            copyTextToClipboard('brandon.m.navarro@gmail.com');
-            this.emailPopupDiv.classList.add('show-copied');
-            setTimeout(() => {
-                this.emailPopupDiv.classList.remove('show-copied');
-            }, 1500)
-        });
-
-        // Open Email Button
-        addEventListeners(this.emailDiv, () => {
-            window.location.href = "mailto:brandon.m.navarro@gmail.com?";
-        });
-
     };
 
     // Append elements to the DOM
     assembleElements () {
-
-        //
         this.meImgDiv.appendChild(this.meImg);
 
         this.nameSubnameDiv.appendChild(this.nameTextDiv);
@@ -871,7 +731,6 @@ export default class ResumePanel extends BasePanel {
         this.topDiv.appendChild(this.meImgDiv);
         this.topDiv.appendChild(this.nameSubnameDiv);
 
-        //
         this.contactTitleDiv.appendChild(this.contactTitleTextDiv);
         this.contactDiv.appendChild(this.contactTitleDiv);
         this.contactDiv.appendChild(this.contactEmailIcon.getDiv());
@@ -909,7 +768,6 @@ export default class ResumePanel extends BasePanel {
         this.cplusSkillDiv.appendChild(this.cplusSkillTextDiv);
         this.cplusSkillDiv.appendChild(this.cplusSkillRating.getDiv());
 
-        //
         this.programmingListDiv.appendChild(this.javascriptSkillDiv);
         this.programmingListDiv.appendChild(this.htmlSkillDiv);
         this.programmingListDiv.appendChild(this.cssSkillDiv);
@@ -921,11 +779,9 @@ export default class ResumePanel extends BasePanel {
         this.programmingListDiv.appendChild(this.cSkillDiv);
         this.programmingListDiv.appendChild(this.cplusSkillDiv);
 
-        //
         this.programmingDiv.appendChild(this.programmingTitleTextDiv);
         this.programmingDiv.appendChild(this.programmingListDiv);
 
-        //
         this.windowsOsDiv.appendChild(this.windowsOsTextDiv);
         this.windowsOsDiv.appendChild(this.windowsOsSkillRating.getDiv());
         this.macOsDiv.appendChild(this.macOsTextDiv);
@@ -935,17 +791,14 @@ export default class ResumePanel extends BasePanel {
         this.androidOsDiv.appendChild(this.androidOsTextDiv);
         this.androidOsDiv.appendChild(this.androidOsSkillRating.getDiv());
 
-        //
         this.osListDiv.appendChild(this.windowsOsDiv);
         this.osListDiv.appendChild(this.macOsDiv);
         this.osListDiv.appendChild(this.iOsDiv);
         this.osListDiv.appendChild(this.androidOsDiv);
 
-        //
         this.osDiv.appendChild(this.osTitleTextDiv);
         this.osDiv.appendChild(this.osListDiv);
 
-        //
         this.requireFrameworkDiv.appendChild(this.requireFrameworkTextDiv);
         this.requireFrameworkDiv.appendChild(this.requireFrameworkSkillRating.getDiv())
         
@@ -963,11 +816,9 @@ export default class ResumePanel extends BasePanel {
         this.frameworksListDiv.appendChild(this.reactFrameworkDiv);
         this.frameworksListDiv.appendChild(this.nextJsFrameworkDiv);
 
-        //
         this.frameworksDiv.appendChild(this.frameworksTitleTextDiv);
         this.frameworksDiv.appendChild(this.frameworksListDiv);
 
-        //
         this.gitToolsDiv.appendChild(this.gitToolsTextDiv);
         this.gitToolsDiv.appendChild(this.gitToolsSkillRating.getDiv());
         this.figmaToolsDiv.appendChild(this.figmaToolsTextDiv);
@@ -979,25 +830,21 @@ export default class ResumePanel extends BasePanel {
         this.dockerToolsDiv.appendChild(this.dockerToolsTextDiv);
         this.dockerToolsDiv.appendChild(this.dockerToolsSkillRating.getDiv());
 
-        //
         this.toolsListDiv.appendChild(this.figmaToolsDiv);
         this.toolsListDiv.appendChild(this.gitToolsDiv);
         this.toolsListDiv.appendChild(this.adobePremiereToolsDiv);
         this.toolsListDiv.appendChild(this.androidStudioToolsDiv);
         this.toolsListDiv.appendChild(this.dockerToolsDiv);
 
-        //
         this.toolsDiv.appendChild(this.toolsTitleTextDiv);
         this.toolsDiv.appendChild(this.toolsListDiv);
 
-        //
         this.skillsDiv.appendChild(this.skillsTextDiv);
         this.skillsDiv.appendChild(this.programmingDiv);
         this.skillsDiv.appendChild(this.frameworksDiv);
         this.skillsDiv.appendChild(this.osDiv);
         this.skillsDiv.appendChild(this.toolsDiv);
 
-        //
         this.leftDiv.appendChild(this.contactDiv);
         this.leftDiv.appendChild(this.skillsDiv);
 
@@ -1024,7 +871,6 @@ export default class ResumePanel extends BasePanel {
         this.sigmaPiDiv.appendChild(this.sigmaPiHeaderDiv);
         this.sigmaPiDiv.appendChild(this.sigmaPiUl);
 
-        //
         this.sparcImgDiv.appendChild(this.sparcImg);
         this.sparcHeaderDiv.appendChild(this.sparcImgDiv);
         this.sparcHeaderDiv.appendChild(this.sparcTextDiv);
@@ -1039,7 +885,6 @@ export default class ResumePanel extends BasePanel {
         this.campusInvolvementListDiv.appendChild(this.sigmaPiDiv);
         this.campusInvolvementListDiv.appendChild(this.sparcDiv);
 
-        //
         this.campusInvolvementDiv.appendChild(this.campusInvolvementHeaderTextDiv);
         this.campusInvolvementDiv.appendChild(this.campusInvolvementListDiv);
 
@@ -1131,11 +976,9 @@ export default class ResumePanel extends BasePanel {
         this.projectTitleDiv.appendChild(this.projectTitleIcon.getDiv());
         this.projectDiv.appendChild(this.projectTitleDiv);
 
-
         this.rightDiv.appendChild(this.educationDiv);
         this.rightDiv.appendChild(this.professionalDiv);
 
-        //
         this.escapeHeaderDiv.appendChild(this.escapeHeaderTextDiv);
         this.escapeLinkImgDiv.appendChild(this.escapeLinkImg);
         this.escapeHeaderDiv.appendChild(this.escapeLinkImgDiv);
@@ -1148,7 +991,6 @@ export default class ResumePanel extends BasePanel {
         this.escapeDiv.appendChild(this.escapeHeaderDiv);
         this.escapeDiv.appendChild(this.escapeContentDiv);
 
-        //
         this.ttbHeaderDiv.appendChild(this.ttbHeaderTextDiv);
         this.ttbLinkImgDiv.appendChild(this.ttbLinkImg);
         this.ttbHeaderDiv.appendChild(this.ttbLinkImgDiv);
@@ -1172,7 +1014,6 @@ export default class ResumePanel extends BasePanel {
         this.ttbDiv.appendChild(this.ttbHeaderDiv);
         this.ttbDiv.appendChild(this.ttbContentDiv);
 
-        //
         this.mqpHeaderDiv.appendChild(this.mqpHeaderTextDiv);
         this.mqpLinkImgDiv.appendChild(this.mqpLinkImg);
         this.mqpHeaderDiv.appendChild(this.mqpLinkImgDiv);
@@ -1194,7 +1035,6 @@ export default class ResumePanel extends BasePanel {
             component: this.mqpModalContainerDiv
         });
 
-        //
         this.iqpHeaderDiv.appendChild(this.iqpHeaderTextDiv);
         this.iqpLinkImgDiv.appendChild(this.iqpLinkImg);
         this.iqpHeaderDiv.appendChild(this.iqpLinkImgDiv);
@@ -1207,7 +1047,6 @@ export default class ResumePanel extends BasePanel {
         this.iqpDiv.appendChild(this.iqpHeaderDiv);
         this.iqpDiv.appendChild(this.iqpContentDiv);
 
-        //
         this.projectDiv.appendChild(this.escapeDiv);
         this.projectDiv.appendChild(this.ttbDiv);
         this.projectDiv.appendChild(this.mqpDiv);
@@ -1219,14 +1058,12 @@ export default class ResumePanel extends BasePanel {
         this.frameDiv.appendChild(this.rightDiv);
         this.frameDiv.appendChild(this.professionalDiv2);
         this.frameDiv.appendChild(this.projectDiv);
-        this.footerDivWrapper.appendChild(this.emailPopupDiv);
         this.div.appendChild(this.frameDiv);
-        this.div.appendChild(this.footerDivWrapper);
+        this.div.appendChild(this.footerComponent.getDiv());
     };
 
     // Create and assemble panel elements
     initialize () {
-
         // Create needed HTML elms
         this.createElements();
 
@@ -1354,69 +1191,34 @@ export default class ResumePanel extends BasePanel {
         this.appStoreSubtext2.innerHTML = 'View in the';
         this.appStoreText2.innerHTML = 'App Store';
 
-        // ----------------------------------------
-
-        this.midLinkedInIcon.src = images.getImages()['linkedIn'].src;
-        this.midGithubIcon.src = images.getImages()['github'].src;
-
-        this.moonSvg.src = images.getImages()['moon'].src;
-        this.sunSvg.src = images.getImages()['sun'].src;
-
-        this.moonDiv.appendChild(this.moonSvg);
-        this.sunDiv.appendChild(this.sunSvg);
-
-        this.reactImg = doc.createElement('img');
-        this.reactImg.src = images.getImages()['react-b'].altSrc;
-
-        this.reactTextDiv.innerHTML =
-            'View site built using React & Typescript';
-        this.midEmailTextDiv.innerHTML = 'brandon.m.navarro@gmail.com';
-
-        this.footerLeftDiv.appendChild(this.reactImg);
-        this.footerLeftDiv.appendChild(this.reactTextDiv);
-
-        this.footerMidDiv.appendChild(this.midLinkedInIcon);
-        this.footerMidDiv.appendChild(this.midEmailTextDiv);
-        this.footerMidDiv.appendChild(this.midGithubIcon);
-
-        this.footerRightDiv.appendChild(this.moonDiv);
-        this.footerRightDiv.appendChild(this.sunDiv);
-
-        this.footerDiv.appendChild(this.footerLeftDiv);
-        this.footerDiv.appendChild(this.footerMidDiv);
-        this.footerDiv.appendChild(this.footerRightDiv);
-
-        this.footerDivWrapper.appendChild(this.footerDiv);
-
-        // ----------------------------------------
-
-        // Assign IDs to DOM elements, if needed
-        this.mqpModalContainerDiv.classList.add('mqp-modal');
-
-        this.skillsDiv.setAttribute('id', baseId + '-skills-div');
-        this.programmingDiv.setAttribute('id', baseId + '-programming-div');
-        this.osDiv.setAttribute('id', baseId + '-os-div');
-        this.frameworksDiv.setAttribute('id', baseId + '-tools-div');
-        this.toolsDiv.setAttribute('id', baseId + '-tools-div');
-        this.footerDiv.setAttribute('id', baseId + '-footer-div');
-
-        this.contactDiv.setAttribute('id', baseId + '-contact-div');
-        this.educationDiv.setAttribute('id', baseId + '-education-div');
-        this.professionalDiv.setAttribute('id', baseId + '-professional-div');
-        this.professionalDiv2.setAttribute('id', baseId + '-professional-div');
-        this.projectDiv.setAttribute('id', baseId + '-project-div');
-        this.campusInvolvementDiv.setAttribute('id', baseId + '-campus-involvement-div');
-
-        this.escapeDiv.setAttribute('id', baseId + '-escape-div');
-        this.ttbDiv.setAttribute('id', baseId + '-ttb-div');
-        this.mqpDiv.setAttribute('id', baseId + '-mqp-div');
-        this.iqpDiv.setAttribute('id', baseId + '-iqp-div');
-
-        this.frameDiv.setAttribute('id', frameDivId);
-        this.emailPopupDiv.setAttribute('id', 'email-popup-div');
-        this.div.setAttribute('id', divId);
+        // Assign classes instead of IDs
+        this.div.className = 'resume-panel';
+        this.frameDiv.className = 'resume-frame';
+        this.skillsDiv.className = 'skills-section';
+        this.programmingDiv.className = 'programming-section';
+        this.osDiv.className = 'os-section';
+        this.frameworksDiv.className = 'frameworks-section';
+        this.toolsDiv.className = 'tools-section';
+        this.contactDiv.className = 'contact-section';
+        this.educationDiv.className = 'education-section';
+        this.professionalDiv.className = 'professional-section';
+        this.professionalDiv2.className = 'professional-section';
+        this.projectDiv.className = 'project-section';
+        this.campusInvolvementDiv.className = 'campus-involvement-section';
+        this.escapeDiv.className = 'project-escape';
+        this.ttbDiv.className = 'project-ttb';
+        this.mqpDiv.className = 'project-mqp';
+        this.iqpDiv.className = 'project-iqp';
+        this.mqpModalContainerDiv.className = 'mqp-modal';
 
         // Initialization complete
         this.initialized = true;
     };
+    
+    // Cleanup method
+    destroy() {
+        if (this.footerComponent) {
+            this.footerComponent.destroy();
+        }
+    }
 }
