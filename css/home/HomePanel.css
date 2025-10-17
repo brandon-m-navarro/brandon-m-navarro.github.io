@@ -228,7 +228,6 @@
     color: #d1d5db;
 }
 
-/* IMPROVED GALLERY SECTION */
 .gallery-section {
     display: flex;
     flex-direction: column;
@@ -320,8 +319,8 @@
     }
 
     .cards-container {
-        margin-top: 36px;
-        padding: 0 16px;
+        grid-template-columns: 1fr;
+        max-width: 500px;
     }
 
     .numbered-card {
