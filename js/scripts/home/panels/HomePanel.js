@@ -113,7 +113,6 @@ export default class HomePanel extends BasePanel {
         this.frameDiv = doc.createElement('div');
         this.frameDiv.className = 'home-frame';
 
-        // KEEP ORIGINAL HERO/SVG STRUCTURE
         this.topDiv = doc.createElement('div');
         this.topDiv.className = 'top-section';
 
@@ -133,7 +132,6 @@ export default class HomePanel extends BasePanel {
         this.quoteTextDiv = doc.createElement('div');
         this.quoteTextDiv.className = 'welcome-text';
 
-        // IMPROVED CARDS SECTION
         this.cardsContainerDiv = doc.createElement('div');
         this.cardsContainerDiv.className = 'cards-container';
 
@@ -149,7 +147,6 @@ export default class HomePanel extends BasePanel {
         this.card4 = this.createNumberedCard(4, 'Experimentation & Learning', 
             'I embrace calculated experimentation to push creative boundaries. While not every concept succeeds, each iteration provides valuable insights that drive innovation and continuous improvement in the design process.');
 
-        // IMPROVED ABOUT SECTION
         this.aboutDiv = doc.createElement('div');
         this.aboutDiv.className = 'about-section';
         this.aboutHeaderDiv = doc.createElement('div');
@@ -163,7 +160,6 @@ export default class HomePanel extends BasePanel {
         this.aboutText3 = doc.createElement('p');
         this.aboutText3.className = 'about-text';
 
-        // IMPROVED GALLERY SECTION
         this.galleryDiv = doc.createElement('div');
         this.galleryDiv.className = 'gallery-section';
         this.galleryLeftDiv = doc.createElement('div');
@@ -222,7 +218,6 @@ export default class HomePanel extends BasePanel {
     assembleElements () {
         this.nightSky = new NightSky();
 
-        // KEEP ORIGINAL HERO ASSEMBLY
         this.meImgDiv.appendChild(this.meImg);
         this.meDiv.appendChild(this.meImgDiv);
         this.meDiv.appendChild(this.meAboutTextDiv);
@@ -231,27 +226,23 @@ export default class HomePanel extends BasePanel {
         this.topDiv.appendChild(this.meDiv);
         this.topDiv.appendChild(this.quoteTextDiv);
 
-        // NEW CARDS ASSEMBLY
         this.cardsContainerDiv.appendChild(this.card1);
         this.cardsContainerDiv.appendChild(this.card2);
         this.cardsContainerDiv.appendChild(this.card3);
         this.cardsContainerDiv.appendChild(this.card4);
 
-        // NEW ABOUT ASSEMBLY
         this.aboutContentDiv.appendChild(this.aboutText1);
         this.aboutContentDiv.appendChild(this.aboutText2);
         this.aboutContentDiv.appendChild(this.aboutText3);
         this.aboutDiv.appendChild(this.aboutHeaderDiv);
         this.aboutDiv.appendChild(this.aboutContentDiv);
 
-        // NEW GALLERY ASSEMBLY
         this.galleryLeftDiv.appendChild(this.image1);
         this.galleryRightDiv.appendChild(this.image2);
         this.galleryRightDiv.appendChild(this.image3);
         this.galleryDiv.appendChild(this.galleryLeftDiv);
         this.galleryDiv.appendChild(this.galleryRightDiv);
 
-        // FRAME ASSEMBLY
         this.frameDiv.appendChild(this.topDiv);
         this.frameDiv.appendChild(this.cardsContainerDiv);
         this.frameDiv.appendChild(this.aboutDiv);
@@ -269,7 +260,6 @@ export default class HomePanel extends BasePanel {
         window.addEventListener('resize', eventHandler);
         this.handleResize();
 
-        // Updated content
         this.quoteTextDiv.innerHTML = 'Please, I need a job!!!';
         this.meAboutTextDiv.innerHTML =
             'My name is Brandon. I\'m a software engineer looking to expand ' +
@@ -279,7 +269,7 @@ export default class HomePanel extends BasePanel {
             'development, but I\'m always looking to learn about new ' +
             'frameworks, languages, and any other technology under the sun.';
 
-        this.aboutHeaderDiv.innerHTML = 'About Me';
+        this.aboutHeaderDiv.innerHTML = 'About';
         this.aboutText1.innerHTML =
             'During my sophomore year of college, I joined TrampleZone, a small ' +
             'startup where I collaborated with fellow students to enhance ' +
@@ -300,7 +290,6 @@ export default class HomePanel extends BasePanel {
             'recreational leagues, and embarking on backpacking hikes when ' +
             'visiting family in New Hampshire.';
 
-        // Images
         this.meImg.src = images.getImages()['me_sitting'].src;
 
         this.div.className = 'home-panel';
