@@ -10,7 +10,7 @@
 import BasePanel from '../../BasePanel.js';
 import Images from '../../Images.js';
 import { addEventListeners } from '../../utils/Utilities.js';
-import FooterComponent from '../../components/FooterComponent.js';
+import FooterComponent from '../../components/Footer.js';
 
 const images = new Images().getImages();
 
