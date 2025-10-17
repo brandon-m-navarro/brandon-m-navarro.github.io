@@ -27,7 +27,6 @@
     flex-direction: column;
 }
 
-/* KEEP ORIGINAL HERO/SVG STYLES */
 .home-frame > .top-section {
     position: relative;
     overflow: hidden;
@@ -186,7 +185,6 @@
     color: #d1d5db;
 }
 
-/* IMPROVED ABOUT SECTION */
 .about-section {
     display: flex;
     flex-direction: column;
@@ -257,16 +255,35 @@
     gap: 24px;
 }
 
+/* REMOVE fixed height from .image-container - let parents control height */
 .image-container {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
     background: #f3f4f6;
-    height: 256px;
     cursor: pointer;
 }
 .home-panel.dark .image-container {
     background: #374151;
+}
+
+/* Mobile: all images have equal height */
+.image-container {
+    height: 256px; /* h-64 equivalent */
+}
+
+/* Desktop: different heights for left vs right */
+@media (min-width: 640px) {
+    /* Left image - full height */
+    .gallery-left .image-container {
+        height: 100%; /* sm:h-full equivalent */
+    }
+    
+    /* Right images - half height each */
+    .gallery-right .image-container {
+        height: 50%; /* sm:h-1/2 equivalent */
+        flex: 1; /* Ensure they take equal space */
+    }
 }
 
 .image-container:hover > img {
