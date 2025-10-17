@@ -9,7 +9,9 @@
 
 import BasePanel from '../../BasePanel.js';
 import Images from '../../Images.js';
-import { addEventListeners, copyTextToClipboard } from '../../utils/Utilities.js';
+import { addEventListeners } from '../../utils/Utilities.js';
+import FooterComponent from '../../components/FooterComponent.js';
+
 const images = new Images().getImages();
 
 let
@@ -73,6 +75,9 @@ export default class ProjectsPanel extends BasePanel {
             super();
             self = this;
         }
+        
+        // Initialize footer component
+        this.footerComponent = new FooterComponent();
     }
 
     // Public Methods
@@ -84,18 +89,9 @@ export default class ProjectsPanel extends BasePanel {
         this.frameDiv.classList.add('dark');
         this.headerDiv.classList.add('dark');
         this.projectsGridDiv.classList.add('dark');
-        this.footerDiv.classList.add('dark');
 
-        this.emailPopupDiv.classList.add('dark');
-
-        // Footer
-        this.sunDiv.classList.remove('selected');
-        this.moonDiv.classList.add('selected');
-
-        this.reactImg.src = images['react-b'].altSrc;
-
-        this.midLinkedInIcon.src = images['linkedIn'].altSrc;
-        this.midGithubIcon.src = images['github'].altSrc;
+        // Update footer
+        this.footerComponent.makeNight();
 
         // Update all project cards for dark mode
         const projectCards = this.projectsGridDiv.querySelectorAll('.project-card');
@@ -117,18 +113,9 @@ export default class ProjectsPanel extends BasePanel {
         this.frameDiv.classList.remove('dark');
         this.headerDiv.classList.remove('dark');
         this.projectsGridDiv.classList.remove('dark');
-        this.footerDiv.classList.remove('dark');
 
-        this.emailPopupDiv.classList.remove('dark');
-
-        // Footer
-        this.sunDiv.classList.add('selected');
-        this.moonDiv.classList.remove('selected');
-
-        this.reactImg.src = images['react-b'].altSrc;
-
-        this.midLinkedInIcon.src = images['linkedIn'].src;
-        this.midGithubIcon.src = images['github'].src;
+        // Update footer
+        this.footerComponent.makeDay();
 
         // Update all project cards for light mode
         const projectCards = this.projectsGridDiv.querySelectorAll('.project-card');
@@ -171,168 +158,18 @@ export default class ProjectsPanel extends BasePanel {
         this.frameDiv.appendChild(this.headerDiv);
         this.frameDiv.appendChild(this.projectsGridDiv);
 
-        //
-        this.footerDivWrapper = doc.createElement('div');
-        this.footerDiv = doc.createElement('div');
-        this.footerLeftDiv = doc.createElement('div');
-        this.footerMidDiv = doc.createElement('div');
-        this.footerRightDiv = doc.createElement('div');
-
-        this.moonDiv = doc.createElement('div');
-        this.moonSvg = doc.createElement('img');
-        this.sunDiv = doc.createElement('div');
-        this.sunSvg = doc.createElement('img');
-
-        this.reactTextDiv = doc.createElement('div');
-
-        this.midLinkedInIcon = doc.createElement('img');
-        this.midEmailTextDiv = doc.createElement('div');
-        this.midGithubIcon = doc.createElement('img');
-
-        // EmailFooter popup
-        this.emailPopupDiv = doc.createElement('div');
-        this.copyDiv = doc.createElement('div');
-        this.copyIcon = doc.createElement('img');
-        this.copyText = doc.createElement('div');
-        this.emailDiv = doc.createElement('div');
-        this.emailIcon = doc.createElement('img');
-        this.emailText = doc.createElement('div');
-
-        this.copyIcon.src = images['copy'].altSrc;
-        this.emailIcon.src = images['email'].altSrc;
-        this.copyText.innerHTML = 'Copy';
-        this.emailText.innerHTML = 'Email';
-
-        this.copyDiv.appendChild(this.copyIcon);
-        this.copyDiv.appendChild(this.copyText);
-
-        this.emailDiv.appendChild(this.emailIcon);
-        this.emailDiv.appendChild(this.emailText);
-
-        this.emailPopupDiv.appendChild(this.copyDiv);
-        this.emailPopupDiv.appendChild(this.emailDiv);
-
-        this.midLinkedInIcon.src = images['linkedIn'].src;
-        this.midGithubIcon.src = images['github'].src;
-
-        this.moonSvg.src = images['moon'].src;
-        this.sunSvg.src = images['sun'].src;
-
-        this.moonDiv.appendChild(this.moonSvg);
-        this.sunDiv.appendChild(this.sunSvg);
-
-        this.reactImg = doc.createElement('img');
-        this.reactImg.src = images['react-b'].altSrc;
-
-        this.reactTextDiv.innerHTML =
-            'View site built using React & Typescript';
-        this.midEmailTextDiv.innerHTML = 'brandon.m.navarro@gmail.com';
-
-        this.footerLeftDiv.appendChild(this.reactImg);
-        this.footerLeftDiv.appendChild(this.reactTextDiv);
-
-        this.footerMidDiv.appendChild(this.midLinkedInIcon);
-        this.footerMidDiv.appendChild(this.midEmailTextDiv);
-        this.footerMidDiv.appendChild(this.midGithubIcon);
-
-        this.footerRightDiv.appendChild(this.moonDiv);
-        this.footerRightDiv.appendChild(this.sunDiv);
-
-        this.footerDiv.appendChild(this.footerLeftDiv);
-        this.footerDiv.appendChild(this.footerMidDiv);
-        this.footerDiv.appendChild(this.footerRightDiv);
-
-        this.footerDivWrapper.appendChild(this.footerDiv);
-        this.footerDivWrapper.appendChild(this.emailPopupDiv);
-
-
-// Footer listeners
-
-        // Set up listeners for Moon/Night button
-        addEventListeners(this.moonDiv, () => {
-            this.sunDiv.classList.remove('selected');
-            this.moonDiv.classList.add('selected');
-
-            this.div.dispatchEvent(new CustomEvent('dark', {
-                detail: {},
-                bubbles: true,
-                cancelable: false
-            }));
+        // Listen for mode changes from footer
+        this.footerComponent.getDiv().addEventListener('dark', () => {
+            this.makeNight();
         });
-        addEventListeners(this.sunDiv, () => {
-            this.sunDiv.classList.add('selected');
-            this.moonDiv.classList.remove('selected');
-
-            this.div.dispatchEvent(new CustomEvent('light', {
-                detail: {},
-                bubbles: true,
-                cancelable: false
-            }));
-        });
-
-        // Github Button
-        addEventListeners(this.midGithubIcon, () => {
-            window.open(
-                'https://github.com/brandon-m-navarro',
-                '_blank'
-            ).focus();
-        });
-
-        // LinkedIn Button
-        addEventListeners(this.midLinkedInIcon, () => {
-            window.open(
-                'https://www.linkedin.com/in/brandon-navarro-b36b97149/',
-                '_blank'
-            ).focus();
-        });
-
-        // React Button
-        addEventListeners(this.footerLeftDiv, () => {
-            window.open(
-                'https://nextjs-site-sand.vercel.app',
-                '_blank'
-            ).focus();
-        });
-
-        // Email
-        addEventListeners(this.midEmailTextDiv, () => {
-            this.emailPopupDiv.classList.add('show-element');
-
-            // Create temp div that closes email popup and removes itself from the dom
-
-            // Don't create if already created
-            if (typeof this.emailContainerListenerDiv === 'undefined') {
-            }
-            this.emailContainerListenerDiv = doc.createElement('div');    
-            this.emailContainerListenerDiv.setAttribute('id', 'email-container');
-            this.footerDiv.appendChild(this.emailContainerListenerDiv);
-            this.emailContainerListenerDiv.classList.add('show-element');
-
-            this.emailContainerListenerDiv.addEventListener('click', () => {
-                this.emailPopupDiv.classList.remove('show-element');
-                this.emailContainerListenerDiv.remove('show-element');
-            });
-        });
-
-        // CopyEmail Button
-        addEventListeners(this.copyDiv, () => {
-            // Show 'Copied' text in div and fade div out
-            copyTextToClipboard('brandon.m.navarro@gmail.com');
-            this.emailPopupDiv.classList.add('show-copied');
-            setTimeout(() => {
-                this.emailPopupDiv.classList.remove('show-copied');
-            }, 1500)
-        });
-
-        // Open Email Button
-        addEventListeners(this.emailDiv, () => {
-            window.location.href = "mailto:brandon.m.navarro@gmail.com?";
+        
+        this.footerComponent.getDiv().addEventListener('light', () => {
+            this.makeDay();
         });
     }
 
     // Create individual project card
     createProjectCard(project, index) {
-
         // Main card container
         const cardDiv = doc.createElement('div');
         cardDiv.className = 'project-card';
@@ -430,7 +267,7 @@ export default class ProjectsPanel extends BasePanel {
     assembleElements() {
         this.frameDiv.appendChild(this.projectsGridDiv);
         this.div.appendChild(this.frameDiv);
-        this.div.appendChild(this.footerDivWrapper);
+        this.div.appendChild(this.footerComponent.getDiv());
     }
 
     // Create and assemble panel elements
@@ -448,8 +285,6 @@ export default class ProjectsPanel extends BasePanel {
         // Assign IDs and classes
         this.div.setAttribute('id', divId);
         this.frameDiv.setAttribute('id', frameDivId);
-        this.emailPopupDiv.setAttribute('id', 'email-popup-div');
-        this.footerDiv.setAttribute('id', baseId + '-footer-div');
         this.headerDiv.className = 'projects-header';
         this.headerTitleDiv.className = 'projects-main-title';
         this.headerSubtitleDiv.className = 'projects-subtitle';
@@ -457,5 +292,12 @@ export default class ProjectsPanel extends BasePanel {
 
         // Initialization complete
         this.initialized = true;
+    }
+    
+    // Cleanup method
+    destroy() {
+        if (this.footerComponent) {
+            this.footerComponent.destroy();
+        }
     }
 }

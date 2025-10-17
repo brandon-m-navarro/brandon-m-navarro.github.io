@@ -1,0 +1,402 @@
+/* Footer Component */
+.footer-component-wrapper {
+    position: relative;
+    position: absolute;
+    width: calc(100%);
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#projects-panel-div.dark .footer-component-wrapper {
+    background-color: #020a16;
+    padding-top: 12px;
+    box-sizing: border-box;
+}
+
+.footer-component {
+    position: relative;
+    font-family: 'Josefin';
+    width: calc(90% + 24px);
+    display: flex;
+    height: 64px;
+    border-top: rgb(0, 0, 0, 0.25) solid 2px;
+    margin: 0 auto 0 auto;
+}
+
+.footer-component.dark {
+    border-top: rgb(255, 255, 255, 0.25) solid 2px;
+}
+
+/* ReactButton */
+.footer-left {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.footer-left > img {
+    width: 32px;
+    background-color: rgb(35, 39, 47, 0.75);
+    border-radius: 100%;
+    padding: 6px;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+}
+
+.footer-left > img:hover {
+    background-color: rgb(35, 39, 47, 1);
+}
+
+.footer-left > div:nth-child(2) {
+    position: relative;
+    white-space: nowrap;
+    font-size: clamp(1vw, 14px, 14px);
+    margin-left: 12px;
+}
+
+.footer-left > div:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background-color: rgb(0,0,0,0.25);
+    height: 2px;
+    left: 50%;
+    top: calc(100% + -2px);
+    transition: all 150ms ease;
+    transform: translateX(200%);
+}
+
+.footer-left:hover > div:nth-child(2)::after {
+    transform: translateX(-50%);
+}
+
+.footer-component.dark .footer-left > div:nth-child(2)::after {
+    background-color: rgb(255,255,255,0.25);
+}
+
+.footer-component.dark .footer-left > div:nth-child(2) {
+    color: white;
+}
+
+/* MidFoot */
+.footer-mid {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+}
+
+.footer-mid > img:nth-child(1) {
+    width: 26px;
+    padding: 6px;
+    cursor: pointer;
+    transition: opacity 150ms ease;
+}
+
+.footer-mid > img:nth-child(1):hover {
+    opacity: 0.75;
+}
+
+.footer-mid > .email-text {
+    font-size: 14px;
+    border-bottom: rgb(0, 0, 0, 0.5) 1px solid;
+    border-top: rgb(0, 0, 0, 0.5) 1px solid;
+    margin: 0 12px;
+    line-height: 41px;
+    cursor: pointer;
+}
+
+.footer-component.dark .footer-mid > .email-text {
+    color: #FFFFFF;
+    border-bottom: rgb(255,255,255, 0.5) 1px solid;
+    border-top: rgb(255,255,255, 0.5) 1px solid;
+}
+
+.footer-mid > img:nth-child(3) {
+    width: 26px;
+    padding: 6px;
+    cursor: pointer;
+    transition: opacity 150ms ease;
+}
+
+.footer-mid > img:nth-child(3):hover {
+    opacity: 0.75;
+}
+
+/* Dark/Light Mode Toggle */
+.footer-right {
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+}
+
+.mode-toggle.moon {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    background-color: #35364A;
+    opacity: 0.25;
+    border-radius: 100%;
+    transition: background-color, opacity ease 250ms;
+    margin-right: 24px;
+}
+
+.mode-toggle.moon:hover {
+    opacity: 0.75;
+}
+
+.mode-toggle.moon.selected {
+    opacity: 1;
+}
+
+.mode-toggle.moon > img {
+    width: 18px;
+}
+
+.mode-toggle.sun {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 36px;
+    height: 36px;
+    background-color: #81A988;
+    cursor: pointer;
+    border-radius: 100%;
+    opacity: 0.50;
+    transition: background-color, opacity ease 250ms;
+}
+
+.mode-toggle.sun:hover {
+    opacity: 0.75;
+}
+
+.mode-toggle.sun.selected {
+    opacity: 1;
+}
+
+.mode-toggle.sun > img {
+    width: 24px;
+}
+
+/* Email Popup */
+.email-popup {
+    display: none;
+    background-color: #000;
+    opacity: 0;
+    overflow: hidden;
+    z-index: 3;
+    transition: opacity 150ms ease;
+}
+
+.email-popup.dark {
+    background-color: #242532;
+}
+
+.email-popup.show-element {
+    display: flex;
+    opacity: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -100%;
+    height: 42px;
+    color: #FFFFFF;
+    font-weight: 500;
+    line-height: 23px;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.email-popup::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #000;
+    transform: translateX(-50%);
+}
+
+.email-popup::before {
+    content: "Copied";
+    transform: translateY(-150%);
+    transition: transform 150ms ease;
+    position: absolute;
+    border-radius: 4px;
+    top: 27px;
+    left: 0px;
+    background-color: #000000;
+    z-index: 5;
+    width: 105px;
+    height: 54px;
+    line-height: 54px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.email-popup.dark::before {
+    background-color: #242532;
+}
+
+.email-popup.show-copied::before {
+    transform: translateY(calc(0% - 27px));
+}
+
+.email-popup > div:nth-child(1) {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 24px;
+    transition: opacity 150ms ease;
+}
+
+.email-popup > div:nth-child(1):hover::after {
+    content: "";
+    box-shadow: 0px 0px 20px 8px #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.email-popup > div:nth-child(1):hover {
+    opacity: 1;
+}
+
+.email-popup > div:nth-child(1) > img:nth-child(1) {
+    height: 26px;
+}
+
+.email-popup > div:nth-child(1) > div:nth-child(2) {
+    font-size: 14px;
+}
+
+.email-popup > div:nth-child(1) > div:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    height: 2px;
+    left: 50%;
+    top: calc(100% + 2px);
+    transition: all 150ms ease;
+    transform: translateX(-200%);
+}
+
+.email-popup > div:nth-child(1):hover > div:nth-child(2)::after {
+    transform: translateX(-50%);
+}
+
+.email-popup > div:nth-child(2) {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    cursor: pointer;
+    transition: opacity 150ms;
+}
+
+.email-popup > div:nth-child(2):hover::after {
+    content: "";
+    box-shadow: 0px 0px 20px 8px #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.email-popup > div:nth-child(2):hover {
+    opacity: 1;
+}
+
+.email-popup > div:nth-child(2) > img:nth-child(1) {
+    height: 26px;
+}
+
+.email-popup > div:nth-child(2) > div:nth-child(2) {
+    font-size: 14px;
+}
+
+.email-popup > div:nth-child(2) > div:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    height: 2px;
+    left: 50%;
+    top: calc(100% + 2px);
+    transition: all 150ms ease;
+    transform: translateX(200%);
+}
+
+.email-popup > div:nth-child(2):hover > div:nth-child(2)::after {
+    transform: translateX(-50%);
+}
+
+/* Email Popup Overlay */
+.email-popup-overlay {
+    display: none;
+    position: absolute;
+    height: 90vh;
+    width: 100vw;
+    bottom: 0;
+    left: -6%;
+    z-index: 2;
+}
+
+.email-popup-overlay.show-element {
+    display: block;
+}
+
+/* Media Queries */
+
+/* Remove text for ReactButton in footer */
+@media (max-width: 1035px) {
+    .footer-left > div:nth-child(2) {
+        display: none;
+    }
+}
+
+/* Stack Footer to how react button on own line */
+@media (max-width: 650px) {
+    .footer-component {
+        flex-wrap: wrap;
+        padding: 12px;
+        height: 114px;
+    }
+    
+    .footer-left {
+        width: fit-content;
+        order: 2;
+    }
+    
+    .footer-mid {
+        position: initial;
+        order: 1;
+        flex-basis: 100%;
+        justify-content: space-between;
+        transform: translate(0px, 0px);
+    }
+    
+    .footer-right {
+        order: 3;
+    }
+    
+    .footer-left > div:nth-child(2) {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-left > div:nth-child(2) {
+        display: none;
+    }
+}
