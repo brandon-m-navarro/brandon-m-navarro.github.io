@@ -7,7 +7,7 @@
 'use strict';
 
 import Images from '../Images.js';
-import { addEventListeners, copyTextToClipboard } from '../Utilities.js';
+import { addEventListeners, copyTextToClipboard } from '../utils/Utilities.js';
 
 let doc = window.document;
 
