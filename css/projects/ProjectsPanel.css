@@ -60,9 +60,10 @@
     }
 }
 
-/* When a card is expanded, only change that card's grid column */
+/* When a card is expanded, maintain grid but position expanded card absolutely */
 .projects-grid:has(.project-card.expanding),
 .projects-grid:has(.project-card.expanded) {
+    position: relative;
     /* Maintain original grid template */
     grid-template-columns: 1fr;
 }
@@ -103,25 +104,31 @@
 
 /* Card States for Animation */
 .project-card.expanding {
-    grid-column: 1 / -1 !important;
-    position: relative;
+    position: absolute;
+    top: var(--original-top);
+    left: var(--original-left);
+    width: var(--original-width);
+    height: var(--original-height);
     z-index: 20;
     animation: growCard 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .project-card.expanded {
-    grid-column: 1 / -1;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 20;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-bottom: 2rem;
 }
 
 .project-card.collapsing {
-    grid-column: 1 / -1 !important;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 20;
     animation: shrinkCard 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -155,12 +162,16 @@
         transform: scale(1);
         width: var(--original-width);
         height: var(--original-height);
+        top: var(--original-top);
+        left: var(--original-left);
     }
     100% {
         transform: scale(1);
         width: 100%;
         height: auto;
         min-height: 400px;
+        top: 0;
+        left: 0;
     }
 }
 
@@ -170,11 +181,15 @@
         transform: scale(1);
         width: 100%;
         height: var(--expanded-height);
+        top: 0;
+        left: 0;
     }
     100% {
         transform: scale(1);
         width: var(--original-width);
         height: var(--original-height);
+        top: var(--original-top);
+        left: var(--original-left);
     }
 }
 
@@ -370,12 +385,16 @@
             transform: scale(1);
             width: var(--original-width);
             height: var(--original-height);
+            top: var(--original-top);
+            left: var(--original-left);
         }
         100% {
             transform: scale(1);
             width: 100%;
             height: auto;
             min-height: 500px;
+            top: 0;
+            left: 0;
         }
     }
     
@@ -384,11 +403,31 @@
             transform: scale(1);
             width: 100%;
             height: var(--expanded-height);
+            top: 0;
+            left: 0;
         }
         100% {
             transform: scale(1);
             width: var(--original-width);
             height: var(--original-height);
+            top: var(--original-top);
+            left: var(--original-left);
         }
     }
+}
+
+/* Create space for the expanded card */
+.projects-grid:has(.project-card.expanding)::before,
+.projects-grid:has(.project-card.expanded)::before {
+    content: '';
+    grid-column: 1 / -1;
+    height: var(--expanded-card-height, 400px);
+    transition: height 0.3s ease;
+}
+
+/* Ensure other cards maintain their position */
+.projects-grid:has(.project-card.expanding) .project-card:not(.expanding):not(.expanded):not(.collapsing),
+.projects-grid:has(.project-card.expanded) .project-card:not(.expanding):not(.expanded):not(.collapsing) {
+    position: relative;
+    z-index: 1;
 }

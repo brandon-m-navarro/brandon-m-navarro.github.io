@@ -156,10 +156,18 @@ export default class ProjectsPanel extends BasePanel {
     expandCard(cardId) {
         const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
         if (card) {
-            // Store original dimensions
+            // Store scroll position and original dimensions
+            const scrollY = window.scrollY;
             const originalRect = card.getBoundingClientRect();
+            const gridRect = this.projectsGridDiv.getBoundingClientRect();
+            
             card.style.setProperty('--original-width', `${originalRect.width}px`);
             card.style.setProperty('--original-height', `${originalRect.height}px`);
+            card.style.setProperty('--original-top', `${originalRect.top - gridRect.top}px`);
+            card.style.setProperty('--original-left', `${originalRect.left - gridRect.left}px`);
+            
+            // Set placeholder height for the grid
+            this.projectsGridDiv.style.setProperty('--expanded-card-height', '400px');
             
             // Hide content immediately and start expanding
             card.classList.add('expanding');
@@ -186,10 +194,15 @@ export default class ProjectsPanel extends BasePanel {
                 const expandedRect = card.getBoundingClientRect();
                 card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
                 
-                // Scroll card into view smoothly
-                setTimeout(() => {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                // Update placeholder height
+                this.projectsGridDiv.style.setProperty('--expanded-card-height', `${expandedRect.height}px`);
+                
+                // Smooth scroll to maintain position
+                const newScrollY = scrollY + (card.getBoundingClientRect().top - originalRect.top);
+                window.scrollTo({
+                    top: newScrollY,
+                    behavior: 'smooth'
+                });
             }, 300);
         }
     }
@@ -197,6 +210,10 @@ export default class ProjectsPanel extends BasePanel {
     collapseCard(cardId) {
         const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
         if (card) {
+            // Store current scroll position
+            const scrollY = window.scrollY;
+            const cardTop = card.getBoundingClientRect().top + scrollY;
+            
             // Store expanded height before starting collapse
             const expandedRect = card.getBoundingClientRect();
             card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
@@ -225,7 +242,21 @@ export default class ProjectsPanel extends BasePanel {
                 // Clear stored dimensions
                 card.style.removeProperty('--original-width');
                 card.style.removeProperty('--original-height');
+                card.style.removeProperty('--original-top');
+                card.style.removeProperty('--original-left');
                 card.style.removeProperty('--expanded-height');
+                
+                // Remove placeholder height
+                this.projectsGridDiv.style.removeProperty('--expanded-card-height');
+                
+                // Smooth scroll back to original card position
+                const originalCardTop = card.getBoundingClientRect().top + scrollY;
+                const scrollDiff = cardTop - originalCardTop;
+                
+                window.scrollTo({
+                    top: scrollY - scrollDiff,
+                    behavior: 'smooth'
+                });
             }, 300);
         }
     }
