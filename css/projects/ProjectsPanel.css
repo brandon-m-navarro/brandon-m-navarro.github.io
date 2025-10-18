@@ -46,7 +46,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -67,9 +67,8 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center top;
-    position: relative;
 }
 
 .project-card:hover:not(.expanded) {
@@ -86,7 +85,9 @@
     grid-column: 1 / -1;
     position: relative;
     z-index: 20;
-    animation: expandCard 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: expandCard 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    max-height: 80vh; /* Limit height to fit in viewport */
+    overflow-y: auto; /* Allow scrolling only if absolutely necessary */
 }
 
 .project-card.expanded:hover {
@@ -106,67 +107,29 @@
 /* Animation for expanding card */
 @keyframes expandCard {
     0% {
-        transform: scale(1);
-        filter: blur(0);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.02);
-        filter: blur(2px);
-        opacity: 0.9;
+        transform: scale(0.98);
+        opacity: 0.8;
     }
     100% {
         transform: scale(1);
-        filter: blur(0);
         opacity: 1;
     }
 }
 
 /* Animation for collapsing card */
 .project-card:not(.expanded) {
-    animation: collapseCard 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: collapseCard 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes collapseCard {
     0% {
-        transform: scale(1);
-        filter: blur(0);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(0.98);
-        filter: blur(1px);
-        opacity: 0.95;
+        transform: scale(1.02);
+        opacity: 0.9;
     }
     100% {
         transform: scale(1);
-        filter: blur(0);
         opacity: 1;
     }
-}
-
-/* Other cards when one is expanded */
-.projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
-    animation: blurOtherCards 0.5s ease forwards;
-    pointer-events: none;
-}
-
-@keyframes blurOtherCards {
-    0% {
-        filter: blur(0);
-        opacity: 1;
-    }
-    100% {
-        filter: blur(2px);
-        opacity: 0.7;
-    }
-}
-
-/* Reset other cards when none are expanded */
-.projects-grid:not(:has(.project-card.expanded)) .project-card {
-    filter: blur(0) !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
 }
 
 /* Project Image */
@@ -186,17 +149,19 @@
 }
 
 .project-card.expanded .project-image-container {
-    flex: 0 0 400px;
-    height: auto;
-    animation: expandImage 0.6s ease forwards;
+    flex: 0 0 200px; /* Smaller image in expanded view */
+    height: 200px;
+    animation: expandImage 0.5s ease forwards;
 }
 
 @keyframes expandImage {
     0% {
-        flex: 0 0 100%;
+        flex: 0 0 12rem;
+        height: 12rem;
     }
     100% {
-        flex: 0 0 400px;
+        flex: 0 0 200px;
+        height: 200px;
     }
 }
 
@@ -214,18 +179,17 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    animation: expandContent 0.6s ease forwards;
+    justify-content: flex-start; /* Align to top instead of center */
+    animation: expandContent 0.5s ease forwards;
+    max-height: none;
 }
 
 @keyframes expandContent {
     0% {
         opacity: 0.8;
-        transform: translateX(10px);
     }
     100% {
         opacity: 1;
-        transform: translateX(0);
     }
 }
 
@@ -255,7 +219,7 @@
     -webkit-line-clamp: unset;
     overflow: visible;
     display: block;
-    animation: expandDescription 0.8s ease forwards;
+    animation: expandDescription 0.6s ease forwards;
 }
 
 @keyframes expandDescription {
@@ -315,8 +279,6 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.875rem;
-    position: relative;
-    overflow: hidden;
 }
 
 .project-details-btn:hover {
@@ -393,20 +355,24 @@
 @media (max-width: 768px) {
     .project-card.expanded {
         flex-direction: column;
+        max-height: 85vh; /* Slightly more height on mobile */
     }
     
     .project-card.expanded .project-image-container {
-        flex: 0 0 250px;
+        flex: 0 0 150px; /* Even smaller image on mobile */
+        height: 150px;
         width: 100%;
-        animation: expandImageMobile 0.6s ease forwards;
+        animation: expandImageMobile 0.5s ease forwards;
     }
     
     @keyframes expandImageMobile {
         0% {
             flex: 0 0 12rem;
+            height: 12rem;
         }
         100% {
-            flex: 0 0 250px;
+            flex: 0 0 150px;
+            height: 150px;
         }
     }
     
@@ -416,12 +382,6 @@
     
     .project-card.expanded {
         grid-column: 1;
-    }
-    
-    /* Less blur on mobile for performance */
-    .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
-        filter: blur(1px);
-        opacity: 0.8;
     }
 }
 
@@ -441,6 +401,10 @@
     
     .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
         grid-column: span 1;
+        /* Remove blur and opacity changes */
+        filter: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
     }
 }
 
@@ -455,14 +419,50 @@
     
     .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
         grid-column: span 1;
+        /* Remove blur and opacity changes */
+        filter: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
     }
 }
 
-/* Smooth layout transitions */
-.projects-grid {
-    view-transition-name: projects-grid;
+/* Compact layout for expanded cards to fit in viewport */
+.project-card.expanded {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align items to top */
 }
 
-.project-card {
-    view-transition-name: project-card;
+.project-card.expanded .project-content {
+    padding: 1.5rem 2rem; /* More horizontal padding */
+}
+
+/* Ensure the card doesn't grow too tall */
+.project-card.expanded .project-description {
+    max-height: 40vh; /* Limit description height */
+    overflow-y: auto; /* Allow scrolling within description if needed */
+    padding-right: 0.5rem; /* Space for scrollbar */
+}
+
+/* Custom scrollbar for description */
+.project-card.expanded .project-description::-webkit-scrollbar {
+    width: 4px;
+}
+
+.project-card.expanded .project-description::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.project-card.expanded .project-description::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+}
+
+.project-card.expanded.dark .project-description::-webkit-scrollbar-track {
+    background: #4a5568;
+}
+
+.project-card.expanded.dark .project-description::-webkit-scrollbar-thumb {
+    background: #718096;
 }
