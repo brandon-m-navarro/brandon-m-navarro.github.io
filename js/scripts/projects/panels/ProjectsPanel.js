@@ -156,7 +156,13 @@ export default class ProjectsPanel extends BasePanel {
     expandCard(cardId) {
         const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
         if (card) {
-            card.classList.add('expanded');
+            // Store original dimensions
+            const originalRect = card.getBoundingClientRect();
+            card.style.setProperty('--original-width', `${originalRect.width}px`);
+            card.style.setProperty('--original-height', `${originalRect.height}px`);
+            
+            // Hide content immediately
+            card.classList.add('expanding');
             
             // Update button text
             const detailsButton = card.querySelector('.project-details-btn');
@@ -164,16 +170,30 @@ export default class ProjectsPanel extends BasePanel {
                 detailsButton.textContent = 'Show Less';
             }
             
-            // Scroll card into view smoothly
+            // Switch to long description if available
+            const descriptionDiv = card.querySelector('.project-description');
+            const longDescription = descriptionDiv.getAttribute('data-long-description');
+            if (longDescription) {
+                descriptionDiv.innerHTML = longDescription.replace(/\n/g, '<br>');
+            }
+            
+            // After growth animation completes, show content
             setTimeout(() => {
-                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+                card.classList.remove('expanding');
+                card.classList.add('expanded');
+                
+                // Scroll card into view smoothly
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }, 300); // Match the CSS animation duration
         }
     }
 
     collapseCard(cardId) {
         const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
         if (card) {
+            // Hide content immediately
             card.classList.remove('expanded');
             
             // Update button text
@@ -181,6 +201,17 @@ export default class ProjectsPanel extends BasePanel {
             if (detailsButton) {
                 detailsButton.textContent = 'View Details';
             }
+            
+            // Switch back to short description
+            const descriptionDiv = card.querySelector('.project-description');
+            const shortDescription = descriptionDiv.getAttribute('data-short-description');
+            if (shortDescription) {
+                descriptionDiv.textContent = shortDescription;
+            }
+            
+            // Clear stored dimensions
+            card.style.removeProperty('--original-width');
+            card.style.removeProperty('--original-height');
         }
     }
 
