@@ -86,8 +86,7 @@
     position: relative;
     z-index: 20;
     animation: expandCard 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    max-height: 80vh; /* Limit height to fit in viewport */
-    overflow-y: auto; /* Allow scrolling only if absolutely necessary */
+    margin-bottom: 2rem; /* Extra space below expanded card */
 }
 
 .project-card.expanded:hover {
@@ -132,7 +131,7 @@
     }
 }
 
-/* Project Image */
+/* Project Image - Keep original aspect ratio */
 .project-image-container {
     position: relative;
     height: 12rem;
@@ -149,24 +148,25 @@
 }
 
 .project-card.expanded .project-image-container {
-    flex: 0 0 200px; /* Smaller image in expanded view */
-    height: 200px;
+    flex: 0 0 300px; /* Wider but not taller */
+    height: 200px; /* Fixed height to prevent cropping */
     animation: expandImage 0.5s ease forwards;
 }
 
 @keyframes expandImage {
     0% {
-        flex: 0 0 12rem;
+        flex: 0 0 100%;
         height: 12rem;
     }
     100% {
-        flex: 0 0 200px;
+        flex: 0 0 300px;
         height: 200px;
     }
 }
 
 .project-card.expanded .project-image-container img {
     transform: scale(1.02);
+    object-fit: cover; /* Ensure image fills container without distortion */
 }
 
 /* Project Content */
@@ -179,9 +179,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align to top instead of center */
+    justify-content: flex-start;
     animation: expandContent 0.5s ease forwards;
-    max-height: none;
 }
 
 @keyframes expandContent {
@@ -355,114 +354,89 @@
 @media (max-width: 768px) {
     .project-card.expanded {
         flex-direction: column;
-        max-height: 85vh; /* Slightly more height on mobile */
     }
     
     .project-card.expanded .project-image-container {
-        flex: 0 0 150px; /* Even smaller image on mobile */
-        height: 150px;
+        flex: 0 0 100%; /* Full width on mobile */
+        height: 200px; /* Consistent height */
         width: 100%;
         animation: expandImageMobile 0.5s ease forwards;
     }
     
     @keyframes expandImageMobile {
         0% {
-            flex: 0 0 12rem;
             height: 12rem;
         }
         100% {
-            flex: 0 0 150px;
-            height: 150px;
+            height: 200px;
         }
     }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .project-card.expanded {
-        grid-column: 1;
-    }
 }
 
-/* Fix for grid layout when cards expand - maintain original widths */
+/* Grid layout adjustments - Non-focused cards always stay below */
+.projects-grid {
+    grid-auto-flow: row; /* Ensure cards flow in rows */
+}
+
 .projects-grid:has(.project-card.expanded) {
-    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "expanded"
+        "other-cards";
 }
 
+.project-card.expanded {
+    grid-area: expanded;
+}
+
+/* Ensure non-expanded cards flow normally below the expanded card */
+.projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
+    /* Remove any blur/opacity changes */
+    filter: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Desktop layout with expanded card on top, others in grid below */
 @media (min-width: 768px) {
     .projects-grid:has(.project-card.expanded) {
         grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .projects-grid:has(.project-card.expanded) .project-card.expanded {
-        grid-column: 1 / -1;
+        grid-template-areas: 
+            "expanded expanded"
+            "other-cards other-cards";
     }
     
     .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
-        grid-column: span 1;
-        /* Remove blur and opacity changes */
-        filter: none !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
+        grid-column: span 1; /* Regular grid items */
     }
 }
 
 @media (min-width: 1024px) {
     .projects-grid:has(.project-card.expanded) {
         grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .projects-grid:has(.project-card.expanded) .project-card.expanded {
-        grid-column: 1 / -1;
+        grid-template-areas: 
+            "expanded expanded expanded"
+            "other-cards other-cards other-cards";
     }
     
     .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
-        grid-column: span 1;
-        /* Remove blur and opacity changes */
-        filter: none !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
+        grid-column: span 1; /* Regular grid items */
     }
 }
 
-/* Compact layout for expanded cards to fit in viewport */
+/* Compact layout for expanded cards */
 .project-card.expanded {
     display: flex;
     flex-direction: row;
-    align-items: flex-start; /* Align items to top */
+    align-items: flex-start;
+    max-height: none; /* Remove height restriction */
 }
 
 .project-card.expanded .project-content {
-    padding: 1.5rem 2rem; /* More horizontal padding */
+    padding: 2rem;
 }
 
-/* Ensure the card doesn't grow too tall */
+/* Ensure the expanded card doesn't get too tall */
 .project-card.expanded .project-description {
-    max-height: 40vh; /* Limit description height */
-    overflow-y: auto; /* Allow scrolling within description if needed */
-    padding-right: 0.5rem; /* Space for scrollbar */
-}
-
-/* Custom scrollbar for description */
-.project-card.expanded .project-description::-webkit-scrollbar {
-    width: 4px;
-}
-
-.project-card.expanded .project-description::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 2px;
-}
-
-.project-card.expanded .project-description::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 2px;
-}
-
-.project-card.expanded.dark .project-description::-webkit-scrollbar-track {
-    background: #4a5568;
-}
-
-.project-card.expanded.dark .project-description::-webkit-scrollbar-thumb {
-    background: #718096;
+    max-height: none; /* Remove height restriction */
+    overflow-y: visible; /* No scrolling needed */
 }
