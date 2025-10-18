@@ -46,18 +46,20 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 @media (min-width: 768px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
+        transition: grid-template-columns 0.5s ease;
     }
 }
 
 @media (min-width: 1024px) {
     .projects-grid {
         grid-template-columns: repeat(3, 1fr);
+        transition: grid-template-columns 0.5s ease;
     }
 }
 
@@ -67,8 +69,9 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center top;
+    position: relative;
 }
 
 .project-card:hover:not(.expanded) {
@@ -86,7 +89,10 @@
     position: relative;
     z-index: 20;
     animation: expandCard 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    margin-bottom: 2rem; /* Extra space below expanded card */
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .project-card.expanded:hover {
@@ -103,35 +109,26 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
 }
 
-/* Animation for expanding card */
+/* Smooth expand/collapse animations */
 @keyframes expandCard {
     0% {
         transform: scale(0.98);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Animation for collapsing card */
-.project-card:not(.expanded) {
-    animation: collapseCard 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes collapseCard {
-    0% {
-        transform: scale(1.02);
         opacity: 0.9;
     }
+    50% {
+        transform: scale(1.01);
+    }
     100% {
         transform: scale(1);
         opacity: 1;
     }
 }
 
-/* Project Image - Keep original aspect ratio */
+.project-card:not(.expanded) {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Project Image */
 .project-image-container {
     position: relative;
     height: 12rem;
@@ -148,25 +145,13 @@
 }
 
 .project-card.expanded .project-image-container {
-    flex: 0 0 300px; /* Wider but not taller */
-    height: 200px; /* Fixed height to prevent cropping */
-    animation: expandImage 0.5s ease forwards;
-}
-
-@keyframes expandImage {
-    0% {
-        flex: 0 0 100%;
-        height: 12rem;
-    }
-    100% {
-        flex: 0 0 300px;
-        height: 200px;
-    }
+    flex: 0 0 300px;
+    height: 200px;
+    transition: all 0.5s ease;
 }
 
 .project-card.expanded .project-image-container img {
     transform: scale(1.02);
-    object-fit: cover; /* Ensure image fills container without distortion */
 }
 
 /* Project Content */
@@ -180,16 +165,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    animation: expandContent 0.5s ease forwards;
-}
-
-@keyframes expandContent {
-    0% {
-        opacity: 0.8;
-    }
-    100% {
-        opacity: 1;
-    }
+    padding: 2rem;
+    transition: all 0.5s ease;
 }
 
 .project-title {
@@ -197,6 +174,7 @@
     font-weight: 600;
     color: #111827;
     margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
 }
 
 .project-card.dark .project-title {
@@ -211,25 +189,14 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
 }
 
 .project-card.expanded .project-description {
     -webkit-line-clamp: unset;
     overflow: visible;
     display: block;
-    animation: expandDescription 0.6s ease forwards;
-}
-
-@keyframes expandDescription {
-    0% {
-        opacity: 0;
-        max-height: 4.5em;
-    }
-    100% {
-        opacity: 1;
-        max-height: none;
-    }
+    transition: all 0.5s ease;
 }
 
 .project-card.dark .project-description {
@@ -287,21 +254,12 @@
 
 .project-card.expanded .project-details-btn {
     background-color: #dc2626;
-    animation: buttonChange 0.4s ease forwards;
+    transition: all 0.3s ease;
 }
 
 .project-card.expanded .project-details-btn:hover {
     background-color: #b91c1c;
     transform: translateY(-1px);
-}
-
-@keyframes buttonChange {
-    0% {
-        background-color: #2563eb;
-    }
-    100% {
-        background-color: #dc2626;
-    }
 }
 
 .project-github-btn {
@@ -354,28 +312,28 @@
 @media (max-width: 768px) {
     .project-card.expanded {
         flex-direction: column;
+        transition: all 0.5s ease;
     }
     
     .project-card.expanded .project-image-container {
-        flex: 0 0 100%; /* Full width on mobile */
-        height: 200px; /* Consistent height */
+        flex: 0 0 100%;
+        height: 200px;
         width: 100%;
-        animation: expandImageMobile 0.5s ease forwards;
+        transition: all 0.5s ease;
     }
     
-    @keyframes expandImageMobile {
-        0% {
-            height: 12rem;
-        }
-        100% {
-            height: 200px;
-        }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card.expanded {
+        grid-column: 1;
     }
 }
 
 /* Grid layout adjustments - Non-focused cards always stay below */
 .projects-grid {
-    grid-auto-flow: row; /* Ensure cards flow in rows */
+    grid-auto-flow: row;
 }
 
 .projects-grid:has(.project-card.expanded) {
@@ -390,7 +348,6 @@
 
 /* Ensure non-expanded cards flow normally below the expanded card */
 .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
-    /* Remove any blur/opacity changes */
     filter: none !important;
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -403,10 +360,11 @@
         grid-template-areas: 
             "expanded expanded"
             "other-cards other-cards";
+        transition: all 0.5s ease;
     }
     
     .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
-        grid-column: span 1; /* Regular grid items */
+        grid-column: span 1;
     }
 }
 
@@ -416,27 +374,25 @@
         grid-template-areas: 
             "expanded expanded expanded"
             "other-cards other-cards other-cards";
+        transition: all 0.5s ease;
     }
     
     .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
-        grid-column: span 1; /* Regular grid items */
+        grid-column: span 1;
     }
 }
 
-/* Compact layout for expanded cards */
-.project-card.expanded {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    max-height: none; /* Remove height restriction */
-}
-
-.project-card.expanded .project-content {
-    padding: 2rem;
+/* Smooth layout transitions */
+.projects-grid,
+.project-card,
+.project-image-container,
+.project-content,
+.project-description {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Ensure the expanded card doesn't get too tall */
 .project-card.expanded .project-description {
-    max-height: none; /* Remove height restriction */
-    overflow-y: visible; /* No scrolling needed */
+    max-height: none;
+    overflow-y: visible;
 }
