@@ -4,7 +4,6 @@
 'use strict';
 
 import BasePanel from '../../BasePanel.js';
-import Picture from '../../components/Picture.js';
 import Images from '../../Images.js';
 import NightSky from '../../components/NightSky.js'
 import FooterComponent from '../../components/Footer.js';

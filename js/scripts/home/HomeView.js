@@ -1,4 +1,3 @@
-
 /**
  * HomeView.js
  *

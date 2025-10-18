@@ -78,6 +78,9 @@ export default class ProjectsPanel extends BasePanel {
         
         // Initialize footer component
         this.footerComponent = new FooterComponent();
+        
+        // Track expanded state
+        this.expandedCardId = null;
     }
 
     // Public Methods
@@ -130,6 +133,57 @@ export default class ProjectsPanel extends BasePanel {
         });
     }
 
+    // Expand/collapse project card
+    toggleProjectCard(cardId) {
+        const allCards = this.projectsGridDiv.querySelectorAll('.project-card');
+        
+        if (this.expandedCardId === cardId) {
+            // Collapse currently expanded card
+            this.collapseCard(cardId);
+            this.expandedCardId = null;
+        } else {
+            // Collapse any currently expanded card
+            if (this.expandedCardId) {
+                this.collapseCard(this.expandedCardId);
+            }
+            
+            // Expand the new card
+            this.expandCard(cardId);
+            this.expandedCardId = cardId;
+        }
+    }
+
+    expandCard(cardId) {
+        const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
+        if (card) {
+            card.classList.add('expanded');
+            
+            // Update button text
+            const detailsButton = card.querySelector('.project-details-btn');
+            if (detailsButton) {
+                detailsButton.textContent = 'Show Less';
+            }
+            
+            // Scroll card into view smoothly
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    }
+
+    collapseCard(cardId) {
+        const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
+        if (card) {
+            card.classList.remove('expanded');
+            
+            // Update button text
+            const detailsButton = card.querySelector('.project-details-btn');
+            if (detailsButton) {
+                detailsButton.textContent = 'View Details';
+            }
+        }
+    }
+
     // Create elements used on the panel
     createElements() {
         this.frameDiv = doc.createElement('div');
@@ -173,6 +227,7 @@ export default class ProjectsPanel extends BasePanel {
         // Main card container
         const cardDiv = doc.createElement('div');
         cardDiv.className = 'project-card';
+        cardDiv.setAttribute('data-project-id', project.id);
 
         // Image container
         const imageDiv = doc.createElement('div');
@@ -217,8 +272,7 @@ export default class ProjectsPanel extends BasePanel {
         detailsButton.className = 'project-details-btn';
         detailsButton.textContent = 'View Details';
         addEventListeners(detailsButton, () => {
-            // Navigate to project details - you'll need to implement this based on your routing
-            console.log('Navigate to:', project.link);
+            this.toggleProjectCard(project.id);
         });
 
         // GitHub button
@@ -299,5 +353,6 @@ export default class ProjectsPanel extends BasePanel {
         if (this.footerComponent) {
             this.footerComponent.destroy();
         }
+        this.expandedCardId = null;
     }
 }

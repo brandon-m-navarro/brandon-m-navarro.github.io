@@ -46,6 +46,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    transition: all 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -66,7 +67,7 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover {
@@ -78,23 +79,68 @@
     background: #2d3748;
 }
 
+/* Expanded Card States */
+.project-card.expanded {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    z-index: 10;
+    position: relative;
+    transform: none !important;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    max-height: none;
+}
+
+.project-card.expanded:hover {
+    transform: none !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.project-card.expanded.dark {
+    background: #2d3748;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.project-card.expanded.dark:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6) !important;
+}
+
 /* Project Image */
 .project-image-container {
     position: relative;
     height: 12rem;
     width: 100%;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .project-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card.expanded .project-image-container {
+    flex: 0 0 400px;
+    height: auto;
+}
+
+.project-card.expanded .project-image-container img {
+    transform: scale(1.02);
 }
 
 /* Project Content */
 .project-content {
     padding: 1.5rem;
+}
+
+.project-card.expanded .project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .project-title {
@@ -116,6 +162,12 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.project-card.expanded .project-description {
+    -webkit-line-clamp: unset !important;
+    overflow: visible !important;
+    display: block !important;
 }
 
 .project-card.dark .project-description {
@@ -167,6 +219,14 @@
     background-color: #1d4ed8;
 }
 
+.project-card.expanded .project-details-btn {
+    background-color: #dc2626;
+}
+
+.project-card.expanded .project-details-btn:hover {
+    background-color: #b91c1c;
+}
+
 .project-github-btn {
     display: flex;
     align-items: center;
@@ -209,4 +269,41 @@
 
 .project-card.dark .project-live-demo:hover {
     color: #93c5fd;
+}
+
+/* Mobile Responsive for Expanded Cards */
+@media (max-width: 768px) {
+    .project-card.expanded {
+        flex-direction: column;
+    }
+    
+    .project-card.expanded .project-image-container {
+        flex: 0 0 250px;
+        width: 100%;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card.expanded {
+        grid-column: 1 !important;
+    }
+}
+
+/* Fix for grid layout when cards expand */
+.projects-grid:has(.project-card.expanded) {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .projects-grid:has(.project-card.expanded) {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects-grid:has(.project-card.expanded) {
+        grid-template-columns: 1fr;
+    }
 }
