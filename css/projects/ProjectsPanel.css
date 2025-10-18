@@ -193,6 +193,31 @@
     }
 }
 
+/* Fade out other cards during expand/collapse animations */
+.projects-grid:has(.project-card.expanding) .project-card:not(.expanding):not(.expanded):not(.collapsing),
+.projects-grid:has(.project-card.collapsing) .project-card:not(.expanding):not(.expanded):not(.collapsing) {
+    opacity: 0.3;
+    filter: blur(1px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* Normal state for other cards when no animations are happening */
+.projects-grid:not(:has(.project-card.expanding)):not(:has(.project-card.collapsing)) .project-card:not(.expanded) {
+    opacity: 1;
+    filter: blur(0);
+    transition: all 0.3s ease 0.2s; /* Delay the fade-in until after collapse */
+    pointer-events: auto;
+}
+
+/* Keep expanded card fully visible */
+.project-card.expanding,
+.project-card.expanded,
+.project-card.collapsing {
+    opacity: 1 !important;
+    filter: blur(0) !important;
+}
+
 /* Project Image */
 .project-image-container {
     position: relative;
@@ -413,6 +438,13 @@
             top: var(--original-top);
             left: var(--original-left);
         }
+    }
+    
+    /* Less blur on mobile for better performance */
+    .projects-grid:has(.project-card.expanding) .project-card:not(.expanding):not(.expanded):not(.collapsing),
+    .projects-grid:has(.project-card.collapsing) .project-card:not(.expanding):not(.expanded):not(.collapsing) {
+        filter: blur(0.5px);
+        opacity: 0.4;
     }
 }
 
