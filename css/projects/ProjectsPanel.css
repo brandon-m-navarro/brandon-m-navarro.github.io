@@ -41,7 +41,7 @@
     color: #ffffff;
 }
 
-/* Projects Grid */
+/* Projects Grid - Keep original layout */
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -60,6 +60,27 @@
     }
 }
 
+/* When a card is expanded, only change that card's grid column */
+.projects-grid:has(.project-card.expanding),
+.projects-grid:has(.project-card.expanded) {
+    /* Maintain original grid template */
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .projects-grid:has(.project-card.expanding),
+    .projects-grid:has(.project-card.expanded) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects-grid:has(.project-card.expanding),
+    .projects-grid:has(.project-card.expanded) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 /* Project Card */
 .project-card {
     background: white;
@@ -71,7 +92,7 @@
     position: relative;
 }
 
-.project-card:hover:not(.expanding):not(.expanded) {
+.project-card:hover:not(.expanding):not(.expanded):not(.collapsing) {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transform: translateY(-2px);
 }
@@ -98,6 +119,13 @@
     margin-bottom: 2rem;
 }
 
+.project-card.collapsing {
+    grid-column: 1 / -1 !important;
+    position: relative;
+    z-index: 20;
+    animation: shrinkCard 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 .project-card.expanded:hover {
     transform: none;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -108,8 +136,9 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* Hide content during expansion */
-.project-card.expanding .project-content > * {
+/* Hide content during expansion/contraction */
+.project-card.expanding .project-content > *,
+.project-card.collapsing .project-content > * {
     opacity: 0;
     transition: opacity 0.1s ease;
 }
@@ -117,7 +146,7 @@
 /* Show content after expansion */
 .project-card.expanded .project-content > * {
     opacity: 1;
-    transition: opacity 0.2s ease 0.3s; /* Delay to show after growth */
+    transition: opacity 0.2s ease 0.3s;
 }
 
 /* Grow Animation */
@@ -131,7 +160,21 @@
         transform: scale(1);
         width: 100%;
         height: auto;
-        min-height: 400px; /* Adjust based on your content */
+        min-height: 400px;
+    }
+}
+
+/* Shrink Animation */
+@keyframes shrinkCard {
+    0% {
+        transform: scale(1);
+        width: 100%;
+        height: var(--expanded-height);
+    }
+    100% {
+        transform: scale(1);
+        width: var(--original-width);
+        height: var(--original-height);
     }
 }
 
@@ -154,7 +197,8 @@
     height: 200px;
 }
 
-.project-card.expanding .project-image-container {
+.project-card.expanding .project-image-container,
+.project-card.collapsing .project-image-container {
     opacity: 0;
     transition: opacity 0.1s ease;
 }
@@ -321,14 +365,6 @@
         width: 100%;
     }
     
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .project-card.expanded {
-        grid-column: 1;
-    }
-    
     @keyframes growCard {
         0% {
             transform: scale(1);
@@ -339,27 +375,20 @@
             transform: scale(1);
             width: 100%;
             height: auto;
-            min-height: 500px; /* Taller on mobile */
+            min-height: 500px;
         }
     }
-}
-
-/* Grid layout when cards expand */
-.projects-grid:has(.project-card.expanding),
-.projects-grid:has(.project-card.expanded) {
-    grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-    .projects-grid:has(.project-card.expanding),
-    .projects-grid:has(.project-card.expanded) {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (min-width: 1024px) {
-    .projects-grid:has(.project-card.expanding),
-    .projects-grid:has(.project-card.expanded) {
-        grid-template-columns: 1fr;
+    
+    @keyframes shrinkCard {
+        0% {
+            transform: scale(1);
+            width: 100%;
+            height: var(--expanded-height);
+        }
+        100% {
+            transform: scale(1);
+            width: var(--original-width);
+            height: var(--original-height);
+        }
     }
 }

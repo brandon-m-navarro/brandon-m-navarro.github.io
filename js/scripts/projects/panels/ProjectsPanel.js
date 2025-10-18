@@ -161,7 +161,7 @@ export default class ProjectsPanel extends BasePanel {
             card.style.setProperty('--original-width', `${originalRect.width}px`);
             card.style.setProperty('--original-height', `${originalRect.height}px`);
             
-            // Hide content immediately
+            // Hide content immediately and start expanding
             card.classList.add('expanding');
             
             // Update button text
@@ -182,19 +182,28 @@ export default class ProjectsPanel extends BasePanel {
                 card.classList.remove('expanding');
                 card.classList.add('expanded');
                 
+                // Store expanded height for collapse animation
+                const expandedRect = card.getBoundingClientRect();
+                card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
+                
                 // Scroll card into view smoothly
                 setTimeout(() => {
                     card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
-            }, 300); // Match the CSS animation duration
+            }, 300);
         }
     }
 
     collapseCard(cardId) {
         const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
         if (card) {
-            // Hide content immediately
+            // Store expanded height before starting collapse
+            const expandedRect = card.getBoundingClientRect();
+            card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
+            
+            // Hide content immediately and start collapsing
             card.classList.remove('expanded');
+            card.classList.add('collapsing');
             
             // Update button text
             const detailsButton = card.querySelector('.project-details-btn');
@@ -209,9 +218,15 @@ export default class ProjectsPanel extends BasePanel {
                 descriptionDiv.textContent = shortDescription;
             }
             
-            // Clear stored dimensions
-            card.style.removeProperty('--original-width');
-            card.style.removeProperty('--original-height');
+            // After shrink animation completes, return to normal state
+            setTimeout(() => {
+                card.classList.remove('collapsing');
+                
+                // Clear stored dimensions
+                card.style.removeProperty('--original-width');
+                card.style.removeProperty('--original-height');
+                card.style.removeProperty('--expanded-height');
+            }, 300);
         }
     }
 
