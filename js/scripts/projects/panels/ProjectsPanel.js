@@ -34,7 +34,7 @@ const projects = [
     {
         id: "1",
         title: "NextJS Dashboard",
-        description: "A comprehensive dashboard application built as my introduction to Next.js, following the official Next.js tutorial. This project served as a hands-on learning experience for modern React frameworks and full-stack development patterns.",
+        description: "A comprehensive dashboard application built as my introduction to Next.js, following the official Next.js tutorial. This project served as a hands-on learning experience for modern React frameworks and full-stack development patterns. As a prerequisite, I also completed their React Foundations course, which covers the fundamentals of React, such as components, props, state, and hooks, and newer features like Server Components and Suspense.",
         image: images['dashboard'].src,
         link: "/",
         tags: ["Authentication", "Next.js", "Postgres"],
@@ -44,7 +44,7 @@ const projects = [
     {
         id: "2",
         title: "Task Management App",
-        description: "A full-stack task management web application built with Next.js, featuring a responsive design and real-time optimistic updates. The app enables users to efficiently organize tasks within projects, with intuitive filtering, sorting, and seamless cross-device synchronization.",
+        description: "A full-stack task management web application built with Next.js, featuring a responsive design and real-time optimistic updates. The app enables users to efficiently organize tasks within projects, with intuitive filtering, sorting, and seamless cross-device synchronization. Developed with a mobile-first approach, this project provided extensive practice with React, TypeScript, Next.js, and Tailwind CSS, particularly focusing on Next.js routing and React Context for efficient database operations with Postgres.",
         image: images['todo'].src,
         link: "/",
         tags: ["Next.js", "TypeScript", "Tailwind", "Postgres"],
@@ -54,7 +54,7 @@ const projects = [
     {
         id: "3",
         title: "Portfolio Site",
-        description: "A client-side application hosted on GitHub Pages, built with ES6 classes and inheritance patterns to promote code reusability and scalable architecture through object-oriented design principles.",
+        description: "A client-side application hosted on GitHub Pages showcasing scalable JavaScript architecture through ES6 classes and inheritance patterns. Implements persistent UI preferences via LocalStorage with full theme synchronization. Originally developed with vanilla JavaScript applying professional patterns from industry experience, then reimplemented with React/Next.js to demonstrate framework versatility and comparative understanding. The structure of this project was inspired by the codebase I'd worked on with MyChapter at Tramplezone LLC.",
         image: images['portfolio'].src,
         link: "/",
         tags: ["JS (ES6)", "CSS3", "SVG"],
@@ -156,7 +156,18 @@ export default class ProjectsPanel extends BasePanel {
     expandCard(cardId) {
         const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
         if (card) {
-            card.classList.add('expanded');
+            // DESKTOP: Store dimensions and use expanding state
+            if (window.innerWidth >= 768) {
+                const originalRect = card.getBoundingClientRect();
+                const gridRect = this.projectsGridDiv.getBoundingClientRect();
+                
+                card.style.setProperty('--original-width', `${originalRect.width}px`);
+                card.style.setProperty('--original-height', `${originalRect.height}px`);
+                card.style.setProperty('--original-top', `${originalRect.top - gridRect.top}px`);
+                card.style.setProperty('--original-left', `${originalRect.left - gridRect.left}px`);
+                
+                card.classList.add('expanding');
+            }
             
             // Update button text
             const detailsButton = card.querySelector('.project-details-btn');
@@ -164,22 +175,74 @@ export default class ProjectsPanel extends BasePanel {
                 detailsButton.textContent = 'Show Less';
             }
             
-            // Scroll card into view smoothly
-            setTimeout(() => {
-                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+            // Switch to long description if available
+            const descriptionDiv = card.querySelector('.project-description');
+            const longDescription = descriptionDiv.getAttribute('data-long-description');
+            if (longDescription) {
+                descriptionDiv.innerHTML = longDescription.replace(/\n/g, '<br>');
+            }
+            
+            // DESKTOP: Complete expansion after animation
+            if (window.innerWidth >= 768) {
+                setTimeout(() => {
+                    card.classList.remove('expanding');
+                    card.classList.add('expanded');
+                    
+                    const expandedRect = card.getBoundingClientRect();
+                    card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
+                    
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }, 300);
+            } else {
+                // MOBILE: Just add expanded class
+                card.classList.add('expanded');
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
         }
     }
 
     collapseCard(cardId) {
         const card = this.projectsGridDiv.querySelector(`[data-project-id="${cardId}"]`);
         if (card) {
-            card.classList.remove('expanded');
+            // DESKTOP: Use collapsing state
+            if (window.innerWidth >= 768) {
+                const expandedRect = card.getBoundingClientRect();
+                card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
+                
+                card.classList.remove('expanded');
+                card.classList.add('collapsing');
+            } else {
+                // MOBILE: Just remove expanded class
+                card.classList.remove('expanded');
+            }
             
             // Update button text
             const detailsButton = card.querySelector('.project-details-btn');
             if (detailsButton) {
                 detailsButton.textContent = 'View Details';
+            }
+            
+            // Switch back to short description
+            const descriptionDiv = card.querySelector('.project-description');
+            const shortDescription = descriptionDiv.getAttribute('data-short-description');
+            if (shortDescription) {
+                descriptionDiv.textContent = shortDescription;
+            }
+            
+            // DESKTOP: Complete collapse after animation
+            if (window.innerWidth >= 768) {
+                setTimeout(() => {
+                    card.classList.remove('collapsing');
+                    card.style.removeProperty('--original-width');
+                    card.style.removeProperty('--original-height');
+                    card.style.removeProperty('--original-top');
+                    card.style.removeProperty('--original-left');
+                    card.style.removeProperty('--expanded-height');
+                }, 300);
             }
         }
     }

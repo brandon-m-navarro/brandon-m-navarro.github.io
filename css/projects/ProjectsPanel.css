@@ -13,27 +13,28 @@
 #projects-panel-frame-div {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
 }
 
 /* Header Styles */
 .projects-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .projects-main-title {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     font-weight: bold;
     color: #111827;
     margin-bottom: 1rem;
 }
 
 .projects-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: #4b5563;
     max-width: 42rem;
     margin: 0 auto;
+    line-height: 1.6;
 }
 
 #projects-panel-div.dark .projects-main-title,
@@ -45,13 +46,15 @@
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    transition: all 0.3s ease;
+    gap: 1.5rem;
+    position: relative;
+    transition: all 0.4s ease;
 }
 
 @media (min-width: 768px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 }
 
@@ -68,9 +71,10 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center top;
 }
 
-.project-card:hover {
+.project-card:hover:not(.expanding):not(.expanded):not(.collapsing) {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transform: translateY(-2px);
 }
@@ -79,31 +83,123 @@
     background: #2d3748;
 }
 
-/* Expanded Card States */
-.project-card.expanded {
-    grid-column: 1 / -1 !important;
-    width: 100% !important;
-    z-index: 10;
-    position: relative;
-    transform: none !important;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: row;
-    max-height: none;
+/* Card States for Animation - DESKTOP ONLY */
+@media (min-width: 768px) {
+    .project-card.expanding {
+        position: absolute;
+        top: var(--original-top);
+        left: var(--original-left);
+        width: var(--original-width);
+        height: var(--original-height);
+        z-index: 20;
+        animation: growCardDesktop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .project-card.expanded {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 20;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        height: 460px;
+    }
+
+    .project-card.collapsing {
+        position: absolute;
+        top: var(--original-top);
+        left: var(--original-left);
+        width: var(--original-width);
+        height: var(--original-height);
+        z-index: 20;
+        animation: shrinkCardDesktop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* Hide content during expansion/contraction */
+    .project-card.expanding .project-content > *,
+    .project-card.collapsing .project-content > * {
+        opacity: 0;
+        transition: opacity 0.1s ease;
+    }
+
+    /* Show content after expansion */
+    .project-card.expanded .project-content > * {
+        opacity: 1;
+        transition: opacity 0.2s ease 0.3s;
+    }
+
+    /* Desktop Animations */
+    @keyframes growCardDesktop {
+        0% {
+            transform: scale(1);
+            width: var(--original-width);
+            height: var(--original-height);
+            top: var(--original-top);
+            left: var(--original-left);
+        }
+        100% {
+            transform: scale(1);
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    @keyframes shrinkCardDesktop {
+        0% {
+            transform: scale(1);
+            width: 100%;
+            height: var(--expanded-height);
+            top: 0;
+            left: 0;
+        }
+        100% {
+            transform: scale(1);
+            width: var(--original-width);
+            height: var(--original-height);
+            top: var(--original-top);
+            left: var(--original-left);
+        }
+    }
+
+    /* Fade out other cards during expand/collapse animations - DESKTOP ONLY */
+    .projects-grid:has(.project-card.expanding) .project-card:not(.expanding):not(.expanded):not(.collapsing),
+    .projects-grid:has(.project-card.collapsing) .project-card:not(.expanding):not(.expanded):not(.collapsing) {
+        opacity: 0.3;
+        filter: blur(1px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+    }
+
+    /* IMPORTANT: During collapse, position other cards in their FINAL grid positions - DESKTOP ONLY */
+    .projects-grid:has(.project-card.collapsing) .project-card:not(.expanding):not(.expanded):not(.collapsing) {
+        position: relative;
+        transform: none;
+        opacity: 0.3;
+        filter: blur(1px);
+    }
+
+    /* Keep expanded card fully visible - DESKTOP ONLY */
+    .project-card.expanding,
+    .project-card.expanded,
+    .project-card.collapsing {
+        opacity: 1 !important;
+        filter: blur(0) !important;
+    }
 }
 
 .project-card.expanded:hover {
-    transform: none !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    transform: none;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .project-card.expanded.dark {
     background: #2d3748;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
-}
-
-.project-card.expanded.dark:hover {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 /* Project Image */
@@ -112,23 +208,31 @@
     height: 12rem;
     width: 100%;
     overflow: hidden;
-    transition: all 0.3s ease;
 }
 
 .project-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
-.project-card.expanded .project-image-container {
-    flex: 0 0 400px;
-    height: auto;
-}
+/* Desktop image layout */
+@media (min-width: 768px) {
+    .project-card.expanded .project-image-container {
+        flex: 0 0 300px;
+        height: 200px;
+    }
 
-.project-card.expanded .project-image-container img {
-    transform: scale(1.02);
+    .project-card.expanding .project-image-container,
+    .project-card.collapsing .project-image-container {
+        opacity: 0;
+        transition: opacity 0.1s ease;
+    }
+
+    .project-card.expanded .project-image-container {
+        opacity: 1;
+        transition: opacity 0.2s ease 0.3s;
+    }
 }
 
 /* Project Content */
@@ -137,10 +241,17 @@
 }
 
 .project-card.expanded .project-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 2rem;
+}
+
+/* Desktop content layout */
+@media (min-width: 768px) {
+    .project-card.expanded .project-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 }
 
 .project-title {
@@ -165,9 +276,9 @@
 }
 
 .project-card.expanded .project-description {
-    -webkit-line-clamp: unset !important;
-    overflow: visible !important;
-    display: block !important;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    display: block;
 }
 
 .project-card.dark .project-description {
@@ -211,12 +322,13 @@
     border-radius: 0.5rem;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
     font-size: 0.875rem;
 }
 
 .project-details-btn:hover {
     background-color: #1d4ed8;
+    transform: translateY(-1px);
 }
 
 .project-card.expanded .project-details-btn {
@@ -225,6 +337,7 @@
 
 .project-card.expanded .project-details-btn:hover {
     background-color: #b91c1c;
+    transform: translateY(-1px);
 }
 
 .project-github-btn {
@@ -237,11 +350,12 @@
     border-radius: 0.5rem;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .project-github-btn:hover {
     background-color: #1f2937;
+    transform: translateY(-1px);
 }
 
 .github-icon {
@@ -256,11 +370,12 @@
     color: #2563eb;
     font-weight: 500;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .project-live-demo:hover {
     color: #1d4ed8;
+    transform: translateX(4px);
 }
 
 .project-card.dark .project-live-demo {
@@ -271,39 +386,50 @@
     color: #93c5fd;
 }
 
-/* Mobile Responsive for Expanded Cards */
-@media (max-width: 768px) {
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+    #projects-panel-frame-div {
+        padding: 1.5rem 1rem;
+    }
+    
+    .projects-header {
+        margin-bottom: 2rem;
+    }
+    
+    .projects-main-title {
+        font-size: 1.5rem;
+    }
+    
+    .projects-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* SIMPLE MOBILE BEHAVIOR: Just expand in place, other cards move down */
     .project-card.expanded {
-        flex-direction: column;
+        /* On mobile, just let it expand naturally in the grid */
+        position: relative;
+        z-index: 10;
     }
     
-    .project-card.expanded .project-image-container {
-        flex: 0 0 250px;
-        width: 100%;
+    .project-card.expanded .project-content {
+        padding: 1.5rem;
     }
     
-    .projects-grid {
-        grid-template-columns: 1fr;
+    .project-card.expanded .project-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
     
-    .project-card.expanded {
-        grid-column: 1 !important;
+    /* Remove the fade effect on mobile - cards just move down naturally */
+    .project-card.expanded ~ .project-card {
+        opacity: 1;
+        filter: none;
     }
 }
 
-/* Fix for grid layout when cards expand */
-.projects-grid:has(.project-card.expanded) {
-    grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-    .projects-grid:has(.project-card.expanded) {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (min-width: 1024px) {
-    .projects-grid:has(.project-card.expanded) {
-        grid-template-columns: 1fr;
-    }
+/* Remove the placeholder since we're handling positioning differently */
+.projects-grid:has(.project-card.expanding)::before,
+.projects-grid:has(.project-card.expanded)::before,
+.projects-grid:has(.project-card.collapsing)::before {
+    content: none;
 }
