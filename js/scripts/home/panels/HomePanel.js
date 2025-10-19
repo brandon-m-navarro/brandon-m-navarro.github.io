@@ -23,14 +23,14 @@ export default class HomePanel extends BasePanel {
             super();
             self = this;
         }
-        
+
         this.footerComponent = new FooterComponent();
         this.initialize();
 
         this.footerComponent.getDiv().addEventListener('dark', () => {
             this.makeNight();
         });
-        
+
         this.footerComponent.getDiv().addEventListener('light', () => {
             this.makeDay();
         });
@@ -136,13 +136,13 @@ export default class HomePanel extends BasePanel {
 
         this.card1 = this.createNumberedCard(1, 'Research & Wireframing', 
             'After documenting requirements to fully understand the problem space, I conduct competitive analysis and UI research. This informs the creation of detailed wireframes and mockups that help identify overlooked requirements and effectively communicate vision to stakeholders.');
-        
+
         this.card2 = this.createNumberedCard(2, 'Feedback & Collaboration', 
             'With wireframes established, I facilitate collaborative review sessions with cross-functional teams. This iterative feedback process not only enhances design quality but also fosters team alignment and creates an environment that values diverse perspectives.');
-        
+
         this.card3 = this.createNumberedCard(3, 'Refinement & Prototyping', 
             'Incorporating team feedback, I evolve wireframes into high-fidelity prototypes with interactive elements. This stage focuses on usability testing, visual polish, and preparing assets for development handoff.');
-        
+
         this.card4 = this.createNumberedCard(4, 'Experimentation & Learning', 
             'I embrace calculated experimentation to push creative boundaries. While not every concept succeeds, each iteration provides valuable insights that drive innovation and continuous improvement in the design process.');
 
@@ -165,7 +165,7 @@ export default class HomePanel extends BasePanel {
         this.galleryLeftDiv.className = 'gallery-left';
         this.galleryRightDiv = doc.createElement('div');
         this.galleryRightDiv.className = 'gallery-right';
-        
+
         this.image1 = this.createImageWithCaption('skydive', 'Me skydiving in Swakopmund, Namibia during my IQP');
         this.image2 = this.createImageWithCaption('hershey', 'Hershey the dog being photogenic');
         this.image3 = this.createImageWithCaption('hout_bay', 'View of Hout Bay in Cape Town, South Africa');
@@ -299,7 +299,7 @@ export default class HomePanel extends BasePanel {
 
         this.initialized = true;
     };
-    
+
     destroy() {
         if (this.footerComponent) {
             this.footerComponent.destroy();

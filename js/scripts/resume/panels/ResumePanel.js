@@ -40,7 +40,7 @@ export default class ResumePanel extends BasePanel {
             super();
             self = this;
         }
-        
+
         // Initialize footer component
         this.footerComponent = new FooterComponent();
     }
@@ -1154,7 +1154,7 @@ export default class ResumePanel extends BasePanel {
         this.javascriptSkillTextDiv.innerHTML = 'Javascript';
         this.htmlSkillTextDiv.innerHTML = 'HTML';
         this.cssSkillTextDiv.innerHTML = 'CSS';
-        this.typescriptSkillTextDiv.innerHTML = 'Tyescript';
+        this.typescriptSkillTextDiv.innerHTML = 'Typescript';
         this.pythonSkillTextDiv.innerHTML = 'Python';
         this.javaSkillTextDiv.innerHTML = 'Java';
         this.sqlSkillTextDiv.innerHTML = 'SQL';

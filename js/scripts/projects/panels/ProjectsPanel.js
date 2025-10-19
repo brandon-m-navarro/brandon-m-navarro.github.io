@@ -184,17 +184,15 @@ export default class ProjectsPanel extends BasePanel {
             
             // DESKTOP: Complete expansion after animation
             if (window.innerWidth >= 768) {
+                card.classList.remove('expanding');
+                card.classList.add('expanded');
+
+                const expandedRect = card.getBoundingClientRect();
+                card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
+
                 setTimeout(() => {
-                    card.classList.remove('expanding');
-                    card.classList.add('expanded');
-                    
-                    const expandedRect = card.getBoundingClientRect();
-                    card.style.setProperty('--expanded-height', `${expandedRect.height}px`);
-                    
-                    setTimeout(() => {
-                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
-                }, 300);
+                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
             } else {
                 // MOBILE: Just add expanded class
                 card.classList.add('expanded');
@@ -235,14 +233,14 @@ export default class ProjectsPanel extends BasePanel {
             
             // DESKTOP: Complete collapse after animation
             if (window.innerWidth >= 768) {
-                setTimeout(() => {
+                // setTimeout(() => {
                     card.classList.remove('collapsing');
                     card.style.removeProperty('--original-width');
                     card.style.removeProperty('--original-height');
                     card.style.removeProperty('--original-top');
                     card.style.removeProperty('--original-left');
                     card.style.removeProperty('--expanded-height');
-                }, 300);
+                // }, 300);
             }
         }
     }
@@ -376,6 +374,65 @@ export default class ProjectsPanel extends BasePanel {
         // Assemble card
         cardDiv.appendChild(imageDiv);
         cardDiv.appendChild(contentDiv);
+
+        // Add image expand button
+        const expandButton = doc.createElement('button');
+        expandButton.className = 'project-image-expand-btn';
+        expandButton.innerHTML = '⛶';
+        expandButton.title = 'Expand image';
+
+        // Add close button for expanded card
+        const closeButton = doc.createElement('button');
+        closeButton.className = 'project-close-btn';
+        closeButton.innerHTML = '×';
+        closeButton.style.display = 'none';
+
+        // Create image modal
+        const imageModal = doc.createElement('div');
+        imageModal.className = 'project-image-modal';
+        imageModal.innerHTML = `
+            <div class="project-image-modal-content">
+                <img src="${project.image}" alt="${project.title}">
+                <button class="modal-close-btn">×</button>
+            </div>
+        `;
+
+        // Add event listeners
+        addEventListeners(expandButton, () => {
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        addEventListeners(imageModal.querySelector('.modal-close-btn'), () => {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        addEventListeners(closeButton, () => {
+            this.toggleProjectCard(project.id);
+        });
+
+        // Add elements to card
+        imageDiv.appendChild(expandButton);
+        contentDiv.appendChild(closeButton);
+        cardDiv.appendChild(imageModal);
+
+        // Show/hide close button based on expanded state
+        cardDiv.addEventListener('animationend', () => {
+            if (cardDiv.classList.contains('expanded')) {
+                closeButton.style.display = 'flex';
+            } else {
+                closeButton.style.display = 'none';
+            }
+        });
+
+        // Close Modal
+        addEventListeners(imageModal, (e) => {
+            if (e.target === imageModal) {
+                imageModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
 
         return cardDiv;
     }

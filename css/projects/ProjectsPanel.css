@@ -15,6 +15,10 @@
     margin: 0 auto;
     padding: 2rem 1rem;
 }
+#projects-panel-div.dark .projects-main-title,
+#projects-panel-div.dark .projects-subtitle {
+    color: #ffffff;
+}
 
 /* Header Styles */
 .projects-header {
@@ -37,18 +41,12 @@
     line-height: 1.6;
 }
 
-#projects-panel-div.dark .projects-main-title,
-#projects-panel-div.dark .projects-subtitle {
-    color: #ffffff;
-}
-
 /* Projects Grid */
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
     position: relative;
-    transition: all 0.4s ease;
 }
 
 @media (min-width: 768px) {
@@ -70,11 +68,10 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: center top;
+    transition: all 0.3s ease;
 }
 
-.project-card:hover:not(.expanding):not(.expanded):not(.collapsing) {
+.project-card:hover:not(.expanded) {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transform: translateY(-2px);
 }
@@ -83,117 +80,23 @@
     background: #2d3748;
 }
 
-/* Card States for Animation - DESKTOP ONLY */
-@media (min-width: 768px) {
-    .project-card.expanding {
-        position: absolute;
-        top: var(--original-top);
-        left: var(--original-left);
-        width: var(--original-width);
-        height: var(--original-height);
-        z-index: 20;
-        animation: growCardDesktop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-
-    .project-card.expanded {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 20;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        height: 460px;
-    }
-
-    .project-card.collapsing {
-        position: absolute;
-        top: var(--original-top);
-        left: var(--original-left);
-        width: var(--original-width);
-        height: var(--original-height);
-        z-index: 20;
-        animation: shrinkCardDesktop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-
-    /* Hide content during expansion/contraction */
-    .project-card.expanding .project-content > *,
-    .project-card.collapsing .project-content > * {
-        opacity: 0;
-        transition: opacity 0.1s ease;
-    }
-
-    /* Show content after expansion */
-    .project-card.expanded .project-content > * {
-        opacity: 1;
-        transition: opacity 0.2s ease 0.3s;
-    }
-
-    /* Desktop Animations */
-    @keyframes growCardDesktop {
-        0% {
-            transform: scale(1);
-            width: var(--original-width);
-            height: var(--original-height);
-            top: var(--original-top);
-            left: var(--original-left);
-        }
-        100% {
-            transform: scale(1);
-            width: 100%;
-            height: auto;
-            min-height: 400px;
-            top: 0;
-            left: 0;
-        }
-    }
-
-    @keyframes shrinkCardDesktop {
-        0% {
-            transform: scale(1);
-            width: 100%;
-            height: var(--expanded-height);
-            top: 0;
-            left: 0;
-        }
-        100% {
-            transform: scale(1);
-            width: var(--original-width);
-            height: var(--original-height);
-            top: var(--original-top);
-            left: var(--original-left);
-        }
-    }
-
-    /* Fade out other cards during expand/collapse animations - DESKTOP ONLY */
-    .projects-grid:has(.project-card.expanding) .project-card:not(.expanding):not(.expanded):not(.collapsing),
-    .projects-grid:has(.project-card.collapsing) .project-card:not(.expanding):not(.expanded):not(.collapsing) {
-        opacity: 0.3;
-        filter: blur(1px);
-        transition: all 0.3s ease;
-        pointer-events: none;
-    }
-
-    /* IMPORTANT: During collapse, position other cards in their FINAL grid positions - DESKTOP ONLY */
-    .projects-grid:has(.project-card.collapsing) .project-card:not(.expanding):not(.expanded):not(.collapsing) {
-        position: relative;
-        transform: none;
-        opacity: 0.3;
-        filter: blur(1px);
-    }
-
-    /* Keep expanded card fully visible - DESKTOP ONLY */
-    .project-card.expanding,
-    .project-card.expanded,
-    .project-card.collapsing {
-        opacity: 1 !important;
-        filter: blur(0) !important;
-    }
-}
-
-.project-card.expanded:hover {
-    transform: none;
+/* Enhanced Expanded Card Styles */
+.project-card.expanded {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: calc(100% - 4rem);
+    z-index: 50;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 2.5rem;
+    min-height: 500px;
+    max-height: 600px;
+    overflow: hidden;
+    background: white;
+    border-radius: 10px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
@@ -202,7 +105,263 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* Project Image */
+/* Improved layout for expanded content */
+.project-card.expanded .project-image-container {
+    flex: 0 0 400px;
+    height: 300px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    margin-right: 2.5rem;
+    position: relative;
+}
+
+.project-card.expanded .project-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card.expanded .project-image-container:hover img {
+    transform: scale(1.05);
+}
+
+.project-card.expanded .project-content {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 300px;
+    overflow-y: auto;
+}
+
+/* Enhanced title for expanded state */
+.project-card.expanded .project-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.project-card.expanded.dark .project-title {
+    color: #ffffff;
+}
+
+/* Improved description for expanded state */
+.project-card.expanded .project-description {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    flex: 1;
+    min-height: 120px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.project-card.expanded .project-description::-webkit-scrollbar {
+    width: 4px;
+}
+
+.project-card.expanded .project-description::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 2px;
+}
+
+.project-card.expanded .project-description::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+}
+
+.project-card.expanded.dark .project-description {
+    color: #e2e8f0;
+}
+
+.project-card.expanded.dark .project-description::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+.project-card.expanded.dark .project-description::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+/* Enhanced tags for expanded state */
+.project-card.expanded .project-tags {
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+}
+
+.project-card.expanded .project-tag {
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+}
+
+.project-card.expanded.dark .project-tag {
+    background-color: #1e3a8a;
+}
+
+/* Improved action buttons for expanded state */
+.project-card.expanded .project-actions {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.project-card.expanded .project-details-btn {
+    flex: 0 0 auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.project-card.expanded .project-details-btn:hover {
+    background-color: #b91c1c;
+}
+
+.project-card.expanded .project-github-btn {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    background: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-card.expanded .project-github-btn:hover {
+    background: #1f2937;
+}
+
+.project-card.expanded .github-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Enhanced live demo link */
+.project-card.expanded .project-live-demo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2563eb;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.project-card.expanded .project-live-demo:hover {
+    color: #1d4ed8;
+    transform: translateX(4px);
+}
+
+.project-card.expanded.dark .project-live-demo {
+    color: #60a5fa;
+}
+
+.project-card.expanded.dark .project-live-demo:hover {
+    color: #93c5fd;
+}
+
+/* Image Expand Button */
+.project-image-expand-btn {
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    backdrop-filter: blur(4px);
+}
+
+.project-card.project-card.expanded .project-image-expand-btn {
+    display: flex;
+}
+
+.project-image-container:hover .project-image-expand-btn {
+    opacity: 1;
+}
+
+.project-image-expand-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Close button for expanded card */
+.project-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #6b7280;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.project-close-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: #374151;
+    transform: rotate(90deg);
+}
+
+.project-card.expanded.dark .project-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e5e7eb;
+}
+
+.project-card.expanded.dark .project-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* Smooth backdrop for expanded state */
+.projects-grid:has(.project-card.expanded)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+}
+
+/* Project Image - Regular State */
 .project-image-container {
     position: relative;
     height: 12rem;
@@ -216,42 +375,9 @@
     object-fit: cover;
 }
 
-/* Desktop image layout */
-@media (min-width: 768px) {
-    .project-card.expanded .project-image-container {
-        flex: 0 0 300px;
-        height: 200px;
-    }
-
-    .project-card.expanding .project-image-container,
-    .project-card.collapsing .project-image-container {
-        opacity: 0;
-        transition: opacity 0.1s ease;
-    }
-
-    .project-card.expanded .project-image-container {
-        opacity: 1;
-        transition: opacity 0.2s ease 0.3s;
-    }
-}
-
-/* Project Content */
+/* Project Content - Regular State */
 .project-content {
     padding: 1.5rem;
-}
-
-.project-card.expanded .project-content {
-    padding: 2rem;
-}
-
-/* Desktop content layout */
-@media (min-width: 768px) {
-    .project-card.expanded .project-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
 }
 
 .project-title {
@@ -270,15 +396,10 @@
     margin-bottom: 1rem;
     line-height: 1.5;
     display: -webkit-box;
+    line-clamp: 3;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-
-.project-card.expanded .project-description {
-    -webkit-line-clamp: unset;
-    overflow: visible;
-    display: block;
 }
 
 .project-card.dark .project-description {
@@ -331,15 +452,6 @@
     transform: translateY(-1px);
 }
 
-.project-card.expanded .project-details-btn {
-    background-color: #dc2626;
-}
-
-.project-card.expanded .project-details-btn:hover {
-    background-color: #b91c1c;
-    transform: translateY(-1px);
-}
-
 .project-github-btn {
     display: flex;
     align-items: center;
@@ -386,7 +498,98 @@
     color: #93c5fd;
 }
 
+/* Image Modal for Expanded View */
+.project-image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.project-image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.project-image-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.project-image-modal.active .project-image-modal-content {
+    transform: scale(1);
+}
+
+.project-image-modal-content img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: rotate(90deg);
+}
+
 /* Mobile-specific adjustments */
+@media (max-width: 1024px) {
+    .project-card.expanded {
+        flex-direction: column;
+        padding: 1.5rem;
+        min-height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .project-card.expanded .project-image-container {
+        flex: none;
+        width: 100%;
+        height: 125px;
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .project-card.expanded .project-content {
+        min-height: auto;
+        overflow-y: visible;
+    }
+}
+
 @media (max-width: 767px) {
     #projects-panel-frame-div {
         padding: 1.5rem 1rem;
@@ -404,11 +607,14 @@
         font-size: 1rem;
     }
     
-    /* SIMPLE MOBILE BEHAVIOR: Just expand in place, other cards move down */
+    /* On mobile, just expand in place, other cards move down */
     .project-card.expanded {
-        /* On mobile, just let it expand naturally in the grid */
         position: relative;
-        z-index: 10;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-height: none;
+        margin: 0;
     }
     
     .project-card.expanded .project-content {
@@ -425,11 +631,23 @@
         opacity: 1;
         filter: none;
     }
+    
+    /* Hide backdrop on mobile */
+    .projects-grid:has(.project-card.expanded)::before {
+        display: none;
+    }
+    
+    .project-image-expand-btn {
+        opacity: 1; /* Always show on mobile for better UX */
+    }
 }
 
-/* Remove the placeholder since we're handling positioning differently */
-.projects-grid:has(.project-card.expanding)::before,
-.projects-grid:has(.project-card.expanded)::before,
-.projects-grid:has(.project-card.collapsing)::before {
-    content: none;
+/* Desktop: Fade out other cards when one is expanded */
+@media (min-width: 768px) {
+    .projects-grid:has(.project-card.expanded) .project-card:not(.expanded) {
+        opacity: 0.3;
+        filter: blur(1px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+    }
 }
