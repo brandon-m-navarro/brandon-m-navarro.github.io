@@ -89,6 +89,7 @@ export default class ResumePanel extends BasePanel {
 
         this.cSkillRating.setFillColor('#86467C');
         this.cssSkillRating.setFillColor('#86467C');
+        this.typescriptSkillRating.setFillColor('#86467C');
         this.iOsSkillRating.setFillColor('#86467C');
         this.phpSkillRating.setFillColor('#86467C');
         this.sqlSkillRating.setFillColor('#86467C');
@@ -154,6 +155,7 @@ export default class ResumePanel extends BasePanel {
 
         this.cSkillRating.setFillColor('#0b3948');
         this.cssSkillRating.setFillColor('#0b3948');
+        this.typescriptSkillRating.setFillColor('#0b3948');
         this.iOsSkillRating.setFillColor('#0b3948');
         this.phpSkillRating.setFillColor('#0b3948');
         this.sqlSkillRating.setFillColor('#0b3948');
@@ -1152,6 +1154,7 @@ export default class ResumePanel extends BasePanel {
         this.javascriptSkillTextDiv.innerHTML = 'Javascript';
         this.htmlSkillTextDiv.innerHTML = 'HTML';
         this.cssSkillTextDiv.innerHTML = 'CSS';
+        this.typescriptSkillTextDiv.innerHTML = 'Tyescript';
         this.pythonSkillTextDiv.innerHTML = 'Python';
         this.javaSkillTextDiv.innerHTML = 'Java';
         this.sqlSkillTextDiv.innerHTML = 'SQL';
