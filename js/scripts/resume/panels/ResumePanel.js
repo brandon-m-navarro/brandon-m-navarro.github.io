@@ -249,6 +249,13 @@ export default class ResumePanel extends BasePanel {
             fill: 4
         });
 
+        this.typescriptSkillDiv = doc.createElement('div');
+        this.typescriptSkillTextDiv = doc.createElement('div');
+        this.typescriptSkillRating = new SkillRating({
+            total: 5,
+            fill: 4
+        });
+
         this.sqlSkillDiv = doc.createElement('div');
         this.sqlSkillTextDiv = doc.createElement('div');
         this.sqlSkillRating = new SkillRating({
@@ -747,6 +754,9 @@ export default class ResumePanel extends BasePanel {
         this.cssSkillDiv.appendChild(this.cssSkillTextDiv);
         this.cssSkillDiv.appendChild(this.cssSkillRating.getDiv());
 
+        this.typescriptSkillDiv.appendChild(this.typescriptSkillTextDiv);
+        this.typescriptSkillDiv.appendChild(this.typescriptSkillRating.getDiv());
+
         this.javaSkillDiv.appendChild(this.javaSkillTextDiv);
         this.javaSkillDiv.appendChild(this.javaSkillRating.getDiv());
 
@@ -771,6 +781,7 @@ export default class ResumePanel extends BasePanel {
         this.programmingListDiv.appendChild(this.javascriptSkillDiv);
         this.programmingListDiv.appendChild(this.htmlSkillDiv);
         this.programmingListDiv.appendChild(this.cssSkillDiv);
+        this.programmingListDiv.appendChild(this.typescriptSkillDiv);
         this.programmingListDiv.appendChild(this.javaSkillDiv);
         this.programmingListDiv.appendChild(this.nodeSkillDiv);
         this.programmingListDiv.appendChild(this.phpSkillDiv);
