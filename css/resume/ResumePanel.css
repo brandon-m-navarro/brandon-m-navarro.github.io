@@ -191,13 +191,13 @@
     flex-direction: column;
 }
 .programming-section > div:nth-child(2) > div {
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 3px;
+    margin-bottom: 3px; */
 }
 .programming-section > div:nth-child(2) > div > div:nth-child(1) {
-    font-size: 12px;
+    /* font-size: 12px; */
 }
 
 
@@ -216,14 +216,14 @@
     flex-direction: column;
 }
 .os-section > div:nth-child(2) > div {
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 3px;
+    margin-bottom: 3px; */
 }
 
 .os-section > div:nth-child(2) > div > div:nth-child(1) {
-    font-size: 12px;
+    /* font-size: 12px; */
 }
 
 .tools-section {
@@ -240,13 +240,13 @@
     flex-direction: column;
 }
 .tools-section > div:nth-child(2) > div {
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 3px;
+    margin-bottom: 3px; */
 }
 .tools-section > div:nth-child(2) > div > div:nth-child(1) {
-    font-size: 12px;
+    /* font-size: 12px; */
 }
 
 

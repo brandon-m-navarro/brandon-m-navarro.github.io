@@ -1,21 +1,30 @@
 .skill-rating-div {
     position: relative;
 }
+.skill-rating-div.label-included {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+.skill-rating-div.label-included > div:nth-child(1) {
+    font-size: 12px;
+}
 
-.skill-rating-div > div:nth-child(1) {
+.rating-div {
     display: flex;
 }
 
-.skill-rating-div > div:nth-child(1) > div {
+.rating-div > div {
     width: 10px;
     height: 10px;
     border-radius: 10px;
     margin: 0 1px;
 }
 
-.skill-rating-div > div:nth-child(1) > div:first-child {
+.rating-div > div:first-child {
     margin: 0;
 }
-.skill-rating-div > div:nth-child(1) > div:last-child {
+.rating-div > div:last-child {
     margin: 0;
 }

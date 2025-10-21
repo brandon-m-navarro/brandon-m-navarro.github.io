@@ -14,6 +14,7 @@
 //      color:      color of the unfilled circles (default '#8d9da7')
 //      total:      total number of circles (default 5)
 //      fill:       number of filled circles (default 0)
+//      label:      optional label that adds text left of the rating
 // }
 //
 
@@ -30,7 +31,8 @@ export default class SkillRating extends BaseComponent {
             fillColor: '#0b3948',
             color: '#8d9da7',
             total: 5,
-            fill:  0
+            fill:  0,
+            label: null
         };
 
         // Initialize parameters
@@ -46,9 +48,14 @@ export default class SkillRating extends BaseComponent {
         this.options.fill = 'fill' in options
             ? options.fill
             : this.defaultOptions.fill;
+        this.options.label = 'label' in options
+            ? options.label
+            : this.defaultOptions.label;
 
         // Create DOM elements
+        this.skillTextDiv = window.document.createElement('div');
         this.ratingDiv = window.document.createElement('div');
+        this.ratingDiv.classList.add('rating-div');
         for (let i=0; i<this.options.total; i++) {
             let circleDiv = window.document.createElement('div');
             this.ratingDiv.appendChild(circleDiv);
@@ -65,7 +72,16 @@ export default class SkillRating extends BaseComponent {
         this.div.classList.add('skill-rating-div');
 
         // Finish assembly
-        this.div.appendChild(this.ratingDiv);
+        if (this.options.label !== null) {
+            this.div.classList.add('label-included');
+
+            this.skillTextDiv.innerHTML = this.options.label;
+
+            this.div.appendChild(this.skillTextDiv);
+            this.div.appendChild(this.ratingDiv);
+        } else {
+            this.div.appendChild(this.ratingDiv);
+        }
     }
 
     setFillColor (color) {
@@ -89,5 +105,9 @@ export default class SkillRating extends BaseComponent {
                 circleDiv.style.backgroundColor = this.options.color;
             }
         }
+    }
+
+    setLabel (text) {
+        this.skillTextDiv.innerHTML = text;
     }
 }
