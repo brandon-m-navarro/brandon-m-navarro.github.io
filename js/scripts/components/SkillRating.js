@@ -17,7 +17,6 @@
 //      label:      optional label that adds text left of the rating
 // }
 //
-
 import BaseComponent from "../BaseComponent.js";
 
 export default class SkillRating extends BaseComponent {

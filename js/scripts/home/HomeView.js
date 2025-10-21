@@ -1,12 +1,3 @@
-/**
- * HomeView.js
- *
- * HomeView displays the home panel, which contains various
- * components and information about the application.
- * It extends the BaseView class and provides methods
- * for managing the home view's lifecycle and interactions.
- *
- */
 'use strict';
 
 // Import dependent modules

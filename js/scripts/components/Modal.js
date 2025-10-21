@@ -12,7 +12,7 @@
 // {
 //      component:  element (required, must be a component to display in the modal)
 // }
-
+'use strict';
 import Images from "../Images.js";
 import BaseComponent from "../BaseComponent.js";
 import { addEventListeners } from "../utils/Utilities.js";

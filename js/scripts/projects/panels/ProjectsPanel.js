@@ -1,10 +1,3 @@
-/**
- * ProjectsPanel.js
- * 
- * The ProjectsPanel class is responsible for creating and managing the
- * projects panel within the application. It extends the BasePanel class
- * and provides methods for initializing the panel and handling projects display.
- */
 'use strict';
 
 import BasePanel from '../../BasePanel.js';
@@ -36,7 +29,6 @@ const projects = [
         title: "NextJS Dashboard",
         description: "A comprehensive dashboard application built as my introduction to Next.js, following the official Next.js tutorial. This project served as a hands-on learning experience for modern React frameworks and full-stack development patterns. As a prerequisite, I also completed their React Foundations course, which covers the fundamentals of React, such as components, props, state, and hooks, and newer features like Server Components and Suspense.",
         image: images['dashboard'].src,
-        link: "/",
         tags: ["Authentication", "Next.js", "Postgres"],
         github: "https://github.com/brandon-m-navarro/nextjs-dashboard",
         liveDemo: "https://nextjs-dashboard-sigma-eight-57.vercel.app/"
@@ -46,7 +38,6 @@ const projects = [
         title: "Task Management App",
         description: "A full-stack task management web application built with Next.js, featuring a responsive design and real-time optimistic updates. The app enables users to efficiently organize tasks within projects, with intuitive filtering, sorting, and seamless cross-device synchronization. Developed with a mobile-first approach, this project provided extensive practice with React, TypeScript, Next.js, and Tailwind CSS, particularly focusing on Next.js routing and React Context for efficient database operations with Postgres.",
         image: images['todo'].src,
-        link: "/",
         tags: ["Next.js", "TypeScript", "Tailwind", "Postgres"],
         github: "https://github.com/brandon-m-navarro/nextjs-todo",
         liveDemo: "https://nextjs-todo-lake.vercel.app/"
@@ -56,7 +47,6 @@ const projects = [
         title: "Portfolio Site",
         description: "A client-side application hosted on GitHub Pages showcasing scalable JavaScript architecture through ES6 classes and inheritance patterns. Implements persistent UI preferences via LocalStorage with full theme synchronization. Originally developed with vanilla JavaScript applying professional patterns from industry experience, then reimplemented with React/Next.js to demonstrate framework versatility and comparative understanding. The structure of this project was inspired by the codebase I'd worked on with MyChapter at Tramplezone LLC.",
         image: images['portfolio'].src,
-        link: "/",
         tags: ["JS (ES6)", "CSS3", "SVG"],
         github: "https://github.com/brandon-m-navarro/brandon-m-navarro.github.io",
         liveDemo: "https://brandon-m-navarro.github.io/"
@@ -75,9 +65,6 @@ export default class ProjectsPanel extends BasePanel {
             super();
             self = this;
         }
-        
-        // Initialize footer component
-        this.footerComponent = new FooterComponent();
         
         // Track expanded state
         this.expandedCardId = null;
@@ -264,6 +251,9 @@ export default class ProjectsPanel extends BasePanel {
             this.projectCards.push(projectCard);
             this.projectsGridDiv.appendChild(projectCard);
         });
+
+        // Initialize footer component
+        this.footerComponent = new FooterComponent();
         
         // Assemble header
         this.headerDiv.appendChild(this.headerTitleDiv);

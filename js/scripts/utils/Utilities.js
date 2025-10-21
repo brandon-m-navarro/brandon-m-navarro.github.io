@@ -1,8 +1,3 @@
-// Utilities.js
-//
-// Utilities contains useful, shared methods that appear
-// throughout models, views, & panels.
-//
 'use strict';
 
 let isTouchable,

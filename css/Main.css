@@ -25,6 +25,7 @@
 @import url('./components/Modal.css');
 @import url('./components/NightSky.css');
 @import url('./components/Footer.css');
+@import url('./components/ExpandableImage.css');
 
 #splash-div {
     display: flex;

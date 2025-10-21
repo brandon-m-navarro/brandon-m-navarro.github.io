@@ -11,10 +11,7 @@
 //   The ShootingStar class extends Particle and adds properties for opacity,
 //   trail length, and state (spawning, dying, dead).
 //
-
 "use strict";
-
-// Import BaseComponent and utility functions
 import BaseComponent from "../BaseComponent.js";
 import {lineToAngle, randomRange, degreesToRads} from "../utils/Utilities.js";
 

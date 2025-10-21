@@ -13,7 +13,6 @@
 //      listener:   function to call when the image is clicked (default undefined)
 // }
 //
-
 import BaseComponent from "../BaseComponent.js";
 import Images from "../Images.js";
 const images = new Images();

@@ -1,17 +1,9 @@
-/**
- * ResumePanel.js
- *
- * The ResumePanel class is responsible for creating and managing the
- * resume panel within the application. It extends the BasePanel class
- * and provides methods for initializing the panel, creating its
- * elements, and handling dark/light mode toggling.
- *
- */
+'use strict'
 
 import BasePanel from "../../BasePanel.js";
 import Icon from "../../components/Icon.js";
+import ExpandableImage from "../../components/ExpandableImage.js";
 import Images from "../../Images.js";
-import Modal from "../../components/Modal.js";
 import SkillRating from "../../components/SkillRating.js";
 import FooterComponent from "../../components/Footer.js";
 import { addEventListeners } from "../../utils/Utilities.js";
@@ -113,19 +105,13 @@ export default class ResumePanel extends BasePanel {
   // Create elements used on the panel
   createElements() {
     this.frameDiv = doc.createElement("div");
-
     this.topDiv = doc.createElement("div");
-
     this.nameSubnameDiv = doc.createElement("div");
-
     this.meImgDiv = doc.createElement("div");
     this.meImg = doc.createElement("img");
-
     this.nameTextDiv = doc.createElement("div");
     this.subnameTextDiv = doc.createElement("div");
-
     this.leftDiv = doc.createElement("div");
-
     this.contactDiv = doc.createElement("div");
     this.contactTitleDiv = doc.createElement("div");
     this.contactTitleTextDiv = doc.createElement("div");
@@ -251,9 +237,7 @@ export default class ResumePanel extends BasePanel {
     ];
 
     this.rightDiv = doc.createElement("div");
-
     this.educationDiv = doc.createElement("div");
-
     this.educationTitleDiv = doc.createElement("div");
     this.educationTitleIcon = new Icon({
       img: images.getImages()["education"].src,
@@ -262,7 +246,6 @@ export default class ResumePanel extends BasePanel {
       fontSize: "14px",
       fontWeight: "600",
     });
-
     this.educationTopDiv = doc.createElement("div");
     this.educationDateLocationDiv = doc.createElement("div");
     this.educationDateIcon = new Icon({
@@ -283,14 +266,11 @@ export default class ResumePanel extends BasePanel {
 
     this.campusInvolvementDiv = doc.createElement("div");
     this.campusInvolvementHeaderTextDiv = doc.createElement("div");
-
     this.campusInvolvementListDiv = doc.createElement("div");
-
     this.sigmaPiHeaderDiv = doc.createElement("div");
     this.sigmaPiDiv = doc.createElement("div");
     this.sigmaPiImgDiv = doc.createElement("div");
     this.sigmaPiImg = doc.createElement("img");
-
     this.sigmaPiTextDiv = doc.createElement("div");
     this.sigmaPiDateTextDiv = doc.createElement("div");
     this.sigmaPiUl = doc.createElement("ul");
@@ -298,15 +278,12 @@ export default class ResumePanel extends BasePanel {
     this.sigmaPiLi2 = doc.createElement("li");
     this.sigmaPiLi3 = doc.createElement("li");
     this.sigmaPiLi4 = doc.createElement("li");
-
     this.sparcHeaderDiv = doc.createElement("div");
     this.sparcDiv = doc.createElement("div");
     this.sparcImgDiv = doc.createElement("div");
     this.sparcImg = doc.createElement("img");
-
     this.sparcTextDiv = doc.createElement("div");
     this.sparcDateTextDiv = doc.createElement("div");
-
     this.sparcUl = doc.createElement("ul");
     this.sparcLi1 = doc.createElement("li");
     this.sparcLi2 = doc.createElement("li");
@@ -436,12 +413,10 @@ export default class ResumePanel extends BasePanel {
     this.ttbContentDiv = doc.createElement("div");
     this.ttbTextDiv = doc.createElement("div");
     this.ttbSubtitleTextDiv = doc.createElement("div");
-
     this.ttbDocAnalystDiv = doc.createElement("div");
     this.ttbDocAnalystTitleTextDiv = doc.createElement("div");
     this.ttbDocAnalystUl = doc.createElement("ul");
     this.ttbDocAnalystLi = doc.createElement("li");
-
     this.ttbSoftEngDiv = doc.createElement("div");
     this.ttbSoftEngTitleTextDiv = doc.createElement("div");
     this.ttbSoftEngUl = doc.createElement("ul");
@@ -459,9 +434,7 @@ export default class ResumePanel extends BasePanel {
     this.mqpTextDiv = doc.createElement("div");
     this.mqpImgListDiv = doc.createElement("div");
     this.mqpPosterImgDiv = doc.createElement("div");
-    this.mqpPosterImg = doc.createElement("img");
     this.mqpTrinaImgDiv = doc.createElement("div");
-    this.mqpTrinaImg = doc.createElement("img");
 
     this.iqpDiv = doc.createElement("div");
     this.iqpHeaderDiv = doc.createElement("div");
@@ -472,12 +445,22 @@ export default class ResumePanel extends BasePanel {
     this.iqpContentDiv = doc.createElement("div");
     this.iqpTextDiv = doc.createElement("div");
     this.iqpGroupImgDiv = doc.createElement("div");
-    this.iqpGroupImg = doc.createElement("img");
 
-    this.mqpModalContainerDiv = doc.createElement("div");
-    this.mqpModalImgDiv = doc.createElement("div");
-    this.mqpModalImg = doc.createElement("img");
-    this.mqpModal; // Delay initialization until assembly
+    this.mqpGroupExpandableImage = new ExpandableImage({
+      container: this.mqpPosterImgDiv,
+      imageSrc: images.getImages()["mqp-poster"].src,
+      imageAlt: 'MQP Poster'
+    });
+    this.iqpGroupExpandableImage = new ExpandableImage({
+      container: this.iqpGroupImgDiv,
+      imageSrc: images.getImages()["iqp_team"].src,
+      imageAlt: 'IQP Team'
+    });
+    this.mqpTrinaExpandableImage = new ExpandableImage({
+      container: this.mqpTrinaImgDiv,
+      imageSrc: images.getImages()["trina"].src,
+      imageAlt: 'TRINA Robot'
+    });
 
     this.footerComponent = new FooterComponent();
 
@@ -540,11 +523,6 @@ export default class ResumePanel extends BasePanel {
 
     this.footerComponent.getDiv().addEventListener("light", () => {
       this.makeDay();
-    });
-
-    // Expand modal when user selects images
-    addEventListeners(this.mqpPosterImgDiv, () => {
-      this.mqpModal.open();
     });
   }
 
@@ -641,10 +619,7 @@ export default class ResumePanel extends BasePanel {
     this.sigmaPiImg.src = images.getImages()["sigma-pi_t"].src;
     this.sparcImg.src = images.getImages()["sparc_t"].src;
     this.escapeImg.src = images.getImages()["escape"].src;
-    this.mqpPosterImg.src = images.getImages()["mqp-poster"].src;
-    this.mqpTrinaImg.src = images.getImages()["trina"].src;
     this.meImg.src = images.getImages()["me_hd"].src;
-    this.mqpModalImg.src = images.getImages()["mqp-poster"].src;
     this.professionalImg.src = images.getImages()["my-chapter"].src;
     this.professionalImg2.src = images.getImages()["my-chapter"].src;
   }
@@ -653,22 +628,21 @@ export default class ResumePanel extends BasePanel {
   initializeStyles() {
     this.div.className = "resume-panel";
     this.frameDiv.className = "resume-frame";
+    this.contactDiv.className = "contact-section";
     this.skillsDiv.className = "skills-section";
     this.programmingDiv.className = "skill-section";
     this.osDiv.className = "skill-section";
     this.frameworksDiv.className = "skill-section";
     this.toolsDiv.className = "skill-section";
-    this.contactDiv.className = "contact-section";
     this.educationDiv.className = "education-section";
+    this.campusInvolvementDiv.className = "campus-involvement-section";
     this.professionalDiv.className = "professional-section";
     this.professionalDiv2.className = "professional-section";
     this.projectDiv.className = "project-section";
-    this.campusInvolvementDiv.className = "campus-involvement-section";
     this.escapeDiv.className = "project-escape";
     this.ttbDiv.className = "project-ttb";
     this.mqpDiv.className = "project-mqp";
     this.iqpDiv.className = "project-iqp";
-    this.mqpModalContainerDiv.className = "mqp-modal";
   }
 
   // Append elements to the DOM
@@ -789,12 +763,10 @@ export default class ResumePanel extends BasePanel {
 
     this.educationDiv.appendChild(this.educationTitleDiv);
     this.educationDiv.appendChild(this.educationTopDiv);
-
     this.educationDiv.appendChild(this.campusInvolvementDiv);
 
     this.professionalTitleDiv.appendChild(this.professionalTitleIcon.getDiv());
     this.professionalDiv.appendChild(this.professionalTitleDiv);
-
     this.professionalDateLocationDiv.appendChild(
       this.professionalDateIcon.getDiv()
     );
@@ -924,20 +896,12 @@ export default class ResumePanel extends BasePanel {
     this.mqpHeaderDiv.appendChild(this.mqpYearTextDiv);
 
     this.mqpContentDiv.appendChild(this.mqpTextDiv);
-    this.mqpPosterImgDiv.appendChild(this.mqpPosterImg);
     this.mqpImgListDiv.appendChild(this.mqpPosterImgDiv);
-    this.mqpTrinaImgDiv.appendChild(this.mqpTrinaImg);
     this.mqpImgListDiv.appendChild(this.mqpTrinaImgDiv);
     this.mqpContentDiv.appendChild(this.mqpImgListDiv);
 
     this.mqpDiv.appendChild(this.mqpHeaderDiv);
     this.mqpDiv.appendChild(this.mqpContentDiv);
-
-    this.mqpModalImgDiv.appendChild(this.mqpModalImg);
-    this.mqpModalContainerDiv.appendChild(this.mqpModalImgDiv);
-    this.mqpModal = new Modal({
-      component: this.mqpModalContainerDiv,
-    });
 
     this.iqpHeaderDiv.appendChild(this.iqpHeaderTextDiv);
     this.iqpLinkImgDiv.appendChild(this.iqpLinkImg);
@@ -945,7 +909,6 @@ export default class ResumePanel extends BasePanel {
     this.iqpHeaderDiv.appendChild(this.iqpYearTextDiv);
 
     this.iqpContentDiv.appendChild(this.iqpTextDiv);
-    this.iqpGroupImgDiv.appendChild(this.iqpGroupImg);
     this.iqpContentDiv.appendChild(this.iqpGroupImgDiv);
 
     this.iqpDiv.appendChild(this.iqpHeaderDiv);
@@ -966,7 +929,7 @@ export default class ResumePanel extends BasePanel {
     this.div.appendChild(this.footerComponent.getDiv());
   }
 
-  // Create and assemble panel elements
+  // Main initialization function
   initialize() {
     this.createElements();
     this.assembleElements();

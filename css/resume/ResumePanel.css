@@ -717,17 +717,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-right: 24px;
-
-  cursor: pointer;
-
-  transition: opacity ease 150ms;
-}
-.project-mqp > div:nth-child(2) > div:nth-child(2) > div:nth-child(1):hover {
-  opacity: 0.75;
-}
-.project-mqp > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > img {
-  width: 100%;
+  margin-right: 12px;
 }
 .project-mqp > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) {
   width: 250px;
@@ -735,9 +725,6 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-.project-mqp > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > img {
-  width: 100%;
 }
 
 .project-iqp {
@@ -776,10 +763,11 @@
 .project-iqp > div:nth-child(2) > div:nth-child(1) {
   font-size: 12px;
   line-height: 150%;
+  margin-bottom: 12px;
 }
 .project-iqp > div:nth-child(2) > div:nth-child(2) {
-  width: 50px;
-  height: 50px;
+  width: 250px;
+  height: 187px;
   display: flex;
   align-items: center;
   justify-content: center;

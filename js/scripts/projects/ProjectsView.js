@@ -1,10 +1,3 @@
-/**
- * ProjectsView.js
- *
- * The ProjectsView class is responsible for displaying the projects panel
- * within the application. It extends the BaseView class and initializes
- * the projects panel, sets up the title, and manages the view's lifecycle.
- */
 'use strict';
 
 // Import dependent modules

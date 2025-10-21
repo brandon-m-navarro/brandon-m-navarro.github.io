@@ -1,14 +1,3 @@
-
-/**
- * ResumeView.js
- *
- * The ResumeView class is responsible for displaying the resume panel
- * within the application. It extends the BaseView class and initializes
- * the resume panel, sets up the title, and manages the view's lifecycle.
- * It provides methods for showing and hiding the view, as well as handling
- * events related to the resume panel.
- *
- */
 'use strict';
 
 // Import dependent modules

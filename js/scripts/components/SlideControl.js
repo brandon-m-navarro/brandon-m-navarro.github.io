@@ -19,9 +19,7 @@
 //      duration:   duration of the animation (default '0.3s')
 // }
 //
-
-
-// Import & instantiate dependent modules
+'use strict';
 import BaseComponent from '../BaseComponent.js';
 import { getTransitionEvent } from '../utils/Utilities.js';
 

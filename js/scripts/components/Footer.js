@@ -1,15 +1,18 @@
-/**
- * FooterComponent.js
- * 
- * A reusable footer component with dark/light mode toggle, social links,
- * and email functionality. Can be used across different panels.
- */
+// Footer.js
+//
+// A footer component that includes social media links, an email popup,
+// and a dark/light mode toggle. The component allows users to copy
+// the email address to the clipboard or open their default email client.
+// It also provides buttons to switch between dark and light modes,
+// updating the appearance of the footer accordingly.
+//
+// Public API
+// @param {} options - (optional) configuration options for the footer
+// }
+//
 'use strict';
-
 import Images from '../Images.js';
 import { addEventListeners, copyTextToClipboard } from '../utils/Utilities.js';
-
-let doc = window.document;
 
 export default class FooterComponent {
     
@@ -25,6 +28,7 @@ export default class FooterComponent {
     }
     
     createElements() {
+        const doc = window.document;
         // Main wrapper
         this.footerDivWrapper = doc.createElement('div');
         this.footerDiv = doc.createElement('div');

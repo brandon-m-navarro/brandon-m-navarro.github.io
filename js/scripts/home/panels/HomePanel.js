@@ -1,6 +1,3 @@
-/**
- * HomePanel.js
- */
 'use strict';
 
 import BasePanel from '../../BasePanel.js';
