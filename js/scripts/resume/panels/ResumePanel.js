@@ -55,10 +55,14 @@ export default class ResumePanel extends BasePanel {
     this.footerComponent.makeNight();
 
     // Change Icons
-    this.imgs.forEach(({element, key}) => {element.src = images.getImages()[key].altSrc});
+    this.imgs.forEach(({ element, key }) => {
+      element.src = images.getImages()[key].altSrc;
+    });
 
     // Change img elements
-    this.icons.forEach(({element, key}) => {element.setImage(images.getImages()[key].altSrc)});
+    this.icons.forEach(({ element, key }) => {
+      element.setImage(images.getImages()[key].altSrc);
+    });
 
     // Change <a>'s
     let aTags = Array.from(doc.getElementsByClassName("anchor"));
@@ -85,10 +89,14 @@ export default class ResumePanel extends BasePanel {
     this.footerComponent.makeDay();
 
     // Change Icons
-    this.imgs.forEach(({element, key}) => {element.src = images.getImages()[key].src});
+    this.imgs.forEach(({ element, key }) => {
+      element.src = images.getImages()[key].src;
+    });
 
     // Change img elements
-    this.icons.forEach(({element, key}) => {element.setImage(images.getImages()[key].src)});
+    this.icons.forEach(({ element, key }) => {
+      element.setImage(images.getImages()[key].src);
+    });
 
     // Change <a>'s
     let aTags = Array.from(doc.getElementsByClassName("anchor"));
@@ -152,145 +160,145 @@ export default class ResumePanel extends BasePanel {
     this.javascriptSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'Javascript'
+      label: "Javascript",
     });
 
     this.htmlSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'HTML'
+      label: "HTML",
     });
 
     this.cssSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'CSS'
+      label: "CSS",
     });
 
     this.typescriptSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'Typescript'
+      label: "Typescript",
     });
 
     this.sqlSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'SQL'
+      label: "SQL",
     });
 
     this.javaSkillRating = new SkillRating({
       total: 5,
       fill: 3,
-      label: 'Java'
+      label: "Java",
     });
 
     this.cSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'C'
+      label: "C",
     });
 
     this.pythonSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'Python'
+      label: "Python",
     });
 
     this.nodeSkillRating = new SkillRating({
       total: 5,
       fill: 3,
-      label: 'Node'
+      label: "Node",
     });
 
     this.phpSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'PHP'
+      label: "PHP",
     });
 
     this.cplusSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'C++'
+      label: "C++",
     });
 
     this.windowsOsSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'Windows'
+      label: "Windows",
     });
 
     this.macOsSkillRating = new SkillRating({
       total: 5,
       fill: 3,
-      label: 'MacOS'
+      label: "MacOS",
     });
 
     this.iOsSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'iOS'
+      label: "iOS",
     });
 
     this.androidOsSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'Android'
+      label: "Android",
     });
 
     this.gitToolsSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'Git'
+      label: "Git",
     });
 
     this.dockerToolsSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'Docker'
+      label: "Docker",
     });
 
     this.figmaToolsSkillRating = new SkillRating({
       total: 5,
       fill: 5,
-      label: 'Figma'
+      label: "Figma",
     });
 
     this.adobePremiereToolsSkillRating = new SkillRating({
       total: 5,
       fill: 3,
-      label: 'Adobe Premiere'
+      label: "Adobe Premiere",
     });
 
     this.androidStudioToolsSkillRating = new SkillRating({
       total: 5,
       fill: 2,
-      label: 'Android Studio'
+      label: "Android Studio",
     });
 
     this.requireFrameworkSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'Require.js'
+      label: "Require.js",
     });
 
     this.tailwindFrameworkSkillRating = new SkillRating({
       total: 5,
       fill: 4,
-      label: 'TailwindCSS'
+      label: "TailwindCSS",
     });
 
     this.reactFrameworkSkillRating = new SkillRating({
       total: 5,
       fill: 3,
-      label: 'React'
+      label: "React",
     });
 
     this.nextJsFrameworkSkillRating = new SkillRating({
       total: 5,
       fill: 3,
-      label: 'Next.js'
+      label: "Next.js",
     });
 
     this.programmingDiv = doc.createElement("div");
@@ -311,7 +319,7 @@ export default class ResumePanel extends BasePanel {
 
     // Collect all SkillRatings into an array for easier access
     this.skillRatings = [
-      this.javaSkillRating,
+      this.javascriptSkillRating,
       this.htmlSkillRating,
       this.cssSkillRating,
       this.typescriptSkillRating,
@@ -573,31 +581,31 @@ export default class ResumePanel extends BasePanel {
     this.mqpModal; // Delay initialization until assembly
 
     // Collect images and Icons for easier access
-    this.imgs =[{
-        element: this.escapeLinkImg, key: "link",
-        element: this.ttbLinkImg, key: "link",
-        element: this.mqpLinkImg, key: "link",
-        element: this.iqpLinkImg, key: "link",
-        element: this.appStoreImg, key: "apple",
-        element: this.playStoreImg, key: "google-play",
-        element: this.appStoreImg2, key: "apple",
-        element: this.playStoreImg2, key: "google-play"
-    }];
-    this.icons = [{
-        element: this.contactEmailIcon, key: "email",
-        element: this.locationIcon, key: "location",
-        element: this.websiteIcon, key: "github",
-        element: this.linkedInIcon, key: "linkedIn",
-        element: this.educationTitleIcon, key: "education",
-        element: this.educationDateIcon, key: "calendar",
-        element: this.educationLocationIcon, key: "location-2",
-        element: this.professionalDateIcon, key: "calendar",
-        element: this.professionalLocationIcon, key: "location-2",
-        element: this.professionalTitleIcon, key: "work",
-        element: this.projectTitleIcon, key: "project",
-        element: this.professionalDateIcon2, key: "calendar",
-        element: this.professionalLocationIcon2, key: "location-2"
-    }];
+    this.imgs = [
+      { element: this.escapeLinkImg, key: "link" },
+      { element: this.ttbLinkImg, key: "link" },
+      { element: this.mqpLinkImg, key: "link" },
+      { element: this.iqpLinkImg, key: "link" },
+      { element: this.appStoreImg, key: "apple" },
+      { element: this.playStoreImg, key: "google-play" },
+      { element: this.appStoreImg2, key: "apple" },
+      { element: this.playStoreImg2, key: "google-play" },
+    ];
+    this.icons = [
+      { element: this.contactEmailIcon, key: "email" },
+      { element: this.locationIcon, key: "location" },
+      { element: this.websiteIcon, key: "github" },
+      { element: this.linkedInIcon, key: "linkedIn" },
+      { element: this.educationTitleIcon, key: "education" },
+      { element: this.educationDateIcon, key: "calendar" },
+      { element: this.educationLocationIcon, key: "location-2" },
+      { element: this.professionalDateIcon, key: "calendar" },
+      { element: this.professionalLocationIcon, key: "location-2" },
+      { element: this.professionalTitleIcon, key: "work" },
+      { element: this.projectTitleIcon, key: "project" },
+      { element: this.professionalDateIcon2, key: "calendar" },
+      { element: this.professionalLocationIcon2, key: "location-2" },
+    ];
 
     // Listen for mode changes from footer
     this.footerComponent.getDiv().addEventListener("dark", () => {
@@ -708,7 +716,6 @@ export default class ResumePanel extends BasePanel {
     this.contactDiv.appendChild(this.websiteIcon.getDiv());
     this.contactDiv.appendChild(this.linkedInIcon.getDiv());
 
-
     this.programmingListDiv.appendChild(this.javascriptSkillRating.getDiv());
     this.programmingListDiv.appendChild(this.htmlSkillRating.getDiv());
     this.programmingListDiv.appendChild(this.cssSkillRating.getDiv());
@@ -732,10 +739,16 @@ export default class ResumePanel extends BasePanel {
     this.osDiv.appendChild(this.osTitleTextDiv);
     this.osDiv.appendChild(this.osListDiv);
 
-    this.frameworksListDiv.appendChild(this.requireFrameworkSkillRating.getDiv());
-    this.frameworksListDiv.appendChild(this.tailwindFrameworkSkillRating.getDiv());
+    this.frameworksListDiv.appendChild(
+      this.requireFrameworkSkillRating.getDiv()
+    );
+    this.frameworksListDiv.appendChild(
+      this.tailwindFrameworkSkillRating.getDiv()
+    );
     this.frameworksListDiv.appendChild(this.reactFrameworkSkillRating.getDiv());
-    this.frameworksListDiv.appendChild(this.nextJsFrameworkSkillRating.getDiv());
+    this.frameworksListDiv.appendChild(
+      this.nextJsFrameworkSkillRating.getDiv()
+    );
 
     this.frameworksDiv.appendChild(this.frameworksTitleTextDiv);
     this.frameworksDiv.appendChild(this.frameworksListDiv);
@@ -1103,10 +1116,10 @@ export default class ResumePanel extends BasePanel {
     this.div.className = "resume-panel";
     this.frameDiv.className = "resume-frame";
     this.skillsDiv.className = "skills-section";
-    this.programmingDiv.className = "programming-section";
-    this.osDiv.className = "os-section";
-    this.frameworksDiv.className = "os-section";
-    this.toolsDiv.className = "tools-section";
+    this.programmingDiv.className = "skill-section";
+    this.osDiv.className = "skill-section";
+    this.frameworksDiv.className = "skill-section";
+    this.toolsDiv.className = "skill-section";
     this.contactDiv.className = "contact-section";
     this.educationDiv.className = "education-section";
     this.professionalDiv.className = "professional-section";
