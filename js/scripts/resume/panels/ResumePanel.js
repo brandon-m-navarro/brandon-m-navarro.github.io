@@ -36,13 +36,11 @@ export default class ResumePanel extends BasePanel {
       super();
       self = this;
     }
-
-    // Initialize footer component
-    this.footerComponent = new FooterComponent();
   }
 
   // Public Methods
 
+  // Switch to night mode
   makeNight() {
     localStorage.setItem("mode", "dark");
 
@@ -77,6 +75,7 @@ export default class ResumePanel extends BasePanel {
     });
   }
 
+  // Switch to day mode
   makeDay() {
     localStorage.setItem("mode", "light");
 
@@ -480,6 +479,8 @@ export default class ResumePanel extends BasePanel {
     this.mqpModalImg = doc.createElement("img");
     this.mqpModal; // Delay initialization until assembly
 
+    this.footerComponent = new FooterComponent();
+
     // Collect images and Icons for easier access
     this.imgs = [
       { element: this.escapeLinkImg, key: "link" },
@@ -520,6 +521,10 @@ export default class ResumePanel extends BasePanel {
       { element: this.appStoreButtonDiv2, url: URLS.MYCHAPTER_APPSTORE },
       { element: this.playStoreButtonDiv2, url: URLS.MYCHAPTER_PLAYSTORE },
     ];
+  }
+
+  // Attach event listeners to elements
+  attachListeners() {
 
     // Open a new tab when user selects project links or contact infos
     this.linkConfigs.forEach(({ element, url }) => {
@@ -541,6 +546,129 @@ export default class ResumePanel extends BasePanel {
     addEventListeners(this.mqpPosterImgDiv, () => {
       this.mqpModal.open();
     });
+  }
+
+  // Initialize text content for the panel
+  initializeContent() {
+    this.nameTextDiv.innerHTML = "Brandon Manuel Navarro";
+    this.subnameTextDiv.innerHTML =
+      "Software engineer with a focus on frontend development";
+    this.skillsTextDiv.innerHTML = "SKILLS";
+    this.programmingTitleTextDiv.innerHTML = "Programming";
+    this.osTitleTextDiv.innerHTML = "Operating Systems";
+    this.frameworksTitleTextDiv.innerHTML = "Frameworks";
+    this.toolsTitleTextDiv.innerHTML = "Tools";
+    this.bachelorsTextDiv.innerHTML = "Bachelor of Science in Computer Science";
+
+    this.gpaTextDiv.innerHTML = "3.25 GPA";
+    this.sigmaPiTextDiv.innerHTML =
+      "Sigma Pi Fraternity International, Gamma Iota Chapter";
+    this.sigmaPiDateTextDiv.innerHTML = "2016 - 2020";
+    this.sigmaPiLi1.innerHTML = "Active member and former PR chair";
+    this.sigmaPiLi4.innerHTML =
+      "Was on the WebTech committee for 2 years, which made drastic " +
+      "improvements to our " +
+      '<a class="anchor" target="_blank" href="https://sigmapigammaiota.org/"> chapter site</a>';
+    this.sigmaPiLi2.innerHTML =
+      "Helped organize a multi-day campus event, Amazing Day, to " +
+      "raise awareness for mental health and suicide in the WPI community";
+    this.sigmaPiLi3.innerHTML =
+      "Volunteered weekly at a local food pantry, Mustard Seed to help " +
+      "setup, cook, & clean";
+    this.sparcTextDiv.innerHTML = "SPARC Member";
+    this.sparcDateTextDiv.innerHTML = "2018 - 2020";
+    this.sparcLi1.innerHTML =
+      "Was an active member of a SPARC, a student run committee that " +
+      "interfaced with college admins and hosted campus events to " +
+      "raise awareness and provide resources for sexual assualt " +
+      "victims in the WPI community";
+    this.sparcLi2.innerHTML =
+      "Helped run the annual, campus-wide event, " +
+      '<a class="anchor" target="_blank" href="https://www.wpi.edu/news/take-back-night">Take Back the Night</a>';
+    this.sparcLi3.innerHTML =
+      "Created and distributed electronic surveys to gauge students " +
+      "sentiments about safety on campus which were then presented to WPI admins";
+    this.contactTitleTextDiv.innerHTML = "CONTACT";
+    this.professionalJobTextDiv.innerHTML = "TrampleZone LLC.";
+    this.professionalJobTextDiv2.innerHTML = "TrampleZone LLC.";
+    this.professionalJobTitleTextDiv.innerHTML = "Software Engineer II";
+    this.professionalJobTitleTextDiv2.innerHTML = "Software Engineer II";
+    this.professionalTextDiv.innerHTML =
+      "Worked closely with the founder of the company in planning and developing a single page application that is currently available across mobile and desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.";
+    this.professionalTextDiv2.innerHTML =
+      "Worked closely with the founder of the company in planning and developing a single page application that is currently available across mobile and desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.";
+    this.campusInvolvementHeaderTextDiv.innerHTML = "Campus Involvement";
+    this.escapeHeaderTextDiv.innerHTML = "Escape (Board Game)";
+    this.escapeYearTextDiv.innerHTML = "2020";
+    this.escapeTextDiv.innerHTML =
+      "Escape is a family of board games, designed for the term project of  CS4233: Object-Oriented Analysis & Design. The game is initialized using a collection of XML files to control different aspects like board dimension and shape, game pieces, victory conditions, and different battle rules. The course focused on using a TDD approach and evolutionary code design to continually add to and improve the game throughout the 7 weeks of development.";
+    this.ttbHeaderTextDiv.innerHTML = "TTB Application";
+    this.ttbYearTextDiv.innerHTML = "2018";
+    this.ttbTextDiv.innerHTML =
+      "Worked within a team of 8 to develop an application to aid the Alcohol and Tobacco Tax and Trade Bureau (TTB) in the submission and review process of new product applications. The class was a 7 week, intensive simulation of what it was like working in an Agile Software development team. Our team held daily standup meetings to keep an open line of communication and to delegate work. Gave a presentation at the end of the class to a panel of our professor and government officials.";
+    this.ttbSubtitleTextDiv.innerHTML = "Roles and responsibilities";
+    this.ttbDocAnalystTitleTextDiv.innerHTML = "Documentation Analyst";
+    this.ttbDocAnalystLi.innerHTML =
+      "Created and maintained all technical documentation including UML diagrams, sequence diagrams, training materials, and software code documentation.";
+    this.ttbSoftEngTitleTextDiv.innerHTML = "Software Engineer";
+    this.ttbSoftEngLi1.innerHTML =
+      "Helped design the UI for the application using a mockup tool Figma.";
+    this.ttbSoftEngLi2.innerHTML =
+      "Helped implement the designed UI using JavaFX and FXML (an XML-based markup language for constructing Java object graphs).";
+    this.ttbSoftEngLi3.innerHTML =
+      "Implemented the algorithm that was used to search through a database seeded with a collection of alcohols. The fuzzy search I implemented adapted the Damerau-Levenshtein approach and ran in O(n*m) time.";
+    this.mqpYearTextDiv.innerHTML = "2019-2020";
+    this.mqpHeaderTextDiv.innerHTML =
+      "Active Telepresence Assistance for Supervisory Control: A User Study with a Multi-Camera Tele-Nursing Robot";
+    this.mqpTextDiv.innerHTML =
+      'Worked within a team of 7 with an advisor to conduct a study which explored autonomous camera control and selection on a TRINA robot using a VR headset. Was involved in creating the software used to control the cameras by reading the inertial measurement unit (IMU) data from the VR headset using Unity and GStreamer library. Using C++ and Python scripts to interface with <a class="anchor" href="https://wiki.ros.org/ROS/Introduction">ROS</a>, our team was able to control TRINAs arms and main camera using the VR headset and controllers. Also helped in running ~10 participants through the study.';
+    this.iqpYearTextDiv.innerHTML = "2018-2019";
+    this.iqpHeaderTextDiv.innerHTML = "Mathematics Tutoring Center at NUST";
+    this.iqpTextDiv.innerHTML =
+      "Worked within a team of 4 to create and implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to test these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project were creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor (ASSISTments), which I also worked with before the project.";
+    this.playStoreSubtext.innerHTML = "View in the";
+    this.playStoreText.innerHTML = "Google Play Store";
+    this.appStoreSubtext.innerHTML = "View in the";
+    this.appStoreText.innerHTML = "App Store";
+    this.playStoreSubtext2.innerHTML = "View in the";
+    this.playStoreText2.innerHTML = "Google Play Store";
+    this.appStoreSubtext2.innerHTML = "View in the";
+    this.appStoreText2.innerHTML = "App Store";
+  }
+
+  // Set static images' src attributes
+  initializeStaticImages() {
+    this.sigmaPiImg.src = images.getImages()["sigma-pi_t"].src;
+    this.sparcImg.src = images.getImages()["sparc_t"].src;
+    this.escapeImg.src = images.getImages()["escape"].src;
+    this.mqpPosterImg.src = images.getImages()["mqp-poster"].src;
+    this.mqpTrinaImg.src = images.getImages()["trina"].src;
+    this.meImg.src = images.getImages()["me_hd"].src;
+    this.mqpModalImg.src = images.getImages()["mqp-poster"].src;
+    this.professionalImg.src = images.getImages()["my-chapter"].src;
+    this.professionalImg2.src = images.getImages()["my-chapter"].src;
+  }
+
+  // Apply CSS classes to elements
+  initializeStyles() {
+    this.div.className = "resume-panel";
+    this.frameDiv.className = "resume-frame";
+    this.skillsDiv.className = "skills-section";
+    this.programmingDiv.className = "skill-section";
+    this.osDiv.className = "skill-section";
+    this.frameworksDiv.className = "skill-section";
+    this.toolsDiv.className = "skill-section";
+    this.contactDiv.className = "contact-section";
+    this.educationDiv.className = "education-section";
+    this.professionalDiv.className = "professional-section";
+    this.professionalDiv2.className = "professional-section";
+    this.projectDiv.className = "project-section";
+    this.campusInvolvementDiv.className = "campus-involvement-section";
+    this.escapeDiv.className = "project-escape";
+    this.ttbDiv.className = "project-ttb";
+    this.mqpDiv.className = "project-mqp";
+    this.iqpDiv.className = "project-iqp";
+    this.mqpModalContainerDiv.className = "mqp-modal";
   }
 
   // Append elements to the DOM
@@ -840,138 +968,14 @@ export default class ResumePanel extends BasePanel {
 
   // Create and assemble panel elements
   initialize() {
-
-    // Create needed HTML elms
     this.createElements();
-
-    // Assemble elements
     this.assembleElements();
-
-    // img elements not effected by day/night
-    this.sigmaPiImg.src = images.getImages()["sigma-pi_t"].src;
-    this.sparcImg.src = images.getImages()["sparc_t"].src;
-    this.escapeImg.src = images.getImages()["escape"].src;
-    this.mqpPosterImg.src = images.getImages()["mqp-poster"].src;
-    this.mqpTrinaImg.src = images.getImages()["trina"].src;
-    this.meImg.src = images.getImages()["me_hd"].src;
-    this.mqpModalImg.src = images.getImages()["mqp-poster"].src;
-    this.professionalImg.src = images.getImages()["my-chapter"].src;
-    this.professionalImg2.src = images.getImages()["my-chapter"].src;
-
-    // innerHTMLs
-    this.nameTextDiv.innerHTML = "Brandon Manuel Navarro";
-    this.subnameTextDiv.innerHTML =
-      "Software engineer with a focus on frontend development";
-    this.skillsTextDiv.innerHTML = "SKILLS";
-    this.programmingTitleTextDiv.innerHTML = "Programming";
-    this.osTitleTextDiv.innerHTML = "Operating Systems";
-    this.frameworksTitleTextDiv.innerHTML = "Frameworks";
-    this.toolsTitleTextDiv.innerHTML = "Tools";
-    this.bachelorsTextDiv.innerHTML = "Bachelor of Science in Computer Science";
-
-    this.gpaTextDiv.innerHTML = "3.25 GPA";
-    this.sigmaPiTextDiv.innerHTML =
-      "Sigma Pi Fraternity International, Gamma Iota Chapter";
-    this.sigmaPiDateTextDiv.innerHTML = "2016 - 2020";
-    this.sigmaPiLi1.innerHTML = "Active member and former PR chair";
-    this.sigmaPiLi4.innerHTML =
-      "Was on the WebTech committee for 2 years, which made drastic " +
-      "improvements to our " +
-      '<a class="anchor" target="_blank" href="https://sigmapigammaiota.org/"> chapter site</a>';
-    this.sigmaPiLi2.innerHTML =
-      "Helped organize a multi-day campus event, Amazing Day, to " +
-      "raise awareness for mental health and suicide in the WPI community";
-    this.sigmaPiLi3.innerHTML =
-      "Volunteered weekly at a local food pantry, Mustard Seed to help " +
-      "setup, cook, & clean";
-    this.sparcTextDiv.innerHTML = "SPARC Member";
-    this.sparcDateTextDiv.innerHTML = "2018 - 2020";
-    this.sparcLi1.innerHTML =
-      "Was an active member of a SPARC, a student run committee that " +
-      "interfaced with college admins and hosted campus events to " +
-      "raise awareness and provide resources for sexual assualt " +
-      "victims in the WPI community";
-    this.sparcLi2.innerHTML =
-      "Helped run the annual, campus-wide event, " +
-      '<a class="anchor" target="_blank" href="https://www.wpi.edu/news/take-back-night">Take Back the Night</a>';
-    this.sparcLi3.innerHTML =
-      "Created and distributed electronic surveys to gauge students " +
-      "sentiments about safety on campus which were then presented to WPI admins";
-    this.contactTitleTextDiv.innerHTML = "CONTACT";
-    this.professionalJobTextDiv.innerHTML = "TrampleZone LLC.";
-    this.professionalJobTextDiv2.innerHTML = "TrampleZone LLC.";
-    this.professionalJobTitleTextDiv.innerHTML = "Software Engineer II";
-    this.professionalJobTitleTextDiv2.innerHTML = "Software Engineer II";
-    this.professionalTextDiv.innerHTML =
-      "Worked closely with the founder of the company in planning and developing a single page application that is currently available across mobile and desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.";
-    this.professionalTextDiv2.innerHTML =
-      "Worked closely with the founder of the company in planning and developing a single page application that is currently available across mobile and desktop. I was involved in the initial planning for the application and created most of the model classes, UI components, and panels on the frontend. I also created promotional content and app store materials using various Adobe tools along with Figma. Throughout my time there I also trained several new hires and was involved in the recruitment process.";
-    this.campusInvolvementHeaderTextDiv.innerHTML = "Campus Involvement";
-    this.escapeHeaderTextDiv.innerHTML = "Escape (Board Game)";
-    this.escapeYearTextDiv.innerHTML = "2020";
-    this.escapeTextDiv.innerHTML =
-      "Escape is a family of board games, designed for the term project of  CS4233: Object-Oriented Analysis & Design. The game is initialized using a collection of XML files to control different aspects like board dimension and shape, game pieces, victory conditions, and different battle rules. The course focused on using a TDD approach and evolutionary code design to continually add to and improve the game throughout the 7 weeks of development.";
-    this.ttbHeaderTextDiv.innerHTML = "TTB Application";
-    this.ttbYearTextDiv.innerHTML = "2018";
-    this.ttbTextDiv.innerHTML =
-      "Worked within a team of 8 to develop an application to aid the Alcohol and Tobacco Tax and Trade Bureau (TTB) in the submission and review process of new product applications. The class was a 7 week, intensive simulation of what it was like working in an Agile Software development team. Our team held daily standup meetings to keep an open line of communication and to delegate work. Gave a presentation at the end of the class to a panel of our professor and government officials.";
-    this.ttbSubtitleTextDiv.innerHTML = "Roles and responsibilities";
-    this.ttbDocAnalystTitleTextDiv.innerHTML = "Documentation Analyst";
-    this.ttbDocAnalystLi.innerHTML =
-      "Created and maintained all technical documentation including UML diagrams, sequence diagrams, training materials, and software code documentation.";
-    this.ttbSoftEngTitleTextDiv.innerHTML = "Software Engineer";
-    this.ttbSoftEngLi1.innerHTML =
-      "Helped design the UI for the application using a mockup tool Figma.";
-    this.ttbSoftEngLi2.innerHTML =
-      "Helped implement the designed UI using JavaFX and FXML (an XML-based markup language for constructing Java object graphs).";
-    this.ttbSoftEngLi3.innerHTML =
-      "Implemented the algorithm that was used to search through a database seeded with a collection of alcohols. The fuzzy search I implemented adapted the Damerau-Levenshtein approach and ran in O(n*m) time.";
-    this.mqpYearTextDiv.innerHTML = "2019-2020";
-    this.mqpHeaderTextDiv.innerHTML =
-      "Active Telepresence Assistance for Supervisory Control: A User Study with a Multi-Camera Tele-Nursing Robot";
-    this.mqpTextDiv.innerHTML =
-      'Worked within a team of 7 with an advisor to conduct a study which explored autonomous camera control and selection on a TRINA robot using a VR headset. Was involved in creating the software used to control the cameras by reading the inertial measurement unit (IMU) data from the VR headset using Unity and GStreamer library. Using C++ and Python scripts to interface with <a class="anchor" href="https://wiki.ros.org/ROS/Introduction">ROS</a>, our team was able to control TRINAs arms and main camera using the VR headset and controllers. Also helped in running ~10 participants through the study.';
-    this.iqpYearTextDiv.innerHTML = "2018-2019";
-    this.iqpHeaderTextDiv.innerHTML = "Mathematics Tutoring Center at NUST";
-    this.iqpTextDiv.innerHTML =
-      "Worked within a team of 4 to create and implement e-learning modules at the Namibia University of Science and Technology (NUST). Our team worked with university staff to test these modules in various mathematics courses as a supplemental learning tool for students. My main contributions to the project were creating the modules as well as writing and editing the final paper. The e-learning modules were developed using a software created by a WPI professor (ASSISTments), which I also worked with before the project.";
-    this.playStoreSubtext.innerHTML = "View in the";
-    this.playStoreText.innerHTML = "Google Play Store";
-    this.appStoreSubtext.innerHTML = "View in the";
-    this.appStoreText.innerHTML = "App Store";
-    this.playStoreSubtext2.innerHTML = "View in the";
-    this.playStoreText2.innerHTML = "Google Play Store";
-    this.appStoreSubtext2.innerHTML = "View in the";
-    this.appStoreText2.innerHTML = "App Store";
-
-    // Assign classes instead of IDs
-    this.div.className = "resume-panel";
-    this.frameDiv.className = "resume-frame";
-    this.skillsDiv.className = "skills-section";
-    this.programmingDiv.className = "skill-section";
-    this.osDiv.className = "skill-section";
-    this.frameworksDiv.className = "skill-section";
-    this.toolsDiv.className = "skill-section";
-    this.contactDiv.className = "contact-section";
-    this.educationDiv.className = "education-section";
-    this.professionalDiv.className = "professional-section";
-    this.professionalDiv2.className = "professional-section";
-    this.projectDiv.className = "project-section";
-    this.campusInvolvementDiv.className = "campus-involvement-section";
-    this.escapeDiv.className = "project-escape";
-    this.ttbDiv.className = "project-ttb";
-    this.mqpDiv.className = "project-mqp";
-    this.iqpDiv.className = "project-iqp";
-    this.mqpModalContainerDiv.className = "mqp-modal";
+    this.attachListeners();
+    this.initializeContent();
+    this.initializeStaticImages();
+    this.initializeStyles();
 
     // Initialization complete
     this.initialized = true;
-  }
-
-  // Cleanup method
-  destroy() {
-    if (this.footerComponent) {
-      this.footerComponent.destroy();
-    }
   }
 }

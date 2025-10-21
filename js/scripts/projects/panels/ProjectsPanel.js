@@ -467,12 +467,4 @@ export default class ProjectsPanel extends BasePanel {
         // Initialization complete
         this.initialized = true;
     }
-    
-    // Cleanup method
-    destroy() {
-        if (this.footerComponent) {
-            this.footerComponent.destroy();
-        }
-        this.expandedCardId = null;
-    }
 }

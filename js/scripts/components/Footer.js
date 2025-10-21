@@ -242,12 +242,4 @@ export default class FooterComponent {
     makeDay() {
         this.setDarkMode(false);
     }
-    
-    // Cleanup method for when component is removed
-    destroy() {
-        if (this.emailContainerListenerDiv) {
-            this.emailContainerListenerDiv.remove();
-            this.emailContainerListenerDiv = null;
-        }
-    }
 }

@@ -299,10 +299,4 @@ export default class HomePanel extends BasePanel {
 
         this.initialized = true;
     };
-
-    destroy() {
-        if (this.footerComponent) {
-            this.footerComponent.destroy();
-        }
-    }
 }
