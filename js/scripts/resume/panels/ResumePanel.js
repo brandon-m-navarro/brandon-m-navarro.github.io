@@ -14,8 +14,9 @@ import Images from "../../Images.js";
 import Modal from "../../components/Modal.js";
 import SkillRating from "../../components/SkillRating.js";
 import FooterComponent from "../../components/Footer.js";
-const images = new Images();
 import { addEventListeners } from "../../utils/Utilities.js";
+import { URLS } from "../../utils/url-configs.js"
+const images = new Images();
 
 let // DOM elements
   doc = window.document,
@@ -157,149 +158,54 @@ export default class ResumePanel extends BasePanel {
     this.skillsDiv = doc.createElement("div");
     this.skillsTextDiv = doc.createElement("div");
 
-    this.javascriptSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "Javascript",
-    });
-
-    this.htmlSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "HTML",
-    });
-
-    this.cssSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "CSS",
-    });
-
-    this.typescriptSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "Typescript",
-    });
-
-    this.sqlSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "SQL",
-    });
-
-    this.javaSkillRating = new SkillRating({
-      total: 5,
-      fill: 3,
-      label: "Java",
-    });
-
-    this.cSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "C",
-    });
-
-    this.pythonSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "Python",
-    });
-
-    this.nodeSkillRating = new SkillRating({
-      total: 5,
-      fill: 3,
-      label: "Node",
-    });
-
-    this.phpSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "PHP",
-    });
-
-    this.cplusSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "C++",
-    });
-
-    this.windowsOsSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "Windows",
-    });
-
-    this.macOsSkillRating = new SkillRating({
-      total: 5,
-      fill: 3,
-      label: "MacOS",
-    });
-
-    this.iOsSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "iOS",
-    });
-
-    this.androidOsSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "Android",
-    });
-
-    this.gitToolsSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "Git",
-    });
-
-    this.dockerToolsSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "Docker",
-    });
-
-    this.figmaToolsSkillRating = new SkillRating({
-      total: 5,
-      fill: 5,
-      label: "Figma",
-    });
-
-    this.adobePremiereToolsSkillRating = new SkillRating({
-      total: 5,
-      fill: 3,
-      label: "Adobe Premiere",
-    });
-
-    this.androidStudioToolsSkillRating = new SkillRating({
-      total: 5,
-      fill: 2,
-      label: "Android Studio",
-    });
-
-    this.requireFrameworkSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "Require.js",
-    });
-
-    this.tailwindFrameworkSkillRating = new SkillRating({
-      total: 5,
-      fill: 4,
-      label: "TailwindCSS",
-    });
-
-    this.reactFrameworkSkillRating = new SkillRating({
-      total: 5,
-      fill: 3,
-      label: "React",
-    });
-
-    this.nextJsFrameworkSkillRating = new SkillRating({
-      total: 5,
-      fill: 3,
-      label: "Next.js",
-    });
+    this.javascriptSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "Javascript" });
+    this.htmlSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "HTML" });
+    this.cssSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "CSS" });
+    this.typescriptSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "Typescript" });
+    this.sqlSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "SQL" });
+    this.javaSkillRating =
+        new SkillRating({ total: 5, fill: 3, label: "Java" });
+    this.cSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "C" });
+    this.pythonSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "Python" });
+    this.nodeSkillRating =
+        new SkillRating({ total: 5, fill: 3, label: "Node" });
+    this.phpSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "PHP" });
+    this.cplusSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "C++" });
+    this.windowsOsSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "Windows" });
+    this.macOsSkillRating =
+        new SkillRating({ total: 5, fill: 3, label: "MacOS" });
+    this.iOsSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "iOS" });
+    this.androidOsSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "Android" });
+    this.gitToolsSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "Git" });
+    this.dockerToolsSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "Docker" });
+    this.figmaToolsSkillRating =
+        new SkillRating({ total: 5, fill: 5, label: "Figma" });
+    this.adobePremiereToolsSkillRating =
+        new SkillRating({ total: 5, fill: 3, label: "Adobe Premiere" });
+    this.androidStudioToolsSkillRating =
+        new SkillRating({ total: 5, fill: 2, label: "Android Studio" });
+    this.requireFrameworkSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "Require.js" });
+    this.tailwindFrameworkSkillRating =
+        new SkillRating({ total: 5, fill: 4, label: "TailwindCSS" });
+    this.reactFrameworkSkillRating =
+        new SkillRating({ total: 5, fill: 3, label: "React" });
+    this.nextJsFrameworkSkillRating =
+        new SkillRating({ total: 5, fill: 3, label: "Next.js" });
 
     this.programmingDiv = doc.createElement("div");
     this.programmingTitleTextDiv = doc.createElement("div");
@@ -424,13 +330,10 @@ export default class ResumePanel extends BasePanel {
     this.professionalJobDiv = doc.createElement("div");
     this.professionalJobTextDiv = doc.createElement("div");
     this.professionalJobTitleTextDiv = doc.createElement("div");
-
     this.professionalTextDiv = doc.createElement("div");
-
     this.professionalExtraDiv = doc.createElement("div");
     this.professionalImgDiv = doc.createElement("div");
     this.professionalImg = doc.createElement("img");
-
     this.professionalButtonsDiv = doc.createElement("div");
 
     this.appStoreButtonDiv = doc.createElement("div");
@@ -474,13 +377,10 @@ export default class ResumePanel extends BasePanel {
     this.professionalJobDiv2 = doc.createElement("div");
     this.professionalJobTextDiv2 = doc.createElement("div");
     this.professionalJobTitleTextDiv2 = doc.createElement("div");
-
     this.professionalTextDiv2 = doc.createElement("div");
-
     this.professionalExtraDiv2 = doc.createElement("div");
     this.professionalImgDiv2 = doc.createElement("div");
     this.professionalImg2 = doc.createElement("img");
-
     this.professionalButtonsDiv2 = doc.createElement("div");
 
     this.appStoreButtonDiv2 = doc.createElement("div");
@@ -607,6 +507,27 @@ export default class ResumePanel extends BasePanel {
       { element: this.professionalLocationIcon2, key: "location-2" },
     ];
 
+    // Collect linkable elements to reduce amount of needed listeners to one
+    this.linkConfigs = [
+      { element: this.websiteIcon.getDiv(), url: URLS.GITHUB },
+      { element: this.linkedInIcon.getDiv(), url: URLS.LINKEDIN },
+      { element: this.escapeLinkImgDiv, url: URLS.ESCAPE },
+      { element: this.ttbLinkImgDiv, url: URLS.TTB },
+      { element: this.mqpLinkImgDiv, url: URLS.MQP },
+      { element: this.iqpLinkImgDiv, url: URLS.IQP },
+      { element: this.appStoreButtonDiv, url: URLS.MYCHAPTER_APPSTORE },
+      { element: this.playStoreButtonDiv, url: URLS.MYCHAPTER_PLAYSTORE },
+      { element: this.appStoreButtonDiv2, url: URLS.MYCHAPTER_APPSTORE },
+      { element: this.playStoreButtonDiv2, url: URLS.MYCHAPTER_PLAYSTORE },
+    ];
+
+    // Open a new tab when user selects project links or contact infos
+    this.linkConfigs.forEach(({ element, url }) => {
+      addEventListeners(element, () => {
+        window.open(url, "_blank").focus();
+      });
+    });
+
     // Listen for mode changes from footer
     this.footerComponent.getDiv().addEventListener("dark", () => {
       this.makeNight();
@@ -614,83 +535,6 @@ export default class ResumePanel extends BasePanel {
 
     this.footerComponent.getDiv().addEventListener("light", () => {
       this.makeDay();
-    });
-
-    // Open a new tab when user selects project links or contact infos
-    addEventListeners(this.websiteIcon.getDiv(), () => {
-      window
-        .open(
-          "https://github.com/brandon-m-navarro/brandon-m-navarro.github.io",
-          "_blank"
-        )
-        .focus();
-    });
-    addEventListeners(this.linkedInIcon.getDiv(), () => {
-      window
-        .open("https://www.linkedin.com/in/brandon-navarro-b36b97149", "_blank")
-        .focus();
-    });
-    addEventListeners(this.escapeLinkImgDiv, () => {
-      window
-        .open(
-          "https://github.com/brandon-m-navarro/escape/tree/master",
-          "_blank"
-        )
-        .focus();
-    });
-    addEventListeners(this.ttbLinkImgDiv, () => {
-      window.open("https://github.com/Benmw99/TeamE3733TTB2", "_blank").focus();
-    });
-    addEventListeners(this.mqpLinkImgDiv, () => {
-      window
-        .open(
-          "https://digital.wpi.edu/concern/student_works/rf55zb37d?locale=en",
-          "_blank"
-        )
-        .focus();
-    });
-    addEventListeners(this.iqpLinkImgDiv, () => {
-      window
-        .open(
-          "https://digital.wpi.edu/concern/student_works/x633f145v?locale=en",
-          "_blank"
-        )
-        .focus();
-    });
-
-    // MyChapter buttons
-    addEventListeners(this.appStoreButtonDiv, () => {
-      window
-        .open(
-          "https://apps.apple.com/us/app/mychapter-app-for-my-chapter/id6444417593",
-          "_blank"
-        )
-        .focus();
-    });
-    addEventListeners(this.playStoreButtonDiv, () => {
-      window
-        .open(
-          "https://play.google.com/store/apps/details?id=com.tramplezone.mychapter&hl=en_US&pli=1",
-          "_blank"
-        )
-        .focus();
-    });
-
-    addEventListeners(this.appStoreButtonDiv2, () => {
-      window
-        .open(
-          "https://apps.apple.com/us/app/mychapter-app-for-my-chapter/id6444417593",
-          "_blank"
-        )
-        .focus();
-    });
-    addEventListeners(this.playStoreButtonDiv2, () => {
-      window
-        .open(
-          "https://play.google.com/store/apps/details?id=com.tramplezone.mychapter&hl=en_US&pli=1",
-          "_blank"
-        )
-        .focus();
     });
 
     // Expand modal when user selects images
@@ -728,16 +572,10 @@ export default class ResumePanel extends BasePanel {
     this.programmingListDiv.appendChild(this.cSkillRating.getDiv());
     this.programmingListDiv.appendChild(this.cplusSkillRating.getDiv());
 
-    this.programmingDiv.appendChild(this.programmingTitleTextDiv);
-    this.programmingDiv.appendChild(this.programmingListDiv);
-
     this.osListDiv.appendChild(this.windowsOsSkillRating.getDiv());
     this.osListDiv.appendChild(this.macOsSkillRating.getDiv());
     this.osListDiv.appendChild(this.iOsSkillRating.getDiv());
     this.osListDiv.appendChild(this.androidOsSkillRating.getDiv());
-
-    this.osDiv.appendChild(this.osTitleTextDiv);
-    this.osDiv.appendChild(this.osListDiv);
 
     this.frameworksListDiv.appendChild(
       this.requireFrameworkSkillRating.getDiv()
@@ -745,19 +583,27 @@ export default class ResumePanel extends BasePanel {
     this.frameworksListDiv.appendChild(
       this.tailwindFrameworkSkillRating.getDiv()
     );
-    this.frameworksListDiv.appendChild(this.reactFrameworkSkillRating.getDiv());
+    this.frameworksListDiv.appendChild(
+        this.reactFrameworkSkillRating.getDiv()
+    );
     this.frameworksListDiv.appendChild(
       this.nextJsFrameworkSkillRating.getDiv()
     );
-
-    this.frameworksDiv.appendChild(this.frameworksTitleTextDiv);
-    this.frameworksDiv.appendChild(this.frameworksListDiv);
 
     this.toolsListDiv.appendChild(this.figmaToolsSkillRating.getDiv());
     this.toolsListDiv.appendChild(this.gitToolsSkillRating.getDiv());
     this.toolsListDiv.appendChild(this.adobePremiereToolsSkillRating.getDiv());
     this.toolsListDiv.appendChild(this.androidOsSkillRating.getDiv());
     this.toolsListDiv.appendChild(this.dockerToolsSkillRating.getDiv());
+
+    this.programmingDiv.appendChild(this.programmingTitleTextDiv);
+    this.programmingDiv.appendChild(this.programmingListDiv);
+
+    this.osDiv.appendChild(this.osTitleTextDiv);
+    this.osDiv.appendChild(this.osListDiv);
+
+    this.frameworksDiv.appendChild(this.frameworksTitleTextDiv);
+    this.frameworksDiv.appendChild(this.frameworksListDiv);
 
     this.toolsDiv.appendChild(this.toolsTitleTextDiv);
     this.toolsDiv.appendChild(this.toolsListDiv);
@@ -839,14 +685,12 @@ export default class ResumePanel extends BasePanel {
     this.appStoreImgDiv.appendChild(this.appStoreImg);
     this.appStoreTextDiv.appendChild(this.appStoreSubtext);
     this.appStoreTextDiv.appendChild(this.appStoreText);
-
     this.appStoreButtonDiv.appendChild(this.appStoreImgDiv);
     this.appStoreButtonDiv.appendChild(this.appStoreTextDiv);
 
     this.playStoreImgDiv.appendChild(this.playStoreImg);
     this.playStoreTextDiv.appendChild(this.playStoreSubtext);
     this.playStoreTextDiv.appendChild(this.playStoreText);
-
     this.playStoreButtonDiv.appendChild(this.playStoreImgDiv);
     this.playStoreButtonDiv.appendChild(this.playStoreTextDiv);
 
@@ -885,14 +729,12 @@ export default class ResumePanel extends BasePanel {
     this.appStoreImgDiv2.appendChild(this.appStoreImg2);
     this.appStoreTextDiv2.appendChild(this.appStoreSubtext2);
     this.appStoreTextDiv2.appendChild(this.appStoreText2);
-
     this.appStoreButtonDiv2.appendChild(this.appStoreImgDiv2);
     this.appStoreButtonDiv2.appendChild(this.appStoreTextDiv2);
 
     this.playStoreImgDiv2.appendChild(this.playStoreImg2);
     this.playStoreTextDiv2.appendChild(this.playStoreSubtext2);
     this.playStoreTextDiv2.appendChild(this.playStoreText2);
-
     this.playStoreButtonDiv2.appendChild(this.playStoreImgDiv2);
     this.playStoreButtonDiv2.appendChild(this.playStoreTextDiv2);
 
@@ -905,7 +747,6 @@ export default class ResumePanel extends BasePanel {
     this.professionalDiv2.appendChild(this.professionalTitleDiv2);
     this.professionalDiv2.appendChild(this.professionalTopDiv2);
     this.professionalDiv2.appendChild(this.professionalTextDiv2);
-
     this.professionalDiv2.appendChild(this.professionalExtraDiv2);
 
     this.projectTitleDiv.appendChild(this.projectTitleIcon.getDiv());
@@ -999,32 +840,23 @@ export default class ResumePanel extends BasePanel {
 
   // Create and assemble panel elements
   initialize() {
+
     // Create needed HTML elms
     this.createElements();
 
     // Assemble elements
     this.assembleElements();
 
-    // Non icon Images
+    // img elements not effected by day/night
     this.sigmaPiImg.src = images.getImages()["sigma-pi_t"].src;
     this.sparcImg.src = images.getImages()["sparc_t"].src;
     this.escapeImg.src = images.getImages()["escape"].src;
-    this.escapeLinkImg.src = images.getImages()["link"].src;
-    this.ttbLinkImg.src = images.getImages()["link"].src;
-    this.mqpLinkImg.src = images.getImages()["link"].src;
-    this.iqpLinkImg.src = images.getImages()["link"].src;
     this.mqpPosterImg.src = images.getImages()["mqp-poster"].src;
     this.mqpTrinaImg.src = images.getImages()["trina"].src;
     this.meImg.src = images.getImages()["me_hd"].src;
     this.mqpModalImg.src = images.getImages()["mqp-poster"].src;
-
     this.professionalImg.src = images.getImages()["my-chapter"].src;
-    this.appStoreImg.src = images.getImages()["apple"].src;
-    this.playStoreImg.src = images.getImages()["google-play"].src;
-
     this.professionalImg2.src = images.getImages()["my-chapter"].src;
-    this.appStoreImg2.src = images.getImages()["apple"].src;
-    this.playStoreImg2.src = images.getImages()["google-play"].src;
 
     // innerHTMLs
     this.nameTextDiv.innerHTML = "Brandon Manuel Navarro";
