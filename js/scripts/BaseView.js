@@ -21,73 +21,71 @@
 
 // Class
 export default class BaseView {
+  // Constructor
+  constructor() {
+    // Set the name of the view
+    this.name = this.constructor.name;
 
-    // Constructor
-    constructor () {
+    // Create top-level div for view
+    this.div = document.createElement("div");
 
-        // Set the name of the view
-        this.name = this.constructor.name;
+    // Set the common CSS classname to add/remove and show/hide elements
+    this.showElementClass = "show-element";
 
-        // Create top-level div for view
-        this.div = document.createElement('div');
+    // Set the initialization status
+    this.initialized = false;
+  }
 
-        // Set the common CSS classname to add/remove and show/hide elements
-        this.showElementClass = 'show-element';
+  // Initialize view, assemble UI elements, etc.
+  initialize() {
+    this.initialized = true;
+  }
 
-        // Set the initialization status
-        this.initialized = false;
-    }
+  // Get the initialization status
+  isInitialized() {
+    return this.initialized;
+  }
 
-    // Initialize view, assemble UI elements, etc.
-    initialize () {
-        this.initialized = true;
-    };
+  // Reset view UI components
+  reset() {}
 
-    // Get the initialization status
-    isInitialized () {
-        return this.initialized;
-    };
+  // Show view, i.e. make it visible
+  show() {
+    this.div.classList.add(this.showElementClass);
+  }
 
-    // Reset view UI components
-    reset () {};
+  // Hide view, i.e. make it invisible
+  hide() {
+    this.div.classList.remove(this.showElementClass);
+  }
 
-    // Show view, i.e. make it visible
-    show () {
-        this.div.classList.add(this.showElementClass);
-    };
+  // Get name of the view
+  getName() {
+    return this.name;
+  }
 
-    // Hide view, i.e. make it invisible
-    hide () {
-        this.div.classList.remove(this.showElementClass);
-    };
+  // Get the main div container for this view
+  getDiv() {
+    return this.div;
+  }
 
-    // Get name of the view
-    getName () {
-        return this.name;
-    };
+  // Constants
 
-    // Get the main div container for this view
-    getDiv () {
-        return this.div;
-    };
+  // Navigation Direction
+  static getNavigationDirection() {
+    return Object.freeze({
+      LEFT: 0,
+      RIGHT: 1,
+      UP: 2,
+      DOWN: 3,
+    });
+  }
 
-    // Constants
-
-    // Navigation Direction
-    static getNavigationDirection () {
-        return Object.freeze({
-            LEFT: 0,
-            RIGHT: 1,
-            UP: 2,
-            DOWN: 3
-        });
-    };
-
-    // Navigation Text
-    static getNavigationText () {
-        return Object.freeze({
-            CANCEL: 'CANCEL',
-            BACK: 'BACK'
-        });
-    };
+  // Navigation Text
+  static getNavigationText() {
+    return Object.freeze({
+      CANCEL: "CANCEL",
+      BACK: "BACK",
+    });
+  }
 }

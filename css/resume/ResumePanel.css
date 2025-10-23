@@ -1,21 +1,8 @@
-/*
- * ResumePanel stylesheet
- */
-
-/*
- * Top-Level
- */
-
 .resume-panel {
   position: absolute;
   display: none;
   width: 100%;
   text-align: center;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   color: var(--color1);
   box-sizing: border-box;
   padding: 2px;
@@ -23,6 +10,9 @@
   transition: background-color ease 250ms;
   font-family: "Lato", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .resume-panel.show-element {
   display: block;
@@ -46,7 +36,6 @@
   box-sizing: border-box;
   padding: 12px;
   border-radius: 2px;
-
   background-color: rgb(0, 0, 0, 0.05);
 }
 .resume-frame.dark {
@@ -71,6 +60,7 @@
 }
 .resume-frame > div:nth-child(1) > div:nth-child(1) > img {
   width: 100%;
+  -webkit-transform: translateY(7px);
   transform: translateY(7px);
 }
 
@@ -129,6 +119,7 @@
   cursor: pointer;
   border-radius: 4px;
   padding: 4px 0;
+  -webkit-transition: background-color ease 250ms;
   transition: background-color ease 250ms;
 }
 .contact-section > div:nth-child(4):hover {
@@ -139,6 +130,7 @@
   cursor: pointer;
   padding: 4px 0;
   border-radius: 4px;
+  -webkit-transition: background-color ease 250ms;
   transition: background-color ease 250ms;
 }
 .contact-section > div:nth-child(5):hover {

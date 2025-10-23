@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 import BasePanel from "../../BasePanel.js";
 import Icon from "../../components/Icon.js";
@@ -7,7 +7,7 @@ import Images from "../../Images.js";
 import SkillRating from "../../components/SkillRating.js";
 import FooterComponent from "../../components/Footer.js";
 import { addEventListeners } from "../../utils/Utilities.js";
-import { URLS } from "../../utils/url-configs.js"
+import { URLS } from "../../utils/url-configs.js";
 const images = new Images();
 
 let // DOM elements
@@ -105,6 +105,7 @@ export default class ResumePanel extends BasePanel {
   // Create elements used on the panel
   createElements() {
     this.frameDiv = doc.createElement("div");
+    this.frameDiv.className = "resume-frame";
     this.topDiv = doc.createElement("div");
     this.nameSubnameDiv = doc.createElement("div");
     this.meImgDiv = doc.createElement("div");
@@ -113,6 +114,7 @@ export default class ResumePanel extends BasePanel {
     this.subnameTextDiv = doc.createElement("div");
     this.leftDiv = doc.createElement("div");
     this.contactDiv = doc.createElement("div");
+    this.contactDiv.className = "contact-section";
     this.contactTitleDiv = doc.createElement("div");
     this.contactTitleTextDiv = doc.createElement("div");
     this.contactEmailIcon = new Icon({
@@ -141,70 +143,127 @@ export default class ResumePanel extends BasePanel {
     });
 
     this.skillsDiv = doc.createElement("div");
+    this.skillsDiv.className = "skills-section";
     this.skillsTextDiv = doc.createElement("div");
 
-    this.javascriptSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "Javascript" });
-    this.htmlSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "HTML" });
-    this.cssSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "CSS" });
-    this.typescriptSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "Typescript" });
-    this.sqlSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "SQL" });
-    this.javaSkillRating =
-        new SkillRating({ total: 5, fill: 3, label: "Java" });
-    this.cSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "C" });
-    this.pythonSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "Python" });
-    this.nodeSkillRating =
-        new SkillRating({ total: 5, fill: 3, label: "Node" });
-    this.phpSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "PHP" });
-    this.cplusSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "C++" });
-    this.windowsOsSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "Windows" });
-    this.macOsSkillRating =
-        new SkillRating({ total: 5, fill: 3, label: "MacOS" });
-    this.iOsSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "iOS" });
-    this.androidOsSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "Android" });
-    this.gitToolsSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "Git" });
-    this.dockerToolsSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "Docker" });
-    this.figmaToolsSkillRating =
-        new SkillRating({ total: 5, fill: 5, label: "Figma" });
-    this.adobePremiereToolsSkillRating =
-        new SkillRating({ total: 5, fill: 3, label: "Adobe Premiere" });
-    this.androidStudioToolsSkillRating =
-        new SkillRating({ total: 5, fill: 2, label: "Android Studio" });
-    this.requireFrameworkSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "Require.js" });
-    this.tailwindFrameworkSkillRating =
-        new SkillRating({ total: 5, fill: 4, label: "TailwindCSS" });
-    this.reactFrameworkSkillRating =
-        new SkillRating({ total: 5, fill: 3, label: "React" });
-    this.nextJsFrameworkSkillRating =
-        new SkillRating({ total: 5, fill: 3, label: "Next.js" });
+    this.javascriptSkillRating = new SkillRating({
+      total: 5,
+      fill: 4,
+      label: "Javascript",
+    });
+    this.htmlSkillRating = new SkillRating({
+      total: 5,
+      fill: 4,
+      label: "HTML",
+    });
+    this.cssSkillRating = new SkillRating({ total: 5, fill: 4, label: "CSS" });
+    this.typescriptSkillRating = new SkillRating({
+      total: 5,
+      fill: 4,
+      label: "Typescript",
+    });
+    this.sqlSkillRating = new SkillRating({ total: 5, fill: 2, label: "SQL" });
+    this.javaSkillRating = new SkillRating({
+      total: 5,
+      fill: 3,
+      label: "Java",
+    });
+    this.cSkillRating = new SkillRating({ total: 5, fill: 2, label: "C" });
+    this.pythonSkillRating = new SkillRating({
+      total: 5,
+      fill: 2,
+      label: "Python",
+    });
+    this.nodeSkillRating = new SkillRating({
+      total: 5,
+      fill: 3,
+      label: "Node",
+    });
+    this.phpSkillRating = new SkillRating({ total: 5, fill: 2, label: "PHP" });
+    this.cplusSkillRating = new SkillRating({
+      total: 5,
+      fill: 2,
+      label: "C++",
+    });
+    this.windowsOsSkillRating = new SkillRating({
+      total: 5,
+      fill: 4,
+      label: "Windows",
+    });
+    this.macOsSkillRating = new SkillRating({
+      total: 5,
+      fill: 3,
+      label: "MacOS",
+    });
+    this.iOsSkillRating = new SkillRating({ total: 5, fill: 2, label: "iOS" });
+    this.androidOsSkillRating = new SkillRating({
+      total: 5,
+      fill: 2,
+      label: "Android",
+    });
+    this.gitToolsSkillRating = new SkillRating({
+      total: 5,
+      fill: 4,
+      label: "Git",
+    });
+    this.dockerToolsSkillRating = new SkillRating({
+      total: 5,
+      fill: 2,
+      label: "Docker",
+    });
+    this.figmaToolsSkillRating = new SkillRating({
+      total: 5,
+      fill: 5,
+      label: "Figma",
+    });
+    this.adobePremiereToolsSkillRating = new SkillRating({
+      total: 5,
+      fill: 3,
+      label: "Adobe Premiere",
+    });
+    this.androidStudioToolsSkillRating = new SkillRating({
+      total: 5,
+      fill: 2,
+      label: "Android Studio",
+    });
+    this.requireFrameworkSkillRating = new SkillRating({
+      total: 5,
+      fill: 4,
+      label: "Require.js",
+    });
+    this.tailwindFrameworkSkillRating = new SkillRating({
+      total: 5,
+      fill: 4,
+      label: "TailwindCSS",
+    });
+    this.reactFrameworkSkillRating = new SkillRating({
+      total: 5,
+      fill: 3,
+      label: "React",
+    });
+    this.nextJsFrameworkSkillRating = new SkillRating({
+      total: 5,
+      fill: 3,
+      label: "Next.js",
+    });
 
     this.programmingDiv = doc.createElement("div");
+    this.programmingDiv.className = "skill-section";
     this.programmingTitleTextDiv = doc.createElement("div");
     this.programmingListDiv = doc.createElement("div");
 
     this.osDiv = doc.createElement("div");
+    this.osDiv.className = "skill-section";
     this.osTitleTextDiv = doc.createElement("div");
     this.osListDiv = doc.createElement("div");
 
     this.toolsDiv = doc.createElement("div");
+    this.toolsDiv.className = "skill-section";
     this.toolsTitleTextDiv = doc.createElement("div");
     this.toolsListDiv = doc.createElement("div");
 
     this.frameworksDiv = doc.createElement("div");
+    this.frameworksDiv.className = "skill-section";
     this.frameworksTitleTextDiv = doc.createElement("div");
     this.frameworksListDiv = doc.createElement("div");
 
@@ -238,6 +297,8 @@ export default class ResumePanel extends BasePanel {
 
     this.rightDiv = doc.createElement("div");
     this.educationDiv = doc.createElement("div");
+    this.educationDiv.className = "education-section";
+
     this.educationTitleDiv = doc.createElement("div");
     this.educationTitleIcon = new Icon({
       img: images.getImages()["education"].src,
@@ -265,6 +326,7 @@ export default class ResumePanel extends BasePanel {
     this.gpaTextDiv = doc.createElement("div");
 
     this.campusInvolvementDiv = doc.createElement("div");
+    this.campusInvolvementDiv.className = "campus-involvement-section";
     this.campusInvolvementHeaderTextDiv = doc.createElement("div");
     this.campusInvolvementListDiv = doc.createElement("div");
     this.sigmaPiHeaderDiv = doc.createElement("div");
@@ -327,6 +389,7 @@ export default class ResumePanel extends BasePanel {
     this.playStoreText = doc.createElement("div");
 
     this.professionalDiv = doc.createElement("div");
+    this.professionalDiv.className = "professional-section";
     this.professionalTitleDiv = doc.createElement("div");
     this.professionalTitleIcon = new Icon({
       img: images.getImages()["work"].src,
@@ -374,6 +437,7 @@ export default class ResumePanel extends BasePanel {
     this.playStoreText2 = doc.createElement("div");
 
     this.professionalDiv2 = doc.createElement("div");
+    this.professionalDiv2.className = "professional-section";
     this.professionalTitleDiv2 = doc.createElement("div");
     this.professionalTitleIcon2 = new Icon({
       img: images.getImages()["work"].src,
@@ -384,6 +448,7 @@ export default class ResumePanel extends BasePanel {
     });
 
     this.projectDiv = doc.createElement("div");
+    this.projectDiv.className = "project-section";
     this.projectTitleDiv = doc.createElement("div");
     this.projectTitleIcon = new Icon({
       img: images.getImages()["project"].src,
@@ -394,6 +459,7 @@ export default class ResumePanel extends BasePanel {
     });
 
     this.escapeDiv = doc.createElement("div");
+    this.escapeDiv.className = "project-escape";
     this.escapeHeaderDiv = doc.createElement("div");
     this.escapeHeaderTextDiv = doc.createElement("div");
     this.escapeLinkImgDiv = doc.createElement("div");
@@ -405,6 +471,7 @@ export default class ResumePanel extends BasePanel {
     this.escapeTextDiv = doc.createElement("div");
 
     this.ttbDiv = doc.createElement("div");
+    this.ttbDiv.className = "project-ttb";
     this.ttbHeaderDiv = doc.createElement("div");
     this.ttbHeaderTextDiv = doc.createElement("div");
     this.ttbLinkImgDiv = doc.createElement("div");
@@ -425,6 +492,7 @@ export default class ResumePanel extends BasePanel {
     this.ttbSoftEngLi3 = doc.createElement("li");
 
     this.mqpDiv = doc.createElement("div");
+    this.mqpDiv.className = "project-mqp";
     this.mqpHeaderDiv = doc.createElement("div");
     this.mqpHeaderTextDiv = doc.createElement("div");
     this.mqpLinkImgDiv = doc.createElement("div");
@@ -437,6 +505,7 @@ export default class ResumePanel extends BasePanel {
     this.mqpTrinaImgDiv = doc.createElement("div");
 
     this.iqpDiv = doc.createElement("div");
+    this.iqpDiv.className = "project-iqp";
     this.iqpHeaderDiv = doc.createElement("div");
     this.iqpHeaderTextDiv = doc.createElement("div");
     this.iqpLinkImgDiv = doc.createElement("div");
@@ -449,17 +518,17 @@ export default class ResumePanel extends BasePanel {
     this.mqpGroupExpandableImage = new ExpandableImage({
       container: this.mqpPosterImgDiv,
       imageSrc: images.getImages()["mqp-poster"].src,
-      imageAlt: 'MQP Poster'
+      imageAlt: "MQP Poster",
     });
     this.iqpGroupExpandableImage = new ExpandableImage({
       container: this.iqpGroupImgDiv,
       imageSrc: images.getImages()["iqp_team"].src,
-      imageAlt: 'IQP Team'
+      imageAlt: "IQP Team",
     });
     this.mqpTrinaExpandableImage = new ExpandableImage({
       container: this.mqpTrinaImgDiv,
       imageSrc: images.getImages()["trina"].src,
-      imageAlt: 'TRINA Robot'
+      imageAlt: "TRINA Robot",
     });
 
     this.footerComponent = new FooterComponent();
@@ -508,7 +577,6 @@ export default class ResumePanel extends BasePanel {
 
   // Attach event listeners to elements
   attachListeners() {
-
     // Open a new tab when user selects project links or contact infos
     this.linkConfigs.forEach(({ element, url }) => {
       addEventListeners(element, () => {
@@ -537,7 +605,6 @@ export default class ResumePanel extends BasePanel {
     this.frameworksTitleTextDiv.innerHTML = "Frameworks";
     this.toolsTitleTextDiv.innerHTML = "Tools";
     this.bachelorsTextDiv.innerHTML = "Bachelor of Science in Computer Science";
-
     this.gpaTextDiv.innerHTML = "3.25 GPA";
     this.sigmaPiTextDiv.innerHTML =
       "Sigma Pi Fraternity International, Gamma Iota Chapter";
@@ -624,27 +691,6 @@ export default class ResumePanel extends BasePanel {
     this.professionalImg2.src = images.getImages()["my-chapter"].src;
   }
 
-  // Apply CSS classes to elements
-  initializeStyles() {
-    this.div.className = "resume-panel";
-    this.frameDiv.className = "resume-frame";
-    this.contactDiv.className = "contact-section";
-    this.skillsDiv.className = "skills-section";
-    this.programmingDiv.className = "skill-section";
-    this.osDiv.className = "skill-section";
-    this.frameworksDiv.className = "skill-section";
-    this.toolsDiv.className = "skill-section";
-    this.educationDiv.className = "education-section";
-    this.campusInvolvementDiv.className = "campus-involvement-section";
-    this.professionalDiv.className = "professional-section";
-    this.professionalDiv2.className = "professional-section";
-    this.projectDiv.className = "project-section";
-    this.escapeDiv.className = "project-escape";
-    this.ttbDiv.className = "project-ttb";
-    this.mqpDiv.className = "project-mqp";
-    this.iqpDiv.className = "project-iqp";
-  }
-
   // Append elements to the DOM
   assembleElements() {
     this.meImgDiv.appendChild(this.meImg);
@@ -685,9 +731,7 @@ export default class ResumePanel extends BasePanel {
     this.frameworksListDiv.appendChild(
       this.tailwindFrameworkSkillRating.getDiv()
     );
-    this.frameworksListDiv.appendChild(
-        this.reactFrameworkSkillRating.getDiv()
-    );
+    this.frameworksListDiv.appendChild(this.reactFrameworkSkillRating.getDiv());
     this.frameworksListDiv.appendChild(
       this.nextJsFrameworkSkillRating.getDiv()
     );
@@ -936,7 +980,9 @@ export default class ResumePanel extends BasePanel {
     this.attachListeners();
     this.initializeContent();
     this.initializeStaticImages();
-    this.initializeStyles();
+
+    // Set panel class
+    this.div.className = "resume-panel";
 
     // Initialization complete
     this.initialized = true;

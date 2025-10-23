@@ -1,25 +1,14 @@
-/*
- * ResumeView stylesheet
- */
-
-/*
- * Top-Level
- */
-
 #resume-view-div {
-    position: absolute;
-    display: none;
-    width: 100%;
-    /* max-width: 800px; */
-    text-align: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    color: var(--color1);
-    box-sizing: border-box;
+  position: absolute;
+  display: none;
+  width: 100%;
+  text-align: center;
+  color: var(--color1);
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 #resume-view-div.show-element {
-    display: block;
+  display: block;
 }

@@ -21,58 +21,56 @@
 
 // Class
 export default class BaseComponent {
+  // Constructor
+  constructor() {
+    // Set the name of the component
+    this.name = this.constructor.name;
 
-    // Constructor
-    constructor () {
+    // Create top-level div for component
+    this.div = document.createElement("div");
 
-        // Set the name of the component
-        this.name = this.constructor.name;
+    // Set the common CSS classname to add/remove and show/hide elements
+    this.showElementClass = "show-element";
 
-        // Create top-level div for component
-        this.div = document.createElement('div');
+    // Set the initialization status
+    this.initialized = false;
+  }
 
-        // Set the common CSS classname to add/remove and show/hide elements
-        this.showElementClass = 'show-element';
+  // Initialize component, assemble UI elements, etc.
+  initialize() {
+    this.initialized = true;
+  }
 
-        // Set the initialization status
-        this.initialized = false;
-    }
+  // Get the initialization status
+  isInitialized() {
+    return this.initialized;
+  }
 
-    // Initialize component, assemble UI elements, etc.
-    initialize () {
-        this.initialized = true;
-    };
+  // Reset component UI components
+  reset() {}
 
-    // Get the initialization status
-    isInitialized () {
-        return this.initialized;
-    };
+  // Show component, i.e. make it visible
+  show() {
+    this.div.classList.add(this.showElementClass);
+  }
 
-    // Reset component UI components
-    reset () {};
+  // Hide component, i.e. make it invisible
+  hide() {
+    this.div.classList.remove(this.showElementClass);
+  }
 
-    // Show component, i.e. make it visible
-    show () {
-        this.div.classList.add(this.showElementClass);
-    };
+  // Return true if the component is visible
+  isShowing() {
+    return this.div.classList.contains(this.showElementClass);
+  }
 
-    // Hide component, i.e. make it invisible
-    hide () {
-        this.div.classList.remove(this.showElementClass);
-    };
+  // Get name of the component
+  getName() {
+    return this.name;
+  }
 
-    // Return true if the component is visible
-    isShowing () {
-        return this.div.classList.contains(this.showElementClass);
-    };
-
-    // Get name of the component
-    getName () {
-        return this.name;
-    };
-
-    // Get the main div container for this component
-    getDiv () {
-        return this.div;
-    };
+  // Get the main div container for this component
+  getDiv() {
+    return this.div;
+  }
 }

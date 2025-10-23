@@ -14,7 +14,7 @@
 //      imageAlt:    alt text for the image (optional)
 // }
 //
-'use strict';
+"use strict";
 
 export default class ExpandableImage {
   constructor(options) {
@@ -103,13 +103,13 @@ export default class ExpandableImage {
 
   openModal() {
     this.modal.classList.add("active");
-    document.body.classList.add('modal-open');
+    document.body.classList.add("modal-open");
     document.body.style.overflow = "hidden";
   }
 
   closeModal() {
     this.modal.classList.remove("active");
-    document.body.classList.remove('modal-open');
+    document.body.classList.remove("modal-open");
     document.body.style.overflow = "";
   }
 

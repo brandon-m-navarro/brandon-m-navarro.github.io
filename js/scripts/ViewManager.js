@@ -1,4 +1,3 @@
-
 /**
  * ViewManager.js
  *
@@ -25,340 +24,328 @@
  *   viewManager.getVisibleView();
  *   viewManager.setVisibleView(viewManager.getViews()['HomeView']);
  */
-'use strict';
+"use strict";
 
 // Import & instantiate dependent modules
-import ResumeView from './resume/ResumeView.js';
+import ResumeView from "./resume/ResumeView.js";
 const resumeView = new ResumeView();
 
-import HomeView from './home/HomeView.js';
+import HomeView from "./home/HomeView.js";
 const homeView = new HomeView();
 
-import ProjectsView from './projects/ProjectsView.js';
+import ProjectsView from "./projects/ProjectsView.js";
 const projectsView = new ProjectsView();
 
-import SlideControl from './components/SlideControl.js';
+import SlideControl from "./components/SlideControl.js";
 
 let // Create local vars
 
-    // Singleton reference
-    self,
-
-    // Views
-    viewMap = {},
-    viewSliderMap = {},
-    currentView,
-    visibleView,
-    defaultTransitionDelay = 300,
-
-    // Views arrays
-    generalViewList = [
-        {view: homeView,             eagerInitialize: true  },
-        {view: resumeView,           eagerInitialize: true  },
-        {view: projectsView,         eagerInitialize: true  }
-    ],
-    viewList = [].concat(generalViewList),
-
-    // Other module vars
-    parentDiv,
-    showElementClass = 'show-element',
-    initialized = false;
-
+  // Singleton reference
+  self,
+  // Views
+  viewMap = {},
+  viewSliderMap = {},
+  currentView,
+  visibleView,
+  defaultTransitionDelay = 300,
+  // Views arrays
+  generalViewList = [
+    { view: homeView, eagerInitialize: true },
+    { view: resumeView, eagerInitialize: true },
+    { view: projectsView, eagerInitialize: true },
+  ],
+  viewList = [].concat(generalViewList),
+  // Other module vars
+  parentDiv,
+  showElementClass = "show-element",
+  initialized = false;
 
 // Class
 export default class ViewManager {
+  // Constructor
+  constructor() {
+    // BOILER PLATE: Preserve instance reference and enforce singleton
+    if (typeof self === "object") {
+      return self;
+    } else {
+      self = this;
+    }
 
-    // Constructor
-    constructor() {
+    // Set view map by name
+    let view;
+    for (let i = 0; i < viewList.length; i++) {
+      view = viewList[i].view;
+      viewMap[view.getName()] = view;
+    }
 
-        // BOILER PLATE: Preserve instance reference and enforce singleton
-        if (typeof self === 'object') {
-            return self;
-        } else {
-            self = this;
-        }
+    // Element listeners
+  }
 
-        // Set view map by name
-        let view;
-        for (let i = 0; i < viewList.length; i++) {
-            view = viewList[i].view;
-            viewMap[view.getName()] = view;
-        }
+  // Instance methods
 
+  // Add the specified div to the list of possible divs
+  addDiv(childDiv, parentDiv) {
+    // Only add if not already present
+    if (!childDiv.parentNode) {
+      parentDiv.appendChild(childDiv);
+    }
+  }
 
-        // Element listeners
+  // Fire event
+  fireEvent(action) {
+    // Setup detail object
+    let detail = {
+      action: action,
     };
+    // Dispatch
+    document.body.dispatchEvent(
+      new CustomEvent("viewManagerEvent", {
+        detail: detail,
+        bubbles: false,
+        cancelable: false,
+      })
+    );
+  }
 
+  // Public Prototype Methods
 
-    // Instance methods
+  // Create and assemble view elements
+  initialize(options) {
+    options = options || {};
 
-    // Add the specified div to the list of possible divs
-    addDiv (childDiv, parentDiv) {
-        // Only add if not already present
-        if (!childDiv.parentNode) {
-            parentDiv.appendChild(childDiv);
-        }
-    };
+    // Capture parent div for all views
+    parentDiv = options.clientDiv;
 
-    // Fire event
-    fireEvent (action) {
-        // Setup detail object
-        let detail = {
-            action: action
-        };
-        // Dispatch
-        document.body.dispatchEvent(new CustomEvent('viewManagerEvent', {
-            detail: detail,
-            bubbles: false,
-            cancelable: false
-        }));
-    };
-
-    // Public Prototype Methods
-
-    // Create and assemble view elements
-    initialize (options) {
-        options = options || {};
-
-        // Capture parent div for all views
-        parentDiv = options.clientDiv;
-
-        // Eager initialize some views
-        let view,
-            slider;
-        for (let i=0; i<viewList.length; i++) {
-            view = viewList[i].view;
-            if (viewList[i].eagerInitialize === true) {
-                view.initialize();
-                slider = new SlideControl({
-                    component: view.getDiv()
-                });
-                viewSliderMap[view.getName()] = slider;
-                slider.hide();
-                this.addDiv(slider.getDiv(), parentDiv);
-            }
-        }
-
-        // Declare victory
-        initialized = true;
-
-        // Listeners
-
-        // ResumeView events
-        resumeView.getDiv().addEventListener('resumeEvent', event => {
-            console.log('ResumeEvent! - ', event);
-            if (event && event.detail) {
-                switch (event.detail.action) {}
-            }
+    // Eager initialize some views
+    let view, slider;
+    for (let i = 0; i < viewList.length; i++) {
+      view = viewList[i].view;
+      if (viewList[i].eagerInitialize === true) {
+        view.initialize();
+        slider = new SlideControl({
+          component: view.getDiv(),
         });
+        viewSliderMap[view.getName()] = slider;
+        slider.hide();
+        this.addDiv(slider.getDiv(), parentDiv);
+      }
+    }
 
-        // HomeView events
-        homeView.getDiv().addEventListener('homeEvent', event => {
-            console.log('HomeEvent! - ', event);
-            if (event && event.detail) {
-                switch (event.detail.action) {}
-            }
-        });
+    // Declare victory
+    initialized = true;
 
-        // ProjectsView events
-        projectsView.getDiv().addEventListener('projectsEvent', event => {
-            console.log('ProjectsEvent! - ', event);
-            if (event && event.detail) {
-                switch (event.detail.action) {}
-            }
-        });
-    };
+    // Listeners
 
-    // Get the initialization status
-    isInitialized () {
-        return initialized;
-    };
-
-    // Scroll to top of current view
-    scrollToTop () {
-        for (let v in viewMap) {
-            if (viewMap && viewMap[v]) {
-                let view = viewMap[v].getDiv();
-                if (view && view.classList.contains(showElementClass)) {
-                    view.scrollTop = 0;
-                    if (view.hasChildNodes()) {
-                        view.children[0].scrollTop = 0;
-                    }
-                }
-            }
+    // ResumeView events
+    resumeView.getDiv().addEventListener("resumeEvent", (event) => {
+      console.log("ResumeEvent! - ", event);
+      if (event && event.detail) {
+        switch (event.detail.action) {
         }
-    };
+      }
+    });
 
-    // Show default view, e.g. HomeView
-    showDefaultView () {
-        this.showViewByName('HomeView');
-    };
-
-    // Show view by name
-    showViewByName (viewName, options) {
-
-        // Show view based on name
-        if (viewName != null && viewMap[viewName] != null) {
-            this.showView(viewMap[viewName], options);
+    // HomeView events
+    homeView.getDiv().addEventListener("homeEvent", (event) => {
+      console.log("HomeEvent! - ", event);
+      if (event && event.detail) {
+        switch (event.detail.action) {
         }
-    };
+      }
+    });
 
-    // Display the specified View
-    showView (newView, options) {
-
-        // Validate
-        if (newView == null) {
-            throw new Error('ERROR: invalid view - ' + newView);
+    // ProjectsView events
+    projectsView.getDiv().addEventListener("projectsEvent", (event) => {
+      console.log("ProjectsEvent! - ", event);
+      if (event && event.detail) {
+        switch (event.detail.action) {
         }
+      }
+    });
+  }
 
-        // Get view name
-        let newViewName = newView.getName();
+  // Get the initialization status
+  isInitialized() {
+    return initialized;
+  }
 
-
-        // Preserve previous view and set current
-        let previousVisibleView = this.getVisibleView();
-
-        if (previousVisibleView !== newView) {
-            this.setVisibleView(newView);
-
-            // Gather artifacts for new view
-            let newViewSlider = viewSliderMap[newViewName],
-                newViewDiv;
-
-            // Lazy initialization, if necessary
-            if (!newView.isInitialized()) {
-
-                // Initialize and add to view collection
-                newView.initialize();
-                newViewDiv = newView.getDiv();
-
-                // Add to DOM
-                switch(newView) {
-                    // case homeView:
-                    // case resumeView:
-                    default:
-                        // Create slider for view
-                        newViewSlider = new SlideControl({
-                            component: newViewDiv
-                        });
-                        viewSliderMap[newView.getName()] = newViewSlider;
-                        this.addDiv(newViewSlider.getDiv(), parentDiv);
-                        break;
-                }
-            }
-
-            // Assume no transition delay needed
-            let transitionDelay = 0;
-
-            // Close existing view, if there is one
-            if (previousVisibleView != null) {
-
-                // Gather artifacts on old view
-                let oldView = previousVisibleView,
-                    oldViewName = oldView.getName(),
-                    oldViewSlider = viewSliderMap[oldViewName];
-
-                // Close existing view slider and hide view
-                if (oldViewSlider != null) {
-                    oldViewSlider.close(() => {
-                        // Hide the existing view and slider
-                        oldView.hide();
-                        oldViewSlider.hide();
-                    });
-                }
-
-                // Wait for transition before opening new view
-                transitionDelay = defaultTransitionDelay;
-            }
-
-            // Allow existing view/slider to transition away, if necessary
-            setTimeout(() => {
-
-                // Show the view and open its slider
-                switch(newView) {
-                    // case homeView:
-                    // case resumeView:
-
-                    default:
-
-                    // Call 'setInitialView' method, if it exists
-                    if (typeof newView.setInitialView === 'function') {
-                        newView.setInitialView(options);
-                    }
-
-                    // Show view (open slider)
-                    newView.show();
-                    newViewSlider.show();
-                    setTimeout(() => {
-                        newViewSlider.open();
-                    }, 50); // Yield for UI
-
-                    break;
-                }
-
-                // Scroll to the top of the view
-                this.scrollToTop();
-
-            }, transitionDelay);
+  // Scroll to top of current view
+  scrollToTop() {
+    for (let v in viewMap) {
+      if (viewMap && viewMap[v]) {
+        let view = viewMap[v].getDiv();
+        if (view && view.classList.contains(showElementClass)) {
+          view.scrollTop = 0;
+          if (view.hasChildNodes()) {
+            view.children[0].scrollTop = 0;
+          }
         }
-    };
+      }
+    }
+  }
 
-    // Close the specified view
-    hideView (view, callback) {
-        view.hide();
-        if (callback) {
-            callback();
-        }
-    };
+  // Show default view, e.g. HomeView
+  showDefaultView() {
+    this.showViewByName("HomeView");
+  }
 
-    // Open the named slider
-    openSlider (slider, callback) {
-        if (slider) {
-            slider.show();
-            slider.open(() => {
-                if (callback) {
-                    callback();
-                }
+  // Show view by name
+  showViewByName(viewName, options) {
+    // Show view based on name
+    if (viewName != null && viewMap[viewName] != null) {
+      this.showView(viewMap[viewName], options);
+    }
+  }
+
+  // Display the specified View
+  showView(newView, options) {
+    // Validate
+    if (newView == null) {
+      throw new Error("ERROR: invalid view - " + newView);
+    }
+
+    // Get view name
+    let newViewName = newView.getName();
+
+    // Preserve previous view and set current
+    let previousVisibleView = this.getVisibleView();
+
+    if (previousVisibleView !== newView) {
+      this.setVisibleView(newView);
+
+      // Gather artifacts for new view
+      let newViewSlider = viewSliderMap[newViewName],
+        newViewDiv;
+
+      // Lazy initialization, if necessary
+      if (!newView.isInitialized()) {
+        // Initialize and add to view collection
+        newView.initialize();
+        newViewDiv = newView.getDiv();
+
+        // Add to DOM
+        switch (newView) {
+          // case homeView:
+          // case resumeView:
+          default:
+            // Create slider for view
+            newViewSlider = new SlideControl({
+              component: newViewDiv,
             });
-        } else {
-            if (callback) {
-                callback();
-            }
+            viewSliderMap[newView.getName()] = newViewSlider;
+            this.addDiv(newViewSlider.getDiv(), parentDiv);
+            break;
         }
-    };
+      }
 
-    // Close the named slider with special handling for busyView
-    closeSlider (slider, callback) {
-        slider.close(() => {
-            slider.hide();
-            if (callback) {
-                callback();
+      // Assume no transition delay needed
+      let transitionDelay = 0;
+
+      // Close existing view, if there is one
+      if (previousVisibleView != null) {
+        // Gather artifacts on old view
+        let oldView = previousVisibleView,
+          oldViewName = oldView.getName(),
+          oldViewSlider = viewSliderMap[oldViewName];
+
+        // Close existing view slider and hide view
+        if (oldViewSlider != null) {
+          oldViewSlider.close(() => {
+            // Hide the existing view and slider
+            oldView.hide();
+            oldViewSlider.hide();
+          });
+        }
+
+        // Wait for transition before opening new view
+        transitionDelay = defaultTransitionDelay;
+      }
+
+      // Allow existing view/slider to transition away, if necessary
+      setTimeout(() => {
+        // Show the view and open its slider
+        switch (newView) {
+          // case homeView:
+          // case resumeView:
+
+          default:
+            // Call 'setInitialView' method, if it exists
+            if (typeof newView.setInitialView === "function") {
+              newView.setInitialView(options);
             }
-        });
-    };
 
-    // Show the current view (Map nor List)
-    getCurrentView () {
-        return currentView;
-    };
+            // Show view (open slider)
+            newView.show();
+            newViewSlider.show();
+            setTimeout(() => {
+              newViewSlider.open();
+            }, 50); // Yield for UI
 
-    // Show the current view (Map nor List)
-    setCurrentView (view) {
-        currentView = view;
-    };
+            break;
+        }
 
-    // Keep track of the currently visible view
-    setVisibleView (view) {
-        visibleView = view;
-    };
+        // Scroll to the top of the view
+        this.scrollToTop();
+      }, transitionDelay);
+    }
+  }
 
-    // Get the currently visible view
-    getVisibleView () {
-        return visibleView;
-    };
+  // Close the specified view
+  hideView(view, callback) {
+    view.hide();
+    if (callback) {
+      callback();
+    }
+  }
 
-    // Get the list of possible views
-    getViews () {
-        return viewMap;
-    };
-};
+  // Open the named slider
+  openSlider(slider, callback) {
+    if (slider) {
+      slider.show();
+      slider.open(() => {
+        if (callback) {
+          callback();
+        }
+      });
+    } else {
+      if (callback) {
+        callback();
+      }
+    }
+  }
+
+  // Close the named slider with special handling for busyView
+  closeSlider(slider, callback) {
+    slider.close(() => {
+      slider.hide();
+      if (callback) {
+        callback();
+      }
+    });
+  }
+
+  // Show the current view (Map nor List)
+  getCurrentView() {
+    return currentView;
+  }
+
+  // Show the current view (Map nor List)
+  setCurrentView(view) {
+    currentView = view;
+  }
+
+  // Keep track of the currently visible view
+  setVisibleView(view) {
+    visibleView = view;
+  }
+
+  // Get the currently visible view
+  getVisibleView() {
+    return visibleView;
+  }
+
+  // Get the list of possible views
+  getViews() {
+    return viewMap;
+  }
+}

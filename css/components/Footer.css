@@ -1,402 +1,560 @@
-/* Footer Component */
 .footer-component-wrapper {
-    position: relative;
-    position: absolute;
-    width: calc(100%);
-    margin: 0 auto;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#projects-panel-div.dark .footer-component-wrapper {
-    background-color: #020a16;
-    padding-top: 12px;
-    box-sizing: border-box;
+  position: relative;
+  position: absolute;
+  width: calc(100%);
+  margin: 0 auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .footer-component {
-    position: relative;
-    font-family: 'Josefin';
-    width: calc(90% + 24px);
-    display: flex;
-    height: 64px;
-    border-top: rgb(0, 0, 0, 0.25) solid 2px;
-    margin: 0 auto 0 auto;
+  position: relative;
+  font-family: "Josefin";
+  width: calc(90% + 24px);
+  display: flex;
+  height: 64px;
+  border-top: rgb(0, 0, 0, 0.25) solid 2px;
+  margin: 0 auto 0 auto;
 }
 
 .footer-component.dark {
-    border-top: rgb(255, 255, 255, 0.25) solid 2px;
+  border-top: rgb(255, 255, 255, 0.25) solid 2px;
 }
 
-/* ReactButton */
 .footer-left {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .footer-left > img {
-    width: 32px;
-    background-color: rgb(35, 39, 47, 0.75);
-    border-radius: 100%;
-    padding: 6px;
-    cursor: pointer;
-    transition: background-color 150ms ease;
+  width: 32px;
+  background-color: rgb(35, 39, 47, 0.75);
+  border-radius: 100%;
+  padding: 6px;
+  cursor: pointer;
+  -webkit-transition: background-color 150ms ease;
+  transition: background-color 150ms ease;
 }
 
 .footer-left > img:hover {
-    background-color: rgb(35, 39, 47, 1);
+  background-color: rgb(35, 39, 47, 1);
 }
 
 .footer-left > div:nth-child(2) {
-    position: relative;
-    white-space: nowrap;
-    font-size: clamp(1vw, 14px, 14px);
-    margin-left: 12px;
+  position: relative;
+  white-space: nowrap;
+  font-size: clamp(1vw, 14px, 14px);
+  margin-left: 12px;
 }
 
 .footer-left > div:nth-child(2)::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    background-color: rgb(0,0,0,0.25);
-    height: 2px;
-    left: 50%;
-    top: calc(100% + -2px);
-    transition: all 150ms ease;
-    transform: translateX(200%);
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: rgb(0, 0, 0, 0.25);
+  height: 2px;
+  left: 50%;
+  top: calc(100% + -2px);
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  -webkit-transform: translateX(200%);
+  transform: translateX(200%);
 }
 
 .footer-left:hover > div:nth-child(2)::after {
-    transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .footer-component.dark .footer-left > div:nth-child(2)::after {
-    background-color: rgb(255,255,255,0.25);
+  background-color: rgb(255, 255, 255, 0.25);
 }
 
 .footer-component.dark .footer-left > div:nth-child(2) {
-    color: white;
+  color: white;
 }
 
-/* MidFoot */
 .footer-mid {
-    display: flex;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    margin: auto;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: auto;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .footer-mid > img:nth-child(1) {
-    width: 26px;
-    padding: 6px;
-    cursor: pointer;
-    transition: opacity 150ms ease;
+  width: 26px;
+  padding: 6px;
+  cursor: pointer;
+  -webkit-transition: opacity 150ms ease;
+  transition: opacity 150ms ease;
 }
 
 .footer-mid > img:nth-child(1):hover {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
 .footer-mid > .email-text {
-    font-size: 14px;
-    border-bottom: rgb(0, 0, 0, 0.5) 1px solid;
-    border-top: rgb(0, 0, 0, 0.5) 1px solid;
-    margin: 0 12px;
-    line-height: 41px;
-    cursor: pointer;
+  font-size: 14px;
+  border-bottom: rgb(0, 0, 0, 0.5) 1px solid;
+  border-top: rgb(0, 0, 0, 0.5) 1px solid;
+  margin: 0 12px;
+  line-height: 41px;
+  cursor: pointer;
 }
 
 .footer-component.dark .footer-mid > .email-text {
-    color: #FFFFFF;
-    border-bottom: rgb(255,255,255, 0.5) 1px solid;
-    border-top: rgb(255,255,255, 0.5) 1px solid;
+  color: #ffffff;
+  border-bottom: rgb(255, 255, 255, 0.5) 1px solid;
+  border-top: rgb(255, 255, 255, 0.5) 1px solid;
 }
 
 .footer-mid > img:nth-child(3) {
-    width: 26px;
-    padding: 6px;
-    cursor: pointer;
-    transition: opacity 150ms ease;
+  width: 26px;
+  padding: 6px;
+  cursor: pointer;
+  -webkit-transition: opacity 150ms ease;
+  transition: opacity 150ms ease;
 }
 
 .footer-mid > img:nth-child(3):hover {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
-/* Dark/Light Mode Toggle */
 .footer-right {
-    display: flex;
-    justify-content: space-around;
-    margin-left: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
 }
 
 .mode-toggle.moon {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    background-color: #35364A;
-    opacity: 0.25;
-    border-radius: 100%;
-    transition: background-color, opacity ease 250ms;
-    margin-right: 24px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background-color: #35364a;
+  opacity: 0.25;
+  margin-right: 24px;
+  border-radius: 100%;
+  -webkit-transition: background-color, opacity 250ms ease;
+  transition: background-color, opacity ease 250ms;
 }
 
 .mode-toggle.moon:hover {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
 .mode-toggle.moon.selected {
-    opacity: 1;
+  opacity: 1;
 }
 
 .mode-toggle.moon > img {
-    width: 18px;
+  width: 18px;
 }
 
 .mode-toggle.sun {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    width: 36px;
-    height: 36px;
-    background-color: #81A988;
-    cursor: pointer;
-    border-radius: 100%;
-    opacity: 0.50;
-    transition: background-color, opacity ease 250ms;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  background-color: #81a988;
+  cursor: pointer;
+  border-radius: 100%;
+  opacity: 0.5;
+  -webkit-transition: background-color, opacity 250ms ease;
+  transition: background-color, opacity ease 250ms;
 }
 
 .mode-toggle.sun:hover {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
 .mode-toggle.sun.selected {
-    opacity: 1;
+  opacity: 1;
 }
 
 .mode-toggle.sun > img {
-    width: 24px;
+  width: 24px;
 }
 
-/* Email Popup */
 .email-popup {
-    display: none;
-    background-color: #000;
-    opacity: 0;
-    overflow: hidden;
-    z-index: 3;
-    transition: opacity 150ms ease;
+  display: none;
+  background-color: #000;
+  opacity: 0;
+  overflow: hidden;
+  z-index: 9999;
+  -webkit-transition: opacity 150ms ease;
+  transition: opacity 150ms ease;
+  font-family: "Josefin";
 }
 
 .email-popup.dark {
-    background-color: #242532;
+  background-color: #242532;
 }
 
 .email-popup.show-element {
-    display: flex;
-    opacity: 1;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -100%;
-    height: 42px;
-    color: #FFFFFF;
-    font-weight: 500;
-    line-height: 23px;
-    padding: 6px;
-    border-radius: 4px;
+  display: flex;
+  opacity: 1;
+  position: fixed;
+  /* left: 50%;
+  top: -100%; */
+  left: 50%;
+  bottom: 74px;
+  height: 42px;
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 23px;
+  padding: 6px;
+  border-radius: 4px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .email-popup::after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #000;
-    transform: translateX(-50%);
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #000;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .email-popup::before {
-    content: "Copied";
-    transform: translateY(-150%);
-    transition: transform 150ms ease;
-    position: absolute;
-    border-radius: 4px;
-    top: 27px;
-    left: 0px;
-    background-color: #000000;
-    z-index: 5;
-    width: 105px;
-    height: 54px;
-    line-height: 54px;
-    font-size: 14px;
-    text-align: center;
+  content: "Copied";
+  position: absolute;
+  border-radius: 4px;
+  top: 27px;
+  left: 0px;
+  background-color: #000000;
+  z-index: 5;
+  width: 105px;
+  height: 54px;
+  line-height: 54px;
+  font-size: 14px;
+  text-align: center;
+  -webkit-transform: translateY(-150%);
+  transform: translateY(-150%);
+  -webkit-transition: transform 150ms ease;
+  transition: transform 150ms ease;
 }
 
 .email-popup.dark::before {
-    background-color: #242532;
+  background-color: #242532;
 }
 
 .email-popup.show-copied::before {
-    transform: translateY(calc(0% - 27px));
+  -webkit-transform: translateY(calc(0% - 27px));
+  transform: translateY(calc(0% - 27px));
 }
 
 .email-popup > div:nth-child(1) {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    cursor: pointer;
-    margin-right: 24px;
-    transition: opacity 150ms ease;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  cursor: pointer;
+  margin-right: 24px;
+  -webkit-transition: opacity 150ms ease;
+  transition: opacity 150ms ease;
 }
 
 .email-popup > div:nth-child(1):hover::after {
-    content: "";
-    box-shadow: 0px 0px 20px 8px #FFF;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  content: "";
+  box-shadow: 0px 0px 20px 8px #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .email-popup > div:nth-child(1):hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .email-popup > div:nth-child(1) > img:nth-child(1) {
-    height: 26px;
+  height: 26px;
 }
 
 .email-popup > div:nth-child(1) > div:nth-child(2) {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .email-popup > div:nth-child(1) > div:nth-child(2)::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    height: 2px;
-    left: 50%;
-    top: calc(100% + 2px);
-    transition: all 150ms ease;
-    transform: translateX(-200%);
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  height: 2px;
+  left: 50%;
+  top: calc(100% + 2px);
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  -webkit-transform: translateX(-200%);
+  transform: translateX(-200%);
 }
 
 .email-popup > div:nth-child(1):hover > div:nth-child(2)::after {
-    transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .email-popup > div:nth-child(2) {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    cursor: pointer;
-    transition: opacity 150ms;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  cursor: pointer;
+  -webkit-transition: opacity 150ms;
+  transition: opacity 150ms;
 }
 
 .email-popup > div:nth-child(2):hover::after {
-    content: "";
-    box-shadow: 0px 0px 20px 8px #FFF;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  content: "";
+  box-shadow: 0px 0px 20px 8px #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .email-popup > div:nth-child(2):hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .email-popup > div:nth-child(2) > img:nth-child(1) {
-    height: 26px;
+  height: 26px;
 }
 
 .email-popup > div:nth-child(2) > div:nth-child(2) {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .email-popup > div:nth-child(2) > div:nth-child(2)::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    height: 2px;
-    left: 50%;
-    top: calc(100% + 2px);
-    transition: all 150ms ease;
-    transform: translateX(200%);
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  height: 2px;
+  left: 50%;
+  top: calc(100% + 2px);
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  -webkit-transform: translateX(200%);
+  transform: translateX(200%);
 }
 
 .email-popup > div:nth-child(2):hover > div:nth-child(2)::after {
-    transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
-/* Email Popup Overlay */
 .email-popup-overlay {
-    display: none;
-    position: absolute;
-    height: 90vh;
-    width: 100vw;
-    bottom: 0;
-    left: -6%;
-    z-index: 2;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 9998;
+  background: transparent;
 }
 
 .email-popup-overlay.show-element {
-    display: block;
+  display: block;
 }
 
 /* Media Queries */
 
 /* Remove text for ReactButton in footer */
 @media (max-width: 1035px) {
-    .footer-left > div:nth-child(2) {
-        display: none;
-    }
+  .footer-left > div:nth-child(2) {
+    display: none;
+  }
 }
 
-/* Stack Footer to how react button on own line */
+/* Relayout for mobile */
 @media (max-width: 650px) {
-    .footer-component {
-        flex-wrap: wrap;
-        padding: 12px;
-        height: 114px;
-    }
-    
-    .footer-left {
-        width: fit-content;
-        order: 2;
-    }
-    
-    .footer-mid {
-        position: initial;
-        order: 1;
-        flex-basis: 100%;
-        justify-content: space-between;
-        transform: translate(0px, 0px);
-    }
-    
-    .footer-right {
-        order: 3;
-    }
-    
-    .footer-left > div:nth-child(2) {
-        display: block;
-    }
+  .footer-component {
+    flex-wrap: wrap;
+    padding: 12px;
+    height: auto;
+    min-height: 114px;
+  }
+
+  .footer-left {
+    width: fit-content;
+    order: 2;
+    margin-top: 8px;
+  }
+
+  .footer-mid {
+    position: initial;
+    order: 1;
+    flex-basis: 100%;
+    justify-content: space-between;
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+    margin-bottom: 8px;
+  }
+
+  .footer-right {
+    order: 3;
+    margin-top: 8px;
+  }
+
+  .footer-left > div:nth-child(2) {
+    display: none;
+  }
+
+  /* Improve spacing for mode toggles */
+  .mode-toggle.moon,
+  .mode-toggle.sun {
+    margin-right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .mode-toggle.moon > img {
+    width: 16px;
+  }
+
+  .mode-toggle.sun > img {
+    width: 20px;
+  }
+
+  /* Mobile-optimized email popup */
+  .email-popup.show-element {
+    bottom: 160px;
+    height: auto;
+    min-height: 42px;
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    max-width: 280px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  .email-popup > div:nth-child(1),
+  .email-popup > div:nth-child(2) {
+    margin-right: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100%; /* Full width buttons */
+    padding: 8px 12px; /* Better touch targets */
+    border-radius: 6px;
+    -webkit-transition: background-color 150ms ease;
+    transition: background-color 150ms ease;
+  }
+
+  .email-popup > div:nth-child(1):hover,
+  .email-popup > div:nth-child(2):hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Remove hover effects that don't work well on mobile */
+  .email-popup > div:nth-child(1):hover::after,
+  .email-popup > div:nth-child(2):hover::after {
+    display: none;
+  }
+
+  /* Remove underline animations */
+  .email-popup > div:nth-child(1) > div:nth-child(2)::after,
+  .email-popup > div:nth-child(2) > div:nth-child(2)::after {
+    display: none;
+  }
+
+  /* Adjust popup arrow position */
+  .email-popup::after {
+    bottom: -10px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #000;
+  }
+
+  .email-popup.dark::after {
+    border-top-color: #242532;
+  }
+
+  /* Adjust "Copied" tooltip position */
+  .email-popup::before {
+    top: 30px;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-200%);
+    transform: translateX(-50%) translateY(-150%);
+    width: 90px;
+    height: 44px;
+    line-height: 44px;
+  }
+
+  .email-popup.show-copied::before {
+    -webkit-transform: translateX(-50%) translateY(0%);
+    transform: translateX(-50%) translateY(0%);
+  }
+
+  /* Improve social icons spacing */
+  .footer-mid > img:nth-child(1),
+  .footer-mid > img:nth-child(3) {
+    width: 24px;
+    padding: 4px;
+  }
+
+  .footer-mid > .email-text {
+    font-size: 13px;
+    margin: 0 8px;
+    line-height: 32px;
+  }
 }
 
-@media (max-width: 480px) {
-    .footer-left > div:nth-child(2) {
-        display: none;
-    }
+/* Additional improvements for very small screens */
+@media (max-width: 400px) {
+  .footer-component {
+    padding: 8px;
+  }
+
+  .footer-mid > .email-text {
+    font-size: 12px;
+    margin: 0 6px;
+  }
+
+  .footer-left > div:nth-child(2) {
+    display: none;
+  }
+
+  .email-popup.show-element {
+    width: 95%; /* Use almost full width */
+    max-width: none;
+  }
+}
+
+/* Improve touch targets for all interactive elements */
+@media (max-width: 650px) {
+  .footer-left > img,
+  .footer-mid > img:nth-child(1),
+  .footer-mid > img:nth-child(3),
+  .mode-toggle.moon,
+  .mode-toggle.sun {
+    min-width: 44px; /* Minimum touch target size */
+    min-height: 44px;
+  }
+
+  .footer-mid > .email-text {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
 }

@@ -1,30 +1,30 @@
 .skill-rating-div {
-    position: relative;
+  position: relative;
 }
 .skill-rating-div.label-included {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
 }
 .skill-rating-div.label-included > div:nth-child(1) {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .rating-div {
-    display: flex;
+  display: flex;
 }
 
 .rating-div > div {
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    margin: 0 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  margin: 0 1px;
 }
 
 .rating-div > div:first-child {
-    margin: 0;
+  margin: 0;
 }
 .rating-div > div:last-child {
-    margin: 0;
+  margin: 0;
 }

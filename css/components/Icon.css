@@ -1,50 +1,38 @@
-/*
- * Standard styling for Icon elements
- */
-
-/*
- * 
- */
-
- .icon-div {
-   display: flex;
-   align-items: center;
-   position: relative;
-   width: 100%;
-   height: 100%;
-   overflow: auto;
-   overflow-x: hidden;
-   background-color: transparent;
-   -webkit-touch-callout: none;
-   -webkit-user-select: none;
-    -khtml-user-select: none;
-      -moz-user-select: none;
-       -ms-user-select: none;
-           user-select: none;
+.icon-div {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  background-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .icon-div > div:nth-child(1) {
-   position: relative;
-   display: flex;
-   flex-flow: column nowrap;
-   justify-content: center;
-   align-items: center;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 .icon-div > div:nth-child(1) > img {
-   /* position: absolute; */
-   width: 100%;
-   height: 100%;
-   object-fit: contain;
-   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  box-sizing: border-box;
 }
 
 .icon-div > div:nth-child(2) {
-   display: none;
+  display: none;
 }
 
 .icon-div > div:nth-child(2).show-element {
-   display: block;
-   font-size: 14px;
-   margin-left: 8px;
-   text-align: left;
+  display: block;
+  font-size: 14px;
+  margin-left: 8px;
+  text-align: left;
 }
