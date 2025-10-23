@@ -219,14 +219,9 @@ export default class ProjectsPanel extends BasePanel {
         detailsButton.textContent = "View Details";
       }
 
-      // Switch back to short description
+      // Scroll description back
       const descriptionDiv = card.querySelector(".project-description");
-      const shortDescription = descriptionDiv.getAttribute(
-        "data-short-description"
-      );
-      if (shortDescription) {
-        descriptionDiv.textContent = shortDescription;
-      }
+      descriptionDiv.scrollTop = 0;
 
       // DESKTOP: Complete collapse after animation
       if (window.innerWidth >= 768) {

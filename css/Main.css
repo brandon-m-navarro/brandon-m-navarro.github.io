@@ -114,6 +114,7 @@
   font-family: "Lato";
 }
 #top-client-div {
+  font-size: .875rem;
   position: relative;
   display: flex;
   height: 10vh;
