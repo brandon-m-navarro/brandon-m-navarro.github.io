@@ -357,10 +357,6 @@ export default class ProjectsPanel extends BasePanel {
     liveDemoLink.target = "_blank";
     liveDemoLink.rel = "noopener noreferrer";
     liveDemoLink.textContent = "View Live Demo →";
-    addEventListeners(liveDemoLink, (e) => {
-      e.preventDefault();
-      window.open(project.liveDemo, "_blank").focus();
-    });
 
     // Assemble content
     contentDiv.appendChild(titleDiv);
