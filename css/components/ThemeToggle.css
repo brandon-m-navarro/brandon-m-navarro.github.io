@@ -1,0 +1,52 @@
+/* ThemeToggle.css
+ *
+ * Styles for the standalone theme toggle component
+ * Handles dark/light mode switching UI with smooth transitions
+ */
+
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-button {
+    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 100%;
+  border: none;
+  background-color: #81a988;
+  opacity: 0.75;
+  transition: all 250ms ease;
+}
+.theme-toggle-button::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+}
+
+.theme-toggle-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.theme-toggle-button.dark {
+  background-color: #81a988;
+}
+
+.theme-toggle-button.light {
+  background-color: #35364a;
+}
+
+.theme-toggle-button > img {
+  width: 18px;
+  height: 18px;
+  transition: transform 250ms ease;
+}

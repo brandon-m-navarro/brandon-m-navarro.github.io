@@ -19,6 +19,7 @@
 
 // Import & instantiate dependent modules
 import ViewManager from "./ViewManager.js";
+import ThemeToggle from "./components/ThemeToggle.js";
 const viewManager = new ViewManager();
 
 import { addEventListeners, isMobile } from "./utils/Utilities.js";
@@ -54,43 +55,10 @@ export class Main {
       }, 500);
     };
 
-    // Listen for light/dark event from either panel (since i couldnt et footer positioned corectly in Main.js)
-    viewManager
-      .getViews()
-      ["HomeView"].homePanel.getDiv()
-      .addEventListener("dark", () => {
-        this.setTheme(Main.getThemes().DARK);
-      });
-    viewManager
-      .getViews()
-      ["HomeView"].homePanel.getDiv()
-      .addEventListener("light", () => {
-        this.setTheme(Main.getThemes().LIGHT);
-      });
-    viewManager
-      .getViews()
-      ["ResumeView"].resumePanel.getDiv()
-      .addEventListener("dark", () => {
-        this.setTheme(Main.getThemes().DARK);
-      });
-    viewManager
-      .getViews()
-      ["ResumeView"].resumePanel.getDiv()
-      .addEventListener("light", () => {
-        this.setTheme(Main.getThemes().LIGHT);
-      });
-    viewManager
-      .getViews()
-      ["ProjectsView"].projectsPanel.getDiv()
-      .addEventListener("dark", () => {
-        this.setTheme(Main.getThemes().DARK);
-      });
-    viewManager
-      .getViews()
-      ["ProjectsView"].projectsPanel.getDiv()
-      .addEventListener("light", () => {
-        this.setTheme(Main.getThemes().LIGHT);
-      });
+    // Listen for light/dark event from topClientDiv
+    this.topClientDiv.addEventListener("themeChange", (event) => {
+      this.setTheme(event.detail.mode);
+    });
 
     this.start(debug);
   }
@@ -135,20 +103,21 @@ export class Main {
   // Show darkMode
   setTheme(theme) {
     switch (theme) {
-      case Main.getThemes().LIGHT:
+      case "light":
+        console.log('light')
         this.topClientDiv.classList.remove("dark");
         this.clientDiv.classList.remove("dark");
-        this.footer.classList.remove("dark");
 
         viewManager.getViews()["HomeView"].homePanel.makeDay();
         viewManager.getViews()["ResumeView"].resumePanel.makeDay();
         viewManager.getViews()["ProjectsView"].projectsPanel.makeDay();
 
         break;
-      case Main.getThemes().DARK:
+      case "dark":
+                console.log('dark')
+
         this.topClientDiv.classList.add("dark");
         this.clientDiv.classList.add("dark");
-        this.footer.classList.add("dark");
 
         viewManager.getViews()["HomeView"].homePanel.makeNight();
         viewManager.getViews()["ResumeView"].resumePanel.makeNight();
@@ -204,8 +173,7 @@ export class Main {
     this.resumeNavTextDiv = doc.createElement("div");
     this.projectsNavTextDiv = doc.createElement("div");
 
-    this.footer = doc.createElement("footer");
-    this.footerMidDiv = doc.createElement("div");
+    this.themeToggle = new ThemeToggle();
   }
 
   // Load the website
@@ -221,11 +189,10 @@ export class Main {
     console.info("Are we running on mobile? - " + isMobile());
 
     // Assemble
+    this.topClientDiv.appendChild(this.aboutNavTextDiv);
     this.topClientDiv.appendChild(this.projectsNavTextDiv);
     this.topClientDiv.appendChild(this.resumeNavTextDiv);
-    this.topClientDiv.appendChild(this.aboutNavTextDiv);
-
-    this.footer.appendChild(this.footerMidDiv);
+    this.topClientDiv.appendChild(this.themeToggle.getDiv());
 
     this.div.appendChild(this.topClientDiv);
     this.div.appendChild(this.clientDiv);
@@ -235,7 +202,6 @@ export class Main {
     this.div.setAttribute("id", "top-div");
     this.topClientDiv.setAttribute("id", "top-client-div");
     this.clientDiv.setAttribute("id", "client-div");
-    this.footer.setAttribute("id", "footer-div");
 
     // Initialize ViewManager
     viewManager.initialize({
@@ -245,13 +211,9 @@ export class Main {
     // Show default view
     this.showHome();
 
-    let mode = localStorage.getItem("mode") || null;
-
-    if (mode == "dark") {
-      this.setTheme(Main.getThemes().DARK);
-    } else {
-      this.setTheme(Main.getThemes().LIGHT);
-    }
+    // Set mode from localStorage, or default to 'light'
+    let mode = localStorage.getItem("mode") || 'light';
+    this.setTheme(mode);
 
     // Stop showing horizontal scrollbars
     doc.documentElement.style.overflowX = "hidden";
@@ -272,20 +234,12 @@ export class Main {
       .addEventListener("change", (event) => {
         if (event.matches) {
           console.log("System switched to dark mode");
-          this.setTheme(Main.getThemes().DARK);
+          this.setTheme('dark');
         } else {
           console.log("System switched to light mode");
-          this.setTheme(Main.getThemes().LIGHT);
+          this.setTheme('light');
         }
       });
-  }
-
-  // Create enum for themes
-  static getThemes() {
-    return Object.freeze({
-      LIGHT: 0,
-      DARK: 1,
-    });
   }
 }
 

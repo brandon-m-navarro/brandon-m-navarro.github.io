@@ -1,3 +1,9 @@
+/* Footer.css
+ *
+ * Styles for the footer component - social links, email popup, etc.
+ * Theme toggle styles have been moved to theme-toggle.css
+ */
+
 .footer-component-wrapper {
   position: relative;
   position: absolute;
@@ -128,65 +134,14 @@
 }
 
 .footer-right {
-  display: flex;
+  /* display: flex; */
+  display: none;
   justify-content: space-around;
   margin-left: auto;
   margin-right: 12px;
 }
 
-.mode-toggle.moon {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  background-color: #35364a;
-  opacity: 0.25;
-  margin-right: 24px;
-  border-radius: 100%;
-  -webkit-transition: background-color, opacity 250ms ease;
-  transition: background-color, opacity ease 250ms;
-}
-
-.mode-toggle.moon:hover {
-  opacity: 0.75;
-}
-
-.mode-toggle.moon.selected {
-  opacity: 1;
-}
-
-.mode-toggle.moon > img {
-  width: 18px;
-}
-
-.mode-toggle.sun {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 36px;
-  height: 36px;
-  background-color: #81a988;
-  cursor: pointer;
-  border-radius: 100%;
-  opacity: 0.5;
-  -webkit-transition: background-color, opacity 250ms ease;
-  transition: background-color, opacity ease 250ms;
-}
-
-.mode-toggle.sun:hover {
-  opacity: 0.75;
-}
-
-.mode-toggle.sun.selected {
-  opacity: 1;
-}
-
-.mode-toggle.sun > img {
-  width: 24px;
-}
-
+/* Email popup styles */
 .email-popup {
   display: none;
   background-color: #000;
@@ -206,8 +161,6 @@
   display: flex;
   opacity: 1;
   position: fixed;
-  /* left: 50%;
-  top: -100%; */
   left: 50%;
   bottom: 74px;
   height: 42px;
@@ -419,22 +372,6 @@
     display: none;
   }
 
-  /* Improve spacing for mode toggles */
-  .mode-toggle.moon,
-  .mode-toggle.sun {
-    margin-right: 12px;
-    width: 32px;
-    height: 32px;
-  }
-
-  .mode-toggle.moon > img {
-    width: 16px;
-  }
-
-  .mode-toggle.sun > img {
-    width: 20px;
-  }
-
   /* Mobile-optimized email popup */
   .email-popup.show-element {
     bottom: 160px;
@@ -547,9 +484,7 @@
 @media (max-width: 650px) {
   .footer-left > img,
   .footer-mid > img:nth-child(1),
-  .footer-mid > img:nth-child(3),
-  .mode-toggle.moon,
-  .mode-toggle.sun {
+  .footer-mid > img:nth-child(3) {
     min-width: 44px; /* Minimum touch target size */
     min-height: 44px;
   }

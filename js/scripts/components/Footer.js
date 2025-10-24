@@ -35,12 +35,6 @@ export default class FooterComponent {
     this.footerMidDiv = doc.createElement("div");
     this.footerRightDiv = doc.createElement("div");
 
-    // Dark/Light mode toggle
-    this.moonDiv = doc.createElement("div");
-    this.moonSvg = doc.createElement("img");
-    this.sunDiv = doc.createElement("div");
-    this.sunSvg = doc.createElement("img");
-
     // React site link
     this.reactTextDiv = doc.createElement("div");
     this.reactImg = doc.createElement("img");
@@ -64,8 +58,6 @@ export default class FooterComponent {
     this.emailIcon.src = this.images["email"].altSrc;
     this.midLinkedInIcon.src = this.images["linkedIn"].src;
     this.midGithubIcon.src = this.images["github"].src;
-    this.moonSvg.src = this.images["moon"].src;
-    this.sunSvg.src = this.images["sun"].src;
     this.reactImg.src = this.images["react-b"].altSrc;
 
     // Set text content
@@ -82,10 +74,6 @@ export default class FooterComponent {
     this.emailPopupDiv.appendChild(this.copyDiv);
     this.emailPopupDiv.appendChild(this.emailDiv);
 
-    // Assemble dark/light toggle
-    this.moonDiv.appendChild(this.moonSvg);
-    this.sunDiv.appendChild(this.sunSvg);
-
     // Assemble left section (React site link)
     this.footerLeftDiv.appendChild(this.reactImg);
     this.footerLeftDiv.appendChild(this.reactTextDiv);
@@ -95,10 +83,6 @@ export default class FooterComponent {
     this.footerMidDiv.appendChild(this.midEmailTextDiv);
     this.footerMidDiv.appendChild(this.midGithubIcon);
 
-    // Assemble right section (dark/light toggle)
-    this.footerRightDiv.appendChild(this.moonDiv);
-    this.footerRightDiv.appendChild(this.sunDiv);
-
     // Assemble main footer
     this.footerDiv.appendChild(this.footerLeftDiv);
     this.footerDiv.appendChild(this.footerMidDiv);
@@ -106,23 +90,12 @@ export default class FooterComponent {
 
     // Assemble wrapper
     this.footerDivWrapper.appendChild(this.footerDiv);
-    // this.footerDivWrapper.appendChild(this.emailPopupDiv);
 
     // Set initial classes
     this.setInitialClasses();
   }
 
   setupEventListeners() {
-    // Dark/Light mode toggle
-    addEventListeners(this.moonDiv, () => {
-      this.setDarkMode(true);
-      this.dispatchModeChange("dark");
-    });
-
-    addEventListeners(this.sunDiv, () => {
-      this.setDarkMode(false);
-      this.dispatchModeChange("light");
-    });
 
     // Social links
     addEventListeners(this.midGithubIcon, () => {
@@ -168,8 +141,6 @@ export default class FooterComponent {
     this.footerMidDiv.className = "footer-mid";
     this.footerRightDiv.className = "footer-right";
     this.emailPopupDiv.className = "email-popup";
-    this.moonDiv.className = "mode-toggle moon";
-    this.sunDiv.className = "mode-toggle sun";
     this.midEmailTextDiv.className = "email-text";
   }
 
@@ -177,16 +148,12 @@ export default class FooterComponent {
     if (isDark) {
       this.footerDiv.classList.add("dark");
       this.emailPopupDiv.classList.add("dark");
-      this.sunDiv.classList.remove("selected");
-      this.moonDiv.classList.add("selected");
       this.reactImg.src = this.images["react-b"].altSrc;
       this.midLinkedInIcon.src = this.images["linkedIn"].altSrc;
       this.midGithubIcon.src = this.images["github"].altSrc;
     } else {
       this.footerDiv.classList.remove("dark");
       this.emailPopupDiv.classList.remove("dark");
-      this.sunDiv.classList.add("selected");
-      this.moonDiv.classList.remove("selected");
       this.reactImg.src = this.images["react-b"].altSrc;
       this.midLinkedInIcon.src = this.images["linkedIn"].src;
       this.midGithubIcon.src = this.images["github"].src;

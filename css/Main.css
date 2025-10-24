@@ -26,6 +26,7 @@
 @import url("./components/NightSky.css");
 @import url("./components/Footer.css");
 @import url("./components/ExpandableImage.css");
+@import url("./components/ThemeToggle.css");
 
 #splash-div {
   display: flex;
@@ -119,8 +120,8 @@
   display: flex;
   height: 10vh;
   align-items: center;
-  justify-content: flex-end;
-  flex-direction: row-reverse;
+  /* justify-content: flex-end; */
+  /* flex-direction: row-reverse; */
   -webkit-transition: background-color 250ms ease;
   transition: background-color 250ms ease;
 }
@@ -128,7 +129,7 @@
   background-color: rgb(2 9 22);
 }
 
-#top-client-div > div {
+#top-client-div > div:not(:last-child) {
   position: relative;
   overflow: hidden;
 
@@ -142,6 +143,11 @@
   -webkit-transition: border, opacity ease 250ms;
   transition: border, opacity ease 250ms;
 }
+#top-client-div > div:last-child {
+  margin-left: auto;
+  margin-right: 24px;
+}
+
 #top-client-div.dark > div {
   color: #ffffff;
 }
@@ -176,7 +182,7 @@
   transform: translateX(-50%);
 }
 
-#top-client-div > div:hover {
+#top-client-div > div:not(:last-child):hover {
   background-color: rgb(53, 54, 74, 0.2);
 }
 
