@@ -583,15 +583,6 @@ export default class ResumePanel extends BasePanel {
         window.open(url, "_blank").focus();
       });
     });
-
-    // Listen for mode changes from footer
-    this.footerComponent.getDiv().addEventListener("dark", () => {
-      this.makeNight();
-    });
-
-    this.footerComponent.getDiv().addEventListener("light", () => {
-      this.makeDay();
-    });
   }
 
   // Initialize text content for the panel

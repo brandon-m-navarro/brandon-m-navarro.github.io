@@ -270,15 +270,6 @@ export default class ProjectsPanel extends BasePanel {
     // Assemble main content
     this.frameDiv.appendChild(this.headerDiv);
     this.frameDiv.appendChild(this.projectsGridDiv);
-
-    // Listen for mode changes from footer
-    this.footerComponent.getDiv().addEventListener("dark", () => {
-      this.makeNight();
-    });
-
-    this.footerComponent.getDiv().addEventListener("light", () => {
-      this.makeDay();
-    });
   }
 
   // Create individual project card

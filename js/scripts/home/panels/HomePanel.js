@@ -256,14 +256,6 @@ export default class HomePanel extends BasePanel {
   }
 
   attachListeners() {
-    this.footerComponent.getDiv().addEventListener("dark", () => {
-      this.makeNight();
-    });
-
-    this.footerComponent.getDiv().addEventListener("light", () => {
-      this.makeDay();
-    });
-
     const eventHandler = debounce(this.handleResize);
     window.addEventListener("resize", eventHandler);
   }
