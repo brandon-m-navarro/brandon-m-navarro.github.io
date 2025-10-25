@@ -46,7 +46,7 @@ export class Main {
     });
 
     // Append inline SVGs to appropriate divs
-    window.onload = (event) => {
+    window.onload = () => {
       viewManager.getViews()["HomeView"].homePanel.setSvgs();
 
       // Finally, we can hide the splashscreen and show the client
@@ -104,7 +104,6 @@ export class Main {
   setTheme(theme) {
     switch (theme) {
       case "light":
-        console.log('light')
         this.topClientDiv.classList.remove("dark");
         this.clientDiv.classList.remove("dark");
 
@@ -114,8 +113,6 @@ export class Main {
 
         break;
       case "dark":
-                console.log('dark')
-
         this.topClientDiv.classList.add("dark");
         this.clientDiv.classList.add("dark");
 
@@ -190,8 +187,8 @@ export class Main {
 
     // Assemble
     this.topClientDiv.appendChild(this.aboutNavTextDiv);
-    this.topClientDiv.appendChild(this.projectsNavTextDiv);
     this.topClientDiv.appendChild(this.resumeNavTextDiv);
+    this.topClientDiv.appendChild(this.projectsNavTextDiv);
     this.topClientDiv.appendChild(this.themeToggle.getDiv());
 
     this.div.appendChild(this.topClientDiv);
