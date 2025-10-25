@@ -322,7 +322,6 @@
 .image-container:hover .image-caption {
   opacity: 1;
 }
-
 .react-div {
   position: absolute;
   display: flex;
@@ -330,42 +329,85 @@
   overflow: hidden;
   cursor: pointer;
   z-index: 5;
-  bottom: 4px;
-  left: 4px;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 8px 16px 8px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
+
+.react-div:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
 .react-div > img:nth-child(1) {
-  width: 24px;
-  background-color: rgb(35, 39, 47, 0.75);
-  border-radius: 100%;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   padding: 6px;
   cursor: pointer;
-  -webkit-transition: background-color 150ms ease;
-  transition: background-color 150ms ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(33, 161, 196, 0.3);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
+
+.react-div:hover > img:nth-child(1) {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(33, 161, 196, 0.4);
+}
+
 .react-div > div:nth-child(2) {
   position: relative;
   white-space: nowrap;
-  font-size: clamp(1vw, 14px, 14px);
+  font-size: 14px;
+  font-weight: 500;
   margin-left: 12px;
   color: white;
   overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.01em;
 }
+
 .react-div > div:nth-child(2)::after {
   content: "";
   position: absolute;
   width: 100%;
-  background-color: white;
-  height: 1px;
-  left: 50%;
-  top: calc(100% + -2px);
-  -webkit-transition: all 150ms ease;
-  transition: all 150ms ease;
-  -webkit-transform: translateX(200%);
-  transform: translateX(50%);
+  background: linear-gradient(90deg, transparent, #61dafb, transparent);
+  height: 2px;
+  left: 0;
+  bottom: -2px;
+  transition: all 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: center;
+  border-radius: 1px;
 }
+
 .react-div:hover > div:nth-child(2)::after {
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  transform: scaleX(1);
+}
+
+/* Dark mode enhancements */
+.home-panel.dark .react-div {
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.home-panel.dark .react-div:hover {
+  background: rgba(17, 24, 39, 0.9);
+  border-color: rgba(97, 218, 251, 0.3);
 }
 
 /* Media Queries for mobile layout */
@@ -398,6 +440,12 @@
   .react-div {
     left: 50%;
     transform: translateX(-50%);
+    bottom: 16px;
+    padding: 6px 12px 6px 8px;
+  }
+  
+  .react-div:hover {
+    transform: translateX(-50%) translateY(-2px);
   }
 }
 
