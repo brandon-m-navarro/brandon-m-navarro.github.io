@@ -323,6 +323,51 @@
   opacity: 1;
 }
 
+.react-div {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 5;
+  bottom: 4px;
+  left: 4px;
+}
+.react-div > img:nth-child(1) {
+  width: 24px;
+  background-color: rgb(35, 39, 47, 0.75);
+  border-radius: 100%;
+  padding: 6px;
+  cursor: pointer;
+  -webkit-transition: background-color 150ms ease;
+  transition: background-color 150ms ease;
+}
+.react-div > div:nth-child(2) {
+  position: relative;
+  white-space: nowrap;
+  font-size: clamp(1vw, 14px, 14px);
+  margin-left: 12px;
+  color: white;
+  overflow: hidden;
+}
+.react-div > div:nth-child(2)::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  height: 1px;
+  left: 50%;
+  top: calc(100% + -2px);
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  -webkit-transform: translateX(200%);
+  transform: translateX(50%);
+}
+.react-div:hover > div:nth-child(2)::after {
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
 /* Media Queries for mobile layout */
 @media (max-width: 768px) {
   .home-frame > .top-section > .hero-section {
@@ -349,6 +394,10 @@
 
   .gallery-section {
     padding: 16px;
+  }
+  .react-div {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 

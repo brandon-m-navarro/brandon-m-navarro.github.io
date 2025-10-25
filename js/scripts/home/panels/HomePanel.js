@@ -100,6 +100,16 @@ export default class HomePanel extends BasePanel {
     this.topDiv = doc.createElement("div");
     this.topDiv.className = "top-section";
 
+    this.reactDiv = doc.createElement("div");
+    this.reactDiv.className = 'react-div';
+    this.reactTextDiv = doc.createElement("div");
+    this.reactImg = doc.createElement("img");
+    this.reactTextDiv.innerHTML = "View site built using React & Typescript";
+    this.reactImg.src = images.getImages()["react-b"].altSrc;
+
+    this.reactDiv.appendChild(this.reactImg);
+    this.reactDiv.appendChild(this.reactTextDiv);
+
     this.mtnSunSvgDiv = doc.createElement("div");
     this.mtnSunSvgDiv.className = "mtn-sun-svg-container";
 
@@ -228,6 +238,7 @@ export default class HomePanel extends BasePanel {
 
     this.topDiv.appendChild(this.mtnSunSvgDiv);
     this.topDiv.appendChild(this.meDiv);
+    this.topDiv.appendChild(this.reactDiv);
 
     this.cardsContainerDiv.appendChild(this.card1);
     this.cardsContainerDiv.appendChild(this.card2);
@@ -258,6 +269,9 @@ export default class HomePanel extends BasePanel {
   attachListeners() {
     const eventHandler = debounce(this.handleResize);
     window.addEventListener("resize", eventHandler);
+    this.reactDiv.addEventListener("click", () => {
+        window.open("https://nextjs-site-sand.vercel.app", "_blank").focus();
+    })
   }
 
   initializeContent() {
