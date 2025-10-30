@@ -50,6 +50,16 @@ const projects = [
     github: "https://github.com/brandon-m-navarro/brandon-m-navarro.github.io",
     liveDemo: "https://brandon-m-navarro.github.io/",
   },
+  {
+    id: "4",
+    title: "Duolingo Chinese → Anki Bridge",
+    description:
+      "I solved a key problem for language learners: Duolingo's missing flashcard feature. My tool makes it possible to create flashcards using the Anki platform from lesson vocabulary. It ethically complies with Duolingo's TOS by not scraping their copyrighted assets; instead, it extracts text and uses external TTS services to generate new audio, providing a legal and effective study aid. Check out the README on Github for a demo of the workflow.",
+    image: images["duo"].src,
+    tags: ["JS", "CSS3", "Python", "Userscripts"],
+    github: "https://github.com/brandon-m-navarro/duolingo-chinese-anki-bridge/tree/main",
+    liveDemo: "",
+  },
 ];
 
 // Class

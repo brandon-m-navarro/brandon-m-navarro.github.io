@@ -51,6 +51,10 @@ export default class Images {
         src: "../../img/dashboard.png",
         alt: "Dashboard App Preview",
       },
+      duo: {
+        src: "../../img/duo.png",
+        alt: "Duolingo screenshot",
+      },
       education: {
         src: "../../img/school-solid.png",
         alt: "Education",
