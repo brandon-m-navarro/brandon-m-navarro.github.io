@@ -359,6 +359,10 @@ export default class ProjectsPanel extends BasePanel {
     liveDemoLink.rel = "noopener noreferrer";
     liveDemoLink.textContent = "View Live Demo →";
 
+    if (project.liveDemo == '') {
+      liveDemoLink.style.display = 'none';
+    }
+
     // Assemble content
     contentDiv.appendChild(titleDiv);
     contentDiv.appendChild(descriptionDiv);
